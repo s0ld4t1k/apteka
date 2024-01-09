@@ -6,8 +6,9 @@ import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+ScrollController contrl=ScrollController();
 var selectedTab=0;
-List _bottomAppBarList=[
+List bottomAppBarList=[
   'assets/icons/home.svg',
   'assets/icons/category.svg',
   'assets/icons/bag.svg',
@@ -37,7 +38,7 @@ class _MainPageState extends State<MainPage> {
           margin: EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: List.generate(_bottomAppBarList.length, (index) => 
+            children: List.generate(bottomAppBarList.length, (index) => 
             (index==2)?
             GestureDetector(
               onTap: () {
@@ -52,17 +53,18 @@ class _MainPageState extends State<MainPage> {
                   color: green,
                   borderRadius: BorderRadius.circular(46),
                 ),
-                child: Center(child: SvgPicture.asset(_bottomAppBarList[index])),
+                child: Center(child: SvgPicture.asset(bottomAppBarList[index])),
               ),
             )
             :IconButton(
               onPressed: (){
                 setState(() {
+                  if(selectedTab==index)contrl.animateTo(0,duration: Duration(milliseconds: 300),curve: Curves.linear);
                   selectedTab=index;
                 });
               }, 
               icon: SvgPicture.asset(
-                _bottomAppBarList[index],
+                bottomAppBarList[index],
                 color: (selectedTab==index)?green:tabIconGrey,
               ),
             ),),

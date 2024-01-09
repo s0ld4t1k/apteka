@@ -57,6 +57,7 @@ class Reklam extends StatelessWidget {
               SizedBox(height: 9,),
               ElevatedButton(
                 style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
                   minimumSize: MaterialStateProperty.all(Size(81, 23)),
                   padding: MaterialStateProperty.all(EdgeInsets.zero),
                   backgroundColor: MaterialStateProperty.all(orange),

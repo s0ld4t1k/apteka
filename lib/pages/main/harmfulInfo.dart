@@ -27,16 +27,20 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
             ),
             SizedBox(width: 23,),
             Expanded(child: Text('Peýdaly maglumat')),
-            GestureDetector(
-              onTap: () {
-                Share.share('text');
-              },
-              child: SvgPicture.asset('assets/icons/share.svg')
+            Container(
+              width: 20,
+              height: 20,
+              child: GestureDetector(
+                onTap: () {
+                  Share.share('text');
+                },
+                child: SvgPicture.asset('assets/icons/share.svg')
+              ),
             ),
             SizedBox(width: 22,),
             Container(
-              width: 17,
-              height: 14,
+              width: 20,
+              height: 20,
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -44,7 +48,7 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
                   });
                 },
                 child: (_liked)?SvgPicture.asset('assets/icons/redHeart.svg')
-                :SvgPicture.asset('assets/icons/heart.svg',color: Colors.black,)
+                :SvgPicture.asset('assets/icons/heart.svg',color: Colors.black.withOpacity(0.75),)
               ),
             ),
           ],

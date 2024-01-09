@@ -1,3 +1,4 @@
+import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/category.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/harmful.dart';
@@ -5,6 +6,7 @@ import 'package:apte/widgets/horizontalProducts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 List _carouselList=[
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
@@ -23,6 +25,7 @@ class MainPageWidget extends StatelessWidget {
         title: _Appbar(),
       ),
       body: SingleChildScrollView(
+        controller: contrl,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,7 +33,7 @@ class MainPageWidget extends StatelessWidget {
             CarouselSlider(
               items: List.generate(_carouselList.length, (index) => Container(
                 width: 325,
-                margin: EdgeInsets.only(right: 10),
+                margin: EdgeInsets.only(right: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(image: AssetImage(_carouselList[index][0]),fit: BoxFit.fill),
@@ -138,17 +141,19 @@ class _Appbar extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10,),
-          GestureDetector(
-            onTap: () {
-            },
-            child: Container(
-              width: 45,
-              height: 45,
-              decoration: BoxDecoration(
+          ElevatedButton(
+            onPressed: ()async{
+              if(await canLaunchUrl(Uri(scheme: 'tel',path: '+99361400905')))
+                await launchUrl(Uri(scheme: 'tel',path: '+99361400905'));
+              else print('object');
+            }, 
+            child: SvgPicture.asset('assets/icons/call.svg'),
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
-                color: green,
-              ),
-              child: Center(child: SvgPicture.asset('assets/icons/call.svg')),
+              )),
+              elevation: MaterialStateProperty.all(1),
+              minimumSize: MaterialStateProperty.all(Size(45, 44)),
             ),
           ),
         ],

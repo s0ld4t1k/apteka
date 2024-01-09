@@ -2,9 +2,14 @@ import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/horizontalProducts.dart';
 import 'package:flutter/material.dart';
 
-class VerticalProducts extends StatelessWidget {
+class VerticalProducts extends StatefulWidget {
   const VerticalProducts({super.key});
 
+  @override
+  State<VerticalProducts> createState() => _VerticalProductsState();
+}
+
+class _VerticalProductsState extends State<VerticalProducts> {
   @override
   Widget build(BuildContext context) {
     return GridView(
@@ -60,6 +65,9 @@ class VerticalProducts extends StatelessWidget {
               bottom: 11,
               child: InkWell(
                 onTap: () {
+                  setState(() {
+                    productList[index][3]=!productList[index][3];
+                  });
                   print('add to cart');
                 },
                 child: Container(
@@ -69,7 +77,11 @@ class VerticalProducts extends StatelessWidget {
                     color: orange,
                     borderRadius: BorderRadius.circular(26),
                   ),
-                  child: Icon(Icons.add,color: Colors.white,),
+                  child: Icon(
+                    (productList[index][3])?
+                    Icons.done:Icons.add,color: Colors.white,
+                    size: 20,
+                  ),
                 ),
               ),
             )

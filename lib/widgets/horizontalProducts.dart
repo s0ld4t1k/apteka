@@ -44,75 +44,88 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
         ),
         // SizedBox(height: 15,),
         Container(
-          height: 165,
+          height: 170,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
               SizedBox(width: 25,),
               Row(
-                children: List.generate(productList.length, (index) => Container(
-                  margin: EdgeInsets.only(right: 15),
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  width: 142,
-                  height: 164,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 3,
-                        offset: Offset(0, 1),
-                        color: Colors.black.withOpacity(0.05),
-                      )
-                    ]
-                  ),
-                  child: Stack(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
+                children: List.generate(productList.length, (index) {
+                  // var _added=false;
+                  return GestureDetector(
+                  onTap: ()=>Navigator.of(context).pushNamed('/mainPage/productPage'),
+                  child: Container(
+                    margin: EdgeInsets.only(right: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    width: 142,
+                    height: 164,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 3,
+                          offset: Offset(0, 1),
+                          color: Colors.black.withOpacity(0.05),
+                        )
+                      ]
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(12),
+                                child: Image.asset(productList[index][0]),
+                              ),
+                            ),
+                            Text(productList[index][1],style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            maxLines: 2,overflow: TextOverflow.ellipsis,),
+                            SizedBox(height: 10,),
+                            Text(productList[index][2],style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: green,
+                            ),),
+                            SizedBox(height: 16,),
+                          ],
+                        ),
+                        Positioned(
+                          right: 1,
+                          bottom: 10,
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                productList[index][3]=!productList[index][3];
+                              });
+                              print('add to cart');
+                            },
                             child: Container(
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.all(12),
-                              child: Image.asset(productList[index][0]),
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                color: orange,
+                                borderRadius: BorderRadius.circular(26),
+                              ),
+                              child: Icon(
+                                (productList[index][3])?Icons.done:Icons.add,
+                                color: Colors.white,
+                                size: 20,
+                              ),
                             ),
-                          ),
-                          Text(productList[index][1],style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          maxLines: 2,overflow: TextOverflow.ellipsis,),
-                          SizedBox(height: 10,),
-                          Text(productList[index][2],style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: green,
-                          ),),
-                          SizedBox(height: 16,),
-                        ],
-                      ),
-                      Positioned(
-                        right: 1,
-                        bottom: 10,
-                        child: InkWell(
-                          onTap: () {
-                            print('add to cart');
-                          },
-                          child: Container(
-                            width: 26,
-                            height: 26,
-                            decoration: BoxDecoration(
-                              color: orange,
-                              borderRadius: BorderRadius.circular(26),
-                            ),
-                            child: Icon(Icons.add,color: Colors.white,),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                )),
+                );
+                }),
               )
             ],
           ),

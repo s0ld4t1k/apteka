@@ -1,11 +1,18 @@
+import 'package:apte/widgets/FiltrBottomSheet.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/tertipleBottomSheet.dart';
 import 'package:apte/widgets/verticalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
 
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -57,6 +64,9 @@ class SearchPage extends StatelessWidget {
                         SizedBox(width: 15,),
                         Expanded(
                           child: TextField(
+                            style: TextStyle(
+                              color: Color.fromRGBO(131, 132, 139, 1),
+                            ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Harydyň adyny giriziň',
@@ -91,7 +101,21 @@ class SearchPage extends StatelessWidget {
                           side: BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
                         ))
                       ),
-                      onPressed: (){}, 
+                      onPressed: (){
+                        showModalBottomSheet(
+                          showDragHandle: true,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            )
+                          ),
+                          context: context, 
+                          builder:(context) {
+                            return TertipleBottomSheet();
+                          },
+                        );
+                      }, 
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -116,7 +140,23 @@ class SearchPage extends StatelessWidget {
                           side: BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
                         ))
                       ),
-                      onPressed: (){}, 
+                      onPressed: (){
+                        showModalBottomSheet(
+                          useRootNavigator: true,
+                          isScrollControlled: true,
+                          showDragHandle: true,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            )
+                          ),
+                          context: context, 
+                          builder:(context) {
+                            return FiltrBottomSheet();
+                          },
+                        );
+                      }, 
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

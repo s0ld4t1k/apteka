@@ -38,7 +38,7 @@ class MainCategory extends StatelessWidget {
                         height: 52,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: _categoryList[index][2],
+                          color: Color.fromRGBO(243, 234, 218, 1),
                         ),
                         child: Center(
                           child: Container(

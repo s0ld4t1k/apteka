@@ -1,7 +1,11 @@
+import 'package:apte/pages/kategory/kategory.dart';
+import 'package:apte/pages/kategory/subKategory.dart';
+import 'package:apte/pages/kategory/subKategoryPage.dart';
 import 'package:apte/pages/leading/leading.dart';
 import 'package:apte/pages/main/harmfulInfo.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
+import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/pages/main/search.dart';
 import 'package:apte/pages/main/searchPage.dart';
 import 'package:apte/widgets/colors.dart';
@@ -48,6 +52,10 @@ class MyApp extends StatelessWidget {
         '/mainPage/harmfulInfo':(context) => HarmfulInfo(),
         '/mainPage/search':(context) => Searck(),
         '/mainPage/searchPage':(context) => SearchPage(),
+        '/mainPage/productPage':(context) => ProductPage(),
+        '/kategory':(context) => Kategory(),
+        '/kategory/subKategory':(context) => SubKategory(),
+        '/kategory/subKategoryPage':(context) => SubKategoryPage(),
         '/leading':(context) => Leading(),
       },
       initialRoute: '/',

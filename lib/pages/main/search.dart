@@ -48,25 +48,26 @@ class Searck extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        IconButton(
-                          padding: EdgeInsets.all(0),
-                          constraints: BoxConstraints(
-                            minHeight: 24,
-                            minWidth: 24,
-                            maxHeight: 24,
-                            maxWidth: 24,
-                          ),
-                          onPressed: (){}, 
-                          icon: SvgPicture.asset('assets/icons/search.svg',color: green,),
-                        ),
-                        SizedBox(width: 15,),
                         Expanded(
                           child: TextField(
+                            style: TextStyle(
+                              color: Color.fromRGBO(131, 132, 139, 1),
+                            ),
+                            autofocus: true,
                             onSubmitted: (value)=>
                             Navigator.of(context).pushNamed('/mainPage/searchPage'),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Harydyň adyny giriziň',
+                              prefixIconConstraints: BoxConstraints(
+                                maxHeight: 20,
+                                maxWidth: 20,
+                                minHeight: 20,
+                                minWidth: 20,
+                              ),
+                              contentPadding: EdgeInsets.all(0),
+                              prefixText: '   ',
+                              prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
                               hintStyle: TextStyle(
                                 fontSize: 14,
                                 color: textGrey3,
