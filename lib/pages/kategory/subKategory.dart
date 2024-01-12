@@ -1,3 +1,4 @@
+import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ class SubKategory extends StatefulWidget {
 class _SubKategoryState extends State<SubKategory> {
   @override
   Widget build(BuildContext context) {
+    var _index=ModalRoute.of(context)?.settings.arguments as int;
+    var _title=kategoryList[_index][0];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -39,7 +42,7 @@ class _SubKategoryState extends State<SubKategory> {
           onPressed: ()=>Navigator.pop(context), 
           icon: Icon(Icons.chevron_left_rounded)
         ),
-        title: Text('Derman serişdeleri'),
+        title: Text(_title),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25),
@@ -55,7 +58,10 @@ class _SubKategoryState extends State<SubKategory> {
           },
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: () =>Navigator.of(context).pushNamed('/kategory/subKategoryPage'),
+              onTap: () =>Navigator.of(context).pushNamed(
+                '/kategory/subKategoryPage',
+                arguments: index,
+              ),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 20),
                 child: Row(

@@ -28,7 +28,9 @@ class MainCategory extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: [
               SizedBox(width: 20,),
-              Row(
+              ListView(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
                 children: List.generate(_categoryList.length, (index) => Container(
                   width: 75,
                   child: Column(
@@ -38,7 +40,7 @@ class MainCategory extends StatelessWidget {
                         height: 52,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromRGBO(243, 234, 218, 1),
+                          color: _categoryList[index][2],
                         ),
                         child: Center(
                           child: Container(

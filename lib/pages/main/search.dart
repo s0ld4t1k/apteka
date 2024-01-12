@@ -96,7 +96,7 @@ class Searck extends StatelessWidget {
               SizedBox(height: 7,),
               Column(
                 children: List.generate(_searchHistory.length, (index) => InkWell(
-                  onTap: (){},
+                  onTap: ()=>Navigator.of(context).pushNamed('/mainPage/searchPage',arguments: _searchHistory[index]),
                   child: Column(
                     children: [
                       Container(

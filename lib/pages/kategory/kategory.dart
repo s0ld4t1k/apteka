@@ -2,7 +2,7 @@ import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-List _kategoryList=[
+List kategoryList=[
   ['Sowuklama','assets/kategory/mask.png',],
   ['Derman serişdeleri','assets/kategory/derman.png',],
   ['Gigiýena','assets/kategory/tooth.png',],
@@ -13,7 +13,7 @@ List _kategoryList=[
   ['Antiseptikler we kosmetika','assets/kategory/mylo.png',],
   ['Süňk-skelet ','assets/kategory/bone.png',],
   ['Ene we çaga','assets/kategory/pregnant.png',],
-  ['Optika','assets/kategory/lupa.png',],
+  ['Optika','assets/kategory/loop.png',],
   ['Süňk-skelet ','assets/kategory/medicine.png',],
 ];
 class Kategory extends StatelessWidget {
@@ -72,7 +72,10 @@ class Kategory extends StatelessWidget {
                 ),
                 itemBuilder:(context, index) {
                   return GestureDetector(
-                    onTap: ()=>Navigator.of(context).pushNamed('/kategory/subKategory'),
+                    onTap: ()=>Navigator.of(context).pushNamed(
+                      '/kategory/subKategory',
+                      arguments: index,
+                    ),
                     child: Container(
                       height: 135,
                       child: Stack(
@@ -94,7 +97,7 @@ class Kategory extends StatelessWidget {
                             left: 10,
                             right: 10,
                             bottom: 22,
-                            child: Text(_kategoryList[index][0],
+                            child: Text(kategoryList[index][0],
                               textAlign: TextAlign.center,
                               style: TextStyle(
                               fontSize: 12,
@@ -105,12 +108,10 @@ class Kategory extends StatelessWidget {
                             top: 0,
                             left: 10,
                             right: 10,
-                            // bottom: 60,
                             child: Container(
-                              // color: Colors.pink,
                               width: 80,
                               height: 80,
-                              child: Image.asset(_kategoryList[index][1])
+                              child: Image.asset(kategoryList[index][1])
                             )
                           ),
                         ],
@@ -118,7 +119,7 @@ class Kategory extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: _kategoryList.length,
+                itemCount: kategoryList.length,
               )
             ],
           )

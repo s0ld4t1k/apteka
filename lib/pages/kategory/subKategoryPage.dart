@@ -1,3 +1,4 @@
+import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/FiltrBottomSheet.dart';
 import 'package:apte/widgets/colors.dart';
@@ -16,6 +17,8 @@ class SubKategoryPage extends StatefulWidget {
 class _SubKategoryPageState extends State<SubKategoryPage> {
   @override
   Widget build(BuildContext context) {
+    var _index=ModalRoute.of(context)?.settings.arguments as int;
+    var _title=subKategory[_index];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,11 +34,11 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
           onPressed: ()=>Navigator.pop(context), 
           icon: Icon(Icons.chevron_left_rounded)
         ),
-        title: Text('Immun ulgamy'),
+        title: Text(_title),
       ),
       body: SingleChildScrollView(
         controller: contrl,
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.symmetric(horizontal: 25,vertical: 18),
         child: Column(
           children: [
             Row(
@@ -43,6 +46,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                 Expanded(
                   child: OutlinedButton(
                     style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
                       backgroundColor: MaterialStateProperty.all(Colors.white),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -82,6 +86,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                 Expanded(
                   child: OutlinedButton(
                     style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
                       backgroundColor: MaterialStateProperty.all(Colors.white),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),

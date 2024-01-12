@@ -18,7 +18,7 @@ class _VerticalProductsState extends State<VerticalProducts> {
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 152,
         mainAxisExtent: 168,
-        mainAxisSpacing: 17,
+        mainAxisSpacing: 18,
         crossAxisSpacing: 21,
       ),
       children: List.generate(productList.length, (index) => Container(

@@ -3,26 +3,110 @@ import 'package:apte/widgets/category.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/harmful.dart';
 import 'package:apte/widgets/horizontalProducts.dart';
+import 'package:apte/widgets/langController.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
+LangController lc=Get.find();
+var curLN='tm';
 List _carouselList=[
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
 ];
 
-class MainPageWidget extends StatelessWidget {
+class MainPageWidget extends StatefulWidget {
   const MainPageWidget({super.key});
 
+  @override
+  State<MainPageWidget> createState() => _MainPageWidgetState();
+}
+
+class _MainPageWidgetState extends State<MainPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bc,
       appBar: AppBar(
         titleSpacing: 25,
-        title: _Appbar(),
+        title: Container(
+          margin: EdgeInsets.only(bottom: 11),
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/mainPage/search');
+                  },
+                  child: Container(
+                    height: 45,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: searchConGrey,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/icons/search.svg'),
+                              SizedBox(width: 15,),
+                              Text(locale[curLN]?["searchHint"] as String,style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: textGrey3,
+                              ),),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 20,
+                          width: 1,
+                          color: textGrey3,
+                        ),
+                        SizedBox(width: 14,),
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              
+                            });
+                            curLN='ru';
+                            lc.changeLang('ru'.obs);
+                            print('object');
+                          },
+                          child: SvgPicture.asset('assets/icons/scan.svg'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 10,),
+              ElevatedButton(
+                onPressed: ()async{
+                  
+                  if(await canLaunchUrl(Uri(scheme: 'tel',path: '+99361400905')))
+                    await launchUrl(Uri(scheme: 'tel',path: '+99361400905'));
+                  else print('object');
+                  
+                }, 
+                child: SvgPicture.asset('assets/icons/call.svg'),
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )),
+                  elevation: MaterialStateProperty.all(1),
+                  minimumSize: MaterialStateProperty.all(Size(45, 44)),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         controller: contrl,
@@ -83,80 +167,6 @@ class MainPageWidget extends StatelessWidget {
             SizedBox(height: 34-15,),
           ],
         ),
-      ),
-    );
-  }
-}
-class _Appbar extends StatelessWidget {
-  const _Appbar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 11),
-      child: Row(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed('/mainPage/search');
-              },
-              child: Container(
-                height: 45,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: searchConGrey,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset('assets/icons/search.svg'),
-                          SizedBox(width: 15,),
-                          Text('Harydyň adyny giriziň',style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: textGrey3,
-                          ),),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 20,
-                      width: 1,
-                      color: textGrey3,
-                    ),
-                    SizedBox(width: 14,),
-                    GestureDetector(
-                      onTap: (){
-                        print('object');
-                      },
-                      child: SvgPicture.asset('assets/icons/scan.svg'),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10,),
-          ElevatedButton(
-            onPressed: ()async{
-              if(await canLaunchUrl(Uri(scheme: 'tel',path: '+99361400905')))
-                await launchUrl(Uri(scheme: 'tel',path: '+99361400905'));
-              else print('object');
-            }, 
-            child: SvgPicture.asset('assets/icons/call.svg'),
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              )),
-              elevation: MaterialStateProperty.all(1),
-              minimumSize: MaterialStateProperty.all(Size(45, 44)),
-            ),
-          ),
-        ],
       ),
     );
   }

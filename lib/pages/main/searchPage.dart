@@ -13,8 +13,11 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  TextEditingController _tc=TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var _searchText=ModalRoute.of(context)?.settings.arguments as String;
+    _tc.text=_searchText;
     return GestureDetector(
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -50,24 +53,22 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                     child: Row(
                       children: [
-                        IconButton(
-                          padding: EdgeInsets.all(0),
-                          constraints: BoxConstraints(
-                            minHeight: 24,
-                            minWidth: 24,
-                            maxHeight: 24,
-                            maxWidth: 24,
-                          ),
-                          onPressed: (){}, 
-                          icon: SvgPicture.asset('assets/icons/search.svg',color: green,),
-                        ),
-                        SizedBox(width: 15,),
                         Expanded(
                           child: TextField(
+                            controller: _tc,
                             style: TextStyle(
                               color: Color.fromRGBO(131, 132, 139, 1),
                             ),
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(0),
+                              prefixIconConstraints: BoxConstraints(
+                                maxHeight: 20,
+                                maxWidth: 20,
+                                minHeight: 20,
+                                minWidth: 20,
+                              ),
+                              prefixText: '   ',
+                              prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
                               border: InputBorder.none,
                               hintText: 'Harydyň adyny giriziň',
                               hintStyle: TextStyle(
@@ -95,6 +96,7 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
                         backgroundColor: MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -134,6 +136,7 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
                         backgroundColor: MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),

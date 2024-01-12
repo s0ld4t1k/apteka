@@ -87,38 +87,27 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                           fontWeight: FontWeight.w500,
                         ),),
                         SizedBox(height: 15,),
-                        GridView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate: 
-                          SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 130,
-                            mainAxisExtent: 39,
-                            mainAxisSpacing: 0,
-                            crossAxisSpacing: 12,
-                          ),
-                          itemBuilder: (context, i) {
-                            return Align(
-                              alignment: Alignment.centerLeft,
-                              child: OutlinedButton(
-                                style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                                    horizontal: 20
-                                  )),
-                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  )),
-                                  maximumSize: MaterialStateProperty.all(Size(130,30)),
-                                  minimumSize: MaterialStateProperty.all(Size(80,30))
-                                ),
-                                onPressed: (){}, 
-                                child: Text(filtrList[index][1][i], style: TextStyle(
-                                  color: Color.fromRGBO(71, 71, 71, 1),
-                                ),),
+                        Wrap(
+                          spacing: 12,
+                          runSpacing: 9,
+                          children: List.generate(filtrList[index][1].length, (i) => Container(
+                            height: 30,
+                            child: OutlinedButton(
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                                  horizontal: 20
+                                )),
+                                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                )),
+                                minimumSize: MaterialStateProperty.all(Size(80,30))
                               ),
-                            );
-                          },
-                          itemCount: filtrList[index][1].length,
+                              onPressed: (){}, 
+                              child: Text(filtrList[index][1][i], style: TextStyle(
+                                color: Color.fromRGBO(71, 71, 71, 1),
+                              ),),
+                            ),
+                          ),),
                         ),
                       ],
                     );

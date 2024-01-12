@@ -1,13 +1,13 @@
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 List productList=[
-  ['assets/images/multiVitamin.png','Мультивитамины для детей 250ml','12.00 TMT',false,],
-  ['assets/images/melotanin.png','Мультивитамины для детей 250ml','12.00 TMT',false,],
-  ['assets/images/prostamol.png','Простамол Уно капсулы 320 мг 30 шт','12.00 TMT',false,],
-  ['assets/images/gel.png','Мультивитамины для детей 250ml','12.00 TMT',false,],
-  ['assets/images/spray.png','Мультивитамины для детей 250ml','12.00 TMT',false,],
-  ['assets/images/lorangin.png','Мультивитамины для детей 250ml','12.00 TMT',false,],
-  ['assets/images/vitaminC.png','ВитаМишки BIO+ пребиотик жеват пастилки №60','12.00 TMT',false,],
+  ['assets/images/multiVitamin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',],
+  ['assets/images/melotanin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',],
+  ['assets/images/prostamol.png','Простамол Уно капсулы 320 мг 30 шт','12.00 TMT',false,'Фармакор продакшн ООО',],
+  ['assets/images/gel.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',],
+  ['assets/images/spray.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',],
+  ['assets/images/lorangin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',],
+  ['assets/images/vitaminC.png','ВитаМишки BIO+ пребиотик жеват пастилки №60','12.00 TMT',false,'Фармакор продакшн ООО',],
 ];
 class HorizontalProducts extends StatefulWidget {
   final text;
@@ -36,7 +36,7 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                 child: Text('Ählisini gör',style: TextStyle(
                   color: green,
                   fontSize: 12,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                 ),)
               )
             ],

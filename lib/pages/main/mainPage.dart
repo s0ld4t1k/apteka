@@ -43,6 +43,7 @@ class _MainPageState extends State<MainPage> {
             GestureDetector(
               onTap: () {
                 setState(() {
+                  if(selectedTab==index)contrl.animateTo(0,duration: Duration(milliseconds: 300),curve: Curves.linear);
                   selectedTab=index;
                 });
               },

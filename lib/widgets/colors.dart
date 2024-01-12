@@ -10,3 +10,4 @@ const searchConGrey=Color.fromRGBO(249, 249, 249, 1);
 const blue=Color.fromRGBO(25, 135, 251, 1);
 const bc=Color.fromRGBO(253, 253, 253, 1);
 const tabIconGrey=Color.fromRGBO(145, 147, 150, 1);
+const red=Color.fromRGBO(255, 0, 0, 1);

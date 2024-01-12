@@ -1,23 +1,17 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/gorkezmeInfoRow.dart';
 import 'package:apte/widgets/horizontalProducts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
-var _liked=false;
+var _liked=false,_curIndex=0;
 List _infoList=[
   ['Öndüriji:','БАЛКАНФАРМА - Болгария',],
   ['Görnüşi:','Kapsula',],
   ['Ulanylyş möhleti:','3 ýyl',],
   ['Dänejikleriň sany:','24 sany',],
 ];
-List _gorkezmeList=[
-  ['Haryt barada','Алмагель А (Almagel® A) Состав и форма выпуска 5 мл суспензии для приема внутрь содержит алюминия гидроксида 300 мг (эквивалентно 200 мг оксида алюминия), магния гидроксида 100 мг и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон. Характеристика Суспензия белого или слегка сероватого цвета с характерным сладковатым вкусом и запахом лимона. Фармакологическое действие и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон Фармакологическое действие — обволакивающее, адсорбирующее, антацидное.',],
-  ['Düzümi','kakashka 1 kg',],
-  ['Saklanyş şerti','C -25',],
-  ['Ulanyş usuly we dozasy','bir yerine dykmaly',],
-  ['Ulanmak maslahat berilmeýänler','dolboyoblar',],
-];
+
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
 
@@ -31,6 +25,7 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         automaticallyImplyLeading: false,
         titleSpacing: 25,
         title: Row(
@@ -78,15 +73,55 @@ class _ProductPageState extends State<ProductPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 40,vertical: 40),
-                    width: 325,
-                    alignment: Alignment.center,
-                    height: 200,
-                    child: Center(
-                      child: Image.asset('assets/images/melotanin.png'),
+                    height: 180,
+                    child: Stack(
+                      children: [
+                        PageView(
+                          scrollDirection: Axis.horizontal,
+                          onPageChanged: (value) {
+                            setState(() {
+                              _curIndex=value;
+                            });
+                          },
+                          children: List.generate(productList.length, (index) => Stack(
+                            children: [
+                              Positioned(
+                                top: 12,
+                                right: 0,
+                                left: 0,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 172,
+                                      height: 110,
+                                      child: Image.asset(productList[index][0]),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),),
+                        ),
+                        Positioned(
+                          bottom: 23,
+                          left: 0,
+                          right: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(productList.length, (index) => Container(
+                              width: 6,
+                              height: 6,
+                              margin: EdgeInsets.symmetric(horizontal: 2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: _curIndex==index?green:Color.fromRGBO(234, 234, 234, 1),
+                              ),
+                            )),
+                          )
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(height: 10,),
                   Text('Солвибене гель для наружного при-менения 150мг',style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -133,7 +168,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),),
                   SizedBox(height: 10,),
                   Column(
-                    children: List.generate(_gorkezmeList.length, (index) => _InfoRow(index: index)), 
+                    children: List.generate(gorkezmeList.length, (index) => InfoRow(index: index)), 
                   ),
                 ],
               ),
@@ -194,61 +229,6 @@ class Devider extends StatelessWidget {
     height: 1,
     width: double.infinity,
     color: Color.fromRGBO(237, 237, 237, 1),
-    );
-  }
-}
-// ignore: must_be_immutable
-class _InfoRow extends StatefulWidget {
-  final index;
-  var _up=true;
-  _InfoRow({super.key,required this.index});
-  @override
-  State<_InfoRow> createState() => _InfoRowState();
-}
-
-class _InfoRowState extends State<_InfoRow> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InkWell(
-          onTap: () {
-            setState(() {
-              widget._up=!widget._up;
-            });
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 15),
-            child: Row(
-              children: [
-                Text(_gorkezmeList[widget.index][0],style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),),
-                Spacer(),
-                Center(
-                  child: Icon(
-                    (widget._up==false)?CupertinoIcons.chevron_up
-                    :CupertinoIcons.chevron_down,
-                    color: Color.fromRGBO(156, 156, 156, 1),
-                    size: 17,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        (!widget._up)?Padding(
-          padding: const EdgeInsets.only(bottom: 24),
-          child: Text(_gorkezmeList[widget.index][1]),
-        ):Container(),
-        Container(
-          height: 1,
-          width: double.infinity,
-          color: Color.fromRGBO(235, 235, 235, 1),
-        ),
-      ],
     );
   }
 }
