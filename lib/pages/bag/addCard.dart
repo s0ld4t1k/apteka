@@ -99,7 +99,7 @@ class _AddCardState extends State<AddCard> {
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(EdgeInsets.all(0))
                   ),
-                  onPressed: (){}, 
+                  onPressed: ()=>Navigator.pushNamed(context, '/kard/newCard'), 
                   child: Text('+ Täze kart goş',style: TextStyle(
                     color: orange,
                     fontWeight: FontWeight.w500,

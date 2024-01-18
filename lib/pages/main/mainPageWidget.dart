@@ -1,18 +1,13 @@
 import 'package:apte/pages/main/mainPage.dart';
-import 'package:apte/widgets/category.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/harmful.dart';
-import 'package:apte/widgets/horizontalProducts.dart';
-import 'package:apte/widgets/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
+import 'package:apte/widgets/main/category.dart';
+import 'package:apte/widgets/main/harmful.dart';
+import 'package:apte/widgets/main/horizontalProducts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/instance_manager.dart';
-import 'package:get/state_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
-LangController lc=Get.find();
-var curLN='tm';
 List _carouselList=[
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
   ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
@@ -72,12 +67,6 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                         SizedBox(width: 14,),
                         GestureDetector(
                           onTap: (){
-                            setState(() {
-                              
-                            });
-                            curLN='ru';
-                            lc.changeLang('ru'.obs);
-                            print('object');
                           },
                           child: SvgPicture.asset('assets/icons/scan.svg'),
                         )
@@ -89,11 +78,8 @@ class _MainPageWidgetState extends State<MainPageWidget> {
               SizedBox(width: 10,),
               ElevatedButton(
                 onPressed: ()async{
-                  
                   if(await canLaunchUrl(Uri(scheme: 'tel',path: '+99361400905')))
                     await launchUrl(Uri(scheme: 'tel',path: '+99361400905'));
-                  else print('object');
-                  
                 }, 
                 child: SvgPicture.asset('assets/icons/call.svg'),
                 style: ButtonStyle(

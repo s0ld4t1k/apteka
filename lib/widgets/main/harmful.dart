@@ -36,6 +36,7 @@ class MainHarmful extends StatelessWidget {
         Container(
           height: 125,
           child: ListView(
+            padding: EdgeInsets.all(0),
             scrollDirection: Axis.horizontal,
             children: [
               SizedBox(width: 25,),

@@ -1,11 +1,8 @@
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/addCard.dart';
-import 'package:apte/pages/main/mainPageWidget.dart';
-import 'package:apte/widgets/langController.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class BankKarty extends StatefulWidget {
   const BankKarty({super.key});
@@ -17,7 +14,6 @@ class BankKarty extends StatefulWidget {
 class _BankKartyState extends State<BankKarty> {
   @override
   Widget build(BuildContext context) {
-    LangController lc=Get.find();
     var _jem=ModalRoute.of(context)?.settings.arguments;
     return SingleChildScrollView(
       child: Column(
@@ -226,7 +222,6 @@ class _BankKartyState extends State<BankKarty> {
                       onPressed: (){
                         setState(() {
                           curLN='ru';
-                          lc.changeLang('en'.obs);
                         });
                       }, 
                       child: Text('Sargyt et',style: TextStyle(

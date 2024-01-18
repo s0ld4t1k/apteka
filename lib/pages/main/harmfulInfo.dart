@@ -1,4 +1,4 @@
-import 'package:apte/widgets/reklam.dart';
+import 'package:apte/widgets/main/reklam.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
@@ -25,8 +25,7 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
               },
               child: Icon(Icons.chevron_left_rounded),
             ),
-            SizedBox(width: 23,),
-            Expanded(child: Text('Peýdaly maglumat')),
+            Expanded(child: Center(child: Text('Peýdaly maglumat'))),
             Container(
               width: 20,
               height: 20,

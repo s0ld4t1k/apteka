@@ -1,11 +1,8 @@
 import 'package:apte/pages/bag/addAdres.dart';
-import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/widgets/langController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
-import 'package:get/state_manager.dart';
 
 class Nagt extends StatefulWidget {
   const Nagt({super.key});
@@ -15,9 +12,9 @@ class Nagt extends StatefulWidget {
 }
 
 class _NagtState extends State<Nagt> {
+  LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
-    LangController lc=Get.find();
     var _jem=ModalRoute.of(context)?.settings.arguments;
     return SingleChildScrollView(
       child: Column(
@@ -196,16 +193,13 @@ class _NagtState extends State<Nagt> {
                         ))  
                       ),
                       onPressed: (){
-                        setState(() {
-                          curLN='ru';
-                          lc.changeLang('en'.obs);
-                        });
+                        
                       }, 
                       child: Text('Sargyt et',style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),)
-                    )
+                    ),
                   ],
                 ),
               ],

@@ -1,6 +1,5 @@
 import 'package:apte/pages/bag/bankKarty.dart';
 import 'package:apte/pages/bag/nagt.dart';
-import 'package:apte/pages/bag/terminal.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -10,24 +9,24 @@ class SargytEtmek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(
-            maxHeight: 24,
-            maxWidth: 24,
-            minHeight: 24,
-            minWidth: 24,
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            padding: EdgeInsets.all(0),
+            constraints: BoxConstraints(
+              maxHeight: 24,
+              maxWidth: 24,
+              minHeight: 24,
+              minWidth: 24,
+            ),
+            onPressed: ()=>Navigator.pop(context), 
+            icon: Icon(Icons.chevron_left_rounded)
           ),
-          onPressed: ()=>Navigator.pop(context), 
-          icon: Icon(Icons.chevron_left_rounded)
+          title: Text('Sargyt etmek'),
         ),
-        title: Text('Sargyt etmek'),
-      ),
         body: GestureDetector(
           onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
           child: SingleChildScrollView(
@@ -65,7 +64,6 @@ class SargytEtmek extends StatelessWidget {
                           ),
                           tabs: [
                             Text('Nagt'),
-                            Text('Terminal'),
                             Text('Bank Karty'),
                           ]
                         ),
@@ -78,7 +76,6 @@ class SargytEtmek extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       Nagt(),
-                      Terminal(),
                       BankKarty(),
                     ]
                   ),

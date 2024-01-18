@@ -1,9 +1,11 @@
 import 'package:apte/pages/main/mainPage.dart';
-import 'package:apte/widgets/bagProductList.dart';
+import 'package:apte/widgets/bag&Card/showPromokod.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/horizontalProducts.dart';
+import 'package:apte/widgets/langController.dart';
+import 'package:apte/widgets/main/horizontalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/instance_manager.dart';
 var _curEltme=0;
 var _harytJemi=0.0;
 var _arzanladys=0.0;
@@ -25,6 +27,7 @@ class Bag extends StatefulWidget {
 }
 
 class _BagState extends State<Bag> {
+  LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
     _harytJemi=0.0;
@@ -70,7 +73,143 @@ class _BagState extends State<Bag> {
                       var _splitted=productList[index][2].toString().split(' ');
                       _harytJemi+=double.parse(_splitted[0]);
                       _jemiList[0][1]='$_harytJemi TMT';
-                      return BagProductList(index: index,);
+                      return Stack(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Color.fromRGBO(242, 242, 242, 1),),
+                            ),
+                            height: 100,
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                  width: 90,
+                                  height: 100,
+                                  child: Image.asset(productList[index][0]),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.only(left: 16,right: 40,top: 12,bottom: 12),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(productList[index][1],style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,),
+                                        SizedBox(height: 4,),
+                                        Text(productList[index][4],style: TextStyle(
+                                          color: Color.fromRGBO(113, 114, 122, 1),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 10,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,),
+                                        SizedBox(height: 4+4+4,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              width: 75,
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color: green.withOpacity(0.1),
+                                                      borderRadius: BorderRadius.circular(24),
+                                                    ),
+                                                    child: IconButton(
+                                                      onPressed: (){
+                                                        setState(() {
+                                                          if(productList[index].last>1)productList[index].last--;
+                                                        });
+                                                      },
+                                                      splashRadius: 15, 
+                                                      padding: EdgeInsets.all(0),
+                                                      constraints: BoxConstraints(
+                                                        maxHeight: 24,
+                                                        maxWidth: 24,
+                                                        minHeight: 24,
+                                                        minWidth: 24,
+                                                      ),
+                                                      icon: Icon(Icons.remove_rounded,color:green,size: 17,),
+                                                    ),
+                                                  ),
+                                                  Text(productList[index].last.toString()),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color: green.withOpacity(0.1),
+                                                      borderRadius: BorderRadius.circular(24),
+                                                    ),
+                                                    child: IconButton(
+                                                      onPressed: (){
+                                                        setState(() {
+                                                          productList[index].last++;
+                                                        });
+                                                      },
+                                                      splashRadius: 15, 
+                                                      padding: EdgeInsets.all(0),
+                                                      constraints: BoxConstraints(
+                                                        maxHeight: 24,
+                                                        maxWidth: 24,
+                                                        minHeight: 24,
+                                                        minWidth: 24,
+                                                      ),
+                                                      icon: Icon(Icons.add_rounded,color:green,size: 17,),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Text(productList[index][2],style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                            ),)
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            top: 11,
+                            right: 14,
+                            child: IconButton(
+                              onPressed: (){
+                                setState(() {
+                                  productList.removeAt(index);
+                                });
+                              }, 
+                              padding: EdgeInsets.all(0),
+                              constraints: BoxConstraints(
+                                maxHeight: 20,
+                                maxWidth: 20,
+                                minHeight: 20,
+                                minWidth: 20,
+                              ),
+                              icon: Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: green,width: 1.2),
+                                  borderRadius: BorderRadius.circular(20)
+                                ),
+                                child: Icon(Icons.close_rounded,color: green,size: 14,),
+                              )
+                            )
+                          )
+                        ],
+                      );
                     }),
                   ),
                   GestureDetector(
@@ -83,68 +222,7 @@ class _BagState extends State<Bag> {
                         ),
                         context: context, 
                         builder:(context) {
-                          return InkWell(
-                            splashFactory: NoSplash.splashFactory,
-                            overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-                            child: Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(bottom: MediaQuery.of(context).
-                              viewInsets.bottom),
-                              height: 200,
-                              padding: EdgeInsets.symmetric(horizontal: 25),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Promokod',style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),),
-                                  SizedBox(height: 21,),
-                                  Container(
-                                    height: 49,
-                                    child: TextField(
-                                      expands: true,
-                                      maxLines: null,
-                                      minLines: null,
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                                        labelText: 'Promokod', 
-                                        labelStyle: TextStyle(
-                                          color: green,
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                            color: green
-                                          ),
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                            color: green
-                                          )
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 21,),
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(
-                                        green.withOpacity(0.7)
-                                      ),
-                                    ),
-                                    onPressed: (){}, 
-                                    child: Text('Giriz',style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                          return ShowPromokod();
                         },);
                     },
                     child: Container(

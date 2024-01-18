@@ -26,11 +26,10 @@ class MainCategory extends StatelessWidget {
           height: 80,
           child: ListView(
             scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.all(0),
             children: [
               SizedBox(width: 20,),
-              ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
+              Row(
                 children: List.generate(_categoryList.length, (index) => Container(
                   width: 75,
                   child: Column(

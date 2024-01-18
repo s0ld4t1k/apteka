@@ -1,6 +1,6 @@
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/gorkezmeInfoRow.dart';
-import 'package:apte/widgets/horizontalProducts.dart';
+import 'package:apte/widgets/main/horizontalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
@@ -36,7 +36,9 @@ class _ProductPageState extends State<ProductPage> {
               },
               child: Icon(Icons.chevron_left_rounded),
             ),
-            Spacer(),
+            Expanded(
+              child: Center(child: Text('Haryt maglumaty')),
+            ),
             Container(
               width: 20,
               height: 20,

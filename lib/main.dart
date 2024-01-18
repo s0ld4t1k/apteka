@@ -1,4 +1,15 @@
 import 'package:apte/pages/bag/bag.dart';
+import 'package:apte/pages/kard/kard.dart';
+import 'package:apte/pages/profile/adres.dart';
+import 'package:apte/pages/profile/changePW.dart';
+import 'package:apte/pages/profile/habarlasmak.dart';
+import 'package:apte/pages/profile/lang.dart';
+import 'package:apte/pages/profile/like.dart';
+import 'package:apte/pages/profile/profile.dart';
+import 'package:apte/pages/profile/user.dart';
+import 'package:apte/widgets/bag&Card/newAdres.dart';
+import 'package:apte/widgets/bag&Card/newAdresManual.dart';
+import 'package:apte/widgets/bag&Card/newCard.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
@@ -20,7 +31,6 @@ import 'package:get/instance_manager.dart';
 void main() {
   Future.delayed(Duration(seconds: 5));
   FlutterNativeSplash.remove();
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   runApp(const MyApp());
 }
 
@@ -32,9 +42,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  LangController lc=Get.put(LangController());
+  LangCont lc=Get.put(LangCont());
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
@@ -42,7 +56,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: createMaterialColor(green),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(Size(double.infinity, 50)),
+            padding: MaterialStateProperty.all(EdgeInsets.all(0)),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -79,6 +93,17 @@ class _MyAppState extends State<MyApp> {
         '/kategory/subKategoryPage':(context) => SubKategoryPage(),
         '/bag':(context) => Bag(),
         '/bag/sargytEtmek':(context) => SargytEtmek(),
+        '/bag/salgym':(context) => NewAdres(),
+        '/bag/salgymManual':(context) => NewAdresManual(),
+        '/kard':(context) => Kard(),
+        '/kard/newCard':(context) => NewCard(),
+        '/profile':(context) => Profile(),
+        '/profile/user':(context) => User(),
+        '/profile/user/changePW':(context) => ChangePW(),
+        '/profile/lang':(context) => Language(),
+        '/profile/habarlasmak':(context) => Habarlasmak(),
+        '/profile/like':(context) => Like(),
+        '/profile/adres':(context) => Adres(),
       },
       initialRoute: '/',
     );

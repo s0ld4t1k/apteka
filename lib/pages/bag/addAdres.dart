@@ -1,8 +1,11 @@
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
-var _selectedAdres=false;
+var _selectedAdres;
 List adressList=[
   ['Garaşsyzlyk şaýoly, 52 jaý, 107 otag',],
+  ['Garaşsyzlyk şaýoly, 52 jaý, 107 otag',],
+  ['Arçabil şaýoly jaý 142 , 3-nji etaj otag 25, Ar-çabil şaýoly jaý 142 , 3-nji etaj otag 25',],
+  ['Arçabil şaýoly jaý 142 , 3-nji etaj otag 25, Ar-çabil şaýoly jaý 142 , 3-nji etaj otag 25',],
 ];
 class AddAdres extends StatefulWidget {
   const AddAdres({super.key});
@@ -34,40 +37,48 @@ class _AddAdresState extends State<AddAdres> {
                 ],
               ),
               SizedBox(height: 23,),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedAdres=!_selectedAdres;
-                  });
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  height: 56,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: _selectedAdres?green:Color.fromRGBO(237, 237, 237, 1),
-                    )
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(child: Text(adressList.last[0])),
-                      Container(
-                        width: 20,
-                        height: 20,
+              Container(
+                height: 140,
+                child: ListView(
+                  children: List.generate(adressList.length, (index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedAdres=index;
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 15),
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        height: 56,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                            color: _selectedAdres?green:Color.fromRGBO(216, 216, 216, 1),
-                            width: _selectedAdres?4:2,
+                            color: _selectedAdres==index?green:Color.fromRGBO(237, 237, 237, 1),
                           )
                         ),
-                      )
-                    ],
-                  ),
+                        child: Row(
+                          children: [
+                            Expanded(child: Text(adressList[index][0],maxLines: 1,overflow: TextOverflow.ellipsis,)),
+                            SizedBox(width: 10,),
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: _selectedAdres==index?green:Color.fromRGBO(216, 216, 216, 1),
+                                  width: _selectedAdres==index?4:2,
+                                )
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
                 ),
               ),
-              SizedBox(height: 13,),
               Container(
                 width: 108,
                 height: 18,
@@ -75,7 +86,7 @@ class _AddAdresState extends State<AddAdres> {
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(EdgeInsets.all(0))
                   ),
-                  onPressed: (){}, 
+                  onPressed: ()=>Navigator.pushNamed(context, '/bag/salgym'), 
                   child: Text('+ Täze salgy goş',style: TextStyle(
                     color: orange,
                     fontWeight: FontWeight.w500,

@@ -1,7 +1,7 @@
-import 'package:apte/widgets/FiltrBottomSheet.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/tertipleBottomSheet.dart';
-import 'package:apte/widgets/verticalProducts.dart';
+import 'package:apte/widgets/main/filtrBottomSheet.dart';
+import 'package:apte/widgets/main/tertipleBottomSheet.dart';
+import 'package:apte/widgets/main/verticalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
