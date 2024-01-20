@@ -6,6 +6,7 @@ import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/profile/lang.dart';
 import 'package:apte/pages/profile/like.dart';
 import 'package:apte/pages/profile/profile.dart';
+import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/widgets/bag&Card/newAdresManual.dart';
@@ -104,6 +105,7 @@ class _MyAppState extends State<MyApp> {
         '/profile/habarlasmak':(context) => Habarlasmak(),
         '/profile/like':(context) => Like(),
         '/profile/adres':(context) => Adres(),
+        '/profile/sargyt':(context) => Sargyt(),
       },
       initialRoute: '/',
     );

@@ -1,4 +1,3 @@
-import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class Leading1 extends StatelessWidget {
@@ -12,26 +11,13 @@ class Leading1 extends StatelessWidget {
         children: [
           Image.asset('assets/images/startBanner1.png'),
           SizedBox(height: 84,),
-          Column(
-            children: [
-              Text('Sargydyňyz tiz wagtda eliňizde',style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-              ),),
-              SizedBox(height: 25,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: Text(
-                  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: textGrey,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Text('Diňe bir gezek basmak bilen sagdyn geljegiň rahatlygyndan lezzet alyň',style: TextStyle(
+              fontSize: 18,
+            ),
+            textAlign: TextAlign.center,),
+          )
         ],
       ),
     );

@@ -1,9 +1,18 @@
+
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 var _selectedAdresType=0;
+MapController _mc=MapController();
+dynamic markers=[
+  Marker(
+    point: LatLng(_lat, _long), 
+    child: SvgPicture.asset('assets/icons/loc.svg'),
+  ),
+];
 List adresTypeList=[
   'Öý',
   'Iş',
@@ -43,7 +52,33 @@ class _NewAdresState extends State<NewAdres> {
                 Container(
                   height: MediaQuery.of(context).size.height/2,
                   child: FlutterMap(
+                    mapController: _mc,
                     options: MapOptions(
+                      onMapReady: () async{
+                        var _per=await Geolocator.requestPermission();
+                        if(_per!=LocationPermission.denied){
+                          Position _pos=await Geolocator.getCurrentPosition();
+                          setState(() {
+                            _lat=_pos.latitude;
+                            _long=_pos.longitude;
+                          });
+                          _mc.move(LatLng(_lat, _long), 12);
+                          markers[0]=Marker(
+                            point: LatLng(_lat, _long), 
+                            child: SvgPicture.asset('assets/icons/loc.svg'),
+                          );
+                        }
+                      },
+                      onLongPress: (tapPosition, point) {
+                        setState(() {
+                          _lat=point.latitude;
+                          _long=point.longitude;
+                          markers[0]=Marker(
+                            point: point, 
+                            child: SvgPicture.asset('assets/icons/loc.svg'),
+                          );
+                        });
+                      },
                       initialCenter: LatLng(_lat, _long),
                       initialZoom: 12,
                     ), 
@@ -52,12 +87,7 @@ class _NewAdresState extends State<NewAdres> {
                         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       ),
                       MarkerLayer(
-                        markers: [
-                          Marker(
-                            point: LatLng(_lat, _long), 
-                            child: SvgPicture.asset('assets/icons/loc.svg'),
-                          )
-                        ],
+                        markers: markers,
                       )
                     ]
                   ),
@@ -121,26 +151,29 @@ class _NewAdresState extends State<NewAdres> {
                       children: [
                         SvgPicture.asset('assets/icons/loc.svg'),
                         SizedBox(width: 21,),
-                        Column(
-                          children: [
-                            SelectableText('$_lat, $_long'),
-                            SizedBox(height: 18,),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                minimumSize: MaterialStateProperty.all(Size(107, 34)),
-                                backgroundColor: MaterialStateProperty.all(green.withOpacity(0.1)),
-                                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                ))
-                              ),
-                              onPressed: ()=>Navigator.pushNamed(context,'/bag/salgymManual',arguments: ['','',]), 
-                              child: Text('Üýtget',style: TextStyle(
-                                color: green,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
-                              ),),
-                            )
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SelectableText('$_lat, $_long'),
+                              SizedBox(height: 18,),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  minimumSize: MaterialStateProperty.all(Size(107, 34)),
+                                  backgroundColor: MaterialStateProperty.all(green.withOpacity(0.1)),
+                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ))
+                                ),
+                                onPressed: ()=>Navigator.pushNamed(context,'/bag/salgymManual',arguments: ['','',]), 
+                                child: Text('Üýtget',style: TextStyle(
+                                  color: green,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                ),),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -5,7 +5,7 @@ List hasap=[
   [
     'assets/icons/profile/sargytlarym.svg',
     'Sargytlarym',
-    '',
+    '/profile/sargyt',
   ],
   [
     'assets/icons/profile/adres.svg',

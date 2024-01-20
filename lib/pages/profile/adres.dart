@@ -43,7 +43,7 @@ class _AdresState extends State<Adres> {
         child: 
         adres.isEmpty?Column(
           children: [
-            Image.asset('assets/images/location.png'),
+            Image.asset('assets/images/locat.png'),
             SizedBox(height: 10,),
             Text('Salgy tapylmady',style: TextStyle(
               fontSize: 20,
