@@ -8,9 +8,9 @@ List cardImages=[
   'assets/images/turkmenbasyBank.png',
 ];
 List cards=[
-  ['**** **** **** 1234',3],
-  ['**** **** **** 1234',2],
-  ['**** **** **** 1234',0],
+  ['**** **** **** 1234',3,'345','Random name',],
+  ['**** **** **** 1234',2,'345','Random name',],
+  ['**** **** **** 1234',0,'345','Random name',],
 ];
 class Kard extends StatefulWidget {
   const Kard({super.key});
@@ -52,7 +52,7 @@ class _KardState extends State<Kard> {
                 )),
               ),
               onPressed: (){
-                Navigator.pushNamed(context, '/kard/newCard');
+                Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]);
               }, 
               child: Text('Kart goş',style: TextStyle(
                 fontSize: 16,
@@ -67,41 +67,44 @@ class _KardState extends State<Kard> {
         child: ListView.separated(
           padding: EdgeInsets.all(0),
           itemBuilder:(context, index) {
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 12),
-              width: double.infinity,
-              height: 70,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Color.fromRGBO(237, 237, 237, 1))
-              ),
-              child: Row(
-                children: [
-                  Image.asset(cardImages[cards[index][1]]),
-                  SizedBox(width: 35,),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(cardsType[cards[index][1]],style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),),
-                              SizedBox(height: 6,),
-                              Text(cards[index][0],style: TextStyle(
-                                color: Color.fromRGBO(131, 131, 131, 1),
-                                fontSize: 12,
-                              ),)
-                            ],
+            return GestureDetector(
+              onTap: () => Navigator.pushNamed(context, '/kard/newCard',arguments: cards[index]),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 12),
+                width: double.infinity,
+                height: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Color.fromRGBO(237, 237, 237, 1))
+                ),
+                child: Row(
+                  children: [
+                    Image.asset(cardImages[cards[index][1]]),
+                    SizedBox(width: 35,),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(cardsType[cards[index][1]],style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),),
+                                SizedBox(height: 6,),
+                                Text(cards[index][0],style: TextStyle(
+                                  color: Color.fromRGBO(131, 131, 131, 1),
+                                  fontSize: 12,
+                                ),)
+                              ],
+                            ),
                           ),
-                        ),
-                        Icon(Icons.chevron_right_rounded,size: 20,),
-                      ],
+                          Icon(Icons.chevron_right_rounded,size: 20,),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }, 
@@ -111,7 +114,7 @@ class _KardState extends State<Kard> {
       ),
       floatingActionButton: cards.isEmpty?null:FloatingActionButton(
         elevation: 0,
-        onPressed: ()=>Navigator.pushNamed(context, '/kard/newCard'),
+        onPressed: ()=>Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]),
         backgroundColor: orange,
         child: Icon(Icons.add,color: Colors.white,),
       ),

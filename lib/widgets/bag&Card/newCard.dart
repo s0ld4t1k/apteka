@@ -29,6 +29,12 @@ class _NewCardState extends State<NewCard> {
   TextEditingController eyesi=TextEditingController();
   @override
   Widget build(BuildContext context) {
+    List _list =ModalRoute.of(context)?.settings.arguments as List;
+    if(_list[1]!='')selectedCardType=_list[1];
+    if(_list[0]!='')belgisi.text=_list[0];
+    if(_list[2]!='')cvc.text=_list[2];
+    if(_list[3]!='')eyesi.text=_list[3];
+    print(_list);
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(

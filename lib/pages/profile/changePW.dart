@@ -98,7 +98,6 @@ class _PWFieldState extends State<PWField> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                color: widget.eye?Color.fromRGBO(193, 193, 193, 1):Colors.black,
               ),
               obscureText: widget.eye,
               obscuringCharacter: '*',

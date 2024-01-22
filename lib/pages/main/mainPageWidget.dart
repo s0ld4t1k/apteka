@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 List _carouselList=[
-  ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
-  ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
-  ['assets/images/carouselBanner1.png','Ähli harytlara 10% arzanladyş','4-nji dekabr 2023- 10-njy ýanwar 2024',],
+  ['assets/images/carouselBanner3.png','Derman serişdeleri','Ählisini görmek',],
+  ['assets/images/carouselBanner3.png','Derman serişdeleri','Ählisini görmek',],
 ];
 
 class MainPageWidget extends StatefulWidget {
@@ -86,7 +85,6 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   )),
-                  elevation: MaterialStateProperty.all(1),
                   minimumSize: MaterialStateProperty.all(Size(45, 44)),
                 ),
               ),
@@ -116,20 +114,25 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                       width: 130,
                       margin: EdgeInsets.only(left: 24),
                       child: Text(_carouselList[index][1],style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: blue,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),),
                     ),
-                    SizedBox(height: 12,),
+                    SizedBox(height: 6,),
                     Container(
                       width: 127,
                       margin: EdgeInsets.only(left: 24),
-                      child: Text(_carouselList[index][2],style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),)
+                      child: Row(
+                        children: [
+                          Text(_carouselList[index][2],style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),),
+                          Icon(Icons.chevron_right_rounded,color: Colors.white,),
+                        ],
+                      )
                     ),
                   ],
                 ),
