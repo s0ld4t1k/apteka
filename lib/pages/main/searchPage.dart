@@ -13,11 +13,11 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  TextEditingController _tc=TextEditingController();
+  final TextEditingController _tc=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var _searchText=ModalRoute.of(context)?.settings.arguments as String;
-    _tc.text=_searchText;
+    var searchText=ModalRoute.of(context)?.settings.arguments as String;
+    _tc.text=searchText;
     return GestureDetector(
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -26,12 +26,12 @@ class _SearchPageState extends State<SearchPage> {
           automaticallyImplyLeading: false,
           titleSpacing: 25,
           title: Container(
-            margin: EdgeInsets.only(bottom: 11),
+            margin: const EdgeInsets.only(bottom: 11),
             child: Row(
               children: [
                 IconButton(
-                  padding: EdgeInsets.all(0),
-                  constraints: BoxConstraints(
+                  padding: const EdgeInsets.all(0),
+                  constraints: const BoxConstraints(
                     minHeight: 24,
                     minWidth: 24,
                     maxHeight: 24,
@@ -40,15 +40,15 @@ class _SearchPageState extends State<SearchPage> {
                   onPressed: (){
                     Navigator.pop(context);
                   }, 
-                  icon: Icon(Icons.chevron_left_rounded),
+                  icon: const Icon(Icons.chevron_left_rounded),
                 ),
-                SizedBox(width: 18,),
+                const SizedBox(width: 18,),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     width: 44,
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(249, 249, 249, 1),
+                      color: const Color.fromRGBO(249, 249, 249, 1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -56,12 +56,12 @@ class _SearchPageState extends State<SearchPage> {
                         Expanded(
                           child: TextField(
                             controller: _tc,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color.fromRGBO(131, 132, 139, 1),
                             ),
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(0),
-                              prefixIconConstraints: BoxConstraints(
+                              contentPadding: const EdgeInsets.all(0),
+                              prefixIconConstraints: const BoxConstraints(
                                 maxHeight: 20,
                                 maxWidth: 20,
                                 minHeight: 20,
@@ -71,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
                               prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
                               border: InputBorder.none,
                               hintText: 'Harydyň adyny giriziň',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 fontSize: 14,
                                 color: textGrey3,
                                 fontWeight: FontWeight.w500,
@@ -88,7 +88,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
           child: Column(
             children: [
               Row(
@@ -96,17 +96,17 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
+                        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 42)),
                         backgroundColor: MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
-                          side: BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
+                          side: const BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
                         ))
                       ),
                       onPressed: (){
                         showModalBottomSheet(
                           showDragHandle: true,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
@@ -114,7 +114,7 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                           context: context, 
                           builder:(context) {
-                            return TertipleBottomSheet();
+                            return const TertipleBottomSheet();
                           },
                         );
                       }, 
@@ -122,8 +122,8 @@ class _SearchPageState extends State<SearchPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('assets/icons/tertiple.svg'),
-                          SizedBox(width: 7,),
-                          Text('Tertiple',style: TextStyle(
+                          const SizedBox(width: 7,),
+                          const Text('Tertiple',style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -132,15 +132,15 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 21,),
+                  const SizedBox(width: 21,),
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
+                        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 42)),
                         backgroundColor: MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
-                          side: BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
+                          side: const BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
                         ))
                       ),
                       onPressed: (){
@@ -148,7 +148,7 @@ class _SearchPageState extends State<SearchPage> {
                           useRootNavigator: true,
                           isScrollControlled: true,
                           showDragHandle: true,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
@@ -156,7 +156,7 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                           context: context, 
                           builder:(context) {
-                            return FiltrBottomSheet();
+                            return const FiltrBottomSheet();
                           },
                         );
                       }, 
@@ -164,8 +164,8 @@ class _SearchPageState extends State<SearchPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('assets/icons/filter.svg'),
-                          SizedBox(width: 7,),
-                          Text('Filtr',style: TextStyle(
+                          const SizedBox(width: 7,),
+                          const Text('Filtr',style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -176,8 +176,8 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 17,),
-              VerticalProducts(),
+              const SizedBox(height: 17,),
+              const VerticalProducts(),
             ],
           ),
         ),

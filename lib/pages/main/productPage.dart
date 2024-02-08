@@ -34,12 +34,12 @@ class _ProductPageState extends State<ProductPage> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.chevron_left_rounded),
+              child: const Icon(Icons.chevron_left_rounded),
             ),
-            Expanded(
+            const Expanded(
               child: Center(child: Text('Haryt maglumaty')),
             ),
-            Container(
+            SizedBox(
               width: 20,
               height: 20,
               child: GestureDetector(
@@ -49,8 +49,8 @@ class _ProductPageState extends State<ProductPage> {
                 child: SvgPicture.asset('assets/icons/share.svg')
               ),
             ),
-            SizedBox(width: 22,),
-            Container(
+            const SizedBox(width: 22,),
+            SizedBox(
               width: 20,
               height: 20,
               child: GestureDetector(
@@ -70,11 +70,11 @@ class _ProductPageState extends State<ProductPage> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 180,
                     child: Stack(
                       children: [
@@ -93,7 +93,7 @@ class _ProductPageState extends State<ProductPage> {
                                 left: 0,
                                 child: Column(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 172,
                                       height: 110,
                                       child: Image.asset(productList[index][0]),
@@ -113,10 +113,10 @@ class _ProductPageState extends State<ProductPage> {
                             children: List.generate(productList.length, (index) => Container(
                               width: 6,
                               height: 6,
-                              margin: EdgeInsets.symmetric(horizontal: 2),
+                              margin: const EdgeInsets.symmetric(horizontal: 2),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color: _curIndex==index?green:Color.fromRGBO(234, 234, 234, 1),
+                                color: _curIndex==index?green:const Color.fromRGBO(234, 234, 234, 1),
                               ),
                             )),
                           )
@@ -124,35 +124,35 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
-                  Text('Солвибене гель для наружного при-менения 150мг',style: TextStyle(
+                  const Text('Солвибене гель для наружного при-менения 150мг',style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),),
-                  SizedBox(height: 10,),
-                  Text('115.00 TMT',style: TextStyle(
+                  const SizedBox(height: 10,),
+                  const Text('115.00 TMT',style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color: green,
                   ),),
-                  Devider(),
-                  Container(
+                  const Devider(),
+                  SizedBox(
                     height: 81+18+18,
                     child: ListView.separated(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       separatorBuilder: (context, index) {
-                        return SizedBox(height: 15,);
+                        return const SizedBox(height: 15,);
                       },
                       itemBuilder: (context, index) {
-                        return Container(
+                        return SizedBox(
                           height: 18,
                           child: Row(
                             children: [
-                              Text(_infoList[index][0],style: TextStyle(
+                              Text(_infoList[index][0],style: const TextStyle(
                                 fontSize: 14,
                                 color: Color.fromRGBO(133, 133, 133, 1)
                               ),),
-                              Spacer(),
-                              Text(_infoList[index][1],style: TextStyle(
+                              const Spacer(),
+                              Text(_infoList[index][1],style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                               ),),
@@ -163,30 +163,30 @@ class _ProductPageState extends State<ProductPage> {
                       itemCount: _infoList.length,
                     ),
                   ),
-                  Devider(),
-                  Text('Görkezme',style: TextStyle(
+                  const Devider(),
+                  const Text('Görkezme',style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Column(
                     children: List.generate(gorkezmeList.length, (index) => InfoRow(index: index)), 
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 38,),
+            const SizedBox(height: 38,),
             Container(
               width: double.infinity,
               height: 254,
-              color: Color.fromRGBO(253, 253, 253, 1),
+              color: const Color.fromRGBO(253, 253, 253, 1),
               child: HorizontalProducts(text: 'Meňzeş harytlar',)
             ),
             Container(
-              padding: EdgeInsets.only(left: 25,right: 25,top: 15,bottom: 25),
+              padding: const EdgeInsets.only(left: 25,right: 25,top: 15,bottom: 25),
               child: Row(
                 children: [
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Bahasy',style: TextStyle(
@@ -198,16 +198,16 @@ class _ProductPageState extends State<ProductPage> {
                       ),),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),
-                      minimumSize: MaterialStateProperty.all(Size(196, 47)),
+                      minimumSize: MaterialStateProperty.all(const Size(196, 47)),
                     ),
                     onPressed: (){}, 
-                    child: Text('Sebede goş',style: TextStyle(
+                    child: const Text('Sebede goş',style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),)
@@ -227,10 +227,10 @@ class Devider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
-    margin: EdgeInsets.symmetric(vertical: 25),
+    margin: const EdgeInsets.symmetric(vertical: 25),
     height: 1,
     width: double.infinity,
-    color: Color.fromRGBO(237, 237, 237, 1),
+    color: const Color.fromRGBO(237, 237, 237, 1),
     );
   }
 }

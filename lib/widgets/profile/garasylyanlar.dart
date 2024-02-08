@@ -20,7 +20,7 @@ class _GarasylyanlarState extends State<Garasylyanlar> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
       child: Column(
         children: List.generate(garasylyanlar.length, (index) => Column(
           children: [
@@ -29,45 +29,45 @@ class _GarasylyanlarState extends State<Garasylyanlar> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color.fromRGBO(242, 242, 242, 1))
+                    border: Border.all(color: const Color.fromRGBO(242, 242, 242, 1))
                   ),
                   child: ListView.separated(
                     shrinkWrap: true,
-                    padding: EdgeInsets.all(0),
-                    physics: NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(0),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder:(context, i) {
                       return Container(
                         height: 89,
-                        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 22),
+                        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 22),
                         child: Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 50,
                               child: Image.asset(garasylyanlar[index][i][0]),
                             ),
-                            SizedBox(width: 13,),
+                            const SizedBox(width: 13,),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(garasylyanlar[index][i][1],style: TextStyle(
+                                  Text(garasylyanlar[index][i][1],style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
                                   ),),
-                                  SizedBox(height: 11,),
+                                  const SizedBox(height: 11,),
                                   Row(
                                     children: [
-                                      Text('${garasylyanlar[index][i][2]} TMT',style: TextStyle(
+                                      Text('${garasylyanlar[index][i][2]} TMT',style: const TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
                                       ),),
                                       Container(
                                         width: 1,
                                         height: 16,
-                                        margin: EdgeInsets.symmetric(horizontal: 14),
-                                        color: Color.fromRGBO(202, 204, 218, 1),
+                                        margin: const EdgeInsets.symmetric(horizontal: 14),
+                                        color: const Color.fromRGBO(202, 204, 218, 1),
                                       ),
-                                      Text('${garasylyanlar[index][i][3]} sany',style: TextStyle(
+                                      Text('${garasylyanlar[index][i][3]} sany',style: const TextStyle(
                                         fontSize: 12,
                                         color: Color.fromRGBO(107, 110, 130, 1),
                                       ),)
@@ -83,7 +83,7 @@ class _GarasylyanlarState extends State<Garasylyanlar> {
                     separatorBuilder:(context, _) => Container(
                       width: double.infinity,
                       height: 1,
-                      color: Color.fromRGBO(238, 242, 246, 1),
+                      color: const Color.fromRGBO(238, 242, 246, 1),
                     ), 
                     itemCount: garasylyanlar[index].length,
                   )
@@ -91,7 +91,7 @@ class _GarasylyanlarState extends State<Garasylyanlar> {
                 Positioned(
                   top: 22,
                   right: 15,
-                  child: Text('#${garasylyanlar[index][0][4]}',style: TextStyle(
+                  child: Text('#${garasylyanlar[index][0][4]}',style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: green,
                     fontSize: 12,
@@ -100,30 +100,30 @@ class _GarasylyanlarState extends State<Garasylyanlar> {
                 )
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             OutlinedButton(
               style: ButtonStyle(
                 overlayColor: MaterialStateProperty.all(orange.withOpacity(0.1)),
                 side:MaterialStateProperty.all(
-                  BorderSide(color: orange)
+                  const BorderSide(color: orange)
                 ),
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
-                minimumSize: MaterialStateProperty.all(Size(double.infinity, 38)),
+                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 38)),
               ),
               onPressed: (){
                 setState(() {
                   garasylyanlar.removeAt(index);
                 });
               }, 
-              child: Text('Goýbolsun et',style: TextStyle(
+              child: const Text('Goýbolsun et',style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
                 color: orange,
               ),)
             ),
-            SizedBox(height: 17,),
+            const SizedBox(height: 17,),
           ],
         )),
       ),

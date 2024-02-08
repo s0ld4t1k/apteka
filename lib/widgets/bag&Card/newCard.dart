@@ -29,12 +29,12 @@ class _NewCardState extends State<NewCard> {
   TextEditingController eyesi=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    List _list =ModalRoute.of(context)?.settings.arguments as List;
-    if(_list[1]!='')selectedCardType=_list[1];
-    if(_list[0]!='')belgisi.text=_list[0];
-    if(_list[2]!='')cvc.text=_list[2];
-    if(_list[3]!='')eyesi.text=_list[3];
-    print(_list);
+    List list =ModalRoute.of(context)?.settings.arguments as List;
+    if(list[1]!='')selectedCardType=list[1];
+    if(list[0]!='')belgisi.text=list[0];
+    if(list[2]!='')cvc.text=list[2];
+    if(list[3]!='')eyesi.text=list[3];
+    print(list);
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -42,42 +42,42 @@ class _NewCardState extends State<NewCard> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
               maxHeight: 24,
               maxWidth: 24,
               minHeight: 24,
               minWidth: 24,
             ),
             onPressed: ()=>Navigator.pop(context), 
-            icon: Icon(Icons.chevron_left_rounded)
+            icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: Text('Kart maglumatlary'),
+          title: const Text('Kart maglumatlary'),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(25),
+          padding: const EdgeInsets.all(25),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height-231,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Kartyň belgisi'),
-                    SizedBox(height: 10,),
+                    const Text('Kartyň belgisi'),
+                    const SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(251, 251, 251, 1),
+                        color: const Color.fromRGBO(251, 251, 251, 1),
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                        border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: TextField(
                         controller: belgisi,
                         maxLength: 16,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           counterText: '',
                           hintText: '0000 0000 0000 0000',
@@ -91,9 +91,9 @@ class _NewCardState extends State<NewCard> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16,),
-                    Text('Möhleti'),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 16,),
+                    const Text('Möhleti'),
+                    const SizedBox(height: 10,),
                     Row(
                       children: [
                         Expanded(
@@ -101,9 +101,9 @@ class _NewCardState extends State<NewCard> {
                             alignment: Alignment.centerLeft,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(251, 251, 251, 1),
+                              color: const Color.fromRGBO(251, 251, 251, 1),
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                              border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                             ),
                             child: CupertinoPicker(
                               onSelectedItemChanged: (value) {
@@ -112,23 +112,23 @@ class _NewCardState extends State<NewCard> {
                               itemExtent: 50,
                               selectionOverlay: null,
                               children: List.generate(month.length, (index) => Center(
-                                child: Text(month[index],style: TextStyle(
+                                child: Text(month[index],style: const TextStyle(
                                   fontSize: 16,
                                 ),),
                               )),
                             ),
                           ),
                         ),
-                        SizedBox(width: 11,),
+                        const SizedBox(width: 11,),
                         Expanded(
                           child: Container(
                             height: 50,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(251, 251, 251, 1),
+                              color: const Color.fromRGBO(251, 251, 251, 1),
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                              border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                             ),
-                            child: TextField(
+                            child: const TextField(
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -146,22 +146,22 @@ class _NewCardState extends State<NewCard> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16,),
-                    Text('CVC'),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 16,),
+                    const Text('CVC'),
+                    const SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(251, 251, 251, 1),
+                        color: const Color.fromRGBO(251, 251, 251, 1),
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                        border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: TextField(
                         controller: cvc,
                         maxLength: 3,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           counterText: '',
                           hintText: '***',
@@ -175,20 +175,20 @@ class _NewCardState extends State<NewCard> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16,),
-                    Text('Kartyň eýesi'),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 16,),
+                    const Text('Kartyň eýesi'),
+                    const SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(251, 251, 251, 1),
+                        color: const Color.fromRGBO(251, 251, 251, 1),
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                        border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: TextField(
                         controller: eyesi,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           counterText: '',
                           hintText: 'Kartyň eýesi',
@@ -202,28 +202,28 @@ class _NewCardState extends State<NewCard> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16,),
-                    Text('Kartyňyz haýsy banka degişli?'),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 16,),
+                    const Text('Kartyňyz haýsy banka degişli?'),
+                    const SizedBox(height: 10,),
                     GestureDetector(
                       onTap: ()=>showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                         ),
                         showDragHandle: true,
                         context: context, 
                         builder:(context) {
-                          return ShowCardType();
+                          return const ShowCardType();
                         },
                       ),
                       child: Container(
                         width: double.infinity,
                         height: 50,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(251, 251, 251, 1),
+                          color: const Color.fromRGBO(251, 251, 251, 1),
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                          border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                         ),
                         child: Row(
                           children: [
@@ -231,10 +231,10 @@ class _NewCardState extends State<NewCard> {
                               selectedCardType!=null?cardsType[selectedCardType]:'Bank saýla',
                               style: TextStyle(
                               fontSize: 16,
-                              color: selectedCardType!=null?Colors.black:Color.fromRGBO(193, 193, 193, 1)
+                              color: selectedCardType!=null?Colors.black:const Color.fromRGBO(193, 193, 193, 1)
                             ),),
-                            Spacer(),
-                            Icon(CupertinoIcons.chevron_down,size: 16,),
+                            const Spacer(),
+                            const Icon(CupertinoIcons.chevron_down,size: 16,),
                           ],
                         )
                       ),
@@ -244,13 +244,13 @@ class _NewCardState extends State<NewCard> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(double.infinity, 50))
+                  minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: (){
                   Navigator.pop(context);
                   cards.add([belgisi.text,selectedCardType,cvc.text,eyesi.text]);
                 }, 
-                child: Text('Ýatda sakla',style: TextStyle(
+                child: const Text('Ýatda sakla',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),)

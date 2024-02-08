@@ -19,30 +19,30 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       height: 350,
-      padding: EdgeInsets.symmetric(horizontal: 25,),
+      padding: const EdgeInsets.symmetric(horizontal: 25,),
       child: Column(
         children: [
           Row(
             children: [
-              Text('Tertiple',style: TextStyle(
+              const Text('Tertiple',style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),),
-              Spacer(),
+              const Spacer(),
               IconButton(
-                padding: EdgeInsets.all(0),
-                constraints: BoxConstraints(
+                padding: const EdgeInsets.all(0),
+                constraints: const BoxConstraints(
                   maxHeight: 24,
                   maxWidth: 24,
                   minHeight: 24,
                   minWidth: 24,
                 ),
                 onPressed: ()=>Navigator.pop(context), 
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
               )
             ],
           ),
-          SizedBox(height: 34-18,),
+          const SizedBox(height: 34-18,),
           Expanded(
             child: ListView.separated(
               itemBuilder:(context, index) {
@@ -53,13 +53,13 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 18),
+                    padding: const EdgeInsets.symmetric(vertical: 18),
                     child: Row(
                       children: [
-                        Text(_tertipList[index],style: TextStyle(
+                        Text(_tertipList[index],style: const TextStyle(
                           fontSize: 16,
                         ),),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           width: 20,
                           height: 20,
@@ -68,7 +68,7 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
                             border: Border.all(
                               color: (index==_selectedTertip)
                               ?green
-                              :Color.fromRGBO(216, 216, 216, 1),
+                              :const Color.fromRGBO(216, 216, 216, 1),
                               width: (index==_selectedTertip)?4:2,
                             )
                           ),
@@ -82,7 +82,7 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
                 return Container(
                   height: 1,
                   width: double.infinity,
-                  color: Color.fromRGBO(237, 237, 237, 1),
+                  color: const Color.fromRGBO(237, 237, 237, 1),
                 );
               }, 
               itemCount: _tertipList.length

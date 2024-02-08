@@ -1,6 +1,5 @@
 import 'package:apte/pages/leading/lang.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 var _selectebLang=0;
@@ -19,17 +18,17 @@ class _LanguageState extends State<Language> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(
+          padding: const EdgeInsets.all(0),
+          constraints: const BoxConstraints(
             maxHeight: 24,
             maxWidth: 24,
             minHeight: 24,
             minWidth: 24,
           ),
           onPressed: ()=>Navigator.pop(context), 
-          icon: Icon(Icons.chevron_left_rounded)
+          icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: Text('Dil üýtgetmek'),
+        title: const Text('Dil üýtgetmek'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
@@ -41,8 +40,8 @@ class _LanguageState extends State<Language> {
               });
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              margin: EdgeInsets.symmetric(vertical: 7),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(vertical: 7),
               height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -55,9 +54,9 @@ class _LanguageState extends State<Language> {
                     radius: 16,
                     child: Image.asset('assets/images/${langList[index][0]}.png'),
                   ),
-                  SizedBox(width: 22,),
+                  const SizedBox(width: 22,),
                   Expanded(
-                    child: Text(langList[index][1],style: TextStyle(
+                    child: Text(langList[index][1],style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),),

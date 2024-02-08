@@ -21,12 +21,12 @@ class Searck extends StatelessWidget {
           automaticallyImplyLeading: false,
           titleSpacing: 25,
           title: Container(
-            margin: EdgeInsets.only(bottom: 11),
+            margin: const EdgeInsets.only(bottom: 11),
             child: Row(
               children: [
                 IconButton(
-                  padding: EdgeInsets.all(0),
-                  constraints: BoxConstraints(
+                  padding: const EdgeInsets.all(0),
+                  constraints: const BoxConstraints(
                     minHeight: 24,
                     minWidth: 24,
                     maxHeight: 24,
@@ -35,22 +35,22 @@ class Searck extends StatelessWidget {
                   onPressed: (){
                     Navigator.pop(context);
                   }, 
-                  icon: Icon(Icons.chevron_left_rounded),
+                  icon: const Icon(Icons.chevron_left_rounded),
                 ),
-                SizedBox(width: 18,),
+                const SizedBox(width: 18,),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     width: 44,
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(249, 249, 249, 1),
+                      color: const Color.fromRGBO(249, 249, 249, 1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
                       children: [
                         Expanded(
                           child: TextField(
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color.fromRGBO(131, 132, 139, 1),
                             ),
                             autofocus: true,
@@ -59,16 +59,16 @@ class Searck extends StatelessWidget {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Harydyň adyny giriziň',
-                              prefixIconConstraints: BoxConstraints(
+                              prefixIconConstraints: const BoxConstraints(
                                 maxHeight: 20,
                                 maxWidth: 20,
                                 minHeight: 20,
                                 minWidth: 20,
                               ),
-                              contentPadding: EdgeInsets.all(0),
+                              contentPadding: const EdgeInsets.all(0),
                               prefixText: '   ',
                               prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 fontSize: 14,
                                 color: textGrey3,
                                 fontWeight: FontWeight.w500,
@@ -89,29 +89,29 @@ class Searck extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Köp gözlenýänler',style: TextStyle(
+              const Text('Köp gözlenýänler',style: TextStyle(
                 fontSize: 16,
                 color: Color.fromRGBO(186, 186, 186, 1),
               ),),
-              SizedBox(height: 7,),
+              const SizedBox(height: 7,),
               Column(
                 children: List.generate(_searchHistory.length, (index) => InkWell(
                   onTap: ()=>Navigator.of(context).pushNamed('/mainPage/searchPage',arguments: _searchHistory[index]),
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
                           children: [
                             SvgPicture.asset('assets/icons/search.svg'),
-                            SizedBox(width: 21,),
+                            const SizedBox(width: 21,),
                             Text(_searchHistory[index],),
-                            Spacer(),
-                            Icon(Icons.chevron_right_rounded,color: Color.fromRGBO(131, 133, 137, 1),)
+                            const Spacer(),
+                            const Icon(Icons.chevron_right_rounded,color: Color.fromRGBO(131, 133, 137, 1),)
                           ],
                         ),
                       ),
-                      Container(height: 1,color: Color.fromRGBO(237, 237, 237, 1),),
+                      Container(height: 1,color: const Color.fromRGBO(237, 237, 237, 1),),
                     ],
                   ),
                 )),

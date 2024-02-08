@@ -10,11 +10,12 @@ class Leading2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/startBanner2.png'),
-          SizedBox(height: 84,),
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Text('Dürli dermanlar, saglygyňyz üçin ýeňip bolmajak bahalar',style: TextStyle(
-              fontSize: 18,
+          const SizedBox(height: 84,),
+          const Padding(
+            padding: EdgeInsets.all(25.0),
+            child: Text('Dürli dermanlar, saglygyňyz üçin ýeňip bolmajak bahalar!',style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,),
           )

@@ -19,28 +19,28 @@ class _ShowCardTypeState extends State<ShowCardType> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       height: 321,
       child: Column(
         children: [
           Row(
             children: [
-              Text('Banklar',style: TextStyle(
+              const Text('Banklar',style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),),
-              Spacer(),
+              const Spacer(),
               IconButton(
                 onPressed: ()=>Navigator.pop(context), 
-                icon: Icon(Icons.close_rounded),
+                icon: const Icon(Icons.close_rounded),
               ),
             ],
           ),
-          SizedBox(height: 33-18,),
+          const SizedBox(height: 33-18,),
           ListView.separated(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all(0),
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(0),
             itemBuilder:(context, index) {
               return GestureDetector(
                 onTap: () {
@@ -49,20 +49,20 @@ class _ShowCardTypeState extends State<ShowCardType> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 18),
+                  padding: const EdgeInsets.symmetric(vertical: 18),
                   child: Row(
                     children: [
-                      Text(cardsType[index],style: TextStyle(
+                      Text(cardsType[index],style: const TextStyle(
                         fontSize: 16,
                       ),),
-                      Spacer(),
+                      const Spacer(),
                       Container(
                         width: 20,
                         height: 20,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: selectedCardType==index?green:Color.fromRGBO(216, 216, 216, 1),
+                            color: selectedCardType==index?green:const Color.fromRGBO(216, 216, 216, 1),
                             width: selectedCardType==index?4:2,
                           ),
                         ),
@@ -76,7 +76,7 @@ class _ShowCardTypeState extends State<ShowCardType> {
               return Container(
                 width: double.infinity,
                 height: 1,
-                color: Color.fromRGBO(237, 237, 237, 1),
+                color: const Color.fromRGBO(237, 237, 237, 1),
               );
             }, 
             itemCount: cardsType.length,

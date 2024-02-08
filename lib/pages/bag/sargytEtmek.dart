@@ -15,17 +15,17 @@ class SargytEtmek extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
               maxHeight: 24,
               maxWidth: 24,
               minHeight: 24,
               minWidth: 24,
             ),
             onPressed: ()=>Navigator.pop(context), 
-            icon: Icon(Icons.chevron_left_rounded)
+            icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: Text('Sargyt etmek'),
+          title: const Text('Sargyt etmek'),
         ),
         body: GestureDetector(
           onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
@@ -33,28 +33,28 @@ class SargytEtmek extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Töleg usulyny saýlaň',),
-                      SizedBox(height: 12,),
+                      const Text('Töleg usulyny saýlaň',),
+                      const SizedBox(height: 12,),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color.fromRGBO(245, 245, 245, 1)
+                          color: const Color.fromRGBO(245, 245, 245, 1)
                         ),
-                        padding: EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(4),
                         height: 50,
                         child: TabBar(
-                          labelPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                          labelPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                           unselectedLabelColor: Colors.black,
-                          unselectedLabelStyle: TextStyle(
+                          unselectedLabelStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
                           ),
                           labelColor: Colors.white,
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
                           ),
@@ -62,7 +62,7 @@ class SargytEtmek extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6),
                             color: green
                           ),
-                          tabs: [
+                          tabs: const [
                             Text('Nagt'),
                             Text('Bank Karty'),
                           ]
@@ -71,9 +71,9 @@ class SargytEtmek extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height-250,
-                  child: TabBarView(
+                  child: const TabBarView(
                     children: [
                       Nagt(),
                       BankKarty(),

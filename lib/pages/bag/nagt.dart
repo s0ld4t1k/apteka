@@ -15,7 +15,7 @@ class _NagtState extends State<Nagt> {
   LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
-    var _jem=ModalRoute.of(context)?.settings.arguments;
+    var jem=ModalRoute.of(context)?.settings.arguments;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -24,18 +24,18 @@ class _NagtState extends State<Nagt> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 5,),
-                Text('Doly adyňyz'),
-                SizedBox(height: 10,),
+                const SizedBox(height: 5,),
+                const Text('Doly adyňyz'),
+                const SizedBox(height: 10,),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(251, 251, 251, 1),
+                    color: const Color.fromRGBO(251, 251, 251, 1),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                    border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(0),
                       hintText: 'Doly adyňyz',
@@ -49,18 +49,18 @@ class _NagtState extends State<Nagt> {
                     ),
                   ),
                 ),
-                SizedBox(height: 15,),
-                Text('Telefon belgiňiz'),
-                SizedBox(height: 10,),
+                const SizedBox(height: 15,),
+                const Text('Telefon belgiňiz'),
+                const SizedBox(height: 10,),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(251, 251, 251, 1),
+                    color: const Color.fromRGBO(251, 251, 251, 1),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                    border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Text('+993 ',style: TextStyle(
                         fontSize: 16,
@@ -85,31 +85,31 @@ class _NagtState extends State<Nagt> {
                     ],
                   ),
                 ),
-                SizedBox(height: 15,),
-                Text('Salgyňyz'),
-                SizedBox(height: 10,),
+                const SizedBox(height: 15,),
+                const Text('Salgyňyz'),
+                const SizedBox(height: 10,),
                 GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                       ),
                       showDragHandle: true,
                       isScrollControlled: true,
                       context: context, 
                       builder:(context) {
-                      return AddAdres();
+                      return const AddAdres();
                     },);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(251, 251, 251, 1),
+                      color: const Color.fromRGBO(251, 251, 251, 1),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                      border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                     ),
-                    child: Row(
+                    child: const Row(
                       children: [
                         Text('Salgyňyzy saýlaň',style: TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
@@ -121,18 +121,18 @@ class _NagtState extends State<Nagt> {
                     ),
                   ),
                 ),
-                SizedBox(height: 15,),
-                Text('Bellik'),
-                SizedBox(height: 10,),
+                const SizedBox(height: 15,),
+                const Text('Bellik'),
+                const SizedBox(height: 10,),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                   height: 139,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(251, 251, 251, 1),
+                    color: const Color.fromRGBO(251, 251, 251, 1),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+                    border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
-                  child: TextField(
+                  child: const TextField(
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
                     maxLines: null,
@@ -150,13 +150,13 @@ class _NagtState extends State<Nagt> {
                     ),
                   ),
                 ),
-                SizedBox(height: 59,),
+                const SizedBox(height: 59,),
               ],
             ),
           ),
           Container(
             height: 105,
-            padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -174,10 +174,10 @@ class _NagtState extends State<Nagt> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Jemi',style: TextStyle(
+                          const Text('Jemi',style: TextStyle(
                             color: Color.fromRGBO(107, 107, 107, 1),
                           ),),
-                          Text('$_jem TMT',style: TextStyle(
+                          Text('$jem TMT',style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),)
@@ -186,7 +186,7 @@ class _NagtState extends State<Nagt> {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(196, 46)),
+                        minimumSize: MaterialStateProperty.all(const Size(196, 46)),
                         elevation: MaterialStateProperty.all(1),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -195,7 +195,7 @@ class _NagtState extends State<Nagt> {
                       onPressed: (){
                         
                       }, 
-                      child: Text('Sargyt et',style: TextStyle(
+                      child: const Text('Sargyt et',style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),)

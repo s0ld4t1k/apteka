@@ -17,28 +17,28 @@ class SubKategoryPage extends StatefulWidget {
 class _SubKategoryPageState extends State<SubKategoryPage> {
   @override
   Widget build(BuildContext context) {
-    var _index=ModalRoute.of(context)?.settings.arguments as int;
-    var _title=subKategory[_index];
+    var index=ModalRoute.of(context)?.settings.arguments as int;
+    var title=subKategory[index];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(
+          padding: const EdgeInsets.all(0),
+          constraints: const BoxConstraints(
             maxHeight: 24,
             maxWidth: 24,
             minHeight: 24,
             minWidth: 24,
           ),
           onPressed: ()=>Navigator.pop(context), 
-          icon: Icon(Icons.chevron_left_rounded)
+          icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: Text(_title),
+        title: Text(title),
       ),
       body: SingleChildScrollView(
         controller: contrl,
-        padding: EdgeInsets.symmetric(horizontal: 25,vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 18),
         child: Column(
           children: [
             Row(
@@ -46,17 +46,17 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                 Expanded(
                   child: OutlinedButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
+                      minimumSize: MaterialStateProperty.all(const Size(double.infinity, 42)),
                       backgroundColor: MaterialStateProperty.all(Colors.white),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
-                        side: BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
+                        side: const BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
                       ))
                     ),
                     onPressed: (){
                       showModalBottomSheet(
                         showDragHandle: true,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),
@@ -64,7 +64,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                         ),
                         context: context, 
                         builder:(context) {
-                          return TertipleBottomSheet();
+                          return const TertipleBottomSheet();
                         },
                       );
                     }, 
@@ -72,8 +72,8 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/icons/tertiple.svg'),
-                        SizedBox(width: 7,),
-                        Text('Tertiple',style: TextStyle(
+                        const SizedBox(width: 7,),
+                        const Text('Tertiple',style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
@@ -82,22 +82,22 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                     ),
                   ),
                 ),
-                SizedBox(width: 21,),
+                const SizedBox(width: 21,),
                 Expanded(
                   child: OutlinedButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(double.infinity, 42)),
+                      minimumSize: MaterialStateProperty.all(const Size(double.infinity, 42)),
                       backgroundColor: MaterialStateProperty.all(Colors.white),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
-                        side: BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
+                        side: const BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
                       ))
                     ),
                     onPressed: (){
                       showModalBottomSheet(
                         isScrollControlled: true,
                         showDragHandle: true,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),
@@ -105,7 +105,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                         ),
                         context: context, 
                         builder:(context) {
-                          return FiltrBottomSheet();
+                          return const FiltrBottomSheet();
                         },
                       );
                     }, 
@@ -113,8 +113,8 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/icons/filter.svg'),
-                        SizedBox(width: 7,),
-                        Text('Filtr',style: TextStyle(
+                        const SizedBox(width: 7,),
+                        const Text('Filtr',style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
@@ -125,14 +125,14 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                 ),
               ],
             ),
-            SizedBox(height: 17,),
-            VerticalProducts(),
+            const SizedBox(height: 17,),
+            const VerticalProducts(),
           ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(bottomAppBarList.length, (index) => 

@@ -39,8 +39,8 @@ class _BagState extends State<Bag> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            Text('Sebedim'),
-            Spacer(),
+            const Text('Sebedim'),
+            const Spacer(),
             TextButton(
               style: ButtonStyle(
                 overlayColor: MaterialStateProperty.all(red.withOpacity(0.1)),
@@ -50,7 +50,7 @@ class _BagState extends State<Bag> {
                   productList.removeRange(0, productList.length);
                 });
               }, 
-              child: Text('Boşat',style: TextStyle(
+              child: const Text('Boşat',style: TextStyle(
                 color: red,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -70,51 +70,51 @@ class _BagState extends State<Bag> {
                 children: [
                   Column(
                     children: List.generate(productList.length, (index){
-                      var _splitted=productList[index][2].toString().split(' ');
-                      _harytJemi+=double.parse(_splitted[0]);
+                      var splitted=productList[index][2].toString().split(' ');
+                      _harytJemi+=double.parse(splitted[0]);
                       _jemiList[0][1]='$_harytJemi TMT';
                       return Stack(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(bottom: 12),
+                            margin: const EdgeInsets.only(bottom: 12),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Color.fromRGBO(242, 242, 242, 1),),
+                              border: Border.all(color: const Color.fromRGBO(242, 242, 242, 1),),
                             ),
                             height: 100,
                             child: Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(20),
+                                  padding: const EdgeInsets.all(20),
                                   width: 90,
                                   height: 100,
                                   child: Image.asset(productList[index][0]),
                                 ),
                                 Expanded(
                                   child: Container(
-                                    padding: EdgeInsets.only(left: 16,right: 40,top: 12,bottom: 12),
+                                    padding: const EdgeInsets.only(left: 16,right: 40,top: 12,bottom: 12),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text(productList[index][1],style: TextStyle(
+                                        Text(productList[index][1],style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,),
-                                        SizedBox(height: 4,),
-                                        Text(productList[index][4],style: TextStyle(
+                                        const SizedBox(height: 4,),
+                                        Text(productList[index][4],style: const TextStyle(
                                           color: Color.fromRGBO(113, 114, 122, 1),
                                           fontWeight: FontWeight.w400,
                                           fontSize: 10,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,),
-                                        SizedBox(height: 4+4+4,),
+                                        const SizedBox(height: 4+4+4,),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 75,
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,14 +131,14 @@ class _BagState extends State<Bag> {
                                                         });
                                                       },
                                                       splashRadius: 15, 
-                                                      padding: EdgeInsets.all(0),
-                                                      constraints: BoxConstraints(
+                                                      padding: const EdgeInsets.all(0),
+                                                      constraints: const BoxConstraints(
                                                         maxHeight: 24,
                                                         maxWidth: 24,
                                                         minHeight: 24,
                                                         minWidth: 24,
                                                       ),
-                                                      icon: Icon(Icons.remove_rounded,color:green,size: 17,),
+                                                      icon: const Icon(Icons.remove_rounded,color:green,size: 17,),
                                                     ),
                                                   ),
                                                   Text(productList[index].last.toString()),
@@ -154,21 +154,21 @@ class _BagState extends State<Bag> {
                                                         });
                                                       },
                                                       splashRadius: 15, 
-                                                      padding: EdgeInsets.all(0),
-                                                      constraints: BoxConstraints(
+                                                      padding: const EdgeInsets.all(0),
+                                                      constraints: const BoxConstraints(
                                                         maxHeight: 24,
                                                         maxWidth: 24,
                                                         minHeight: 24,
                                                         minWidth: 24,
                                                       ),
-                                                      icon: Icon(Icons.add_rounded,color:green,size: 17,),
+                                                      icon: const Icon(Icons.add_rounded,color:green,size: 17,),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            Spacer(),
-                                            Text(productList[index][2],style: TextStyle(
+                                            const Spacer(),
+                                            Text(productList[index][2],style: const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w700,
                                             ),)
@@ -190,8 +190,8 @@ class _BagState extends State<Bag> {
                                   productList.removeAt(index);
                                 });
                               }, 
-                              padding: EdgeInsets.all(0),
-                              constraints: BoxConstraints(
+                              padding: const EdgeInsets.all(0),
+                              constraints: const BoxConstraints(
                                 maxHeight: 20,
                                 maxWidth: 20,
                                 minHeight: 20,
@@ -204,7 +204,7 @@ class _BagState extends State<Bag> {
                                   border: Border.all(color: green,width: 1.2),
                                   borderRadius: BorderRadius.circular(20)
                                 ),
-                                child: Icon(Icons.close_rounded,color: green,size: 14,),
+                                child: const Icon(Icons.close_rounded,color: green,size: 14,),
                               )
                             )
                           )
@@ -217,39 +217,39 @@ class _BagState extends State<Bag> {
                       showModalBottomSheet(
                         isScrollControlled: true,
                         showDragHandle: true,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(top: Radius.circular(20))
                         ),
                         context: context, 
                         builder:(context) {
-                          return ShowPromokod();
+                          return const ShowPromokod();
                         },);
                     },
                     child: Container(
                       height: 51,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color.fromRGBO(234, 234, 234, 1)),
+                        border: Border.all(color: const Color.fromRGBO(234, 234, 234, 1)),
                       ),
-                      margin: EdgeInsets.symmetric(vertical: 15),
-                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/discount.svg'),
-                          SizedBox(width: 15,),
-                          Text('Promokod giriziň',style: TextStyle(
+                          const SizedBox(width: 15,),
+                          const Text('Promokod giriziň',style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),),
-                          Spacer(),
-                          Icon(Icons.chevron_right_rounded,size: 20,),
+                          const Spacer(),
+                          const Icon(Icons.chevron_right_rounded,size: 20,),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 15,),
-                  Text('Eltip berme görnüşi'),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 15,),
+                  const Text('Eltip berme görnüşi'),
+                  const SizedBox(height: 20,),
                   Row(
                     children: List.generate(_eltmeList.length, (index) {
                       return Expanded(
@@ -277,13 +277,13 @@ class _BagState extends State<Bag> {
                       );
                     })
                   ),
-                  SizedBox(height: 40,),
+                  const SizedBox(height: 40,),
                 ],
               ),
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -292,7 +292,7 @@ class _BagState extends State<Bag> {
                     color: Colors.black.withOpacity(0.05)
                   ),
                 ],
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
               ),
               child: Column(
                 children: [
@@ -301,48 +301,48 @@ class _BagState extends State<Bag> {
                     height: 2.5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(31),
-                      color: Color.fromRGBO(205, 205, 205, 1),
+                      color: const Color.fromRGBO(205, 205, 205, 1),
                     ),
                   ),
-                  SizedBox(height: 7,),
+                  const SizedBox(height: 7,),
                   Column(
                     children: List.generate(_jemiList.length, (index) => Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       height: 37,
                       child: Row(
                         children: [
-                          Text(_jemiList[index][0],style: TextStyle(
+                          Text(_jemiList[index][0],style: const TextStyle(
                             color: Color.fromRGBO(107, 107, 107, 1),
                           ),),
-                          Spacer(),
+                          const Spacer(),
                           Text(_jemiList[index][1],style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: index==1?red:Color.fromRGBO(107, 107, 107, 1),
+                            color: index==1?red:const Color.fromRGBO(107, 107, 107, 1),
                           ),)
                         ],
                       ),
                     ),),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Row(
                     children: List.generate(
-                      ((MediaQuery.of(context).size.width-50)~/8) as int, 
-                      (index) => Text('-',style: TextStyle(
+                      ((MediaQuery.of(context).size.width-50)~/8), 
+                      (index) => const Text('-',style: TextStyle(
                         color: Color.fromRGBO(183, 183, 183, 1),
                       ),),
                     ),
                   ),
-                  SizedBox(height: 23,),
+                  const SizedBox(height: 23,),
                   Row(
                     children: [
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Jemi',style: TextStyle(
+                            const Text('Jemi',style: TextStyle(
                               color: Color.fromRGBO(107, 107, 107, 1),
                             ),),
-                            Text('${_arzanladys+_harytJemi+_eltipberme} TMT',style: TextStyle(
+                            Text('${_arzanladys+_harytJemi+_eltipberme} TMT',style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),)
@@ -351,7 +351,7 @@ class _BagState extends State<Bag> {
                       ),
                       ElevatedButton(
                         style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(Size(196, 46)),
+                          minimumSize: MaterialStateProperty.all(const Size(196, 46)),
                           elevation: MaterialStateProperty.all(1),
                           shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -360,7 +360,7 @@ class _BagState extends State<Bag> {
                         onPressed: ()=>Navigator.of(context).pushNamed(
                           '/bag/sargytEtmek',arguments: _arzanladys+_harytJemi+_eltipberme,
                         ), 
-                        child: Text('Sargyt et',style: TextStyle(
+                        child: const Text('Sargyt et',style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),)
@@ -378,34 +378,34 @@ class _BagState extends State<Bag> {
 }
 class _EltmeCon extends StatelessWidget {
   final text1,text2,index;
-  const _EltmeCon({super.key, this.text1, this.text2, this.index});
+  const _EltmeCon({this.text1, this.text2, this.index});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      padding: EdgeInsets.symmetric(vertical: 8,horizontal: 13),
+      padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 13),
       decoration: BoxDecoration(
         color: index==_curEltme
         ?green.withOpacity(0.1):null,
         borderRadius: BorderRadius.circular(7),
         border: Border.all(
           color: index==_curEltme
-          ?green:Color.fromRGBO(242, 242, 242, 1),
+          ?green:const Color.fromRGBO(242, 242, 242, 1),
         )
       ),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 76,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(text1,style: TextStyle(
+                Text(text1,style: const TextStyle(
                   color: Color.fromRGBO(107, 107, 107, 1),
                 ),),
-                Text(text2,style: TextStyle(
+                Text(text2,style: const TextStyle(
                   color: green,
                   fontSize: 12,
                 ),),
@@ -424,7 +424,7 @@ class _EltmeCon extends StatelessWidget {
                     border: Border.all(
                       width: index==_curEltme?4:1,
                       color: index==_curEltme
-                      ?green:Color.fromRGBO(242, 242, 242, 1),
+                      ?green:const Color.fromRGBO(242, 242, 242, 1),
                     ),
                   ),
                 ),

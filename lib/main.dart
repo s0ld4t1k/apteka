@@ -30,7 +30,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/instance_manager.dart';
 
 void main() {
-  Future.delayed(Duration(seconds: 5));
+  Future.delayed(const Duration(seconds: 5));
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: createMaterialColor(green),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -83,29 +83,29 @@ class _MyAppState extends State<MyApp> {
       title: 'Apteka',
       routes: {
         '/':(context) => MainPage(),
-        '/leading':(context) => Leading(),
-        '/mainPage':(context) => MainPageWidget(),
-        '/mainPage/harmfulInfo':(context) => HarmfulInfo(),
-        '/mainPage/search':(context) => Searck(),
-        '/mainPage/searchPage':(context) => SearchPage(),
-        '/mainPage/productPage':(context) => ProductPage(),
-        '/kategory':(context) => Kategory(),
-        '/kategory/subKategory':(context) => SubKategory(),
-        '/kategory/subKategoryPage':(context) => SubKategoryPage(),
-        '/bag':(context) => Bag(),
-        '/bag/sargytEtmek':(context) => SargytEtmek(),
-        '/bag/salgym':(context) => NewAdres(),
-        '/bag/salgymManual':(context) => NewAdresManual(),
-        '/kard':(context) => Kard(),
-        '/kard/newCard':(context) => NewCard(),
-        '/profile':(context) => Profile(),
+        '/leading':(context) => const Leading(),
+        '/mainPage':(context) => const MainPageWidget(),
+        '/mainPage/harmfulInfo':(context) => const HarmfulInfo(),
+        '/mainPage/search':(context) => const Searck(),
+        '/mainPage/searchPage':(context) => const SearchPage(),
+        '/mainPage/productPage':(context) => const ProductPage(),
+        '/kategory':(context) => const Kategory(),
+        '/kategory/subKategory':(context) => const SubKategory(),
+        '/kategory/subKategoryPage':(context) => const SubKategoryPage(),
+        '/bag':(context) => const Bag(),
+        '/bag/sargytEtmek':(context) => const SargytEtmek(),
+        '/bag/salgym':(context) => const NewAdres(),
+        '/bag/salgymManual':(context) => const NewAdresManual(),
+        '/kard':(context) => const Kard(),
+        '/kard/newCard':(context) => const NewCard(),
+        '/profile':(context) => const Profile(),
         '/profile/user':(context) => User(),
-        '/profile/user/changePW':(context) => ChangePW(),
-        '/profile/lang':(context) => Language(),
-        '/profile/habarlasmak':(context) => Habarlasmak(),
-        '/profile/like':(context) => Like(),
-        '/profile/adres':(context) => Adres(),
-        '/profile/sargyt':(context) => Sargyt(),
+        '/profile/user/changePW':(context) => const ChangePW(),
+        '/profile/lang':(context) => const Language(),
+        '/profile/habarlasmak':(context) => const Habarlasmak(),
+        '/profile/like':(context) => const Like(),
+        '/profile/adres':(context) => const Adres(),
+        '/profile/sargyt':(context) => const Sargyt(),
       },
       initialRoute: '/',
     );

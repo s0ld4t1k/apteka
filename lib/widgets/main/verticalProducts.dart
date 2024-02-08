@@ -14,8 +14,8 @@ class _VerticalProductsState extends State<VerticalProducts> {
   Widget build(BuildContext context) {
     return GridView(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 152,
         mainAxisExtent: 168,
         mainAxisSpacing: 18,
@@ -24,14 +24,14 @@ class _VerticalProductsState extends State<VerticalProducts> {
       children: List.generate(productList.length, (index) => GestureDetector(
         onTap: () => Navigator.pushNamed(context, '/mainPage/productPage'),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colors.white,
             boxShadow: [
               BoxShadow(
                 blurRadius: 5,
-                offset: Offset(0, 1),
+                offset: const Offset(0, 1),
                 color: Colors.black.withOpacity(0.05),
               )
             ]
@@ -43,23 +43,23 @@ class _VerticalProductsState extends State<VerticalProducts> {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       child: Center(child: Image.asset(productList[index][0],fit: BoxFit.fill,)),
                     ),
                   ),
-                  Text(productList[index][1],style: TextStyle(
+                  Text(productList[index][1],style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,),
-                  SizedBox(height: 6,),
-                  Text(productList[index][2],style: TextStyle(
+                  const SizedBox(height: 6,),
+                  Text(productList[index][2],style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: green,
                   ),),
-                  SizedBox(height: 16,),
+                  const SizedBox(height: 16,),
                 ],
               ),
               Positioned(

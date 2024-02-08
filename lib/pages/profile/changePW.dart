@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -10,8 +9,8 @@ class ChangePW extends StatefulWidget {
 }
 
 class _ChangePWState extends State<ChangePW> {
-  TextEditingController _pw=TextEditingController();
-  TextEditingController _conPW=TextEditingController();
+  final TextEditingController _pw=TextEditingController();
+  final TextEditingController _conPW=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,43 +20,43 @@ class _ChangePWState extends State<ChangePW> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
               maxHeight: 24,
               maxWidth: 24,
               minHeight: 24,
               minWidth: 24,
             ),
             onPressed: ()=>Navigator.pop(context), 
-            icon: Icon(Icons.chevron_left_rounded)
+            icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: Text('Açarsözi üýtgetmek'),
+          title: const Text('Açarsözi üýtgetmek'),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(25),
+          padding: const EdgeInsets.all(25),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height-231,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Täze açarsözi',),
-                    SizedBox(height: 10,),
+                    const Text('Täze açarsözi',),
+                    const SizedBox(height: 10,),
                     PWField(con: _pw,),
-                    SizedBox(height: 20,),
-                    Text('Açarsözi tassykla',),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 20,),
+                    const Text('Açarsözi tassykla',),
+                    const SizedBox(height: 10,),
                     PWField(con: _conPW,),
                   ],
                 ),
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(double.infinity, 50))
+                  minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: ()=>Navigator.pop(context), 
-                child: Text('Ýatda sakla',style: TextStyle(
+                child: const Text('Ýatda sakla',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),
@@ -83,11 +82,11 @@ class _PWFieldState extends State<PWField> {
   Widget build(BuildContext context) {
     return Container(
       height: 52,
-      padding: EdgeInsets.only(left: 25,right: 15),
+      padding: const EdgeInsets.only(left: 25,right: 15),
       decoration: BoxDecoration(
-        color: Color.fromRGBO(251, 251, 251, 1),
+        color: const Color.fromRGBO(251, 251, 251, 1),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Color.fromRGBO(237, 237, 237, 1)),
+        border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
       ),
       child: Row(
         children: [
@@ -95,13 +94,13 @@ class _PWFieldState extends State<PWField> {
             child: TextField(
               keyboardType: TextInputType.number,
               controller: widget.con,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
               obscureText: widget.eye,
               obscuringCharacter: '*',
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: '********',
                 hintStyle: TextStyle(
                   fontSize: 16,

@@ -6,10 +6,10 @@ import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 var _index=0;
 List leadingList=[
-  Leading1(),
-  Leading2(),
-  Leading3(),
-  Lang(),
+  const Leading1(),
+  const Leading2(),
+  const Leading3(),
+  const Lang(),
 ];
 class Leading extends StatefulWidget {
   const Leading({super.key});
@@ -28,7 +28,7 @@ class _LeadingState extends State<Leading> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             leadingList[_index],
-            Container(
+            SizedBox(
               height: 50+34+25,
               child: GestureDetector(
                 onTap: (){
@@ -44,7 +44,7 @@ class _LeadingState extends State<Leading> {
                       borderRadius: BorderRadius.circular(50),
                       color: orange,
                     ),
-                    child: Icon(Icons.arrow_forward_rounded,color: Colors.white,),
+                    child: const Icon(Icons.arrow_forward_rounded,color: Colors.white,),
                   ),
                 ),
               ),

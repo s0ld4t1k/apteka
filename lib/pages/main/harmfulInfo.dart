@@ -23,10 +23,10 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.chevron_left_rounded),
+              child: const Icon(Icons.chevron_left_rounded),
             ),
-            Expanded(child: Center(child: Text('Peýdaly maglumat'))),
-            Container(
+            const Expanded(child: Center(child: Text('Peýdaly maglumat'))),
+            SizedBox(
               width: 20,
               height: 20,
               child: GestureDetector(
@@ -36,8 +36,8 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
                 child: SvgPicture.asset('assets/icons/share.svg')
               ),
             ),
-            SizedBox(width: 22,),
-            Container(
+            const SizedBox(width: 22,),
+            SizedBox(
               width: 20,
               height: 20,
               child: GestureDetector(
@@ -54,7 +54,7 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -69,18 +69,18 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
                 child: Image.asset('assets/images/harmfulBanner2.png',fit: BoxFit.fill,),
               ),
             ),
-            SizedBox(height: 15,),
-            Text('C witamin näme we onuň saglyga nähili peýdasy bar?',style: TextStyle(
+            const SizedBox(height: 15,),
+            const Text('C witamin näme we onuň saglyga nähili peýdasy bar?',style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),),
-            SizedBox(height: 10,),
-            Text('12/12/2023ý',style: TextStyle(
+            const SizedBox(height: 10,),
+            const Text('12/12/2023ý',style: TextStyle(
               fontSize: 12,
               color: Color.fromRGBO(141, 141, 141, 1),
             ),),
-            SizedBox(height: 18,),
-            Column(
+            const SizedBox(height: 18,),
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Witamin C näme?',style: TextStyle(

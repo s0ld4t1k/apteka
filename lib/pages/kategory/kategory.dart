@@ -25,27 +25,27 @@ class Kategory extends StatelessWidget {
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text('Kategoriýa'),),
+        appBar: AppBar(title: const Text('Kategoriýa'),),
         body: SingleChildScrollView(
           controller: contrl,
-          padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
           child: Column(
             children: [
               Container(
                 width: double.infinity,
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(249, 249, 249, 1),
+                  color: const Color.fromRGBO(249, 249, 249, 1),
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(0),
-                    border: OutlineInputBorder(
+                    contentPadding: const EdgeInsets.all(0),
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide.none
                     ),
-                    suffixIconConstraints: BoxConstraints(
+                    suffixIconConstraints: const BoxConstraints(
                       maxHeight: 20,
                       maxWidth: 20,
                       minHeight: 20,
@@ -53,18 +53,18 @@ class Kategory extends StatelessWidget {
                     ),
                     suffixIcon: SvgPicture.asset('assets/icons/search.svg',color: green),
                     hintText: 'Ady boýunça gözle',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontWeight: FontWeight.w500,
                       color: textGrey3,
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate:SliverGridDelegateWithMaxCrossAxisExtent(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate:const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 111,
                   mainAxisExtent:  135,
                   crossAxisSpacing: 12,
@@ -76,7 +76,7 @@ class Kategory extends StatelessWidget {
                       '/kategory/subKategory',
                       arguments: index,
                     ),
-                    child: Container(
+                    child: SizedBox(
                       height: 135,
                       child: Stack(
                         children: [
@@ -88,7 +88,7 @@ class Kategory extends StatelessWidget {
                               width: 111,
                               height: 119,
                               decoration: BoxDecoration(
-                                color: Color.fromRGBO(250, 250, 250, 1),
+                                color: const Color.fromRGBO(250, 250, 250, 1),
                                 borderRadius: BorderRadius.circular(13),
                               ),
                             ),
@@ -99,7 +99,7 @@ class Kategory extends StatelessWidget {
                             bottom: 22,
                             child: Text(kategoryList[index][0],
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                             ),),
@@ -108,7 +108,7 @@ class Kategory extends StatelessWidget {
                             top: 0,
                             left: 10,
                             right: 10,
-                            child: Container(
+                            child: SizedBox(
                               width: 80,
                               height: 80,
                               child: Image.asset(kategoryList[index][1])

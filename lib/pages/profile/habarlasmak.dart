@@ -1,5 +1,4 @@
 import 'package:apte/widgets/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 TextEditingController _name=TextEditingController();
@@ -24,36 +23,36 @@ class _HabarlasmakState extends State<Habarlasmak> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
               maxHeight: 24,
               maxWidth: 24,
               minHeight: 24,
               minWidth: 24,
             ),
             onPressed: ()=>Navigator.pop(context), 
-            icon: Icon(Icons.chevron_left_rounded)
+            icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: Text('Habarlaşmak'),
+          title: const Text('Habarlaşmak'),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(25),
+          padding: const EdgeInsets.all(25),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height-231,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Doly adyňyz',),
-                    SizedBox(height: 10,),
+                    const Text('Doly adyňyz',),
+                    const SizedBox(height: 10,),
                     Container(
                       height: 52,
-                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(251, 251, 251, 1),
+                        color: const Color.fromRGBO(251, 251, 251, 1),
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: nameErr?red:Color.fromRGBO(237, 237, 237, 1)),
+                        border: Border.all(color: nameErr?red:const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: TextField(
                         onChanged: (value) {
@@ -62,11 +61,11 @@ class _HabarlasmakState extends State<Habarlasmak> {
                           });
                         },
                         controller: _name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Adyňyzy giriziň',
                           hintStyle: TextStyle(
                             fontSize: 16,
@@ -79,21 +78,21 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ),
                       ),
                     ),
-                    nameErr?_ErrMsg():Container(),
-                    SizedBox(height: 20,),
-                    Text('Telefon belgiňiz',),
-                    SizedBox(height: 10,),
+                    nameErr?const _ErrMsg():Container(),
+                    const SizedBox(height: 20,),
+                    const Text('Telefon belgiňiz',),
+                    const SizedBox(height: 10,),
                     Container(
                       height: 52,
-                      padding: EdgeInsets.symmetric(horizontal: 25,vertical: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 16),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(251, 251, 251, 1),
+                        color: const Color.fromRGBO(251, 251, 251, 1),
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: telErr?red:Color.fromRGBO(237, 237, 237, 1)),
+                        border: Border.all(color: telErr?red:const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: Row(
                         children: [
-                          Text('+993',style: TextStyle(
+                          const Text('+993',style: TextStyle(
                             fontSize: 16,
                           ),),
                           Expanded(
@@ -106,12 +105,12 @@ class _HabarlasmakState extends State<Habarlasmak> {
                               keyboardType: TextInputType.phone,
                               maxLength: 8,
                               controller: _tel,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                               ),
-                              scrollPadding: EdgeInsets.all(0),
-                              decoration: InputDecoration(
+                              scrollPadding: const EdgeInsets.all(0),
+                              decoration: const InputDecoration(
                                 counterText: '',
                                 contentPadding: EdgeInsets.symmetric(vertical: 17),
                                 border: OutlineInputBorder(
@@ -123,18 +122,18 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ],
                       ),
                     ),
-                    telErr?_ErrMsg():Container(),
-                    SizedBox(height: 20,),
-                    Text('Bellik',),
-                    SizedBox(height: 10,),
+                    telErr?const _ErrMsg():Container(),
+                    const SizedBox(height: 20,),
+                    const Text('Bellik',),
+                    const SizedBox(height: 10,),
                     Container(
                       height: 139,
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 25,vertical: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 16),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(251, 251, 251, 1),
+                        color: const Color.fromRGBO(251, 251, 251, 1),
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: comErr?red:Color.fromRGBO(237, 237, 237, 1)),
+                        border: Border.all(color: comErr?red:const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: TextField(
                         onChanged: (value) {
@@ -147,7 +146,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         textAlignVertical: TextAlignVertical.top,
                         minLines: null,
                         expands: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(0),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
@@ -160,13 +159,13 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ),
                       )
                     ),
-                    comErr?_ErrMsg():Container(),
+                    comErr?const _ErrMsg():Container(),
                   ],
                 ),
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(double.infinity, 50))
+                  minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: (){
                   setState(() {
@@ -175,7 +174,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                     if(_com.text=='')comErr=true;
                   });
                 }, 
-                child: Text('Ugratmak',style: TextStyle(
+                child: const Text('Ugratmak',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),
@@ -188,18 +187,18 @@ class _HabarlasmakState extends State<Habarlasmak> {
   }
 }
 class _ErrMsg extends StatelessWidget {
-  const _ErrMsg({super.key});
+  const _ErrMsg();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         Row(
           children: [
             SvgPicture.asset('assets/icons/qMark.svg'),
-            SizedBox(width: 8,),
-            Text('Bu meýdan hökmany',style: TextStyle(
+            const SizedBox(width: 8,),
+            const Text('Bu meýdan hökmany',style: TextStyle(
               color: red,
             ),),
           ],

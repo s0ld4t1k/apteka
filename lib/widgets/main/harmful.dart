@@ -16,16 +16,16 @@ class MainHarmful extends StatelessWidget {
           padding: const EdgeInsets.only(left: 25,right: 15,top: 10),
           child: Row(
             children: [
-              Text('Peýdaly maglumatlar',style: TextStyle(
+              const Text('Peýdaly maglumatlar',style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   
                 },
-                child: Text('Ählisini gör',style: TextStyle(
+                child: const Text('Ählisini gör',style: TextStyle(
                   color: green,
                   fontSize: 12,
                 ),),
@@ -33,13 +33,13 @@ class MainHarmful extends StatelessWidget {
             ],
           ),
         ),
-        Container(
+        SizedBox(
           height: 125,
           child: ListView(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             scrollDirection: Axis.horizontal,
             children: [
-              SizedBox(width: 25,),
+              const SizedBox(width: 25,),
               Row(
                 children: List.generate(_harmfulList.length, (index) => InkWell(
                   onTap: () {
@@ -49,7 +49,7 @@ class MainHarmful extends StatelessWidget {
                     width: 243,
                     height: 121,
                     clipBehavior: Clip.hardEdge,
-                    margin: EdgeInsets.only(right: 12),
+                    margin: const EdgeInsets.only(right: 12),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),

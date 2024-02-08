@@ -25,35 +25,35 @@ class SubKategory extends StatefulWidget {
 class _SubKategoryState extends State<SubKategory> {
   @override
   Widget build(BuildContext context) {
-    var _index=ModalRoute.of(context)?.settings.arguments as int;
-    var _title=kategoryList[_index][0];
+    var index=ModalRoute.of(context)?.settings.arguments as int;
+    var title=kategoryList[index][0];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(
+          padding: const EdgeInsets.all(0),
+          constraints: const BoxConstraints(
             maxHeight: 24,
             maxWidth: 24,
             minHeight: 24,
             minWidth: 24,
           ),
           onPressed: ()=>Navigator.pop(context), 
-          icon: Icon(Icons.chevron_left_rounded)
+          icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: Text(_title),
+        title: Text(title),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: ListView.separated(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (context, index) {
             return Container(
               width: double.infinity,
               height: 1,
-              color: Color.fromRGBO(237, 237, 237, 1),
+              color: const Color.fromRGBO(237, 237, 237, 1),
             );
           },
           itemBuilder: (context, index) {
@@ -63,15 +63,15 @@ class _SubKategoryState extends State<SubKategory> {
                 arguments: index,
               ),
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Row(
                   children: [
-                    Text(subKategory[index],style: TextStyle(
+                    Text(subKategory[index],style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),),
-                    Spacer(),
-                    Icon(Icons.chevron_right_rounded),
+                    const Spacer(),
+                    const Icon(Icons.chevron_right_rounded),
                   ],
                 ),
               ),
@@ -82,7 +82,7 @@ class _SubKategoryState extends State<SubKategory> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(bottomAppBarList.length, (index) => 

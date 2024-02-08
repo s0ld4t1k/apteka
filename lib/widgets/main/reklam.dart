@@ -19,46 +19,46 @@ class Reklam extends StatelessWidget {
         Container(
           width: 115,
           height: 121,
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colors.white,
             boxShadow: [
               BoxShadow(
                 blurRadius: 3,
-                offset: Offset(0,1),
+                offset: const Offset(0,1),
                 color: Colors.black.withOpacity(0.05),
               )
             ]
           ),
           child: Image.asset(photo,),
         ),
-        SizedBox(width: 19,),
+        const SizedBox(width: 19,),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(text,style: TextStyle(
+              Text(text,style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
               ),),
-              SizedBox(height: 5,),
-              Text(text2,style: TextStyle(
+              const SizedBox(height: 5,),
+              Text(text2,style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 10,
                 color: Color.fromRGBO(160, 160, 160, 1),
               ),),
-              SizedBox(height: 9,),
-              Text(price,style: TextStyle(
+              const SizedBox(height: 9,),
+              Text(price,style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 14,
                 color: green,
               ),),
-              SizedBox(height: 9,),
+              const SizedBox(height: 9,),
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
-                  minimumSize: MaterialStateProperty.all(Size(81, 23)),
+                  minimumSize: MaterialStateProperty.all(const Size(81, 23)),
                   padding: MaterialStateProperty.all(EdgeInsets.zero),
                   backgroundColor: MaterialStateProperty.all(orange),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -68,7 +68,7 @@ class Reklam extends StatelessWidget {
                 onPressed: (){
                   
                 }, 
-                child: Text('Sebede goş',style: TextStyle(
+                child: const Text('Sebede goş',style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
                 ),),

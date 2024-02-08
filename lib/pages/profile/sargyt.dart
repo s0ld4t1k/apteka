@@ -15,24 +15,24 @@ class Sargyt extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
               maxHeight: 24,
               maxWidth: 24,
               minHeight: 24,
               minWidth: 24,
             ),
             onPressed: ()=>Navigator.pop(context), 
-            icon: Icon(Icons.chevron_left_rounded)
+            icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: Text('Sargytlarym'),
+          title: const Text('Sargytlarym'),
         ),
         body: SafeArea(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 50,
-                child: TabBar(
+                child: const TabBar(
                   labelColor: green,
                   unselectedLabelColor: Color.fromRGBO(165, 167, 185, 1),
                   tabs: [
@@ -45,7 +45,7 @@ class Sargyt extends StatelessWidget {
                   ]
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: TabBarView(
                   children: [
                     Garasylyanlar(),

@@ -58,56 +58,56 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
               children: [
                 Row(
                   children: [
-                    Text('Filtr',style: TextStyle(
+                    const Text('Filtr',style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
-                      padding: EdgeInsets.all(0),
-                      constraints: BoxConstraints(
+                      padding: const EdgeInsets.all(0),
+                      constraints: const BoxConstraints(
                         maxHeight: 24,
                         maxWidth: 24,
                         minHeight: 24,
                         minWidth: 24,
                       ),
                       onPressed: ()=>Navigator.pop(context), 
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                     )
                   ],
                 ),
-                SizedBox(height: 28,),
-                Container(
+                const SizedBox(height: 28,),
+                SizedBox(
                   height: 510,
                   child: ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder:(context, index) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(filtrList[index][0],style: TextStyle(
+                          Text(filtrList[index][0],style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),),
-                          SizedBox(height: 15,),
+                          const SizedBox(height: 15,),
                           Wrap(
                             spacing: 12,
                             runSpacing: 9,
-                            children: List.generate(filtrList[index][1].length, (i) => Container(
+                            children: List.generate(filtrList[index][1].length, (i) => SizedBox(
                               height: 30,
                               child: OutlinedButton(
                                 style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                                  padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
                                     horizontal: 20
                                   )),
                                   side: MaterialStateProperty.all(BorderSide(
                                     color: _selectedFiltr[index]==i
-                                    ?green:Color.fromRGBO(237, 237, 237, 1),
+                                    ?green:const Color.fromRGBO(237, 237, 237, 1),
                                   )),
                                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(6),
                                   )),
-                                  minimumSize: MaterialStateProperty.all(Size(80,30))
+                                  minimumSize: MaterialStateProperty.all(const Size(80,30))
                                 ),
                                 onPressed: (){
                                   setState(() {
@@ -115,7 +115,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                                   });
                                 }, 
                                 child: Text(filtrList[index][1][i], style: TextStyle(
-                                  color: _selectedFiltr[index]==i?green:Color.fromRGBO(71, 71, 71, 1),
+                                  color: _selectedFiltr[index]==i?green:const Color.fromRGBO(71, 71, 71, 1),
                                 ),),
                               ),
                             ),),
@@ -126,9 +126,9 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                     separatorBuilder:(context, index) {
                       return Container(
                         height: 1,
-                        margin: EdgeInsets.symmetric(vertical: 18),
+                        margin: const EdgeInsets.symmetric(vertical: 18),
                         width: double.infinity,
-                        color: Color.fromRGBO(237, 237, 237, 1),
+                        color: const Color.fromRGBO(237, 237, 237, 1),
                       );
                     }, 
                     itemCount: filtrList.length
@@ -136,13 +136,13 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(double.infinity, 45)),
+                    minimumSize: MaterialStateProperty.all(const Size(double.infinity, 45)),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ))
                   ),
                   onPressed: ()=>Navigator.pop(context), 
-                  child: Text('Filterle',style: TextStyle(
+                  child: const Text('Filterle',style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),)

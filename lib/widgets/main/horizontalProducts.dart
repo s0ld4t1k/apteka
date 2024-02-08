@@ -11,7 +11,7 @@ List productList=[
 ];
 class HorizontalProducts extends StatefulWidget {
   final text;
-  HorizontalProducts({super.key,required this.text});
+  const HorizontalProducts({super.key,required this.text});
 
   @override
   State<HorizontalProducts> createState() => _HorizontalProductsState();
@@ -26,14 +26,14 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
           padding: const EdgeInsets.only(left: 25,right: 15,top: 10),
           child: Row(
             children: [
-              Text(widget.text,style: TextStyle(
+              Text(widget.text,style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 onPressed: (){}, 
-                child: Text('Ählisini gör',style: TextStyle(
+                child: const Text('Ählisini gör',style: TextStyle(
                   color: green,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
@@ -43,21 +43,21 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
           ),
         ),
         // SizedBox(height: 15,),
-        Container(
+        SizedBox(
           height: 170,
           child: ListView(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             scrollDirection: Axis.horizontal,
             children: [
-              SizedBox(width: 25,),
+              const SizedBox(width: 25,),
               Row(
                 children: List.generate(productList.length, (index) {
                   // var _added=false;
                   return GestureDetector(
                   onTap: ()=>Navigator.of(context).pushNamed('/mainPage/productPage'),
                   child: Container(
-                    margin: EdgeInsets.only(right: 15),
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    margin: const EdgeInsets.only(right: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     width: 142,
                     height: 164,
                     decoration: BoxDecoration(
@@ -66,7 +66,7 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 3,
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 1),
                           color: Colors.black.withOpacity(0.05),
                         )
                       ]
@@ -79,22 +79,22 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                             Expanded(
                               child: Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(12),
                                 child: Image.asset(productList[index][0]),
                               ),
                             ),
-                            Text(productList[index][1],style: TextStyle(
+                            Text(productList[index][1],style: const TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w500,
                             ),
                             maxLines: 2,overflow: TextOverflow.ellipsis,),
-                            SizedBox(height: 10,),
-                            Text(productList[index][2],style: TextStyle(
+                            const SizedBox(height: 10,),
+                            Text(productList[index][2],style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
                               color: green,
                             ),),
-                            SizedBox(height: 16,),
+                            const SizedBox(height: 16,),
                           ],
                         ),
                         Positioned(

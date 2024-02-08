@@ -15,52 +15,52 @@ class ShowPromokod extends StatelessWidget {
         margin: EdgeInsets.only(bottom: MediaQuery.of(context).
         viewInsets.bottom),
         height: 200,
-        padding: EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Promokod',style: TextStyle(
+            const Text('Promokod',style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),),
-            SizedBox(height: 21,),
-            Container(
+            const SizedBox(height: 21,),
+            SizedBox(
               height: 49,
               child: TextField(
                 expands: true,
                 maxLines: null,
                 minLines: null,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   labelText: 'Promokod', 
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: green,
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: green
                     ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: green
                     )
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 21,),
+            const SizedBox(height: 21,),
             ElevatedButton(
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(double.infinity, 46)),
+                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 46)),
                 backgroundColor: MaterialStateProperty.all(
                   green.withOpacity(0.7)
                 ),
               ),
               onPressed: (){}, 
-              child: Text('Giriz',style: TextStyle(
+              child: const Text('Giriz',style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),),

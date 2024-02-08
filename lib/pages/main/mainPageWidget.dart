@@ -28,7 +28,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
       appBar: AppBar(
         titleSpacing: 25,
         title: Container(
-          margin: EdgeInsets.only(bottom: 11),
+          margin: const EdgeInsets.only(bottom: 11),
           child: Row(
             children: [
               Expanded(
@@ -38,7 +38,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                   },
                   child: Container(
                     height: 45,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: searchConGrey,
                       borderRadius: BorderRadius.circular(12),
@@ -49,8 +49,8 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           child: Row(
                             children: [
                               SvgPicture.asset('assets/icons/search.svg'),
-                              SizedBox(width: 15,),
-                              Text(locale[curLN]?["searchHint"] as String,style: TextStyle(
+                              const SizedBox(width: 15,),
+                              Text(locale[curLN]?["searchHint"] as String,style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: textGrey3,
@@ -63,7 +63,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           width: 1,
                           color: textGrey3,
                         ),
-                        SizedBox(width: 14,),
+                        const SizedBox(width: 14,),
                         GestureDetector(
                           onTap: (){
                           },
@@ -74,19 +74,19 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                   ),
                 ),
               ),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               ElevatedButton(
                 onPressed: ()async{
                   if(await canLaunchUrl(Uri(scheme: 'tel',path: '+99361400905')))
                     await launchUrl(Uri(scheme: 'tel',path: '+99361400905'));
-                }, 
-                child: SvgPicture.asset('assets/icons/call.svg'),
+                },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   )),
-                  minimumSize: MaterialStateProperty.all(Size(45, 44)),
-                ),
+                  minimumSize: MaterialStateProperty.all(const Size(45, 44)),
+                ), 
+                child: SvgPicture.asset('assets/icons/call.svg'),
               ),
             ],
           ),
@@ -97,11 +97,11 @@ class _MainPageWidgetState extends State<MainPageWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             CarouselSlider(
               items: List.generate(_carouselList.length, (index) => Container(
                 width: 325,
-                margin: EdgeInsets.only(right: 12),
+                margin: const EdgeInsets.only(right: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(image: AssetImage(_carouselList[index][0]),fit: BoxFit.fill),
@@ -112,25 +112,25 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                   children: [
                     Container(
                       width: 130,
-                      margin: EdgeInsets.only(left: 24),
-                      child: Text(_carouselList[index][1],style: TextStyle(
+                      margin: const EdgeInsets.only(left: 24),
+                      child: Text(_carouselList[index][1],style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),),
                     ),
-                    SizedBox(height: 6,),
+                    const SizedBox(height: 6,),
                     Container(
                       width: 127,
-                      margin: EdgeInsets.only(left: 24),
+                      margin: const EdgeInsets.only(left: 24),
                       child: Row(
                         children: [
-                          Text(_carouselList[index][2],style: TextStyle(
+                          Text(_carouselList[index][2],style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),),
-                          Icon(Icons.chevron_right_rounded,color: Colors.white,),
+                          const Icon(Icons.chevron_right_rounded,color: Colors.white,),
                         ],
                       )
                     ),
@@ -144,16 +144,16 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                 enableInfiniteScroll: false,
               )
             ),
-            SizedBox(height: 23,),
-            MainCategory(),
-            SizedBox(height: 8,),
+            const SizedBox(height: 23,),
+            const MainCategory(),
+            const SizedBox(height: 8,),
             HorizontalProducts(text: 'Arzanladyşlar',),
             HorizontalProducts(text: 'Täzeler',),
             HorizontalProducts(text: 'Kosmetiki serişdeler',),
-            MainHarmful(),
+            const MainHarmful(),
             HorizontalProducts(text: 'Dermanlyk serişdeler',),
             HorizontalProducts(text: 'Lukmançylyk hajatly önümler',),
-            SizedBox(height: 34-15,),
+            const SizedBox(height: 34-15,),
           ],
         ),
       ),

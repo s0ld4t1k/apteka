@@ -22,16 +22,16 @@ class _LangState extends State<Lang> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Programmanyň dilini saýlaň.',style: TextStyle(
+          const Text('Programmanyň dilini saýlaň.',style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),),
-          SizedBox(height: 12,),
-          Text('Programmanyň dilini islendik wagt sazlamalarda üýtgedip bilersiňiz.',style: TextStyle(
+          const SizedBox(height: 12,),
+          const Text('Programmanyň dilini islendik wagt sazlamalarda üýtgedip bilersiňiz.',style: TextStyle(
             fontSize: 13,
             color: textGrey2,
           ),),
-          SizedBox(height: 45-14,),
+          const SizedBox(height: 45-14,),
           Column(
             children: List.generate(langList.length, (index) => GestureDetector(
               onTap: () {
@@ -40,8 +40,8 @@ class _LangState extends State<Lang> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                margin: EdgeInsets.symmetric(vertical: 7),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(vertical: 7),
                 height: 52,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -54,9 +54,9 @@ class _LangState extends State<Lang> {
                       radius: 16,
                       child: Image.asset('assets/images/${langList[index][0]}.png'),
                     ),
-                    SizedBox(width: 22,),
+                    const SizedBox(width: 22,),
                     Expanded(
-                      child: Text(langList[index][1],style: TextStyle(
+                      child: Text(langList[index][1],style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),),

@@ -1,5 +1,4 @@
 import 'package:apte/widgets/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 List like=[
@@ -26,31 +25,31 @@ class _LikeState extends State<Like> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(
+          padding: const EdgeInsets.all(0),
+          constraints: const BoxConstraints(
             maxHeight: 24,
             maxWidth: 24,
             minHeight: 24,
             minWidth: 24,
           ),
           onPressed: ()=>Navigator.pop(context), 
-          icon: Icon(Icons.chevron_left_rounded)
+          icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: Text('Halanlarym'),
+        title: const Text('Halanlarym'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(25),
+        padding: const EdgeInsets.all(25),
         child: 
         like.isEmpty?Column(
           children: [
             Image.asset('assets/images/like.png'),
-            SizedBox(height: 59,),
-            Text('Siziň halan harytlaryňyz tapylmady',style: TextStyle(
+            const SizedBox(height: 59,),
+            const Text('Siziň halan harytlaryňyz tapylmady',style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),),
-            SizedBox(height: 21,),
-            Text('Bu sahypada siziň halan harytlaryňyz ýerleşer',style: TextStyle(
+            const SizedBox(height: 21,),
+            const Text('Bu sahypada siziň halan harytlaryňyz ýerleşer',style: TextStyle(
               color: Color.fromRGBO(131, 135, 140, 1),
             ),
             textAlign: TextAlign.center,)
@@ -59,9 +58,9 @@ class _LikeState extends State<Like> {
         Column(
           children: [
             GridView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 155,
                 mainAxisExtent: 170,
                 mainAxisSpacing: 17,
@@ -72,12 +71,12 @@ class _LikeState extends State<Like> {
                 child: Stack(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(11),
+                      padding: const EdgeInsets.all(11),
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 5,
-                            offset: Offset(0, 1),
+                            offset: const Offset(0, 1),
                             color: Colors.black.withOpacity(0.05),
                           )
                         ],
@@ -90,18 +89,18 @@ class _LikeState extends State<Like> {
                           Expanded(
                             child: Container(
                               alignment: Alignment.center,
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Image.asset(like[index][0]),
                             ),
                           ),
-                          SizedBox(height: 2+6,),
-                          Text(like[index][1],style: TextStyle(
+                          const SizedBox(height: 2+6,),
+                          Text(like[index][1],style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
                           overflow: TextOverflow.ellipsis,maxLines: 2,),
-                          SizedBox(height: 6,),
-                          Text(like[index][2],style: TextStyle(
+                          const SizedBox(height: 6,),
+                          Text(like[index][2],style: const TextStyle(
                             color: green,
                             fontWeight: FontWeight.w700,
                             fontSize: 12,

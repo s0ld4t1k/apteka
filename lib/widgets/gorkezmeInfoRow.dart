@@ -22,7 +22,7 @@ class _InfoRowState extends State<InfoRow> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,19 +33,19 @@ class _InfoRowState extends State<InfoRow> {
               });
             },
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 15),
+              padding: const EdgeInsets.symmetric(vertical: 15),
               child: Row(
                 children: [
-                  Text(gorkezmeList[widget.index][0],style: TextStyle(
+                  Text(gorkezmeList[widget.index][0],style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),),
-                  Spacer(),
+                  const Spacer(),
                   Center(
                     child: Icon(
                       (widget._up==false)?CupertinoIcons.chevron_up
                       :CupertinoIcons.chevron_down,
-                      color: Color.fromRGBO(156, 156, 156, 1),
+                      color: const Color.fromRGBO(156, 156, 156, 1),
                       size: 17,
                     ),
                   ),
@@ -55,11 +55,11 @@ class _InfoRowState extends State<InfoRow> {
           ),
           AnimatedOpacity(
             opacity: (!widget._up)?1:0, 
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             child: Visibility(
               visible: (!widget._up),
               child: Padding(
-                padding: EdgeInsets.only(bottom: 24),
+                padding: const EdgeInsets.only(bottom: 24),
                 child: Text(gorkezmeList[widget.index][1]),
               ),
             ),
@@ -67,7 +67,7 @@ class _InfoRowState extends State<InfoRow> {
           Container(
             height: 1,
             width: double.infinity,
-            color: Color.fromRGBO(235, 235, 235, 1),
+            color: const Color.fromRGBO(235, 235, 235, 1),
           ),
         ],
       ),

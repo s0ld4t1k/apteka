@@ -16,14 +16,14 @@ List bottomAppBarList=[
   'assets/icons/profile.svg',
 ];
 List _tabs=[
-  MainPageWidget(),
-  Kategory(),
-  Bag(),
-  Kard(),
-  Profile(),
+  const MainPageWidget(),
+  const Kategory(),
+  const Bag(),
+  const Kard(),
+  const Profile(),
 ];
 class MainPage extends StatefulWidget {
-  MainPage({super.key});
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
       body: _tabs[selectedTab],
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(bottomAppBarList.length, (index) => 
@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  if(selectedTab==index)contrl.animateTo(0,duration: Duration(milliseconds: 300),curve: Curves.linear);
+                  if(selectedTab==index)contrl.animateTo(0,duration: const Duration(milliseconds: 300),curve: Curves.linear);
                   selectedTab=index;
                 });
               },
@@ -60,7 +60,7 @@ class _MainPageState extends State<MainPage> {
             :IconButton(
               onPressed: (){
                 setState(() {
-                  if(selectedTab==index)contrl.animateTo(0,duration: Duration(milliseconds: 300),curve: Curves.linear);
+                  if(selectedTab==index)contrl.animateTo(0,duration: const Duration(milliseconds: 300),curve: Curves.linear);
                   selectedTab=index;
                 });
               }, 

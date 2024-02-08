@@ -1,6 +1,5 @@
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 var _selectedAdresType=0;
 class NewAdresManual extends StatefulWidget {
@@ -15,9 +14,9 @@ class _NewAdresManualState extends State<NewAdresManual> {
   Widget build(BuildContext context) {
     _selectedAdresType=0;
     _adr.text='';
-    dynamic _list=ModalRoute.of(context)?.settings.arguments;
-    if(_list[0]!='')_selectedAdresType=_list[0];
-    if(_list[1]!='')_adr.text=_list[1];
+    dynamic list=ModalRoute.of(context)?.settings.arguments;
+    if(list[0]!='')_selectedAdresType=list[0];
+    if(list[1]!='')_adr.text=list[1];
     return GestureDetector(
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -25,46 +24,46 @@ class _NewAdresManualState extends State<NewAdresManual> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
               maxHeight: 24,
               maxWidth: 24,
               minHeight: 24,
               minWidth: 24,
             ),
             onPressed: ()=>Navigator.pop(context), 
-            icon: Icon(Icons.chevron_left_rounded)
+            icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: Text('Salgym'),
+          title: const Text('Salgym'),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height-230,
                 child: Column(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Salgyňyz'),
-                        SizedBox(height: 10,),
+                        const Text('Salgyňyz'),
+                        const SizedBox(height: 10,),
                         Container(
                           height: 108,
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(251, 251, 251, 1),
+                            color: const Color.fromRGBO(251, 251, 251, 1),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Color.fromRGBO(237, 237, 237, 1))
+                            border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1))
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                           child: TextField(
                             controller: _adr,
                             textAlignVertical: TextAlignVertical.top,
                             expands: true,
                             minLines: null,
                             maxLines: null,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               contentPadding: EdgeInsets.all(0),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide.none
@@ -72,9 +71,9 @@ class _NewAdresManualState extends State<NewAdresManual> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 22,),
-                        Text('Salgynyň görnüşi'),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 22,),
+                        const Text('Salgynyň görnüşi'),
+                        const SizedBox(height: 20,),
                         Row(
                           children: [
                             Wrap(
@@ -82,9 +81,9 @@ class _NewAdresManualState extends State<NewAdresManual> {
                               children: List.generate(adresTypeList.length, (index){
                                 return OutlinedButton(
                                   style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
+                                    padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
                                     side: MaterialStateProperty.all(BorderSide(
-                                      color: _selectedAdresType==index?green:Color.fromRGBO(237, 237, 237, 1),
+                                      color: _selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
                                     )),
                                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
@@ -96,7 +95,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                                     });
                                   }, 
                                   child: Text(adresTypeList[index],style: TextStyle(
-                                    color: _selectedAdresType==index?green:Color.fromRGBO(168, 168, 168, 1),
+                                    color: _selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
                                     fontWeight: FontWeight.w500,
                                   ),)
                                 );
@@ -111,10 +110,10 @@ class _NewAdresManualState extends State<NewAdresManual> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(double.infinity, 50))
+                  minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: (){}, 
-                child: Text('Ýatda sakla',style: TextStyle(
+                child: const Text('Ýatda sakla',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),

@@ -25,28 +25,28 @@ class _KardState extends State<Kard> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Kartlarym'),
+        title: const Text('Kartlarym'),
       ),
       body: cards.isEmpty?Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
             Image.asset('assets/images/noCard.png'),
-            SizedBox(height: 18,),
-            Text('Bank karty tapylmady',style: TextStyle(
+            const SizedBox(height: 18,),
+            const Text('Bank karty tapylmady',style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),),
-            SizedBox(height: 17,),
-            Text('Sargytlary aňsatlyk bilen ýerine ýetirmek üçin bank kartyny goşup bilersiňiz',style: TextStyle(
+            const SizedBox(height: 17,),
+            const Text('Sargytlary aňsatlyk bilen ýerine ýetirmek üçin bank kartyny goşup bilersiňiz',style: TextStyle(
               color: Color.fromRGBO(131, 135, 140, 1),
             ),textAlign: TextAlign.center,),
-            SizedBox(height: 33,),
+            const SizedBox(height: 33,),
             OutlinedButton(
               style: ButtonStyle(
                 overlayColor: MaterialStateProperty.all(orange.withOpacity(0.1)),
-                minimumSize: MaterialStateProperty.all(Size(double.infinity, 50)),
-                side: MaterialStateProperty.all(BorderSide(color: orange)),
+                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
+                side: MaterialStateProperty.all(const BorderSide(color: orange)),
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
@@ -54,7 +54,7 @@ class _KardState extends State<Kard> {
               onPressed: (){
                 Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]);
               }, 
-              child: Text('Kart goş',style: TextStyle(
+              child: const Text('Kart goş',style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: orange,
@@ -65,22 +65,22 @@ class _KardState extends State<Kard> {
       ):Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
         child: ListView.separated(
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           itemBuilder:(context, index) {
             return GestureDetector(
               onTap: () => Navigator.pushNamed(context, '/kard/newCard',arguments: cards[index]),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 12),
                 width: double.infinity,
                 height: 70,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Color.fromRGBO(237, 237, 237, 1))
+                  border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1))
                 ),
                 child: Row(
                   children: [
                     Image.asset(cardImages[cards[index][1]]),
-                    SizedBox(width: 35,),
+                    const SizedBox(width: 35,),
                     Expanded(
                       child: Row(
                         children: [
@@ -88,18 +88,18 @@ class _KardState extends State<Kard> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(cardsType[cards[index][1]],style: TextStyle(
+                                Text(cardsType[cards[index][1]],style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                 ),),
-                                SizedBox(height: 6,),
-                                Text(cards[index][0],style: TextStyle(
+                                const SizedBox(height: 6,),
+                                Text(cards[index][0],style: const TextStyle(
                                   color: Color.fromRGBO(131, 131, 131, 1),
                                   fontSize: 12,
                                 ),)
                               ],
                             ),
                           ),
-                          Icon(Icons.chevron_right_rounded,size: 20,),
+                          const Icon(Icons.chevron_right_rounded,size: 20,),
                         ],
                       ),
                     ),
@@ -108,7 +108,7 @@ class _KardState extends State<Kard> {
               ),
             );
           }, 
-          separatorBuilder:(context, index) => SizedBox(height: 15,), 
+          separatorBuilder:(context, index) => const SizedBox(height: 15,), 
           itemCount: cards.length,
         ),
       ),
@@ -116,7 +116,7 @@ class _KardState extends State<Kard> {
         elevation: 0,
         onPressed: ()=>Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]),
         backgroundColor: orange,
-        child: Icon(Icons.add,color: Colors.white,),
+        child: const Icon(Icons.add,color: Colors.white,),
       ),
     );
   }
