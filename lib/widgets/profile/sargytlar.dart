@@ -1,26 +1,10 @@
+import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/profile/sargytInfo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-List sargytlar=[
-  [
-    ['assets/images/spray.png','Мультивитамины для детей','20.00','29 Dek, 13:32','03','1624',],
-    false,
-  ],
-  [
-    ['assets/images/lorangin.png','Мультивитамины для детей','20.00','29 Dek, 13:32','03','1624',],
-    ['assets/images/gel.png','Мультивитамины для детей','20.00','29 Dek, 13:32','03','1624',],
-    true,
-  ],
-  [
-    ['assets/images/melotanin.png','Мультивитамины для детей','20.00','29 Dek, 13:32','03','1624',],
-    false,
-  ],
-  [
-    ['assets/images/multiVitamin.png','Мультивитамины для детей','20.00','29 Dek, 13:32','03','1624',],
-    ['assets/images/vitaminC.png','Мультивитамины для детей','20.00','29 Dek, 13:32','03','1624',],
-    true,
-  ],
-];
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
+
 class Sargytlarym extends StatefulWidget {
   const Sargytlarym({super.key});
 
@@ -32,122 +16,94 @@ class _SargytlarymState extends State<Sargytlarym> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
       child: Column(
-        children: List.generate(sargytlar.length, (index) => Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: const Color.fromRGBO(242, 242, 242, 1))
-                  ),
-                  child: Column(
+        children: List.generate(garasylyanlar.length, (index){
+          if(garasylyanlar[index]['status']!='Garaşylýar')
+          return GestureDetector(
+            onTap: ()=>Get.to(()=>SargytInfo()),
+            child: Container(
+              margin: EdgeInsets.only(bottom: 15),
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: sargytBorder),
+              ),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      ListView.separated(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.all(0),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder:(context, i) {
-                          if(i<sargytlar[index].length-1)
-                          return Container(
-                            height: 89,
-                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 22),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 50,
-                                  child: Image.asset(sargytlar[index][i][0]),
-                                ),
-                                const SizedBox(width: 13,),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(sargytlar[index][i][1],style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                      ),),
-                                      const SizedBox(height: 11,),
-                                      Row(
-                                        children: [
-                                          Text('${sargytlar[index][i][2]} TMT',style: const TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w700,
-                                          ),),
-                                          Container(
-                                            width: 1,
-                                            height: 16,
-                                            margin: const EdgeInsets.symmetric(horizontal: 14),
-                                            color: const Color.fromRGBO(202, 204, 218, 1),
-                                          ),
-                                          Text('${sargytlar[index][i][3]} sany',style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Color.fromRGBO(107, 110, 130, 1),
-                                          ),)
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                ),
-                              ],
-                            ),
-                          );
-                          return null;
-                        }, 
-                        separatorBuilder:(context, _) => Container(
-                          width: double.infinity,
-                          height: 1,
-                          color: const Color.fromRGBO(238, 242, 246, 1),
-                        ), 
-                        itemCount: sargytlar[index].length,
+                      Expanded(
+                        child: Text('Ýagdaýy:'),
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 1,
-                        color: const Color.fromRGBO(238, 242, 246, 1),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 21,vertical: 9),
+                      Expanded(
                         child: Row(
                           children: [
-                            Text(
-                              sargytlar[index].last?'Kabul edildi':'Goýbolsun edildi',
-                              style: TextStyle(
-                                color: sargytlar[index].last?green:red,
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 4,horizontal: 13),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(27),
+                                color: (garasylyanlar[index]['status']=='Kabul edildi')?green.withOpacity(0.1):red.withOpacity(0.1),
                               ),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  sargytlar.removeAt(index);
-                                });
-                              },
-                              child: SvgPicture.asset('assets/icons/delete.svg'),
+                              child: Text(garasylyanlar[index]['status'],style: TextStyle(
+                                color: (garasylyanlar[index]['status']=='Kabul edildi')?green:red,
+                              ),),
                             ),
                           ],
                         ),
-                      ) 
+                      ),
                     ],
-                  )
-                ),
-                Positioned(
-                  top: 22,
-                  right: 15,
-                  child: Text('#${sargytlar[index][0][5]}',style: const TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: green,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),)
-                )
-              ],
+                  ),
+                  SizedBox(height: 15,),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text('Sargyt belgisi:'),
+                      ),
+                      SizedBox(width: 20,),
+                      Expanded(
+                        child: Text(garasylyanlar[index]['sargytBelgisi'],style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15,),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text('Senesi:'),
+                      ),
+                      SizedBox(width: 20,),
+                      Expanded(
+                        child: Text(garasylyanlar[index]['senesi'],style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15,),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text('Jemi:',style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                        ),),
+                      ),
+                      SizedBox(width: 20,),
+                      Expanded(
+                        child: Text(garasylyanlar[index]['jemi'],style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: green,
+                        ),),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 20,),
-          ],
-        )),
+          );
+          else return Container();
+        }),
       ),
     );
   }

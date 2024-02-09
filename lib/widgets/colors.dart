@@ -11,3 +11,6 @@ const blue=Color.fromRGBO(25, 135, 251, 1);
 const bc=Color.fromRGBO(253, 253, 253, 1);
 const tabIconGrey=Color.fromRGBO(145, 147, 150, 1);
 const red=Color.fromRGBO(255, 0, 0, 1);
+const yellow=Color.fromRGBO(255, 193, 32, 1);
+const sargytBorder=Color.fromRGBO(237, 237, 237, 1);
+const sargytTextGrey=Color.fromRGBO(107, 107, 107, 1);

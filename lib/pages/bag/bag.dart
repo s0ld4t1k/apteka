@@ -1,4 +1,5 @@
 import 'package:apte/pages/main/mainPage.dart';
+import 'package:apte/widgets/bag&Card/eltmeCon.dart';
 import 'package:apte/widgets/bag&Card/showPromokod.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langController.dart';
@@ -6,16 +7,15 @@ import 'package:apte/widgets/main/horizontalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/instance_manager.dart';
-var _curEltme=0;
-var _harytJemi=0.0;
-var _arzanladys=0.0;
-var _eltipberme=15.0;
-List _jemiList=[
+var harytJemi=0.0;
+var arzanladys=0.0;
+var eltipberme=15.0;
+List jemiList=[
   ['Jemi baha','0.0 TMT',],
   ['Arzanladyş','0.0 TMT',],
   ['Eltip bermek hyzmaty','15.0 TMT',],
 ];
-List _eltmeList=[
+List eltmeList=[
   ['1 Sagatda eliňizde','15 manat',],
   ['30 minutda eliňizde','25 manat',],
 ];
@@ -30,8 +30,9 @@ class _BagState extends State<Bag> {
   LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
-    _harytJemi=0.0;
-    _jemiList[0][1]='$_harytJemi TMT';
+    harytJemi=0.0;
+    jemiList[0][1]='$harytJemi TMT';
+    print(MediaQuery.of(context).size.height);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -71,8 +72,8 @@ class _BagState extends State<Bag> {
                   Column(
                     children: List.generate(productList.length, (index){
                       var splitted=productList[index][2].toString().split(' ');
-                      _harytJemi+=double.parse(splitted[0]);
-                      _jemiList[0][1]='$_harytJemi TMT';
+                      harytJemi+=double.parse(splitted[0]);
+                      jemiList[0][1]='$harytJemi TMT';
                       return Stack(
                         children: [
                           Container(
@@ -120,6 +121,8 @@ class _BagState extends State<Bag> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
+                                                    width: 24,
+                                                    height: 24,
                                                     decoration: BoxDecoration(
                                                       color: green.withOpacity(0.1),
                                                       borderRadius: BorderRadius.circular(24),
@@ -143,24 +146,26 @@ class _BagState extends State<Bag> {
                                                   ),
                                                   Text(productList[index].last.toString()),
                                                   Container(
+                                                    width: 24,
+                                                    height: 24,
                                                     decoration: BoxDecoration(
                                                       color: green.withOpacity(0.1),
                                                       borderRadius: BorderRadius.circular(24),
                                                     ),
                                                     child: IconButton(
-                                                      onPressed: (){
-                                                        setState(() {
-                                                          productList[index].last++;
-                                                        });
-                                                      },
                                                       splashRadius: 15, 
-                                                      padding: const EdgeInsets.all(0),
-                                                      constraints: const BoxConstraints(
+                                                      padding: EdgeInsets.all(0),
+                                                      constraints: BoxConstraints(
                                                         maxHeight: 24,
                                                         maxWidth: 24,
                                                         minHeight: 24,
                                                         minWidth: 24,
                                                       ),
+                                                      onPressed: (){
+                                                        setState(() {
+                                                          productList[index].last++;
+                                                        });
+                                                      },
                                                       icon: const Icon(Icons.add_rounded,color:green,size: 17,),
                                                     ),
                                                   ),
@@ -182,8 +187,8 @@ class _BagState extends State<Bag> {
                             ),
                           ),
                           Positioned(
-                            top: 11,
-                            right: 14,
+                            top: 0,
+                            right: 0,
                             child: IconButton(
                               onPressed: (){
                                 setState(() {
@@ -207,7 +212,7 @@ class _BagState extends State<Bag> {
                                 child: const Icon(Icons.close_rounded,color: green,size: 14,),
                               )
                             )
-                          )
+                          ),
                         ],
                       );
                     }),
@@ -251,7 +256,7 @@ class _BagState extends State<Bag> {
                   const Text('Eltip berme görnüşi'),
                   const SizedBox(height: 20,),
                   Row(
-                    children: List.generate(_eltmeList.length, (index) {
+                    children: List.generate(eltmeList.length, (index) {
                       return Expanded(
                         child: Container(
                           margin: EdgeInsets.only(
@@ -261,16 +266,20 @@ class _BagState extends State<Bag> {
                           child: GestureDetector(
                              onTap: (){
                               setState(() {
-                                _curEltme=index;
-                                if(index==1)_eltipberme=25;
-                                else _eltipberme=15;
-                                _jemiList[2][1]='$_eltipberme TMT';
+                                curEltme=index;
+                                if(index==1)eltipberme=25;
+                                else eltipberme=15;
+                                jemiList[2][1]='$eltipberme TMT';
                               });
                             },
-                            child: _EltmeCon(
-                              text1: _eltmeList[index][0],
-                              text2: _eltmeList[index][1],
-                              index:index,
+                            child: Column(
+                              children: [
+                                EltmeCon(
+                                  text1: eltmeList[index][0],
+                                  text2: eltmeList[index][1],
+                                  index:index,
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -306,16 +315,16 @@ class _BagState extends State<Bag> {
                   ),
                   const SizedBox(height: 7,),
                   Column(
-                    children: List.generate(_jemiList.length, (index) => Container(
+                    children: List.generate(jemiList.length, (index) => Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       height: 37,
                       child: Row(
                         children: [
-                          Text(_jemiList[index][0],style: const TextStyle(
+                          Text(jemiList[index][0],style: const TextStyle(
                             color: Color.fromRGBO(107, 107, 107, 1),
                           ),),
                           const Spacer(),
-                          Text(_jemiList[index][1],style: TextStyle(
+                          Text(jemiList[index][1],style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: index==1?red:const Color.fromRGBO(107, 107, 107, 1),
                           ),)
@@ -342,7 +351,7 @@ class _BagState extends State<Bag> {
                             const Text('Jemi',style: TextStyle(
                               color: Color.fromRGBO(107, 107, 107, 1),
                             ),),
-                            Text('${_arzanladys+_harytJemi+_eltipberme} TMT',style: const TextStyle(
+                            Text('${arzanladys+harytJemi+eltipberme} TMT',style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),)
@@ -358,7 +367,7 @@ class _BagState extends State<Bag> {
                           ))  
                         ),
                         onPressed: ()=>Navigator.of(context).pushNamed(
-                          '/bag/sargytEtmek',arguments: _arzanladys+_harytJemi+_eltipberme,
+                          '/bag/sargytEtmek',arguments: arzanladys+harytJemi+eltipberme,
                         ), 
                         child: const Text('Sargyt et',style: TextStyle(
                           fontSize: 16,
@@ -372,66 +381,6 @@ class _BagState extends State<Bag> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-class _EltmeCon extends StatelessWidget {
-  final text1,text2,index;
-  const _EltmeCon({this.text1, this.text2, this.index});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 13),
-      decoration: BoxDecoration(
-        color: index==_curEltme
-        ?green.withOpacity(0.1):null,
-        borderRadius: BorderRadius.circular(7),
-        border: Border.all(
-          color: index==_curEltme
-          ?green:const Color.fromRGBO(242, 242, 242, 1),
-        )
-      ),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 76,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(text1,style: const TextStyle(
-                  color: Color.fromRGBO(107, 107, 107, 1),
-                ),),
-                Text(text2,style: const TextStyle(
-                  color: green,
-                  fontSize: 12,
-                ),),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      width: index==_curEltme?4:1,
-                      color: index==_curEltme
-                      ?green:const Color.fromRGBO(242, 242, 242, 1),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

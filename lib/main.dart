@@ -27,10 +27,11 @@ import 'package:apte/widgets/langController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 
 void main() {
-  Future.delayed(const Duration(seconds: 5));
+  // Future.delayed(const Duration(seconds: 5));
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
@@ -50,13 +51,19 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
+        // useMaterial3: true,
+        colorScheme: ColorScheme.light(
+          primary: green,
+        ),
         brightness: Brightness.light,
         fontFamily: 'DMSans',
         primarySwatch: createMaterialColor(green),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(green),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
             padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -65,6 +72,7 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         appBarTheme: const AppBarTheme(
+          centerTitle: true,
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarBrightness: Brightness.light
           ),
@@ -77,7 +85,17 @@ class _MyAppState extends State<MyApp> {
           elevation: 2,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
         ),
+        primaryColor: green,
+        primaryColorDark: green,
+        primaryColorLight: green,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          elevation: 10,
+          shadowColor: Colors.black.withOpacity(1),
+        )
       ),
       debugShowCheckedModeBanner: false,
       title: 'Apteka',

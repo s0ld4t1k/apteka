@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 
 class SargytEtmek extends StatelessWidget {
   const SargytEtmek({super.key});
-
   @override
   Widget build(BuildContext context) {
+    var jem=ModalRoute.of(context)?.settings.arguments;
+    print(MediaQuery.of(context).size.height);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -32,7 +33,8 @@ class SargytEtmek extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
+                Container(
+                  height: 122,
                   padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +49,6 @@ class SargytEtmek extends StatelessWidget {
                         padding: const EdgeInsets.all(4),
                         height: 50,
                         child: TabBar(
-                          labelPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                           unselectedLabelColor: Colors.black,
                           unselectedLabelStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
@@ -58,10 +59,13 @@ class SargytEtmek extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
                           ),
+                          indicatorColor: Colors.red,
+                          indicatorSize: TabBarIndicatorSize.tab,
                           indicator: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             color: green
                           ),
+                          dividerColor: Colors.transparent,
                           tabs: const [
                             Text('Nagt'),
                             Text('Bank Karty'),
@@ -71,8 +75,8 @@ class SargytEtmek extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height-250,
+                Container(
+                  height: MediaQuery.of(context).size.height-283,
                   child: const TabBarView(
                     children: [
                       Nagt(),
@@ -80,6 +84,57 @@ class SargytEtmek extends StatelessWidget {
                     ]
                   ),
                 ),
+                Container(
+                  height: 105,
+                  padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 5,
+                        color: Colors.black.withOpacity(0.05),
+                      ),
+                    ]
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Jemi',style: TextStyle(
+                                  color: Color.fromRGBO(107, 107, 107, 1),
+                                ),),
+                                Text('$jem TMT',style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),)
+                              ],
+                            )
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              minimumSize: MaterialStateProperty.all(const Size(196, 46)),
+                              elevation: MaterialStateProperty.all(1),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ))  
+                            ),
+                            onPressed: (){
+                              
+                            }, 
+                            child: const Text('Sargyt et',style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),)
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                )
               ],
             ),
           ),

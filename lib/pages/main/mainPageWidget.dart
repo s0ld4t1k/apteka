@@ -28,7 +28,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
       appBar: AppBar(
         titleSpacing: 25,
         title: Container(
-          margin: const EdgeInsets.only(bottom: 11),
+          margin: const EdgeInsets.symmetric(vertical: 11),
           child: Row(
             children: [
               Expanded(

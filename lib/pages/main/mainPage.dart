@@ -35,9 +35,8 @@ class _MainPageState extends State<MainPage> {
       body: _tabs[selectedTab],
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          margin: const EdgeInsets.only(top: 10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(bottomAppBarList.length, (index) => 
             (index==2)?
             GestureDetector(

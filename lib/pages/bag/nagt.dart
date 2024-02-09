@@ -15,7 +15,6 @@ class _NagtState extends State<Nagt> {
   LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
-    var jem=ModalRoute.of(context)?.settings.arguments;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -154,57 +153,7 @@ class _NagtState extends State<Nagt> {
               ],
             ),
           ),
-          Container(
-            height: 105,
-            padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 5,
-                  color: Colors.black.withOpacity(0.05),
-                ),
-              ]
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('Jemi',style: TextStyle(
-                            color: Color.fromRGBO(107, 107, 107, 1),
-                          ),),
-                          Text('$jem TMT',style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),)
-                        ],
-                      )
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(const Size(196, 46)),
-                        elevation: MaterialStateProperty.all(1),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))  
-                      ),
-                      onPressed: (){
-                        
-                      }, 
-                      child: const Text('Sargyt et',style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),)
-                    ),
-                  ],
-                ),
-              ],
-            )
-          )
+          
         ],
       ),
     );
