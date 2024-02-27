@@ -1,5 +1,6 @@
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 List kategoryList=[
@@ -25,7 +26,7 @@ class Kategory extends StatelessWidget {
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: const Text('Kategoriýa'),),
+        appBar: AppBar(title: Text('${locale[curLN]?["category"]}'),),
         body: SingleChildScrollView(
           controller: contrl,
           padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
@@ -52,7 +53,7 @@ class Kategory extends StatelessWidget {
                       minWidth: 20,
                     ),
                     suffixIcon: SvgPicture.asset('assets/icons/search.svg',color: green),
-                    hintText: 'Ady boýunça gözle',
+                    hintText: '${locale[curLN]?["searchByName"]}',
                     hintStyle: const TextStyle(
                       fontWeight: FontWeight.w500,
                       color: textGrey3,

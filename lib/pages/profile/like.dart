@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 List like=[
@@ -35,7 +36,7 @@ class _LikeState extends State<Like> {
           onPressed: ()=>Navigator.pop(context), 
           icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: const Text('Halanlarym'),
+        title:  Text('${locale[curLN]?['myLikes']}'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(25),
@@ -44,12 +45,12 @@ class _LikeState extends State<Like> {
           children: [
             Image.asset('assets/images/like.png'),
             const SizedBox(height: 59,),
-            const Text('Siziň halan harytlaryňyz tapylmady',style: TextStyle(
+             Text('${locale[curLN]?['noneLikesText1']}',style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),),
             const SizedBox(height: 21,),
-            const Text('Bu sahypada siziň halan harytlaryňyz ýerleşer',style: TextStyle(
+             Text('${locale[curLN]?['noneLikesText2']}',style: TextStyle(
               color: Color.fromRGBO(131, 135, 140, 1),
             ),
             textAlign: TextAlign.center,)

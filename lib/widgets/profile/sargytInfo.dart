@@ -1,5 +1,6 @@
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +24,7 @@ class SargytInfo extends StatelessWidget {
           onPressed: ()=>Navigator.pop(context), 
           icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: const Text('Sargyt maglumaty'),
+        title:  Text('${locale[curLN]?['orderInfo']}'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
@@ -107,7 +108,7 @@ class SargytInfo extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Töleg',style: TextStyle(
+                  Text('${locale[curLN]?['toleg']}',style: TextStyle(
                     fontWeight: FontWeight.w500,
                   ),),
                   SizedBox(height: 10,),
@@ -115,7 +116,7 @@ class SargytInfo extends StatelessWidget {
                     height: 37,
                     child: Row(
                       children: [
-                        Text('Jemi baha',style: TextStyle(
+                        Text('${locale[curLN]?['resPrice']}',style: TextStyle(
                           color: sargytTextGrey,
                         ),),
                         Spacer(),
@@ -130,7 +131,7 @@ class SargytInfo extends StatelessWidget {
                     height: 37,
                     child: Row(
                       children: [
-                        Text('Arzanladyş',style: TextStyle(
+                        Text('${locale[curLN]?['arzanladysh']}',style: TextStyle(
                           color: sargytTextGrey,
                         ),),
                         Spacer(),
@@ -145,7 +146,7 @@ class SargytInfo extends StatelessWidget {
                     height: 37,
                     child: Row(
                       children: [
-                        Text('Eltip bermek hyzmaty',style: TextStyle(
+                        Text('${locale[curLN]?['deliveryHyzmat']}',style: TextStyle(
                           color: sargytTextGrey,
                         ),),
                         Spacer(),
@@ -157,19 +158,16 @@ class SargytInfo extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10,),
-                  Row(
-                    children: List.generate(
-                      ((MediaQuery.of(context).size.width-50)~/8), 
-                      (index) => const Text('-',style: TextStyle(
-                        color: Color.fromRGBO(183, 183, 183, 1),
-                      ),),
-                    ),
+                  Container(
+                    width: double.infinity,
+                    height: 1,
+                    color: Color.fromRGBO(183, 183, 183, 1),
                   ),
                   const SizedBox(height: 16,),
                   Row(
                     children: [
                       Expanded(
-                        child: Text('Jemi',style: TextStyle(
+                        child: Text('${locale[curLN]?['res']}',style: TextStyle(
                           fontWeight: FontWeight.w700,
                         ),),
                       ),

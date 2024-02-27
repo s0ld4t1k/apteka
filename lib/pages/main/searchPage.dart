@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/filtrBottomSheet.dart';
 import 'package:apte/widgets/main/tertipleBottomSheet.dart';
 import 'package:apte/widgets/main/verticalProducts.dart';
@@ -70,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
                               prefixText: '   ',
                               prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
                               border: InputBorder.none,
-                              hintText: 'Harydyň adyny giriziň',
+                              hintText: '${locale[curLN]?["searchHint"]}',
                               hintStyle: const TextStyle(
                                 fontSize: 14,
                                 color: textGrey3,
@@ -123,7 +124,7 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           SvgPicture.asset('assets/icons/tertiple.svg'),
                           const SizedBox(width: 7,),
-                          const Text('Tertiple',style: TextStyle(
+                          Text('${locale[curLN]?["sort"]}',style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -165,7 +166,7 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           SvgPicture.asset('assets/icons/filter.svg'),
                           const SizedBox(width: 7,),
-                          const Text('Filtr',style: TextStyle(
+                          Text('${locale[curLN]?["filtr"]}',style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,

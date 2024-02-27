@@ -1,5 +1,6 @@
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 var _selectedAdresType=0;
 class NewAdresManual extends StatefulWidget {
@@ -34,7 +35,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Salgym'),
+          title:  Text('${locale[curLN]?['myAdres']}'),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
@@ -47,7 +48,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Salgyňyz'),
+                         Text('${locale[curLN]?['adres']}'),
                         const SizedBox(height: 10,),
                         Container(
                           height: 108,
@@ -72,7 +73,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                           ),
                         ),
                         const SizedBox(height: 22,),
-                        const Text('Salgynyň görnüşi'),
+                         Text('${locale[curLN]?['salgynynGornushi']}'),
                         const SizedBox(height: 20,),
                         Row(
                           children: [
@@ -113,7 +114,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: (){}, 
-                child: const Text('Ýatda sakla',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),

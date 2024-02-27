@@ -53,7 +53,6 @@ class _MyAppState extends State<MyApp> {
     ]);
     return GetMaterialApp(
       theme: ThemeData(
-        // useMaterial3: true,
         colorScheme: ColorScheme.light(
           primary: green,
         ),
@@ -69,6 +68,11 @@ class _MyAppState extends State<MyApp> {
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             )),
+          )
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(54)
           )
         ),
         appBarTheme: const AppBarTheme(
@@ -116,7 +120,7 @@ class _MyAppState extends State<MyApp> {
         '/bag/salgymManual':(context) => const NewAdresManual(),
         '/kard':(context) => const Kard(),
         '/kard/newCard':(context) => const NewCard(),
-        '/profile':(context) => const Profile(),
+        '/profile':(context) => Profile(),
         '/profile/user':(context) => User(),
         '/profile/user/changePW':(context) => const ChangePW(),
         '/profile/lang':(context) => const Language(),

@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/profile/garasylyanlar.dart';
 import 'package:apte/widgets/profile/sargytlar.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +84,7 @@ class Sargyt extends StatelessWidget {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Sargytlarym'),
+          title:  Text('${locale[curLN]?['myOrders']}'),
         ),
         body: SafeArea(
           child: Padding(
@@ -97,7 +98,7 @@ class Sargyt extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.all(4),
                   height: 50,
-                  child: const TabBar(
+                  child:  TabBar(
                     unselectedLabelColor: Colors.black,
                     unselectedLabelStyle: const TextStyle(
                       fontWeight: FontWeight.w400,
@@ -116,11 +117,11 @@ class Sargyt extends StatelessWidget {
                     ),
                     dividerColor: Colors.transparent,
                     tabs: [
-                      Text('Garaşylýanlar',style: TextStyle(
+                      Text('${locale[curLN]?['waitingOrders']}',style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),),
-                      Text('Sargytlar',style: TextStyle(
+                      Text('${locale[curLN]?['orders']}',style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),),

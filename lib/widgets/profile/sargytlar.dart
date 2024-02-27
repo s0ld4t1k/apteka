@@ -1,6 +1,8 @@
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/profile/sargytInfo.dart';
+import 'package:apte/widgets/statusCon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
@@ -33,21 +35,12 @@ class _SargytlarymState extends State<Sargytlarym> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text('Ýagdaýy:'),
+                        child: Text('${locale[curLN]?['yagdayy']}:'),
                       ),
                       Expanded(
                         child: Row(
                           children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 4,horizontal: 13),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(27),
-                                color: (garasylyanlar[index]['status']=='Kabul edildi')?green.withOpacity(0.1):red.withOpacity(0.1),
-                              ),
-                              child: Text(garasylyanlar[index]['status'],style: TextStyle(
-                                color: (garasylyanlar[index]['status']=='Kabul edildi')?green:red,
-                              ),),
-                            ),
+                            StatusCon(text: garasylyanlar[index]['status']),
                           ],
                         ),
                       ),
@@ -57,7 +50,7 @@ class _SargytlarymState extends State<Sargytlarym> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text('Sargyt belgisi:'),
+                        child: Text('${locale[curLN]?['orderID']}:'),
                       ),
                       SizedBox(width: 20,),
                       Expanded(
@@ -71,7 +64,7 @@ class _SargytlarymState extends State<Sargytlarym> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text('Senesi:'),
+                        child: Text('${locale[curLN]?['date']}:'),
                       ),
                       SizedBox(width: 20,),
                       Expanded(
@@ -85,7 +78,7 @@ class _SargytlarymState extends State<Sargytlarym> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text('Jemi:',style: TextStyle(
+                        child: Text('${locale[curLN]?['res']}:',style: TextStyle(
                           fontWeight: FontWeight.w700,
                         ),),
                       ),

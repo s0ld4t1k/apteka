@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 var selectedCardType;
 List cardsType=[
@@ -25,7 +26,7 @@ class _ShowCardTypeState extends State<ShowCardType> {
         children: [
           Row(
             children: [
-              const Text('Banklar',style: TextStyle(
+               Text('${locale[curLN]?['banks']}',style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),),

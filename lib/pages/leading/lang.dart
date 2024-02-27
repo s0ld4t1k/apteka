@@ -1,6 +1,8 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 var _selectebLang=0;
 List langList=[
   ['tm','Türkmen dili',],
@@ -15,6 +17,7 @@ class Lang extends StatefulWidget {
 }
 
 class _LangState extends State<Lang> {
+  final LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -38,6 +41,9 @@ class _LangState extends State<Lang> {
                 setState(() {
                   _selectebLang=index;
                 });
+                if(_selectebLang==0)lc.change('tm');
+                if(_selectebLang==1)lc.change('ru');
+                if(_selectebLang==2)lc.change('en');
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

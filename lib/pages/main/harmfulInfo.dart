@@ -1,3 +1,4 @@
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/reklam.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +26,7 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
               },
               child: const Icon(Icons.chevron_left_rounded),
             ),
-            const Expanded(child: Center(child: Text('Peýdaly maglumat'))),
+            Expanded(child: Center(child: Text('${locale[curLN]?["harmfullInfo"]}'))),
             SizedBox(
               width: 20,
               height: 20,

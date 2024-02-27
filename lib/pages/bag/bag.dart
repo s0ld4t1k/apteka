@@ -3,6 +3,7 @@ import 'package:apte/widgets/bag&Card/eltmeCon.dart';
 import 'package:apte/widgets/bag&Card/showPromokod.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langController.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/horizontalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,15 +11,8 @@ import 'package:get/instance_manager.dart';
 var harytJemi=0.0;
 var arzanladys=0.0;
 var eltipberme=15.0;
-List jemiList=[
-  ['Jemi baha','0.0 TMT',],
-  ['Arzanladyş','0.0 TMT',],
-  ['Eltip bermek hyzmaty','15.0 TMT',],
-];
-List eltmeList=[
-  ['1 Sagatda eliňizde','15 manat',],
-  ['30 minutda eliňizde','25 manat',],
-];
+List jemiList=[];
+List eltmeList=[];
 class Bag extends StatefulWidget {
   const Bag({super.key});
 
@@ -30,9 +24,18 @@ class _BagState extends State<Bag> {
   LangCont lc=Get.find();
   @override
   Widget build(BuildContext context) {
+    jemiList=[
+      ['${locale[curLN]?["resPrice"]}','0.0 TMT',],
+      ['${locale[curLN]?["arzanladysh"]}','0.0 TMT',],
+      ['${locale[curLN]?["deliveryHyzmat"]}','15.0 TMT',],
+    ];
+    eltmeList=[
+      ['${locale[curLN]?["delivery1Hour"]}','15 ${locale[curLN]?["manat"]}',],
+      ['${locale[curLN]?["delivery30min"]}','25 ${locale[curLN]?["manat"]}',],
+    ];
     harytJemi=0.0;
     jemiList[0][1]='$harytJemi TMT';
-    print(MediaQuery.of(context).size.height);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -40,7 +43,7 @@ class _BagState extends State<Bag> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            const Text('Sebedim'),
+            Text('${locale[curLN]?["cart"]}'),
             const Spacer(),
             TextButton(
               style: ButtonStyle(
@@ -51,7 +54,7 @@ class _BagState extends State<Bag> {
                   productList.removeRange(0, productList.length);
                 });
               }, 
-              child: const Text('Boşat',style: TextStyle(
+              child: Text('${locale[curLN]?["clean"]}',style: TextStyle(
                 color: red,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -242,7 +245,7 @@ class _BagState extends State<Bag> {
                         children: [
                           SvgPicture.asset('assets/icons/discount.svg'),
                           const SizedBox(width: 15,),
-                          const Text('Promokod giriziň',style: TextStyle(
+                          Text('${locale[curLN]?["promokodInput"]}',style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),),
@@ -253,7 +256,7 @@ class _BagState extends State<Bag> {
                     ),
                   ),
                   const SizedBox(height: 15,),
-                  const Text('Eltip berme görnüşi'),
+                  Text('${locale[curLN]?["delivery"]}'),
                   const SizedBox(height: 20,),
                   Row(
                     children: List.generate(eltmeList.length, (index) {
@@ -348,7 +351,7 @@ class _BagState extends State<Bag> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Jemi',style: TextStyle(
+                            Text('${locale[curLN]?["res"]}',style: TextStyle(
                               color: Color.fromRGBO(107, 107, 107, 1),
                             ),),
                             Text('${arzanladys+harytJemi+eltipberme} TMT',style: const TextStyle(
@@ -369,7 +372,7 @@ class _BagState extends State<Bag> {
                         onPressed: ()=>Navigator.of(context).pushNamed(
                           '/bag/sargytEtmek',arguments: arzanladys+harytJemi+eltipberme,
                         ), 
-                        child: const Text('Sargyt et',style: TextStyle(
+                        child: Text('${locale[curLN]?["toDeliv"]}',style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),)

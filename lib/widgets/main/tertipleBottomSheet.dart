@@ -1,12 +1,8 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 var _selectedTertip=0;
-List _tertipList=[
-  'Köp satylanlar',
-  'Baha görä artmagy',
-  'Baha görä kemelmegi',
-  'Adyna göra (A-Z)',
-];
+List _tertipList=[];
 class TertipleBottomSheet extends StatefulWidget {
   const TertipleBottomSheet({super.key});
 
@@ -17,6 +13,12 @@ class TertipleBottomSheet extends StatefulWidget {
 class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
   @override
   Widget build(BuildContext context) {
+    _tertipList=[
+      '${locale[curLN]?["sortByMostSelled"]}',
+      '${locale[curLN]?["sortByPriceUp"]}',
+      '${locale[curLN]?["sortBypriceDown"]}',
+      '${locale[curLN]?["sortByName"]}',
+    ];
     return Container(
       height: 350,
       padding: const EdgeInsets.symmetric(horizontal: 25,),
@@ -24,7 +26,7 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
         children: [
           Row(
             children: [
-              const Text('Tertiple',style: TextStyle(
+              Text('${locale[curLN]?["sort"]}',style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),),

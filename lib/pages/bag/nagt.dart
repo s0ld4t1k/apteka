@@ -1,5 +1,6 @@
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/widgets/langController.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
@@ -24,7 +25,7 @@ class _NagtState extends State<Nagt> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 5,),
-                const Text('Doly adyňyz'),
+                 Text('${locale[curLN]?['dolyAdynyz']}'),
                 const SizedBox(height: 10,),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -34,10 +35,10 @@ class _NagtState extends State<Nagt> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
-                  child: const TextField(
+                  child:  TextField(
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(0),
-                      hintText: 'Doly adyňyz',
+                      hintText: '${locale[curLN]?['dolyAdynyz']}',
                       hintStyle: TextStyle(
                         color: Color.fromRGBO(193, 193, 193, 1),
                         fontSize: 16,
@@ -49,7 +50,7 @@ class _NagtState extends State<Nagt> {
                   ),
                 ),
                 const SizedBox(height: 15,),
-                const Text('Telefon belgiňiz'),
+                 Text('${locale[curLN]?['tel']}'),
                 const SizedBox(height: 10,),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -85,7 +86,7 @@ class _NagtState extends State<Nagt> {
                   ),
                 ),
                 const SizedBox(height: 15,),
-                const Text('Salgyňyz'),
+                 Text('${locale[curLN]?['adres']}'),
                 const SizedBox(height: 10,),
                 GestureDetector(
                   onTap: () {
@@ -108,9 +109,9 @@ class _NagtState extends State<Nagt> {
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                     ),
-                    child: const Row(
+                    child:  Row(
                       children: [
-                        Text('Salgyňyzy saýlaň',style: TextStyle(
+                        Text('${locale[curLN]?['chooseAdres']}',style: TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
                           fontSize: 16,
                         ),),
@@ -121,7 +122,7 @@ class _NagtState extends State<Nagt> {
                   ),
                 ),
                 const SizedBox(height: 15,),
-                const Text('Bellik'),
+                 Text('${locale[curLN]?['bellik']}'),
                 const SizedBox(height: 10,),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
@@ -131,14 +132,14 @@ class _NagtState extends State<Nagt> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
-                  child: const TextField(
+                  child:  TextField(
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
                     maxLines: null,
                     minLines: null,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(0),
-                      hintText: 'Bellik',
+                      hintText: '${locale[curLN]?['bellik']}',
                       hintStyle: TextStyle(
                         color: Color.fromRGBO(193, 193, 193, 1),
                         fontSize: 16,

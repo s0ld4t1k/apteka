@@ -20,7 +20,7 @@ List _tabs=[
   const Kategory(),
   const Bag(),
   const Kard(),
-  const Profile(),
+   Profile(),
 ];
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

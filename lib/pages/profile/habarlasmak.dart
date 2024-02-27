@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 TextEditingController _name=TextEditingController();
@@ -33,7 +34,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Habarlaşmak'),
+          title:  Text('${locale[curLN]?['contactUs']}'),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(25),
@@ -44,7 +45,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Doly adyňyz',),
+                     Text('${locale[curLN]?['dolyAdynyz']}',),
                     const SizedBox(height: 10,),
                     Container(
                       height: 52,
@@ -65,8 +66,8 @@ class _HabarlasmakState extends State<Habarlasmak> {
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
-                        decoration: const InputDecoration(
-                          hintText: 'Adyňyzy giriziň',
+                        decoration:  InputDecoration(
+                          hintText: '${locale[curLN]?['inputName']}',
                           hintStyle: TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(193, 193, 193, 1)
@@ -80,7 +81,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                     ),
                     nameErr?const _ErrMsg():Container(),
                     const SizedBox(height: 20,),
-                    const Text('Telefon belgiňiz',),
+                     Text('${locale[curLN]?['tel']}',),
                     const SizedBox(height: 10,),
                     Container(
                       height: 52,
@@ -124,7 +125,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                     ),
                     telErr?const _ErrMsg():Container(),
                     const SizedBox(height: 20,),
-                    const Text('Bellik',),
+                     Text('${locale[curLN]?['bellik']}',),
                     const SizedBox(height: 10,),
                     Container(
                       height: 139,
@@ -146,12 +147,12 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         textAlignVertical: TextAlignVertical.top,
                         minLines: null,
                         expands: true,
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           contentPadding: EdgeInsets.all(0),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
-                          hintText: 'Bellik',
+                          hintText: '${locale[curLN]?['bellik']}',
                           hintStyle: TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(193, 193, 193, 1),
@@ -174,7 +175,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                     if(_com.text=='')comErr=true;
                   });
                 }, 
-                child: const Text('Ugratmak',style: TextStyle(
+                child:  Text('${locale[curLN]?['send']}',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),
@@ -198,7 +199,7 @@ class _ErrMsg extends StatelessWidget {
           children: [
             SvgPicture.asset('assets/icons/qMark.svg'),
             const SizedBox(width: 8,),
-            const Text('Bu meýdan hökmany',style: TextStyle(
+             Text('${locale[curLN]?['errorText']}',style: TextStyle(
               color: red,
             ),),
           ],

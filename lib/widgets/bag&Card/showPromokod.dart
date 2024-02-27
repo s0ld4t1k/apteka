@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 
 class ShowPromokod extends StatelessWidget {
@@ -19,7 +20,7 @@ class ShowPromokod extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Promokod',style: TextStyle(
+            Text('${locale[curLN]?["promokod"]}',style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),),
@@ -32,7 +33,7 @@ class ShowPromokod extends StatelessWidget {
                 minLines: null,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                  labelText: 'Promokod', 
+                  labelText: '${locale[curLN]?["promokod"]}', 
                   labelStyle: const TextStyle(
                     color: green,
                   ),
@@ -60,7 +61,7 @@ class ShowPromokod extends StatelessWidget {
                 ),
               ),
               onPressed: (){}, 
-              child: const Text('Giriz',style: TextStyle(
+              child: Text('${locale[curLN]?["input"]}',style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),),

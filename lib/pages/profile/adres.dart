@@ -1,11 +1,8 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-List adresType=[
-  ['Öý','assets/icons/oy.svg',],
-  ['Iş','assets/icons/is.svg',],
-  ['Başga','assets/icons/basga.svg',],
-];
+List adresType=[];
 List adres=[
   [0,'Arçabil şaýoly jaý 142 , 3-nji etaj otag 25',],
   [1,'Arçabil şaýoly jaý 142 , 3-nji etaj otag 25 we we we we w e we w ew e w e w e e w ew ',],
@@ -20,6 +17,11 @@ class Adres extends StatefulWidget {
 class _AdresState extends State<Adres> {
   @override
   Widget build(BuildContext context) {
+    adresType=[
+      ['${locale[curLN]?['home']}','assets/icons/oy.svg',],
+      ['${locale[curLN]?['work']}','assets/icons/is.svg',],
+      ['${locale[curLN]?['other']}','assets/icons/basga.svg',],
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -35,7 +37,7 @@ class _AdresState extends State<Adres> {
           onPressed: ()=>Navigator.pop(context), 
           icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: const Text('Salgylarym'),
+        title:  Text('${locale[curLN]?['myAdres']}'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
@@ -44,12 +46,12 @@ class _AdresState extends State<Adres> {
           children: [
             Image.asset('assets/images/locat.png'),
             const SizedBox(height: 10,),
-            const Text('Salgy tapylmady',style: TextStyle(
+             Text('${locale[curLN]?['noneAdresText1']}',style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),),
             const SizedBox(height: 17,),
-            const Text('Sargytlary aňsatlyk bilen ýerine ýetirmek üçin salgyňyzy goşup bilersiňiz',style: TextStyle(
+             Text('${locale[curLN]?['noneAdresText2']}',style: TextStyle(
               color: Color.fromRGBO(131, 135, 140, 1),
             ),
             textAlign: TextAlign.center,),
@@ -68,7 +70,7 @@ class _AdresState extends State<Adres> {
                 )
               ),
               onPressed: ()=>Navigator.pushNamed(context, '/bag/salgym'), 
-              child: const Text('Salgy goş',style: TextStyle(
+              child:  Text('${locale[curLN]?['addAdres']}',style: TextStyle(
                 color: orange,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,

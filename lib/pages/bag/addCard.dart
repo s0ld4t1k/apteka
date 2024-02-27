@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 List cardList=[
   ['assets/images/turkmenbasyBank.png','Türkmenbaşy Bank','**** **** **** 1234',],
@@ -23,7 +24,7 @@ class _AddCardState extends State<AddCard> {
             children: [
               Row(
                 children: [
-                  const Text('Bank kartyňyz',style: TextStyle(
+                   Text('${locale[curLN]?['bankKartynyz']}',style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -99,7 +100,7 @@ class _AddCardState extends State<AddCard> {
                     padding: MaterialStateProperty.all(const EdgeInsets.all(0))
                   ),
                   onPressed: ()=>Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]), 
-                  child: const Text('+ Täze kart goş',style: TextStyle(
+                  child:  Text('+ ${locale[curLN]?['addNewCard']}',style: TextStyle(
                     color: orange,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -116,7 +117,7 @@ class _AddCardState extends State<AddCard> {
                 onPressed: (){
                   Navigator.pop(context);
                 }, 
-                child: const Text('Şu karty ulan',style: TextStyle(
+                child:  Text('${locale[curLN]?['useThisCard']}',style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),)

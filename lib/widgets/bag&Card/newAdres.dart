@@ -1,5 +1,6 @@
 
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,11 +14,7 @@ dynamic markers=[
     child: SvgPicture.asset('assets/icons/loc.svg'),
   ),
 ];
-List adresTypeList=[
-  'Öý',
-  'Iş',
-  'Başga',
-];
+List adresTypeList=[];
 class NewAdres extends StatefulWidget {
   const NewAdres({super.key});
 
@@ -28,6 +25,11 @@ var _lat=37.57,_long=58.225999;
 class _NewAdresState extends State<NewAdres> {
   @override
   Widget build(BuildContext context) {
+    adresTypeList=[
+      '${locale[curLN]?['home']}',
+      '${locale[curLN]?['work']}',
+      '${locale[curLN]?['other']}',
+    ];
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -42,7 +44,7 @@ class _NewAdresState extends State<NewAdres> {
           onPressed: ()=>Navigator.pop(context), 
           icon: const Icon(Icons.chevron_left_rounded)
         ),
-        title: const Text('Salgym'),
+        title:  Text('${locale[curLN]?['myAdres']}'),
       ),
       body: Stack(
         children: [
@@ -120,124 +122,138 @@ class _NewAdresState extends State<NewAdres> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 color: Colors.white,
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        width: 60,
-                        height: 2.5,
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(205, 205, 205, 1),
-                          borderRadius: BorderRadius.circular(31),
+              child: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 35,),
+                        Row(
+                          children: [
+                             Text('${locale[curLN]?['adres']}',style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),),
+                            const Spacer(),
+                            SvgPicture.asset('assets/icons/gps.svg'),
+                          ],
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 15,),
-                    Row(
-                      children: [
-                        const Text('Salgyňyz',style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),),
-                        const Spacer(),
-                        SvgPicture.asset('assets/icons/gps.svg'),
-                      ],
-                    ),
-                    const SizedBox(height: 30,),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset('assets/icons/loc.svg'),
-                        const SizedBox(width: 21,),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SelectableText('$_lat, $_long'),
-                              const SizedBox(height: 18,),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  minimumSize: MaterialStateProperty.all(const Size(107, 34)),
-                                  backgroundColor: MaterialStateProperty.all(green.withOpacity(0.1)),
-                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ))
-                                ),
-                                onPressed: ()=>Navigator.pushNamed(context,'/bag/salgymManual',arguments: ['','',]), 
-                                child: const Text('Üýtget',style: TextStyle(
-                                  color: green,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                ),),
-                              )
-                            ],
+                        const SizedBox(height: 30,),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SvgPicture.asset('assets/icons/loc.svg'),
+                            const SizedBox(width: 21,),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SelectableText('$_lat, $_long'),
+                                  const SizedBox(height: 18,),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      minimumSize: MaterialStateProperty.all(const Size(107, 34)),
+                                      backgroundColor: MaterialStateProperty.all(green.withOpacity(0.1)),
+                                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ))
+                                    ),
+                                    onPressed: ()=>Navigator.pushNamed(context,'/bag/salgymManual',arguments: ['','',]), 
+                                    child: Text('${locale[curLN]?['change']}',style: TextStyle(
+                                      color: green,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
+                                    ),),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10,),
+                        Container(
+                          width: double.infinity,
+                          height: 1,
+                          margin: const EdgeInsets.symmetric(vertical: 18),
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(237, 237, 237, 1),
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 10,),
-                    Container(
-                      width: double.infinity,
-                      height: 1,
-                      margin: const EdgeInsets.symmetric(vertical: 18),
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(237, 237, 237, 1),
-                      ),
-                    ),
-                    const Row(
-                      children: [
-                        Text('Salgynyň görnüşi',style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),),
-                      ],
-                    ),
-                    const SizedBox(height: 20,),
-                    Row(
-                      children: [
-                        Wrap(
-                          spacing: 11,
-                          children: List.generate(adresTypeList.length, (index){
-                            return OutlinedButton(
-                              style: ButtonStyle(
-                                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
-                                side: MaterialStateProperty.all(BorderSide(
-                                  color: _selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
-                                )),
-                                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ))
-                              ),
-                              onPressed: (){
-                                setState(() {
-                                  _selectedAdresType=index;
-                                });
-                              }, 
-                              child: Text(adresTypeList[index],style: TextStyle(
-                                color: _selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
-                                fontWeight: FontWeight.w500,
-                              ),)
-                            );
-                          }),
+                        Row(
+                          children: [
+                            Text('${locale[curLN]?['salgynynGornushi']}',style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),),
+                          ],
                         ),
+                        const SizedBox(height: 20,),
+                        Row(
+                          children: [
+                            Wrap(
+                              spacing: 11,
+                              children: List.generate(adresTypeList.length, (index){
+                                return OutlinedButton(
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
+                                    side: MaterialStateProperty.all(BorderSide(
+                                      color: _selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
+                                    )),
+                                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ))
+                                  ),
+                                  onPressed: (){
+                                    setState(() {
+                                      _selectedAdresType=index;
+                                    });
+                                  }, 
+                                  child: Text(adresTypeList[index],style: TextStyle(
+                                    color: _selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
+                                    fontWeight: FontWeight.w500,
+                                  ),)
+                                );
+                              }),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 30,),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
+                          ),
+                          onPressed: (){}, 
+                          child:  Text('${locale[curLN]?['confirm']}',style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),),
+                        ),
+                        const SizedBox(height: 20,)
                       ],
                     ),
-                    const SizedBox(height: 30,),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    left: 0,
+                    child: Container(
+                      color: Colors.white,
+                      width: double.infinity,
+                      height: 35,
+                      child: Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          width: 60,
+                          height: 2.5,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(205, 205, 205, 1),
+                            borderRadius: BorderRadius.circular(31),
+                          ),
+                        ),
                       ),
-                      onPressed: (){}, 
-                      child: const Text('Tassykla',style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),),
                     ),
-                    const SizedBox(height: 20,)
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           )

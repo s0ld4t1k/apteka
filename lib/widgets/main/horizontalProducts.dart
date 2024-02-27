@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 List productList=[
   ['assets/images/multiVitamin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',1,],
@@ -33,7 +34,7 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
               const Spacer(),
               TextButton(
                 onPressed: (){}, 
-                child: const Text('Ählisini gör',style: TextStyle(
+                child: Text('${locale[curLN]?["seeAll"]}',style: TextStyle(
                   color: green,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
@@ -105,7 +106,6 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                               setState(() {
                                 productList[index][3]=!productList[index][3];
                               });
-                              print('add to cart');
                             },
                             child: Container(
                               width: 26,

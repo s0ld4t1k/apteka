@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 
 class Reklam extends StatelessWidget {
@@ -68,7 +69,7 @@ class Reklam extends StatelessWidget {
                 onPressed: (){
                   
                 }, 
-                child: const Text('Sebede goş',style: TextStyle(
+                child: Text('${locale[curLN]?["addCart"]}',style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
                 ),),

@@ -1,5 +1,6 @@
 
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 TextEditingController _name=TextEditingController(text: 'Merjen Annaýewa');
 TextEditingController _tel=TextEditingController(text: '+99361616161');
@@ -25,7 +26,7 @@ class User extends StatelessWidget {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Maglumatlar'),
+          title:  Text('${locale[curLN]?['infos']}'),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(25),
@@ -36,7 +37,7 @@ class User extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Doly adyňyz',),
+                     Text('${locale[curLN]?['dolyAdynyz']}',),
                     const SizedBox(height: 10,),
                     Container(
                       height: 52,
@@ -61,7 +62,7 @@ class User extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20,),
-                    const Text('Telefon belgiňiz',),
+                     Text('${locale[curLN]?['tel']}'),
                     const SizedBox(height: 10,),
                     Container(
                       height: 52,
@@ -89,7 +90,7 @@ class User extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20,),
-                    const Text('Açarsözi',),
+                     Text('${locale[curLN]?['password']}',),
                     const SizedBox(height: 10,),
                     Container(
                       height: 52,
@@ -111,7 +112,7 @@ class User extends StatelessWidget {
                               alignment: Alignment.centerLeft  
                             ),
                             onPressed: ()=>Navigator.pushNamed(context, '/profile/user/changePW'), 
-                            child: const Text('Açarsözini çalyş',style: TextStyle(
+                            child:  Text('${locale[curLN]?['toChangePassword']}',style: TextStyle(
                               fontSize: 16,
                               color: orange,
                             ),)
@@ -127,7 +128,7 @@ class User extends StatelessWidget {
                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: ()=>Navigator.pop(context), 
-                child: const Text('Ýatda sakla',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),

@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 List _searchHistory=[
@@ -58,7 +59,7 @@ class Searck extends StatelessWidget {
                             Navigator.of(context).pushNamed('/mainPage/searchPage'),
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Harydyň adyny giriziň',
+                              hintText: '${locale[curLN]?["searchHint"]}',
                               prefixIconConstraints: const BoxConstraints(
                                 maxHeight: 20,
                                 maxWidth: 20,
@@ -89,7 +90,7 @@ class Searck extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Köp gözlenýänler',style: TextStyle(
+              Text('${locale[curLN]?["mostSearchs"]}',style: TextStyle(
                 fontSize: 16,
                 color: Color.fromRGBO(186, 186, 186, 1),
               ),),

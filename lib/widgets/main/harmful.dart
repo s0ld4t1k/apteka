@@ -1,5 +1,7 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+
 List _harmfulList=[
   'assets/images/harmfulBanner1.png',
   'assets/images/harmfulBanner1.png',
@@ -16,7 +18,7 @@ class MainHarmful extends StatelessWidget {
           padding: const EdgeInsets.only(left: 25,right: 15,top: 10),
           child: Row(
             children: [
-              const Text('Peýdaly maglumatlar',style: TextStyle(
+              Text('${locale[curLN]?["harmfullInfos"]}',style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),),
@@ -25,7 +27,7 @@ class MainHarmful extends StatelessWidget {
                 onPressed: () {
                   
                 },
-                child: const Text('Ählisini gör',style: TextStyle(
+                child: Text('${locale[curLN]?["seeAll"]}',style: TextStyle(
                   color: green,
                   fontSize: 12,
                 ),),

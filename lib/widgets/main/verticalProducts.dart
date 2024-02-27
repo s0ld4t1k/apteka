@@ -70,7 +70,6 @@ class _VerticalProductsState extends State<VerticalProducts> {
                     setState(() {
                       productList[index][3]=!productList[index][3];
                     });
-                    print('add to cart');
                   },
                   child: Container(
                     width: 26,

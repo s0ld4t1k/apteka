@@ -1,5 +1,6 @@
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/bag&Card/showCardType.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 List month=[
@@ -34,7 +35,6 @@ class _NewCardState extends State<NewCard> {
     if(list[0]!='')belgisi.text=list[0];
     if(list[2]!='')cvc.text=list[2];
     if(list[3]!='')eyesi.text=list[3];
-    print(list);
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -52,7 +52,7 @@ class _NewCardState extends State<NewCard> {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Kart maglumatlary'),
+          title:  Text('${locale[curLN]?['cardInfos']}'),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(25),
@@ -63,7 +63,7 @@ class _NewCardState extends State<NewCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Kartyň belgisi'),
+                     Text('${locale[curLN]?['cardID']}'),
                     const SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
@@ -92,7 +92,7 @@ class _NewCardState extends State<NewCard> {
                       ),
                     ),
                     const SizedBox(height: 16,),
-                    const Text('Möhleti'),
+                     Text('${locale[curLN]?['dateLimit']}'),
                     const SizedBox(height: 10,),
                     Row(
                       children: [
@@ -128,11 +128,11 @@ class _NewCardState extends State<NewCard> {
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                             ),
-                            child: const TextField(
+                            child:  TextField(
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                              hintText: 'Ýyl',
+                              hintText: '${locale[curLN]?['year']}',
                               hintStyle: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(193, 193, 193, 1),
@@ -147,7 +147,7 @@ class _NewCardState extends State<NewCard> {
                       ],
                     ),
                     const SizedBox(height: 16,),
-                    const Text('CVC'),
+                     Text('${locale[curLN]?['cvc']}'),
                     const SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
@@ -176,7 +176,7 @@ class _NewCardState extends State<NewCard> {
                       ),
                     ),
                     const SizedBox(height: 16,),
-                    const Text('Kartyň eýesi'),
+                     Text('${locale[curLN]?['cardHolder']}'),
                     const SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
@@ -188,10 +188,10 @@ class _NewCardState extends State<NewCard> {
                       ),
                       child: TextField(
                         controller: eyesi,
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           counterText: '',
-                          hintText: 'Kartyň eýesi',
+                          hintText: '${locale[curLN]?['cardHolder']}',
                           hintStyle: TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(193, 193, 193, 1),
@@ -203,7 +203,7 @@ class _NewCardState extends State<NewCard> {
                       ),
                     ),
                     const SizedBox(height: 16,),
-                    const Text('Kartyňyz haýsy banka degişli?'),
+                     Text('${locale[curLN]?['cardBankType']}'),
                     const SizedBox(height: 10,),
                     GestureDetector(
                       onTap: ()=>showModalBottomSheet(
@@ -228,7 +228,7 @@ class _NewCardState extends State<NewCard> {
                         child: Row(
                           children: [
                             Text(
-                              selectedCardType!=null?cardsType[selectedCardType]:'Bank saýla',
+                              selectedCardType!=null?cardsType[selectedCardType]:'${locale[curLN]?['chooseBank']}',
                               style: TextStyle(
                               fontSize: 16,
                               color: selectedCardType!=null?Colors.black:const Color.fromRGBO(193, 193, 193, 1)
@@ -250,7 +250,7 @@ class _NewCardState extends State<NewCard> {
                   Navigator.pop(context);
                   cards.add([belgisi.text,selectedCardType,cvc.text,eyesi.text]);
                 }, 
-                child: const Text('Ýatda sakla',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),)

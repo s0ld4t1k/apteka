@@ -1,3 +1,4 @@
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -30,7 +31,7 @@ class _ChangePWState extends State<ChangePW> {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Açarsözi üýtgetmek'),
+          title:  Text('${locale[curLN]?['changePassword']}'),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(25),
@@ -41,11 +42,11 @@ class _ChangePWState extends State<ChangePW> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Täze açarsözi',),
+                     Text('${locale[curLN]?['newPassword']}',),
                     const SizedBox(height: 10,),
                     PWField(con: _pw,),
                     const SizedBox(height: 20,),
-                    const Text('Açarsözi tassykla',),
+                     Text('${locale[curLN]?['confirmPassword']}',),
                     const SizedBox(height: 10,),
                     PWField(con: _conPW,),
                   ],
@@ -56,7 +57,7 @@ class _ChangePWState extends State<ChangePW> {
                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: ()=>Navigator.pop(context), 
-                child: const Text('Ýatda sakla',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),

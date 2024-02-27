@@ -1,15 +1,16 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 List _selectedFiltr=[-1,-1,-1,-1,];
 List filtrList=[
   [
-    'Arzanladyş',
+    '${locale[curLN]?["arzanladysh"]}',
     [
       'Arzanladyş',
     ],
   ],
   [
-    'Göwrüm',
+    '${locale[curLN]?["gowrum"]}',
     [
       '10 ml',
       '5 ml',
@@ -17,7 +18,7 @@ List filtrList=[
     ],
   ],
   [
-    'Öndüriji ýurt',
+    '${locale[curLN]?["madeIn"]}',
     [
       'Russiýa',
       'Fransiýa',
@@ -30,7 +31,7 @@ List filtrList=[
     ],
   ],
   [
-    'Jyns',
+    '${locale[curLN]?["sex"]}',
     [
       'Aýal',
       'Erkek',
@@ -58,7 +59,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
               children: [
                 Row(
                   children: [
-                    const Text('Filtr',style: TextStyle(
+                    Text('${locale[curLN]?["filtr"]}',style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),),
@@ -142,7 +143,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                     ))
                   ),
                   onPressed: ()=>Navigator.pop(context), 
-                  child: const Text('Filterle',style: TextStyle(
+                  child: Text('${locale[curLN]?["toFiltr"]}',style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),)

@@ -1,12 +1,7 @@
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-List gorkezmeList=[
-  ['Haryt barada','Алмагель А (Almagel® A) Состав и форма выпуска 5 мл суспензии для приема внутрь содержит алюминия гидроксида 300 мг (эквивалентно 200 мг оксида алюминия), магния гидроксида 100 мг и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон. Характеристика Суспензия белого или слегка сероватого цвета с характерным сладковатым вкусом и запахом лимона. Фармакологическое действие и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон Фармакологическое действие — обволакивающее, адсорбирующее, антацидное.',],
-  ['Düzümi','kakashka 1 kg',],
-  ['Saklanyş şerti','C -25',],
-  ['Ulanyş usuly we dozasy','bir yerine dykmaly',],
-  ['Ulanmak maslahat berilmeýänler','dolboyoblar',],
-];
+List gorkezmeList=[];
 
 // ignore: must_be_immutable
 class InfoRow extends StatefulWidget {
@@ -21,6 +16,13 @@ class _InfoRowState extends State<InfoRow> {
   
   @override
   Widget build(BuildContext context) {
+    gorkezmeList=[
+      ['${locale[curLN]?["aboutproduct"]}','Алмагель А (Almagel® A) Состав и форма выпуска 5 мл суспензии для приема внутрь содержит алюминия гидроксида 300 мг (эквивалентно 200 мг оксида алюминия), магния гидроксида 100 мг и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон. Характеристика Суспензия белого или слегка сероватого цвета с характерным сладковатым вкусом и запахом лимона. Фармакологическое действие и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон Фармакологическое действие — обволакивающее, адсорбирующее, антацидное.',],
+      ['${locale[curLN]?["duzum"]}','kakashka 1 kg',],
+      ['${locale[curLN]?["saklanyshy"]}','C -25',],
+      ['${locale[curLN]?["ulanylyshy"]}','bir yerine dykmaly',],
+      ['${locale[curLN]?["manLimit"]}','dolboyoblar',],
+    ];
     return AnimatedContainer(
       duration: const Duration(milliseconds: 1000),
       child: Column(

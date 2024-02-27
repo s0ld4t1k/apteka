@@ -1,16 +1,12 @@
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/gorkezmeInfoRow.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/horizontalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
 var _liked=false,_curIndex=0;
-List _infoList=[
-  ['Öndüriji:','БАЛКАНФАРМА - Болгария',],
-  ['Görnüşi:','Kapsula',],
-  ['Ulanylyş möhleti:','3 ýyl',],
-  ['Dänejikleriň sany:','24 sany',],
-];
+List infoList=[];
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -22,6 +18,19 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
+    gorkezmeList=[
+      ['${locale[curLN]?["aboutproduct"]}','Алмагель А (Almagel® A) Состав и форма выпуска 5 мл суспензии для приема внутрь содержит алюминия гидроксида 300 мг (эквивалентно 200 мг оксида алюминия), магния гидроксида 100 мг и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон. Характеристика Суспензия белого или слегка сероватого цвета с характерным сладковатым вкусом и запахом лимона. Фармакологическое действие и анестезина 100 мг; в пластиковых флаконах по 170 мл в комплекте с дозировочной ложкой, в картонной пачке 1 флакон Фармакологическое действие — обволакивающее, адсорбирующее, антацидное.',],
+      ['${locale[curLN]?["duzum"]}','kakashka 1 kg',],
+      ['${locale[curLN]?["saklanyshy"]}','C -25',],
+      ['${locale[curLN]?["ulanylyshy"]}','bir yerine dykmaly',],
+      ['${locale[curLN]?["manLimit"]}','dolboyoblar',],
+    ];
+    infoList=[
+      ['${locale[curLN]?["onduriji"]}:','БАЛКАНФАРМА - Болгария',],
+      ['${locale[curLN]?["gornushi"]}:','Kapsula',],
+      ['${locale[curLN]?["ulanyshDate"]}:','3 ýyl',],
+      ['${locale[curLN]?["daneSany"]}:','24 sany',],
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,8 +45,8 @@ class _ProductPageState extends State<ProductPage> {
               },
               child: const Icon(Icons.chevron_left_rounded),
             ),
-            const Expanded(
-              child: Center(child: Text('Haryt maglumaty')),
+            Expanded(
+              child: Center(child: Text('${locale[curLN]?["productInfo"]}')),
             ),
             SizedBox(
               width: 20,
@@ -147,12 +156,12 @@ class _ProductPageState extends State<ProductPage> {
                           height: 18,
                           child: Row(
                             children: [
-                              Text(_infoList[index][0],style: const TextStyle(
+                              Text(infoList[index][0],style: const TextStyle(
                                 fontSize: 14,
                                 color: Color.fromRGBO(133, 133, 133, 1)
                               ),),
                               const Spacer(),
-                              Text(_infoList[index][1],style: const TextStyle(
+                              Text(infoList[index][1],style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                               ),),
@@ -160,11 +169,11 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         );
                       },
-                      itemCount: _infoList.length,
+                      itemCount: infoList.length,
                     ),
                   ),
                   const Devider(),
-                  const Text('Görkezme',style: TextStyle(
+                  Text('${locale[curLN]?["gorkezme"]}',style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -186,10 +195,10 @@ class _ProductPageState extends State<ProductPage> {
               padding: const EdgeInsets.only(left: 25,right: 25,top: 15,bottom: 25),
               child: Row(
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Bahasy',style: TextStyle(
+                      Text('${locale[curLN]?["price"]}',style: TextStyle(
                         color: textGrey,
                       ),),
                       Text('115.00 TMT',style: TextStyle(
@@ -207,7 +216,7 @@ class _ProductPageState extends State<ProductPage> {
                       minimumSize: MaterialStateProperty.all(const Size(196, 47)),
                     ),
                     onPressed: (){}, 
-                    child: const Text('Sebede goş',style: TextStyle(
+                    child: Text('${locale[curLN]?["addCart"]}',style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),)

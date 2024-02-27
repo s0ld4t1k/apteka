@@ -1,6 +1,7 @@
 import 'package:apte/pages/bag/bankKarty.dart';
 import 'package:apte/pages/bag/nagt.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 
 class SargytEtmek extends StatelessWidget {
@@ -8,7 +9,6 @@ class SargytEtmek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var jem=ModalRoute.of(context)?.settings.arguments;
-    print(MediaQuery.of(context).size.height);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -26,7 +26,7 @@ class SargytEtmek extends StatelessWidget {
             onPressed: ()=>Navigator.pop(context), 
             icon: const Icon(Icons.chevron_left_rounded)
           ),
-          title: const Text('Sargyt etmek'),
+          title: Text('${locale[curLN]?['toDoDeliv']}'),
         ),
         body: GestureDetector(
           onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
@@ -39,7 +39,7 @@ class SargytEtmek extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Töleg usulyny saýlaň',),
+                       Text('${locale[curLN]?['tolegUsuly']}',),
                       const SizedBox(height: 12,),
                       Container(
                         decoration: BoxDecoration(
@@ -66,9 +66,9 @@ class SargytEtmek extends StatelessWidget {
                             color: green
                           ),
                           dividerColor: Colors.transparent,
-                          tabs: const [
-                            Text('Nagt'),
-                            Text('Bank Karty'),
+                          tabs:  [
+                            Text('${locale[curLN]?['nagt']}'),
+                            Text('${locale[curLN]?['bankKarty']}'),
                           ]
                         ),
                       ),
@@ -104,7 +104,7 @@ class SargytEtmek extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text('Jemi',style: TextStyle(
+                                 Text('${locale[curLN]?['res']}',style: TextStyle(
                                   color: Color.fromRGBO(107, 107, 107, 1),
                                 ),),
                                 Text('$jem TMT',style: const TextStyle(
@@ -125,7 +125,7 @@ class SargytEtmek extends StatelessWidget {
                             onPressed: (){
                               
                             }, 
-                            child: const Text('Sargyt et',style: TextStyle(
+                            child:  Text('${locale[curLN]?['toDeliv']}',style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),)

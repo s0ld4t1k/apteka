@@ -1,4 +1,5 @@
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 var _selectedAdres;
 List adressList=[
@@ -25,7 +26,7 @@ class _AddAdresState extends State<AddAdres> {
             children: [
               Row(
                 children: [
-                  const Text('Salgyňyz',style: TextStyle(
+                   Text('${locale[curLN]?['adres']}',style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -87,7 +88,7 @@ class _AddAdresState extends State<AddAdres> {
                     padding: MaterialStateProperty.all(const EdgeInsets.all(0))
                   ),
                   onPressed: ()=>Navigator.pushNamed(context, '/bag/salgym'), 
-                  child: const Text('+ Täze salgy goş',style: TextStyle(
+                  child:  Text('+ ${locale[curLN]?['addNewAdres']}',style: TextStyle(
                     color: orange,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -104,7 +105,7 @@ class _AddAdresState extends State<AddAdres> {
                 onPressed: (){
                   Navigator.pop(context);
                 }, 
-                child: const Text('Şu salgyny ulan',style: TextStyle(
+                child:  Text('${locale[curLN]?['useThisAdres']}',style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),)
