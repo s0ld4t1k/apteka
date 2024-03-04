@@ -46,12 +46,12 @@ class _AdresState extends State<Adres> {
           children: [
             Image.asset('assets/images/locat.png'),
             const SizedBox(height: 10,),
-             Text('${locale[curLN]?['noneAdresText1']}',style: TextStyle(
+             Text('${locale[curLN]?['noneAdresText1']}',style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),),
             const SizedBox(height: 17,),
-             Text('${locale[curLN]?['noneAdresText2']}',style: TextStyle(
+             Text('${locale[curLN]?['noneAdresText2']}',style: const TextStyle(
               color: Color.fromRGBO(131, 135, 140, 1),
             ),
             textAlign: TextAlign.center,),
@@ -70,7 +70,7 @@ class _AdresState extends State<Adres> {
                 )
               ),
               onPressed: ()=>Navigator.pushNamed(context, '/bag/salgym'), 
-              child:  Text('${locale[curLN]?['addAdres']}',style: TextStyle(
+              child:  Text('${locale[curLN]?['addAdres']}',style: const TextStyle(
                 color: orange,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -82,7 +82,7 @@ class _AdresState extends State<Adres> {
           children: List.generate(adres.length, (index) => Stack(
             children: [
               Container(
-                height: 101,
+                // height:111,
                 margin: const EdgeInsets.only(bottom: 15),
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
@@ -110,8 +110,12 @@ class _AdresState extends State<Adres> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(adresType[adres[index][0]][0]),
-                          const SizedBox(height: 8,),
+                          Text(adresType[adres[index][0]][0],style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold
+                          ),),
+                          const SizedBox(height: 18,),
+                          // SizedBox(height: 20,),
                           Text(adres[index][1],style: const TextStyle(
                             color: Color.fromRGBO(108, 108, 108, 1),
                           ),
@@ -125,10 +129,14 @@ class _AdresState extends State<Adres> {
               ),
               Positioned(
                 top: 16,
-                right: 50,
+                right: 60,
                 child: GestureDetector(
                   onTap: ()=>Navigator.pushNamed(context, '/bag/salgymManual',arguments: adres[index]),
-                  child: SvgPicture.asset('assets/icons/edit.svg'),
+                  child: SizedBox(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset('assets/icons/edit.svg')
+                  ),
                 ),
               ),
               Positioned(
@@ -140,7 +148,11 @@ class _AdresState extends State<Adres> {
                       adres.removeAt(index);
                     });
                   },
-                  child: SvgPicture.asset('assets/icons/delete.svg')
+                  child: SizedBox(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset('assets/icons/delete.svg')
+                  )
                 ),
               ),
             ],

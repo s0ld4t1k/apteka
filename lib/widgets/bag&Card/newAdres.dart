@@ -1,4 +1,6 @@
 
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
@@ -57,19 +59,24 @@ class _NewAdresState extends State<NewAdres> {
                     mapController: _mc,
                     options: MapOptions(
                       onMapReady: () async{
-                        var per=await Geolocator.requestPermission();
-                        if(per!=LocationPermission.denied){
-                          Position pos=await Geolocator.getCurrentPosition();
-                          setState(() {
-                            _lat=pos.latitude;
-                            _long=pos.longitude;
-                          });
-                          _mc.move(LatLng(_lat, _long), 12);
-                          markers[0]=Marker(
-                            point: LatLng(_lat, _long), 
-                            child: SvgPicture.asset('assets/icons/loc.svg'),
-                          );
+                        try{
+                          var per=await Geolocator.requestPermission();
+                          if(per!=LocationPermission.denied){
+                            Position pos=await Geolocator.getCurrentPosition();
+                            setState(() {
+                              _lat=pos.latitude;
+                              _long=pos.longitude;
+                            });
+                            _mc.move(LatLng(_lat, _long), 12);
+                            markers[0]=Marker(
+                              point: LatLng(_lat, _long), 
+                              child: SvgPicture.asset('assets/icons/loc.svg'),
+                            );
+                          }
+                        }catch(e){
+                          debugPrint('positi =================== $e');
                         }
+
                       },
                       onLongPress: (tapPosition, point) {
                         setState(() {
@@ -127,10 +134,10 @@ class _NewAdresState extends State<NewAdres> {
                   SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(height: 35,),
+                        const SizedBox(height: 35,),
                         Row(
                           children: [
-                             Text('${locale[curLN]?['adres']}',style: TextStyle(
+                             Text('${locale[curLN]?['adres']}',style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),),
@@ -159,7 +166,7 @@ class _NewAdresState extends State<NewAdres> {
                                       ))
                                     ),
                                     onPressed: ()=>Navigator.pushNamed(context,'/bag/salgymManual',arguments: ['','',]), 
-                                    child: Text('${locale[curLN]?['change']}',style: TextStyle(
+                                    child: Text('${locale[curLN]?['change']}',style: const TextStyle(
                                       color: green,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w700,
@@ -181,7 +188,7 @@ class _NewAdresState extends State<NewAdres> {
                         ),
                         Row(
                           children: [
-                            Text('${locale[curLN]?['salgynynGornushi']}',style: TextStyle(
+                            Text('${locale[curLN]?['salgynynGornushi']}',style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),),
@@ -223,7 +230,7 @@ class _NewAdresState extends State<NewAdres> {
                             minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                           ),
                           onPressed: (){}, 
-                          child:  Text('${locale[curLN]?['confirm']}',style: TextStyle(
+                          child:  Text('${locale[curLN]?['confirm']}',style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                           ),),

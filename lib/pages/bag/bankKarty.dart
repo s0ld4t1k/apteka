@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/addCard.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -36,13 +38,13 @@ class _BankKartyState extends State<BankKarty> {
                   ),
                   child:  TextField(
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(0),
+                      contentPadding: const EdgeInsets.all(0),
                       hintText: '${locale[curLN]?['dolyAdynyz']}',
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: Color.fromRGBO(193, 193, 193, 1),
                         fontSize: 16,
                       ),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderSide: BorderSide.none
                       ),
                     ),
@@ -102,12 +104,12 @@ class _BankKartyState extends State<BankKarty> {
                     ),
                     child:  Row(
                       children: [
-                        Text('${locale[curLN]?['chooseAdres']}',style: TextStyle(
+                        Text('${locale[curLN]?['chooseAdres']}',style: const TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
                           fontSize: 16,
                         ),),
-                        Spacer(),
-                        Icon(CupertinoIcons.chevron_down,size: 16,),
+                        const Spacer(),
+                        const Icon(CupertinoIcons.chevron_down,size: 16,),
                       ],
                     ),
                   ),
@@ -138,12 +140,12 @@ class _BankKartyState extends State<BankKarty> {
                     ),
                     child:  Row(
                       children: [
-                        Text('${locale[curLN]?['chooseCard']}',style: TextStyle(
+                        Text('${locale[curLN]?['chooseCard']}',style: const TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
                           fontSize: 16,
                         ),),
-                        Spacer(),
-                        Icon(CupertinoIcons.chevron_down,size: 16,),
+                        const Spacer(),
+                        const Icon(CupertinoIcons.chevron_down,size: 16,),
                       ],
                     ),
                   ),
@@ -165,19 +167,19 @@ class _BankKartyState extends State<BankKarty> {
                     maxLines: null,
                     minLines: null,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(0),
+                      contentPadding: const EdgeInsets.all(0),
                       hintText: '${locale[curLN]?['bellik']}',
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: Color.fromRGBO(193, 193, 193, 1),
                         fontSize: 16,
                       ),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderSide: BorderSide.none
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 39,),
+                const SizedBox(height: 140,),
               ],
             ),
           ),

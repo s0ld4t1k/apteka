@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +61,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
               children: [
                 Row(
                   children: [
-                    Text('${locale[curLN]?["filtr"]}',style: TextStyle(
+                    Text('${locale[curLN]?["filtr"]}',style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),),
@@ -143,7 +145,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                     ))
                   ),
                   onPressed: ()=>Navigator.pop(context), 
-                  child: Text('${locale[curLN]?["toFiltr"]}',style: TextStyle(
+                  child: Text('${locale[curLN]?["toFiltr"]}',style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),)

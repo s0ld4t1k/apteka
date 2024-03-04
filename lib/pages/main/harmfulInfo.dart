@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, deprecated_member_use
+
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/reklam.dart';
 import 'package:flutter/material.dart';

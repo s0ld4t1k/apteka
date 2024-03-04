@@ -1,5 +1,5 @@
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/langController.dart';
+import 'package:apte/controller/langController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

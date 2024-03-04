@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
         children: [
           Row(
             children: [
-              Text('${locale[curLN]?["sort"]}',style: TextStyle(
+              Text('${locale[curLN]?["sort"]}',style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),),

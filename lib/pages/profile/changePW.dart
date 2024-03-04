@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -57,7 +59,7 @@ class _ChangePWState extends State<ChangePW> {
                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: ()=>Navigator.pop(context), 
-                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),
@@ -71,9 +73,9 @@ class _ChangePWState extends State<ChangePW> {
 }
 // ignore: must_be_immutable
 class PWField extends StatefulWidget {
-  final con;
+  TextEditingController con=TextEditingController();
   var eye=true;
-  PWField({super.key, this.con});
+  PWField({super.key, required this.con});
   @override
   State<PWField> createState() => _PWFieldState();
 }

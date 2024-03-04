@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -57,17 +59,17 @@ class PaymentHistory extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: ()=>Get.back(), 
-          icon: Icon(Icons.chevron_left_rounded)
+          icon: const Icon(Icons.chevron_left_rounded)
         ),
         title: Text('${locale[curLN]?['paymentHistory']}'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
         child: ListView.separated(
           itemBuilder: (context, index) {
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: sargytBorder),
@@ -76,34 +78,34 @@ class PaymentHistory extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 45,
                     height: 45,
                     child: Image.asset(cardImages[paymentHistoryList[index]['bankID']]),
                   ),
-                  SizedBox(width: 17,),
+                  const SizedBox(width: 17,),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(paymentHistoryList[index]['name'],style: TextStyle(
+                        Text(paymentHistoryList[index]['name'],style: const TextStyle(
                           fontWeight: FontWeight.w700,
                         ),),
-                        SizedBox(height: 2,),
-                        Text(paymentHistoryList[index]['date'],style: TextStyle(
+                        const SizedBox(height: 2,),
+                        Text(paymentHistoryList[index]['date'],style: const TextStyle(
                           fontSize: 12,
                           color: sargytTextGrey,
                         ),),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         StatusCon(text: paymentHistoryList[index]['status'],errText: 'Ýalňyş töleg',),
                       ],
                     ),
                   ),
-                  SizedBox(width: 12,),
+                  const SizedBox(width: 12,),
                   Container(
                     height: 40,
                     alignment: Alignment.center,
-                    child: Text(paymentHistoryList[index]['price'],style: TextStyle(
+                    child: Text(paymentHistoryList[index]['price'],style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: green,
@@ -115,9 +117,9 @@ class PaymentHistory extends StatelessWidget {
           },
           itemCount: paymentHistoryList.length,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.all(0),
-          separatorBuilder: (context, index) => SizedBox(height: 15,),
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(0),
+          separatorBuilder: (context, index) => const SizedBox(height: 15,),
         ),
       ),
     );

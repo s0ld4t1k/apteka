@@ -68,12 +68,12 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ),
                         decoration:  InputDecoration(
                           hintText: '${locale[curLN]?['inputName']}',
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(193, 193, 193, 1)
                           ),
-                          contentPadding: EdgeInsets.all(0),
-                          border: OutlineInputBorder(
+                          contentPadding: const EdgeInsets.all(0),
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                           )
                         ),
@@ -148,12 +148,12 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         minLines: null,
                         expands: true,
                         decoration:  InputDecoration(
-                          contentPadding: EdgeInsets.all(0),
-                          border: OutlineInputBorder(
+                          contentPadding: const EdgeInsets.all(0),
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
                           hintText: '${locale[curLN]?['bellik']}',
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(193, 193, 193, 1),
                           )
@@ -175,7 +175,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                     if(_com.text=='')comErr=true;
                   });
                 }, 
-                child:  Text('${locale[curLN]?['send']}',style: TextStyle(
+                child:  Text('${locale[curLN]?['send']}',style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),
@@ -199,7 +199,7 @@ class _ErrMsg extends StatelessWidget {
           children: [
             SvgPicture.asset('assets/icons/qMark.svg'),
             const SizedBox(width: 8,),
-             Text('${locale[curLN]?['errorText']}',style: TextStyle(
+             Text('${locale[curLN]?['errorText']}',style: const TextStyle(
               color: red,
             ),),
           ],

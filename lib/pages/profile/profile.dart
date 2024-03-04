@@ -1,6 +1,6 @@
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/langController.dart';
+import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -43,7 +43,7 @@ final List habarlas=[
   ],
 ];
 class Profile extends StatelessWidget {
-  Profile({super.key});
+  const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class Profile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 27,),
-                 Text('${locale[curLN]?['myProfile']}',style: TextStyle(
+                 Text('${locale[curLN]?['myProfile']}',style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),),
                 Column(
@@ -131,7 +131,7 @@ class Profile extends StatelessWidget {
                   )),
                 ),
                 const SizedBox(height: 30,),
-                 Text('${locale[curLN]?['settings']}',style: TextStyle(
+                 Text('${locale[curLN]?['settings']}',style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),),
                 Column(
@@ -163,7 +163,7 @@ class Profile extends StatelessWidget {
                   )),
                 ),
                 const SizedBox(height: 30,),
-                 Text('${locale[curLN]?['contactUs']}',style: TextStyle(
+                 Text('${locale[curLN]?['contactUs']}',style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),),
                 Column(
@@ -200,7 +200,7 @@ class Profile extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/profile/singOut.svg'),
                         const SizedBox(width: 20,),
-                         Text('${locale[curLN]?['logOut']}',style: TextStyle(
+                         Text('${locale[curLN]?['logOut']}',style: const TextStyle(
                           color: red,
                         ),),
                         const Spacer(),

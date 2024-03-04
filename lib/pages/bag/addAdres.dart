@@ -1,7 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
-var _selectedAdres;
+int _selectedAdres=-1;
 List adressList=[
   ['Garaşsyzlyk şaýoly, 52 jaý, 107 otag',],
   ['Garaşsyzlyk şaýoly, 52 jaý, 107 otag',],
@@ -26,7 +28,7 @@ class _AddAdresState extends State<AddAdres> {
             children: [
               Row(
                 children: [
-                   Text('${locale[curLN]?['adres']}',style: TextStyle(
+                   Text('${locale[curLN]?['adres']}',style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -88,7 +90,7 @@ class _AddAdresState extends State<AddAdres> {
                     padding: MaterialStateProperty.all(const EdgeInsets.all(0))
                   ),
                   onPressed: ()=>Navigator.pushNamed(context, '/bag/salgym'), 
-                  child:  Text('+ ${locale[curLN]?['addNewAdres']}',style: TextStyle(
+                  child:  Text('+ ${locale[curLN]?['addNewAdres']}',style: const TextStyle(
                     color: orange,
                     fontWeight: FontWeight.w500,
                   ),),
@@ -105,7 +107,7 @@ class _AddAdresState extends State<AddAdres> {
                 onPressed: (){
                   Navigator.pop(context);
                 }, 
-                child:  Text('${locale[curLN]?['useThisAdres']}',style: TextStyle(
+                child:  Text('${locale[curLN]?['useThisAdres']}',style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),)

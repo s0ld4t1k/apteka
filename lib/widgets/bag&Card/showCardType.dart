@@ -1,7 +1,10 @@
+// ignore_for_file: file_names
+
+import 'package:apte/widgets/bag&Card/newCard.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
-var selectedCardType;
+import 'package:get/get.dart';
 List cardsType=[
   'Halk bank',
   'Senagat bank',
@@ -26,7 +29,7 @@ class _ShowCardTypeState extends State<ShowCardType> {
         children: [
           Row(
             children: [
-               Text('${locale[curLN]?['banks']}',style: TextStyle(
+               Text('${locale[curLN]?['banks']}',style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),),
@@ -43,11 +46,9 @@ class _ShowCardTypeState extends State<ShowCardType> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(0),
             itemBuilder:(context, index) {
-              return GestureDetector(
+              return InkWell(
                 onTap: () {
-                  setState(() {
-                    selectedCardType=index;
-                  });
+                  selectedCardType.value=index;
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 18),
@@ -57,16 +58,20 @@ class _ShowCardTypeState extends State<ShowCardType> {
                         fontSize: 16,
                       ),),
                       const Spacer(),
-                      Container(
-                        width: 20,
-                        height: 20,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: selectedCardType==index?green:const Color.fromRGBO(216, 216, 216, 1),
-                            width: selectedCardType==index?4:2,
-                          ),
-                        ),
+                      Obx(
+                         () {
+                          return Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: selectedCardType.value==index?green:const Color.fromRGBO(216, 216, 216, 1),
+                                width: selectedCardType.value==index?4:2,
+                              ),
+                            ),
+                          );
+                        }
                       )
                     ],
                   ),

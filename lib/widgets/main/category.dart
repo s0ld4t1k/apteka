@@ -16,14 +16,14 @@ class MainCategory extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(left: 25),
-          child: const Text('Nähili agyryňyz bar ?',style: TextStyle(
-            fontSize: 16,
+          child: const Text('Nähili agyryňyz bar?',style: TextStyle(
+            fontSize: 18,
             fontWeight: FontWeight.w500,
           ),),
         ),
         const SizedBox(height: 15,),
         SizedBox(
-          height: 80,
+          height: 115,
           child: ListView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.all(0),
@@ -31,12 +31,14 @@ class MainCategory extends StatelessWidget {
               const SizedBox(width: 20,),
               Row(
                 children: List.generate(_categoryList.length, (index) => SizedBox(
-                  width: 75,
+                  width: 90,
+                  
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 52,
-                        height: 52,
+                        width: 64,
+                        height: 64,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: _categoryList[index][2],
@@ -50,7 +52,7 @@ class MainCategory extends StatelessWidget {
                       ),
                       const SizedBox(height: 5,),
                       Text(_categoryList[index][1],style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400,
                       ),),
                     ],

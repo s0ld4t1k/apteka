@@ -111,24 +111,24 @@ class Sargyt extends StatelessWidget {
                     ),
                     indicatorColor: Colors.red,
                     indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: BoxDecoration(
+                    indicator: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                       color: green,
                     ),
                     dividerColor: Colors.transparent,
                     tabs: [
-                      Text('${locale[curLN]?['waitingOrders']}',style: TextStyle(
+                      Text('${locale[curLN]?['waitingOrders']}',style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),),
-                      Text('${locale[curLN]?['orders']}',style: TextStyle(
+                      Text('${locale[curLN]?['orders']}',style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),),
                     ]
                   ),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 const Expanded(
                   child: TabBarView(
                     children: [

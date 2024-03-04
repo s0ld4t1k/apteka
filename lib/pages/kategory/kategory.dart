@@ -1,8 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:apte/pages/main/mainPage.dart';
+import 'package:apte/pages/main/search.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 List kategoryList=[
   ['Sowuklama','assets/kategory/mask.png',],
   ['Derman serişdeleri','assets/kategory/derman.png',],
@@ -41,6 +45,10 @@ class Kategory extends StatelessWidget {
                   color: const Color.fromRGBO(249, 249, 249, 1),
                 ),
                 child: TextField(
+                  onTap: () {
+                    Get.to(()=>const Searck());
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(0),
                     border: const OutlineInputBorder(
@@ -67,7 +75,7 @@ class Kategory extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate:const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 111,
-                  mainAxisExtent:  135,
+                  mainAxisExtent:  145,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 20,
                 ),
@@ -78,7 +86,7 @@ class Kategory extends StatelessWidget {
                       arguments: index,
                     ),
                     child: SizedBox(
-                      height: 135,
+                      height: 145,
                       child: Stack(
                         children: [
                           Positioned(
@@ -87,7 +95,7 @@ class Kategory extends StatelessWidget {
                             right: 0,
                             child: Container(
                               width: 111,
-                              height: 119,
+                              height: 125,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(250, 250, 250, 1),
                                 borderRadius: BorderRadius.circular(13),
@@ -98,12 +106,18 @@ class Kategory extends StatelessWidget {
                             left: 10,
                             right: 10,
                             bottom: 22,
-                            child: Text(kategoryList[index][0],
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),),
+                            
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(kategoryList[index][0],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                ),),
+                              ],
+                            ),
                           ),
                           Positioned(
                             top: 0,

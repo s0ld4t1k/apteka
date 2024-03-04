@@ -5,7 +5,6 @@ import 'package:apte/widgets/profile/sargytInfo.dart';
 import 'package:apte/widgets/statusCon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 
 class Sargytlarym extends StatefulWidget {
   const Sargytlarym({super.key});
@@ -20,12 +19,12 @@ class _SargytlarymState extends State<Sargytlarym> {
     return SingleChildScrollView(
       child: Column(
         children: List.generate(garasylyanlar.length, (index){
-          if(garasylyanlar[index]['status']!='Garaşylýar')
-          return GestureDetector(
-            onTap: ()=>Get.to(()=>SargytInfo()),
+          if(garasylyanlar[index]['status']!='Garaşylýar') {
+            return GestureDetector(
+            onTap: ()=>Get.to(()=>const SargytInfo()),
             child: Container(
-              margin: EdgeInsets.only(bottom: 15),
-              padding: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: sargytBorder),
@@ -46,45 +45,45 @@ class _SargytlarymState extends State<Sargytlarym> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Row(
                     children: [
                       Expanded(
                         child: Text('${locale[curLN]?['orderID']}:'),
                       ),
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       Expanded(
-                        child: Text(garasylyanlar[index]['sargytBelgisi'],style: TextStyle(
+                        child: Text(garasylyanlar[index]['sargytBelgisi'],style: const TextStyle(
                           fontWeight: FontWeight.w500,
                         ),),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Row(
                     children: [
                       Expanded(
                         child: Text('${locale[curLN]?['date']}:'),
                       ),
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       Expanded(
-                        child: Text(garasylyanlar[index]['senesi'],style: TextStyle(
+                        child: Text(garasylyanlar[index]['senesi'],style: const TextStyle(
                           fontWeight: FontWeight.w500,
                         ),),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Row(
                     children: [
                       Expanded(
-                        child: Text('${locale[curLN]?['res']}:',style: TextStyle(
+                        child: Text('${locale[curLN]?['res']}:',style: const TextStyle(
                           fontWeight: FontWeight.w700,
                         ),),
                       ),
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       Expanded(
-                        child: Text(garasylyanlar[index]['jemi'],style: TextStyle(
+                        child: Text(garasylyanlar[index]['jemi'],style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           color: green,
                         ),),
@@ -95,7 +94,9 @@ class _SargytlarymState extends State<Sargytlarym> {
               ),
             ),
           );
-          else return Container();
+          } else {
+            return Container();
+          }
         }),
       ),
     );

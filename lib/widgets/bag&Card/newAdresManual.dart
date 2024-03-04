@@ -1,23 +1,28 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 var _selectedAdresType=0;
+TextEditingController _adr=TextEditingController();
 class NewAdresManual extends StatefulWidget {
   const NewAdresManual({super.key});
 
   @override
   State<NewAdresManual> createState() => _NewAdresManualState();
 }
-TextEditingController _adr=TextEditingController();
 class _NewAdresManualState extends State<NewAdresManual> {
   @override
   Widget build(BuildContext context) {
-    _selectedAdresType=0;
-    _adr.text='';
-    dynamic list=ModalRoute.of(context)?.settings.arguments;
-    if(list[0]!='')_selectedAdresType=list[0];
-    if(list[1]!='')_adr.text=list[1];
+   dynamic list=ModalRoute.of(context)?.settings.arguments;
+    _selectedAdresType=list[0]??0;
+    _adr.text=list[1]??'';
+    adresTypeList=[
+      '${locale[curLN]?['home']}',
+      '${locale[curLN]?['work']}',
+      '${locale[curLN]?['other']}',
+    ];
     return GestureDetector(
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -75,34 +80,30 @@ class _NewAdresManualState extends State<NewAdresManual> {
                         const SizedBox(height: 22,),
                          Text('${locale[curLN]?['salgynynGornushi']}'),
                         const SizedBox(height: 20,),
-                        Row(
-                          children: [
-                            Wrap(
-                              spacing: 11,
-                              children: List.generate(adresTypeList.length, (index){
-                                return OutlinedButton(
-                                  style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
-                                    side: MaterialStateProperty.all(BorderSide(
-                                      color: _selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
-                                    )),
-                                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ))
-                                  ),
-                                  onPressed: (){
-                                    setState(() {
-                                      _selectedAdresType=index;
-                                    });
-                                  }, 
-                                  child: Text(adresTypeList[index],style: TextStyle(
-                                    color: _selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
-                                    fontWeight: FontWeight.w500,
-                                  ),)
-                                );
-                              }),
-                            ),
-                          ],
+                        Wrap(
+                          spacing: 11,
+                          children: List.generate(adresTypeList.length, (index){
+                            return OutlinedButton(
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
+                                side: MaterialStateProperty.all(BorderSide(
+                                  color: _selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
+                                )),
+                                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ))
+                              ),
+                              onPressed: (){
+                                setState(() {
+                                  _selectedAdresType=index;
+                                });
+                              }, 
+                              child: Text(adresTypeList[index],style: TextStyle(
+                                color: _selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
+                                fontWeight: FontWeight.w500,
+                              ),)
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -114,7 +115,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: (){}, 
-                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),

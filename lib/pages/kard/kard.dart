@@ -35,10 +35,15 @@ class _KardState extends State<Kard> {
         actions: [
           IconButton(
             onPressed: (){
-              Get.to(()=>PaymentHistory());
+              Get.to(()=>const PaymentHistory());
             }, 
-            icon: SvgPicture.asset('assets/icons/wallet.svg'),
-          )
+            icon: SizedBox(
+              width: 23,
+              height: 23,
+              child: SvgPicture.asset('assets/icons/wallet.svg')
+            ),
+          ),
+          const SizedBox(width: 10,),
         ],
       ),
       body: SingleChildScrollView(
@@ -49,12 +54,12 @@ class _KardState extends State<Kard> {
             children: [
               Image.asset('assets/images/noCard.png'),
               const SizedBox(height: 18,),
-              Text('${locale[curLN]?['noneBankCardText1']}',style: TextStyle(
+              Text('${locale[curLN]?['noneBankCardText1']}',style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),),
               const SizedBox(height: 17,),
-              Text('${locale[curLN]?['noneBankCardText2']}',style: TextStyle(
+              Text('${locale[curLN]?['noneBankCardText2']}',style: const TextStyle(
                 color: Color.fromRGBO(131, 135, 140, 1),
               ),textAlign: TextAlign.center,),
               const SizedBox(height: 33,),
@@ -70,7 +75,7 @@ class _KardState extends State<Kard> {
                 onPressed: (){
                   Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]);
                 }, 
-                child: Text('${locale[curLN]?['addCard']}',style: TextStyle(
+                child: Text('${locale[curLN]?['addCard']}',style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: orange,
@@ -82,7 +87,7 @@ class _KardState extends State<Kard> {
           padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
           child: ListView.separated(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(0),
             itemBuilder:(context, index) {
               return GestureDetector(
@@ -90,7 +95,7 @@ class _KardState extends State<Kard> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 12),
                   width: double.infinity,
-                  height: 70,
+                  height: 85,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1))
@@ -108,11 +113,12 @@ class _KardState extends State<Kard> {
                                 children: [
                                   Text(cardsType[cards[index][1]],style: const TextStyle(
                                     fontWeight: FontWeight.w700,
+                                    fontSize: 16
                                   ),),
                                   const SizedBox(height: 6,),
                                   Text(cards[index][0],style: const TextStyle(
                                     color: Color.fromRGBO(131, 131, 131, 1),
-                                    fontSize: 12,
+                                    fontSize: 14,
                                   ),)
                                 ],
                               ),

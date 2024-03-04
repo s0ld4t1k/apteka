@@ -19,16 +19,14 @@ import 'package:apte/pages/leading/leading.dart';
 import 'package:apte/pages/main/harmfulInfo.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
-import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/pages/main/search.dart';
 import 'package:apte/pages/main/searchPage.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/langController.dart';
+import 'package:apte/controller/langController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 
 void main() {
   // Future.delayed(const Duration(seconds: 5));
@@ -52,8 +50,10 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
+      builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)), child: child!),
       theme: ThemeData(
-        colorScheme: ColorScheme.light(
+        
+        colorScheme: const ColorScheme.light(
           primary: green,
         ),
         brightness: Brightness.light,
@@ -76,12 +76,14 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         appBarTheme: const AppBarTheme(
+          
           centerTitle: true,
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarBrightness: Brightness.light
           ),
           titleTextStyle: TextStyle(
             fontSize: 18,
+            fontFamily: "DMSans",
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
@@ -104,13 +106,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Apteka',
       routes: {
-        '/':(context) => MainPage(),
+        '/':(context) => const MainPage(),
         '/leading':(context) => const Leading(),
         '/mainPage':(context) => const MainPageWidget(),
         '/mainPage/harmfulInfo':(context) => const HarmfulInfo(),
         '/mainPage/search':(context) => const Searck(),
         '/mainPage/searchPage':(context) => const SearchPage(),
-        '/mainPage/productPage':(context) => const ProductPage(),
         '/kategory':(context) => const Kategory(),
         '/kategory/subKategory':(context) => const SubKategory(),
         '/kategory/subKategoryPage':(context) => const SubKategoryPage(),
@@ -120,8 +121,8 @@ class _MyAppState extends State<MyApp> {
         '/bag/salgymManual':(context) => const NewAdresManual(),
         '/kard':(context) => const Kard(),
         '/kard/newCard':(context) => const NewCard(),
-        '/profile':(context) => Profile(),
-        '/profile/user':(context) => User(),
+        '/profile':(context) => const Profile(),
+        '/profile/user':(context) => const User(),
         '/profile/user/changePW':(context) => const ChangePW(),
         '/profile/lang':(context) => const Language(),
         '/profile/habarlasmak':(context) => const Habarlasmak(),

@@ -1,5 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/main/horizontalProducts.dart';
+import 'package:apte/widgets/main/products.dart';
 import 'package:flutter/material.dart';
 
 class VerticalProducts extends StatefulWidget {
@@ -16,21 +18,23 @@ class _VerticalProductsState extends State<VerticalProducts> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 152,
-        mainAxisExtent: 168,
+        maxCrossAxisExtent: 162,
+        mainAxisExtent: 220,
         mainAxisSpacing: 18,
         crossAxisSpacing: 21,
       ),
-      children: List.generate(productList.length, (index) => GestureDetector(
-        onTap: () => Navigator.pushNamed(context, '/mainPage/productPage'),
+      children: List.generate(products.length, (index) => GestureDetector(
+        onTap: ()=>Navigator.of(context).pushNamed('/mainPage/productPage'),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12),
+          width: 162,
+          height: 220,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                blurRadius: 5,
+                blurRadius: 3,
                 offset: const Offset(0, 1),
                 color: Colors.black.withOpacity(0.05),
               )
@@ -43,19 +47,19 @@ class _VerticalProductsState extends State<VerticalProducts> {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.all(12),
-                      child: Center(child: Image.asset(productList[index][0],fit: BoxFit.fill,)),
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(16),
+                      child: Image.asset(products[index]['img'][0]),
                     ),
                   ),
-                  Text(productList[index][1],style: const TextStyle(
-                    fontSize: 12,
+                  Text(products[index]['name'],style: const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,),
-                  const SizedBox(height: 6,),
-                  Text(productList[index][2],style: const TextStyle(
-                    fontSize: 12,
+                  maxLines: 2,overflow: TextOverflow.ellipsis,),
+                  const SizedBox(height: 18,),
+                  Text('${products[index]['price']} TMT',style: const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: green,
                   ),),
@@ -63,29 +67,29 @@ class _VerticalProductsState extends State<VerticalProducts> {
                 ],
               ),
               Positioned(
-                right: 3,
-                bottom: 11,
+                right: 1,
+                bottom: 10,
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      productList[index][3]=!productList[index][3];
+                      products[index]['add']=!products[index]['add'];
                     });
                   },
                   child: Container(
-                    width: 26,
-                    height: 26,
+                    width: 32,
+                    height: 32,
                     decoration: BoxDecoration(
                       color: orange,
-                      borderRadius: BorderRadius.circular(26),
+                      borderRadius: BorderRadius.circular(32),
                     ),
                     child: Icon(
-                      (productList[index][3])?
-                      Icons.done:Icons.add,color: Colors.white,
+                      (products[index]['add'])?Icons.done:Icons.add,
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

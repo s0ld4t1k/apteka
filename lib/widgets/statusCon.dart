@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,7 @@ class StatusCon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 4,horizontal: 13),
+      padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 13),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(27),
         color: (text=='Kabul edildi')?green.withOpacity(0.1):

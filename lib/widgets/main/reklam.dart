@@ -3,7 +3,7 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 
 class Reklam extends StatelessWidget {
-  final photo,text,text2,price;
+  final String photo,text,text2,price;
 
   const Reklam({
     super.key, 
@@ -60,16 +60,17 @@ class Reklam extends StatelessWidget {
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
                   minimumSize: MaterialStateProperty.all(const Size(81, 23)),
-                  padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 12,vertical: 5)),
                   backgroundColor: MaterialStateProperty.all(orange),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3),
-                  ))
+                  )),
+                  textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 10))
                 ),
                 onPressed: (){
                   
                 }, 
-                child: Text('${locale[curLN]?["addCart"]}',style: TextStyle(
+                child: Text('${locale[curLN]?["addCart"]}',style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
                 ),),

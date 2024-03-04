@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +7,7 @@ List gorkezmeList=[];
 
 // ignore: must_be_immutable
 class InfoRow extends StatefulWidget {
-  final index;
+  int index;
   var _up=true;
   InfoRow({super.key,required this.index});
   @override
@@ -35,12 +37,12 @@ class _InfoRowState extends State<InfoRow> {
               });
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 15),
+              padding: const EdgeInsets.symmetric(vertical: 16),
               child: Row(
                 children: [
                   Text(gorkezmeList[widget.index][0],style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
                   ),),
                   const Spacer(),
                   Center(

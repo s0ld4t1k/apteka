@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, deprecated_member_use
+
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';

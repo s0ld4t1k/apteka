@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, deprecated_member_use
+
 import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
@@ -74,7 +76,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                       children: [
                         SvgPicture.asset('assets/icons/tertiple.svg'),
                         const SizedBox(width: 7,),
-                        Text('${locale[curLN]?["sort"]}',style: TextStyle(
+                        Text('${locale[curLN]?["sort"]}',style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
@@ -115,7 +117,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                       children: [
                         SvgPicture.asset('assets/icons/filter.svg'),
                         const SizedBox(width: 7,),
-                        Text('${locale[curLN]?["filtr"]}',style: TextStyle(
+                        Text('${locale[curLN]?["filtr"]}',style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,

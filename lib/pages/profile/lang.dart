@@ -1,6 +1,6 @@
 import 'package:apte/pages/leading/lang.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/widgets/langController.dart';
+import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

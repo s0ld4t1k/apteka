@@ -1,3 +1,6 @@
+// ignore_for_file: file_names, deprecated_member_use
+
+import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/filtrBottomSheet.dart';
@@ -5,6 +8,7 @@ import 'package:apte/widgets/main/tertipleBottomSheet.dart';
 import 'package:apte/widgets/main/verticalProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -12,80 +16,79 @@ class SearchPage extends StatefulWidget {
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
-
+String searchText='';
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _tc=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var searchText=ModalRoute.of(context)?.settings.arguments as String;
-    _tc.text=searchText;
+    if(searchText!='') {
+      _tc.text=searchText;
+    }
+    if(barRes.value!='' && barRes.value!='-1')_tc.text=barRes.value;
     return GestureDetector(
       onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
-        backgroundColor: bc,
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          toolbarHeight: 70,
           automaticallyImplyLeading: false,
-          titleSpacing: 25,
-          title: Container(
-            margin: const EdgeInsets.only(bottom: 11),
-            child: Row(
-              children: [
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  constraints: const BoxConstraints(
-                    minHeight: 24,
-                    minWidth: 24,
-                    maxHeight: 24,
-                    maxWidth: 24,
+          // titleSpacing: 25,
+          leading: IconButton(
+            padding: const EdgeInsets.all(0),
+            constraints: const BoxConstraints(
+              minHeight: 24,
+              minWidth: 24,
+              maxHeight: 24,
+              maxWidth: 24,
+            ),
+            onPressed: ()=>Get.back(), 
+            icon: const Icon(Icons.chevron_left_rounded),
+          ),
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  width: 44,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(249, 249, 249, 1),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  onPressed: (){
-                    Navigator.pop(context);
-                  }, 
-                  icon: const Icon(Icons.chevron_left_rounded),
-                ),
-                const SizedBox(width: 18,),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    width: 44,
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(249, 249, 249, 1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _tc,
-                            style: const TextStyle(
-                              color: Color.fromRGBO(131, 132, 139, 1),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _tc,
+                          style: const TextStyle(
+                            color: Color.fromRGBO(131, 132, 139, 1),
+                          ),
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.all(0),
+                            prefixIconConstraints: const BoxConstraints(
+                              maxHeight: 20,
+                              maxWidth: 20,
+                              minHeight: 20,
+                              minWidth: 20,
                             ),
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(0),
-                              prefixIconConstraints: const BoxConstraints(
-                                maxHeight: 20,
-                                maxWidth: 20,
-                                minHeight: 20,
-                                minWidth: 20,
-                              ),
-                              prefixText: '   ',
-                              prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
-                              border: InputBorder.none,
-                              hintText: '${locale[curLN]?["searchHint"]}',
-                              hintStyle: const TextStyle(
-                                fontSize: 14,
-                                color: textGrey3,
-                                fontWeight: FontWeight.w500,
-                              )
-                            ),
+                            prefixText: '   ',
+                            prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
+                            border: InputBorder.none,
+                            hintText: '${locale[curLN]?["searchHint"]}',
+                            hintStyle: const TextStyle(
+                              fontSize: 14,
+                              color: textGrey3,
+                              fontWeight: FontWeight.w500,
+                            )
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              const SizedBox(width: 25,),
+            ],
           ),
         ),
         body: SingleChildScrollView(
@@ -124,7 +127,7 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           SvgPicture.asset('assets/icons/tertiple.svg'),
                           const SizedBox(width: 7,),
-                          Text('${locale[curLN]?["sort"]}',style: TextStyle(
+                          Text('${locale[curLN]?["sort"]}',style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -166,7 +169,7 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           SvgPicture.asset('assets/icons/filter.svg'),
                           const SizedBox(width: 7,),
-                          Text('${locale[curLN]?["filtr"]}',style: TextStyle(
+                          Text('${locale[curLN]?["filtr"]}',style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,

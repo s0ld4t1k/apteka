@@ -112,7 +112,7 @@ class User extends StatelessWidget {
                               alignment: Alignment.centerLeft  
                             ),
                             onPressed: ()=>Navigator.pushNamed(context, '/profile/user/changePW'), 
-                            child:  Text('${locale[curLN]?['toChangePassword']}',style: TextStyle(
+                            child:  Text('${locale[curLN]?['toChangePassword']}',style: const TextStyle(
                               fontSize: 16,
                               color: orange,
                             ),)
@@ -128,7 +128,7 @@ class User extends StatelessWidget {
                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                 ),
                 onPressed: ()=>Navigator.pop(context), 
-                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),),

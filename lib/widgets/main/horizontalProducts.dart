@@ -1,17 +1,13 @@
+// ignore_for_file: file_names
+
+import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
+import 'package:apte/widgets/main/products.dart';
 import 'package:flutter/material.dart';
-List productList=[
-  ['assets/images/multiVitamin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-  ['assets/images/melotanin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-  ['assets/images/prostamol.png','Простамол Уно капсулы 320 мг 30 шт','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-  ['assets/images/gel.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-  ['assets/images/spray.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-  ['assets/images/lorangin.png','Мультивитамины для детей 250ml','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-  ['assets/images/vitaminC.png','ВитаМишки BIO+ пребиотик жеват пастилки №60','12.00 TMT',false,'Фармакор продакшн ООО',1,],
-];
+import 'package:get/get.dart';
 class HorizontalProducts extends StatefulWidget {
-  final text;
+  final String text;
   const HorizontalProducts({super.key,required this.text});
 
   @override
@@ -24,19 +20,21 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.only(left: 25,right: 15,top: 10),
+          padding: const EdgeInsets.only(left: 25,right: 15,),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(widget.text,style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),),
-              const Spacer(),
+              Expanded(
+                child: Text(widget.text,style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),),
+              ),
               TextButton(
                 onPressed: (){}, 
-                child: Text('${locale[curLN]?["seeAll"]}',style: TextStyle(
+                child: Text('${locale[curLN]?["seeAll"]}',style: const TextStyle(
                   color: green,
-                  fontSize: 12,
+                  fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),)
               )
@@ -45,22 +43,22 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
         ),
         // SizedBox(height: 15,),
         SizedBox(
-          height: 170,
+          height: 230,
           child: ListView(
             padding: const EdgeInsets.all(0),
             scrollDirection: Axis.horizontal,
             children: [
               const SizedBox(width: 25,),
               Row(
-                children: List.generate(productList.length, (index) {
+                children: List.generate(products.length, (index) {
                   // var _added=false;
                   return GestureDetector(
-                  onTap: ()=>Navigator.of(context).pushNamed('/mainPage/productPage'),
+                  onTap: ()=>Get.to(()=>ProductPage(productId: index.obs)),
                   child: Container(
-                    margin: const EdgeInsets.only(right: 15),
+                    margin: const EdgeInsets.only(right: 18),
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    width: 142,
-                    height: 164,
+                    width: 162,
+                    height: 220,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.white,
@@ -80,18 +78,18 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                             Expanded(
                               child: Container(
                                 alignment: Alignment.center,
-                                padding: const EdgeInsets.all(12),
-                                child: Image.asset(productList[index][0]),
+                                padding: const EdgeInsets.all(16),
+                                child: Image.asset(products[index]['img'][0]),
                               ),
                             ),
-                            Text(productList[index][1],style: const TextStyle(
-                              fontSize: 11,
+                            Text(products[index]['name'],style: const TextStyle(
+                              fontSize: 14,
                               fontWeight: FontWeight.w500,
                             ),
                             maxLines: 2,overflow: TextOverflow.ellipsis,),
-                            const SizedBox(height: 10,),
-                            Text(productList[index][2],style: const TextStyle(
-                              fontSize: 12,
+                            const SizedBox(height: 18,),
+                            Text('${products[index]['price']} TMT',style: const TextStyle(
+                              fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: green,
                             ),),
@@ -104,18 +102,18 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                productList[index][3]=!productList[index][3];
+                                products[index]['add']=!products[index]['add'];
                               });
                             },
                             child: Container(
-                              width: 26,
-                              height: 26,
+                              width: 32,
+                              height: 32,
                               decoration: BoxDecoration(
                                 color: orange,
-                                borderRadius: BorderRadius.circular(26),
+                                borderRadius: BorderRadius.circular(32),
                               ),
                               child: Icon(
-                                (productList[index][3])?Icons.done:Icons.add,
+                                (products[index]['add'])?Icons.done:Icons.add,
                                 color: Colors.white,
                                 size: 20,
                               ),

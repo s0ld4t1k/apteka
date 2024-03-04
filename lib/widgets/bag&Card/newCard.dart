@@ -1,8 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/bag&Card/showCardType.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+RxInt selectedCardType=(-1).obs;
 List month=[
   'Ýanwar',
   'Fewral',
@@ -74,8 +78,15 @@ class _NewCardState extends State<NewCard> {
                         border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                       ),
                       child: TextField(
+                        onChanged: (value){
+                          String s=belgisi.text;
+                          if(s.length<16+3 && s.length>3 && s[s.length-1]!=' ' && s[s.length-2]!=' ' && s[s.length-3]!=' ' && s[s.length-4]!=' ') {
+                            s+=' ';
+                          }
+                          belgisi.text=s;
+                        },
                         controller: belgisi,
-                        maxLength: 16,
+                        maxLength: 16+3,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -131,13 +142,13 @@ class _NewCardState extends State<NewCard> {
                             child:  TextField(
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                               hintText: '${locale[curLN]?['year']}',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(193, 193, 193, 1),
                               ),
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none
                               )
                             ),
@@ -189,21 +200,21 @@ class _NewCardState extends State<NewCard> {
                       child: TextField(
                         controller: eyesi,
                         decoration:  InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                           counterText: '',
                           hintText: '${locale[curLN]?['cardHolder']}',
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(193, 193, 193, 1),
                           ),
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none
                           )
                         ),
                       ),
                     ),
                     const SizedBox(height: 16,),
-                     Text('${locale[curLN]?['cardBankType']}'),
+                    Text('${locale[curLN]?['cardBankType']}'),
                     const SizedBox(height: 10,),
                     GestureDetector(
                       onTap: ()=>showModalBottomSheet(
@@ -227,18 +238,23 @@ class _NewCardState extends State<NewCard> {
                         ),
                         child: Row(
                           children: [
-                            Text(
-                              selectedCardType!=null?cardsType[selectedCardType]:'${locale[curLN]?['chooseBank']}',
-                              style: TextStyle(
-                              fontSize: 16,
-                              color: selectedCardType!=null?Colors.black:const Color.fromRGBO(193, 193, 193, 1)
-                            ),),
-                            const Spacer(),
+                            Expanded(
+                              child: Obx(
+                                () {
+                                  return Text(
+                                    selectedCardType.value>=0?cardsType[selectedCardType.value]:'${locale[curLN]?['chooseBank']}',
+                                    style: TextStyle(
+                                    fontSize: 16,
+                                    color: selectedCardType>=0?Colors.black:const Color.fromRGBO(193, 193, 193, 1)
+                                  ),);
+                                }
+                              ),
+                            ),
                             const Icon(CupertinoIcons.chevron_down,size: 16,),
                           ],
                         )
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -250,7 +266,7 @@ class _NewCardState extends State<NewCard> {
                   Navigator.pop(context);
                   cards.add([belgisi.text,selectedCardType,cvc.text,eyesi.text]);
                 }, 
-                child:  Text('${locale[curLN]?['save']}',style: TextStyle(
+                child:  Text('${locale[curLN]?['save']}',style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),)
