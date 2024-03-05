@@ -1,8 +1,11 @@
 // ignore_for_file: file_names
 
+import 'package:apte/pages/bag/bag.dart';
+import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/main/products.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class VerticalProducts extends StatefulWidget {
   const VerticalProducts({super.key});
@@ -24,7 +27,7 @@ class _VerticalProductsState extends State<VerticalProducts> {
         crossAxisSpacing: 21,
       ),
       children: List.generate(products.length, (index) => GestureDetector(
-        onTap: ()=>Navigator.of(context).pushNamed('/mainPage/productPage'),
+        onTap: ()=>Get.to(()=>ProductPage(productId: 0.obs)),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           width: 162,
@@ -74,6 +77,7 @@ class _VerticalProductsState extends State<VerticalProducts> {
                     setState(() {
                       products[index]['add']=!products[index]['add'];
                     });
+                    products[index]['add']?addToCart():null;
                   },
                   child: Container(
                     width: 32,

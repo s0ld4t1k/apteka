@@ -23,12 +23,17 @@ import 'package:apte/pages/main/search.dart';
 import 'package:apte/pages/main/searchPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-
-void main() {
+var langg='';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  langg=await const FlutterSecureStorage().read(key: 'lang')??'';
+  if(langg!='')curLN=langg;
   // Future.delayed(const Duration(seconds: 5));
   FlutterNativeSplash.remove();
   runApp(const MyApp());
@@ -130,7 +135,7 @@ class _MyAppState extends State<MyApp> {
         '/profile/adres':(context) => const Adres(),
         '/profile/sargyt':(context) => const Sargyt(),
       },
-      initialRoute: '/',
+      initialRoute: (langg!='')?'/':'/leading',
     );
   }
 }

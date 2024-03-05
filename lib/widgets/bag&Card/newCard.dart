@@ -21,6 +21,7 @@ List month=[
   'Noýabr',
   'Dekabr',
 ];
+List selectedCardList=['',-1,'',''];
 class NewCard extends StatefulWidget {
   const NewCard({super.key});
 
@@ -34,11 +35,10 @@ class _NewCardState extends State<NewCard> {
   TextEditingController eyesi=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    List list =ModalRoute.of(context)?.settings.arguments as List;
-    if(list[1]!='')selectedCardType=list[1];
-    if(list[0]!='')belgisi.text=list[0];
-    if(list[2]!='')cvc.text=list[2];
-    if(list[3]!='')eyesi.text=list[3];
+    if(selectedCardList[1]!='')selectedCardType.value=selectedCardList[1];
+    if(selectedCardList[0]!='')belgisi.text=selectedCardList[0];
+    if(selectedCardList[2]!='')cvc.text=selectedCardList[2];
+    if(selectedCardList[3]!='')eyesi.text=selectedCardList[3];
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(

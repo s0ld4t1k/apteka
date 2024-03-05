@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -101,9 +102,11 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                           bottom: 10,
                           child: InkWell(
                             onTap: () {
+                              
                               setState(() {
                                 products[index]['add']=!products[index]['add'];
                               });
+                              products[index]['add']?addToCart():null;
                             },
                             child: Container(
                               width: 32,

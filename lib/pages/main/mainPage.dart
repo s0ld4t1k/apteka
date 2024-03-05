@@ -22,7 +22,7 @@ List _tabs=[
   const Kategory(),
   const Bag(),
   const Kard(),
-   const Profile(),
+  const Profile(),
 ];
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
       body: _tabs[selectedTab],
       bottomNavigationBar: BottomAppBar(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(bottomAppBarList.length, (index) => 
           (index==2)?
           GestureDetector(

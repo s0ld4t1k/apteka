@@ -6,12 +6,12 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-TextEditingController name=TextEditingController();
-TextEditingController tel=TextEditingController();
-TextEditingController com=TextEditingController();
-RxBool nameErr=false.obs,telErr=false.obs,comErr=false.obs;
-class Nagt extends StatelessWidget {
-  Nagt({super.key});
+TextEditingController nameTer=TextEditingController();
+TextEditingController telTer=TextEditingController();
+TextEditingController comTer=TextEditingController();
+RxBool nameErrTer=false.obs,telErrTer=false.obs,comErrTer=false.obs;
+class Terminal extends StatelessWidget {
+  const Terminal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class Nagt extends StatelessWidget {
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
                   child:  TextField(
-                    onChanged: (value)=>nameErr.value=false,
-                    controller: name,
+                    onChanged: (value)=>nameErrTer.value=false,
+                    controller: nameTer,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(0),
                       hintText: '${locale[curLN]?['dolyAdynyz']}',
@@ -50,7 +50,7 @@ class Nagt extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => nameErr.value?ErrMsg():Container()),
+                Obx(() => nameErrTer.value?ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['tel']}'),
                 const SizedBox(height: 10,),
@@ -69,8 +69,8 @@ class Nagt extends StatelessWidget {
                       ),),
                       Expanded(
                         child: TextField(
-                          onChanged: (value)=>telErr.value=false,
-                          controller: tel,
+                          onChanged: (value)=>telErrTer.value=false,
+                          controller: telTer,
                           maxLength: 8,
                           style: TextStyle(
                             fontSize: 16,
@@ -89,7 +89,7 @@ class Nagt extends StatelessWidget {
                     ],
                   ),
                 ),
-                Obx(() => telErr.value?ErrMsg():Container()),
+                Obx(() => telErrTer.value?ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['adres']}'),
                 const SizedBox(height: 10,),
@@ -138,8 +138,8 @@ class Nagt extends StatelessWidget {
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
                   child:  TextField(
-                    onChanged: (value)=>comErr.value=false,
-                    controller: com,
+                    onChanged: (value)=>comErrTer.value=false,
+                    controller: comTer,
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
                     maxLines: null,
@@ -157,7 +157,7 @@ class Nagt extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => comErr.value?ErrMsg():Container()),
+                Obx(() => comErrTer.value?ErrMsg():Container()),
                 const SizedBox(height: 30,),
               ],
             ),
@@ -200,10 +200,10 @@ class Nagt extends StatelessWidget {
                         ))  
                       ),
                       onPressed: (){
-                        if(name.text=='' || tel.text=='' || com.text==''){
-                          if(name.text=='')nameErr.value=true;
-                          if(tel.text=='')telErr.value=true;
-                          if(com.text=='')comErr.value=true;
+                        if(nameTer.text=='' || telTer.text=='' || comTer.text==''){
+                          if(nameTer.text=='')nameErrTer.value=true;
+                          if(telTer.text=='')telErrTer.value=true;
+                          if(comTer.text=='')comErrTer.value=true;
                         }
                         else{
                           FocusScope.of(context).requestFocus(FocusNode());

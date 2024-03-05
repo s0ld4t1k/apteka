@@ -1,6 +1,8 @@
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 var _selectebLang=0;
@@ -25,12 +27,12 @@ class _LangState extends State<Lang> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Programmanyň dilini saýlaň.',style: TextStyle(
+          Text(locale[curLN]!['langText1']!,style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),),
           const SizedBox(height: 12,),
-          const Text('Programmanyň dilini islendik wagt sazlamalarda üýtgedip bilersiňiz.',style: TextStyle(
+          Text(locale[curLN]!['langText2']!,style: const TextStyle(
             fontSize: 13,
             color: textGrey2,
           ),),
@@ -38,12 +40,13 @@ class _LangState extends State<Lang> {
           Column(
             children: List.generate(langList.length, (index) => GestureDetector(
               onTap: () {
-                setState(() {
+                setState((){
                   _selectebLang=index;
                 });
                 if(_selectebLang==0)lc.change('tm');
                 if(_selectebLang==1)lc.change('ru');
                 if(_selectebLang==2)lc.change('en');
+                const FlutterSecureStorage().write(key: 'lang', value: curLN);
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

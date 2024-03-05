@@ -64,10 +64,10 @@ class ShowPromokod extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Obx(
               () {
-                return Text(errorPromokod.value,style: TextStyle(
+                return Text(errorPromokod.value,style: const TextStyle(
                   color: red,
                 ),);
               }

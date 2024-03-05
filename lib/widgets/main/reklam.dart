@@ -1,3 +1,4 @@
+import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
@@ -67,9 +68,7 @@ class Reklam extends StatelessWidget {
                   )),
                   textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 10))
                 ),
-                onPressed: (){
-                  
-                }, 
+                onPressed: addToCart, 
                 child: Text('${locale[curLN]?["addCart"]}',style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,

@@ -2,10 +2,17 @@
 
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/addCard.dart';
+import 'package:apte/pages/bag/sargytEtmek.dart';
+import 'package:apte/pages/bag/sargyt_page.dart';
+import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+TextEditingController nameBank=TextEditingController();
+TextEditingController telBank=TextEditingController();
+TextEditingController comBank=TextEditingController();
+RxBool nameErrBank=false.obs,telErrBank=false.obs,comErrBank=false.obs;
 class BankKarty extends StatefulWidget {
   const BankKarty({super.key});
 
@@ -37,6 +44,8 @@ class _BankKartyState extends State<BankKarty> {
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
                   child:  TextField(
+                    controller: nameBank,
+                    onChanged: (value) => nameErrBank.value=false,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(0),
                       hintText: '${locale[curLN]?['dolyAdynyz']}',
@@ -50,6 +59,7 @@ class _BankKartyState extends State<BankKarty> {
                     ),
                   ),
                 ),
+                Obx(() => nameErrBank.value?ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['tel']}'),
                 const SizedBox(height: 10,),
@@ -61,13 +71,15 @@ class _BankKartyState extends State<BankKarty> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text('+993 ',style: TextStyle(
                         fontSize: 16,
                       ),),
                       Expanded(
                         child: TextField(
+                          controller: telBank,
+                          onChanged: (value) => telErrBank.value=false,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(0),
                             border: OutlineInputBorder(
@@ -79,6 +91,7 @@ class _BankKartyState extends State<BankKarty> {
                     ],
                   ),
                 ),
+                Obx(() => telErrBank.value?ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['adres']}'),
                 const SizedBox(height: 10,),
@@ -162,6 +175,8 @@ class _BankKartyState extends State<BankKarty> {
                     border: Border.all(color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
                   child:  TextField(
+                    controller: comBank,
+                    onChanged: (value) => comErrBank.value=false,
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
                     maxLines: null,
@@ -179,10 +194,118 @@ class _BankKartyState extends State<BankKarty> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 140,),
+                Obx(() => comErrBank.value?ErrMsg():Container()),
+                const SizedBox(height: 30,),
+                
               ],
             ),
           ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 5,
+                  color: Colors.black.withOpacity(0.05),
+                ),
+              ]
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                            Text('${locale[curLN]?['res']}',style: const TextStyle(
+                            color: Color.fromRGBO(107, 107, 107, 1),
+                          ),),
+                          Text('$jem TMT',style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),)
+                        ],
+                      )
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(const Size(196, 46)),
+                        elevation: MaterialStateProperty.all(1),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ))  
+                      ),
+                      onPressed: (){
+                        if(nameBank.text=='' || telBank.text=='' || comBank.text==''){
+                          if(nameBank.text=='')nameErrBank.value=true;
+                          if(telBank.text=='')telErrBank.value=true;
+                          if(comBank.text=='')comErrBank.value=true;
+                        }
+                        else{
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          Get.to(()=>const SargytPage());
+                          Get.dialog(
+                            AlertDialog(
+                            surfaceTintColor: Colors.white,
+                            content:  SizedBox(
+                              width: 271,
+                              height: 249,
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 81,
+                                        height: 81,
+                                        child: Image.asset('assets/images/greenTick.png')
+                                      ),
+                                      const SizedBox(height: 10,),
+                                      Text(locale[curLN]!['succesOrderText1']!,style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w700,
+                                      ),),
+                                      const SizedBox(height: 10,),
+                                      Text(locale[curLN]!['succesOrderText2']!,style: const TextStyle(
+                                        color: Color.fromRGBO(160, 160, 160, 1),
+                                      ),textAlign: TextAlign.center,),
+                                    ],
+                                  ),
+                                  Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: GestureDetector(
+                                      onTap: () => Get.back(),
+                                      child: Container(
+                                        width: 37,
+                                        height: 37,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(37),
+                                          color: const Color.fromRGBO(250, 250, 250, 1)
+                                        ),
+                                        child: const Icon(Icons.close),
+                                      ),
+                                    )
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                          );
+                        }
+                      }, 
+                      child:  Text('${locale[curLN]?['toDeliv']}',style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),)
+                    ),
+                  ],
+                ),
+              ],
+            )
+          )
         ],
       ),
     );

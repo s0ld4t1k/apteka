@@ -79,7 +79,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ),
                       ),
                     ),
-                    nameErr?const _ErrMsg():Container(),
+                    nameErr?const ErrMsg():Container(),
                     const SizedBox(height: 20,),
                      Text('${locale[curLN]?['tel']}',),
                     const SizedBox(height: 10,),
@@ -123,7 +123,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ],
                       ),
                     ),
-                    telErr?const _ErrMsg():Container(),
+                    telErr?const ErrMsg():Container(),
                     const SizedBox(height: 20,),
                      Text('${locale[curLN]?['bellik']}',),
                     const SizedBox(height: 10,),
@@ -160,7 +160,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
                         ),
                       )
                     ),
-                    comErr?const _ErrMsg():Container(),
+                    comErr?const ErrMsg():Container(),
                   ],
                 ),
               ),
@@ -187,8 +187,8 @@ class _HabarlasmakState extends State<Habarlasmak> {
     );
   }
 }
-class _ErrMsg extends StatelessWidget {
-  const _ErrMsg();
+class ErrMsg extends StatelessWidget {
+  const ErrMsg();
 
   @override
   Widget build(BuildContext context) {

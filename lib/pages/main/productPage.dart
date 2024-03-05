@@ -1,4 +1,5 @@
 // ignore_for_file: file_names, deprecated_member_use
+import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/gorkezmeInfoRow.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -12,8 +13,6 @@ var _liked=false,_curIndex=0;
 List infoList=[];
 RxInt countProd=1.obs;
 RxBool isClickProd=false.obs;
-void prodClickFunc() {
-}
 
 class ProductPage extends StatefulWidget {
   final RxInt productId;
@@ -170,33 +169,34 @@ class _ProductPageState extends State<ProductPage> {
                           color: green,
                         ),),
                         const Devider(),
-                        SizedBox(
-                          height: 81+18+45,
-                          child: ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: 15,);
-                            },
-                            itemBuilder: (context, index) {
-                              return SizedBox(
-                                // height: 22,
-                                child: Row(
-                                  children: [
-                                    Text(infoList[index][0],style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Color.fromRGBO(133, 133, 133, 1)
-                                    ),),
-                                    const Spacer(),
-                                    Text(infoList[index][1],style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),),
-                                  ],
+                        ListView.separated(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.all(0),
+                          physics: const NeverScrollableScrollPhysics(),
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: 15,);
+                          },
+                          itemBuilder: (context, index) {
+                            return Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(infoList[index][0],style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Color.fromRGBO(133, 133, 133, 1)
+                                  ),),
                                 ),
-                              );
-                            },
-                            itemCount: infoList.length,
-                          ),
+                                Expanded(
+                                  child: Text(infoList[index][1],style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.end,),
+                                ),
+                              ],
+                            );
+                          },
+                          itemCount: infoList.length,
                         ),
                         const Devider(),
                         const SizedBox(height: 5,),
@@ -268,7 +268,6 @@ class _ProductPageState extends State<ProductPage> {
                                     isClickProd.value=false;
                                     countProd.value=1;
                                   }
-                                  prodClickFunc();
                                 }, 
                                 child: const Icon(Icons.remove)
                               ),
@@ -276,7 +275,6 @@ class _ProductPageState extends State<ProductPage> {
                               ElevatedButton(
                                 onPressed: (){
                                   countProd.value++;
-                                  prodClickFunc();
                                 }, 
                                 child: const Icon(Icons.add)
                               ),
@@ -286,20 +284,14 @@ class _ProductPageState extends State<ProductPage> {
                               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
-                              minimumSize: MaterialStateProperty.all(const Size(196, 47)),
+                              minimumSize: MaterialStateProperty.all(const Size(double.infinity, 47)),
                             ),
                             onPressed: (){
                               isClickProd.value=true;
-                              Get.snackbar(
-                                'Haryt sebede goşuldy',
-                                'Harydy sebediňizde görüp bilersiň',
-                                colorText: Colors.white,
-                                backgroundColor: green,
-                              );
-                              prodClickFunc();
+                              addToCart();
                             }, 
                             child:Text('${locale[curLN]?["addCart"]}',style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),)
                           );

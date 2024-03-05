@@ -18,58 +18,58 @@ class SargytPage extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: ()=>Get.back(),
-          icon: Icon(CupertinoIcons.chevron_back),
+          icon: const Icon(CupertinoIcons.chevron_back),
         ),
-        title: Text('Sargyt'),
+        title: Text(locale[curLN]!['order']!),
         titleSpacing: 0,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(25),
+        padding: const EdgeInsets.all(25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListView.separated(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.all(0),
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(0),
               itemBuilder:(context, index) => Container(
-                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
-                  border: Border.all(color: Color.fromRGBO(242, 242, 242, 1)),
+                  border: Border.all(color: const Color.fromRGBO(242, 242, 242, 1)),
                 ),
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: 74,
                       height: 76,
                       child: Image.asset(cartProductList[index]['img'],fit: BoxFit.contain,),
                     ),
-                    SizedBox(width: 15,),
+                    const SizedBox(width: 15,),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(cartProductList[index]['name'],style: TextStyle(
+                          Text(cartProductList[index]['name'],style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
                           maxLines: 2,overflow: TextOverflow.ellipsis,),
-                          SizedBox(height: 5,),
-                          Text(cartProductList[index]['desc'],style: TextStyle(
+                          const SizedBox(height: 5,),
+                          Text(cartProductList[index]['desc'],style: const TextStyle(
                             fontSize: 10,
                             color: Color.fromRGBO(113, 114, 122, 1),
                           ),maxLines: 2,overflow: TextOverflow.ellipsis,),
-                          SizedBox(height: 15,),
+                          const SizedBox(height: 15,),
                           Row(
                             children: [
-                              Expanded(child: Text('${cartProductList[index]['price']} TMT',style: TextStyle(
+                              Expanded(child: Text('${cartProductList[index]['price']} TMT',style: const TextStyle(
                                 color: orange,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,
                               ),)),
-                              Text('${cartProductList[index]['count']} sany',style: TextStyle(
+                              Text('${cartProductList[index]['count']} sany',style: const TextStyle(
                                 fontSize: 13,
                                 color: Color.fromRGBO(129, 129, 129, 1),
                               ),)
@@ -81,43 +81,43 @@ class SargytPage extends StatelessWidget {
                   ],
                 ),
               ), 
-              separatorBuilder:(context, index) => SizedBox(height: 15,), 
+              separatorBuilder:(context, index) => const SizedBox(height: 15,), 
               itemCount: cartProductList.length
             ),
-            Devider(),
-            Text('Haryt sany: ${cartProductList.length}',style: TextStyle(
+            const Devider(),
+            Text('${locale[curLN]!['productCount']!} ${cartProductList.length}',style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Row(
               children: [
-                Expanded(child: Text(locale[curLN]!['resPrice']!,style: TextStyle(
+                Expanded(child: Text(locale[curLN]!['resPrice']!,style: const TextStyle(
                   color: Color.fromRGBO(131, 133, 137, 1),
                 ),)),
-                Text(' TMT',style: TextStyle(
+                const Text(' TMT',style: TextStyle(
                   color: Color.fromRGBO(131, 133, 137, 1),
                 ),),
               ],
             ),
-            SizedBox(height: 14,),
+            const SizedBox(height: 14,),
             Row(
               children: [
-                Expanded(child: Text(locale[curLN]!['arzanladysh']!,style: TextStyle(
+                Expanded(child: Text(locale[curLN]!['arzanladysh']!,style: const TextStyle(
                   color: Color.fromRGBO(131, 133, 137, 1),
                 ),)),
-                Text(' TMT',style: TextStyle(
+                const Text(' TMT',style: TextStyle(
                   color: Color.fromRGBO(131, 133, 137, 1),
                 ),),
               ],
             ),
-            SizedBox(height: 14,),
+            const SizedBox(height: 14,),
             Row(
               children: [
-                Expanded(child: Text(locale[curLN]!['deliveryHyzmat']!,style: TextStyle(
+                Expanded(child: Text(locale[curLN]!['deliveryHyzmat']!,style: const TextStyle(
                   color: Color.fromRGBO(131, 133, 137, 1),
                 ),)),
-                Text(' TMT',style: TextStyle(
+                const Text(' TMT',style: TextStyle(
                   color: Color.fromRGBO(131, 133, 137, 1),
                 ),),
               ],
@@ -125,54 +125,54 @@ class SargytPage extends StatelessWidget {
             Container(
               height: 1,
               width: double.infinity,
-              margin: EdgeInsets.symmetric(vertical: 15),
-              color: Color.fromRGBO(184, 184, 184, 1),
+              margin: const EdgeInsets.symmetric(vertical: 15),
+              color: const Color.fromRGBO(184, 184, 184, 1),
             ),
             Row(
               children: [
                 Expanded(
-                  child: Text(locale[curLN]!['res']!,style: TextStyle(
+                  child: Text(locale[curLN]!['res']!,style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
                   ),),
                 ),
-                Text(' TMT',style: TextStyle(
+                const Text(' TMT',style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),)
               ],
             ),
-            SizedBox(height: 26,),
+            const SizedBox(height: 26,),
             OutlinedButton(
               style: ButtonStyle(
-                side: MaterialStateProperty.all(BorderSide(color: red)),
+                side: MaterialStateProperty.all(const BorderSide(color: red)),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
-                minimumSize: MaterialStateProperty.all(Size(double.infinity, 50)),
+                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
               ),
               onPressed: (){
                 Get.back();
               }, 
-              child:  Text('Goýbolsun et',style: TextStyle(
+              child: Text(locale[curLN]!['cancel']!,style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: red
               ),)
             ),
-            SizedBox(height: 23,),
+            const SizedBox(height: 23,),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(orange),
-                minimumSize: MaterialStateProperty.all(Size(double.infinity, 50))
+                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
               ),
               onPressed: (){
                 selectedTab=0;
-                Get.offAll(()=>MainPage());
+                Get.offAll(()=>const MainPage());
               }, 
-              child: Text('Söwda dowam et',style: TextStyle(
+              child: Text(locale[curLN]!['continueShop']!,style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),)

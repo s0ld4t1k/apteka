@@ -14,6 +14,16 @@ var arzanladys=0.0;
 var eltipberme=15.0;
 List jemiList=[];
 List eltmeList=[];
+void addToCart(){
+  Get.snackbar(
+    'Haryt sebede goşuldy',
+    'Harydy sebediňizde görüp bilersiň',
+    isDismissible: true,
+    dismissDirection: DismissDirection.horizontal,
+    colorText: Colors.white,
+    backgroundColor: green,
+  );
+}
 class Bag extends StatefulWidget {
   const Bag({super.key});
 

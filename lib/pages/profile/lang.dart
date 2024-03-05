@@ -3,6 +3,7 @@ import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 var _selectebLang=0;
@@ -47,6 +48,7 @@ class _LanguageState extends State<Language> {
                   if(_selectebLang==0)lc.change('tm');
                   if(_selectebLang==1)lc.change('ru');
                   if(_selectebLang==2)lc.change('en');
+                  const FlutterSecureStorage().write(key: 'lang', value: curLN);
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
