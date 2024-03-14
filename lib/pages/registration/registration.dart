@@ -3,6 +3,7 @@ import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/registration/reset_password.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/password_field.dart';
 import 'package:apte/widgets/tel_num_field.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,8 @@ class Registration extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 45),
-                const Text(
-                  'Ulgama girmek üçin maglumatlaryňyzy giriziň!',
+                Text(
+                  locale[curLN]!['login']!,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
@@ -38,7 +39,7 @@ class Registration extends StatelessWidget {
                 TelNumField(tel: tel),
                 const SizedBox(height: 20),
                 PasswordField(
-                  title: 'Açarsözi',
+                  title: locale[curLN]!['password']!,
                   pass: pass,
                 ),
                 const SizedBox(height: 12),
@@ -50,8 +51,8 @@ class Registration extends StatelessWidget {
                           overlayColor: MaterialStateProperty.all(
                               orange.withOpacity(0.1))),
                       onPressed: () => Get.to(() => const ResetPassword()),
-                      child: const Text(
-                        'Açar sözi unutdym',
+                      child: Text(
+                        locale[curLN]!['forgetPassword']!,
                         style: TextStyle(color: orange),
                       ),
                     )
@@ -70,14 +71,14 @@ class Registration extends StatelessWidget {
                       Get.offAll(() => const MainPage());
                     } else {
                       Get.snackbar(
-                        'Log In Error',
-                        'Incorrect password',
+                        locale[curLN]!['loginError']!,
+                        locale[curLN]!['incorrectPassword']!,
                         backgroundColor: red,
                         colorText: Colors.white,
                       );
                     }
                   },
-                  child: const Text('Ulgama gir'),
+                  child: Text(locale[curLN]!['ulgamaGir']!),
                 )
               ],
             ),
@@ -86,11 +87,11 @@ class Registration extends StatelessWidget {
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Hasabyňyz ýokmy?'),
+            Text(locale[curLN]!['noAccount']!),
             const SizedBox(width: 5),
             TextButton(
               onPressed: () => Get.to(() => const SignIn()),
-              child: const Text('Hasap açyň'),
+              child: Text(locale[curLN]!['createAccount']!),
             )
           ],
         ),

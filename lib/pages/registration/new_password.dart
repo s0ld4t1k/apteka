@@ -1,4 +1,5 @@
 import 'package:apte/pages/registration/sign_in.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,31 +25,34 @@ class NewPassword extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 45),
-                const Text(
-                  'Täze açarsözi dörediň!',
+                Text(
+                  locale[curLN]!['newPasswordText1']!,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Açarsözi azyndan 8 simwoldan ybarat bolmalydyr.',
+                Text(
+                  locale[curLN]!['newPasswordText2']!,
                   style: TextStyle(
                     fontSize: 14,
                     color: Color.fromRGBO(160, 160, 160, 1),
                   ),
                 ),
-                PasswordField(title: 'Täze açarsözi', pass: NPpass),
+                SizedBox(height: 40),
+                PasswordField(
+                    title: locale[curLN]!['newPassword']!, pass: NPpass),
                 const SizedBox(height: 20),
-                PasswordField(title: 'Açarsözi tassyklaň', pass: NPpass2),
+                PasswordField(
+                    title: locale[curLN]!['confirmPassword']!, pass: NPpass2),
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(double.infinity, 50))),
+                      minimumSize: MaterialStateProperty.all(
+                          const Size(double.infinity, 50))),
                   onPressed: () {},
-                  child: const Text('Täzele'),
+                  child: Text(locale[curLN]!['new']!),
                 )
               ],
             ),
@@ -57,12 +61,12 @@ class NewPassword extends StatelessWidget {
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Hasabyňyz ýokmy?'),
+            Text(locale[curLN]!['noAccount']!),
             const SizedBox(width: 5),
             TextButton(
               onPressed: () => Get.to(() => const SignIn()),
-              child: const Text(
-                'Hasap açyň',
+              child: Text(
+                locale[curLN]!['createAccount']!,
                 style: TextStyle(color: orange),
               ),
             )

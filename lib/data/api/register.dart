@@ -1,5 +1,6 @@
 import 'package:apte/data/user_model.dart';
 import 'package:apte/pages/main/mainPage.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import '../../widgets/colors.dart';
 
 String baseUrl = 'http://216.250.11.197:8000/api/v2/';
+
 Future<void> sendSMS(UserModel user) async {
   String url = 'http://216.250.11.197:8000/api/v2/send_sms/';
   try {
@@ -55,8 +57,8 @@ Future<void> register(UserModel userr, otp) async {
         Get.offAll(() => const MainPage());
       } else {
         Get.snackbar(
-          'Log In Error',
-          'Incorrect password',
+          locale[curLN]!['loginError']!,
+          locale[curLN]!['incorrectPassword']!,
           backgroundColor: red,
           colorText: Colors.white,
         );

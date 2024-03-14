@@ -1,10 +1,11 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/user_model.dart';
+import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/colors.dart';
-
-TextEditingController otp = TextEditingController();
+import '../../widgets/langDictionary.dart';
 
 class OTP extends StatelessWidget {
   final UserModel userr;
@@ -23,47 +24,38 @@ class OTP extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 45),
-                const Text(
-                  'OTP kody',
+                Text(
+                  locale[curLN]!['otp']!,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Telefon belgiňize iberilen tassyklama kody giriziň.',
+                Text(
+                  locale[curLN]!['inputOtp']!,
                   style: TextStyle(
                     fontSize: 14,
                     color: Color.fromRGBO(160, 160, 160, 1),
                   ),
                 ),
                 const SizedBox(height: 40),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromRGBO(250, 250, 250, 1),
-                  ),
-                  child: TextField(
-                    controller: otp,
-                    decoration: const InputDecoration(
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none)),
-                  ),
-                ),
+                const OtpField(),
                 const SizedBox(height: 30),
-                ElevatedButton(
-                  style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
-                          const Size(double.infinity, 50))),
-                  onPressed: () {
-                    register(userr, int.tryParse(otp.text));
-                  },
-                  child: const Text('Dowam et'),
-                )
+                Obx(() {
+                  return ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(
+                            const Size(double.infinity, 50))),
+                    onPressed: s.value.length == 6
+                        ? () {
+                            // print('object ${int.tryParse(s.value)}');
+                            register(userr, int.tryParse(s.value));
+                          }
+                        : null,
+                    child: Text(locale[curLN]!['continue']!),
+                  );
+                })
               ],
             ),
           ),
@@ -71,12 +63,12 @@ class OTP extends StatelessWidget {
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Kod gelmedimi?'),
+            Text(locale[curLN]!['noCode']!),
             const SizedBox(width: 5),
             TextButton(
               onPressed: () {},
-              child: const Text(
-                'Täzeden iber',
+              child: Text(
+                locale[curLN]!['resend']!,
                 style: TextStyle(color: orange),
               ),
             )

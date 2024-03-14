@@ -2,6 +2,7 @@ import 'package:apte/data/api/register.dart';
 import 'package:apte/data/user_model.dart';
 import 'package:apte/pages/registration/otp.dart';
 import 'package:apte/widgets/colors.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/name_field.dart';
 import 'package:apte/widgets/password_field.dart';
 import 'package:apte/widgets/tel_num_field.dart';
@@ -31,8 +32,8 @@ class SignIn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 45),
-                const Text(
-                  'Hasap açmak üçin maglumatlaryňyzy giriziň!',
+                Text(
+                  locale[curLN]!['inputForAccount']!,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
@@ -43,9 +44,10 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 20),
                 TelNumField(tel: SItel),
                 const SizedBox(height: 20),
-                PasswordField(title: 'Açarsözi', pass: SIpass),
+                PasswordField(title: locale[curLN]!['password']!, pass: SIpass),
                 const SizedBox(height: 20),
-                PasswordField(title: 'Açarsözi tassyklamak', pass: SIpass2),
+                PasswordField(
+                    title: locale[curLN]!['confirmPassword']!, pass: SIpass2),
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
@@ -62,12 +64,12 @@ class SignIn extends StatelessWidget {
                       Get.to(() => OTP(userr: user));
                     } else {
                       Get.snackbar(
-                        'Acarsozde yalnysh',
-                        'Acarsozi dogry tassykla',
+                        locale[curLN]!['passwordError2']!,
+                        locale[curLN]!['passwordError']!,
                       );
                     }
                   },
-                  child: const Text('Ulgama gir'),
+                  child: Text(locale[curLN]!['ulgamaGir']!),
                 )
               ],
             ),
@@ -76,12 +78,12 @@ class SignIn extends StatelessWidget {
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Hasabyňyz barmy?'),
+            Text(locale[curLN]!['haveAccount?']!),
             const SizedBox(width: 5),
             TextButton(
               onPressed: () => Get.back(),
-              child: const Text(
-                'Hasaba girmek',
+              child: Text(
+                locale[curLN]!['logAccount']!,
                 style: TextStyle(color: orange),
               ),
             )

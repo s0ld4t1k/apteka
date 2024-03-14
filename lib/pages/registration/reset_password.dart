@@ -3,6 +3,7 @@ import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/langDictionary.dart';
 import '../../widgets/tel_num_field.dart';
 
 TextEditingController RStel = TextEditingController();
@@ -23,16 +24,16 @@ class ResetPassword extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 45),
-                const Text(
-                  'Açarsözi unutdyňyzmy?',
+                Text(
+                  locale[curLN]!['forgetPassword?']!,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Alada etmäň! Hasabyňyz bilen baglanyşykly telefon belgini giriziň.',
+                Text(
+                  locale[curLN]!['inputTel']!,
                   style: TextStyle(
                     fontSize: 14,
                     color: Color.fromRGBO(160, 160, 160, 1),
@@ -43,10 +44,12 @@ class ResetPassword extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(double.infinity, 50))),
+                    minimumSize: MaterialStateProperty.all(
+                      const Size(double.infinity, 50),
+                    ),
+                  ),
                   onPressed: () {},
-                  child: const Text('Dowam et'),
+                  child: Text(locale[curLN]!['continue']!),
                 )
               ],
             ),
@@ -55,12 +58,12 @@ class ResetPassword extends StatelessWidget {
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Açasözi bilýaňizmi?'),
+            Text(locale[curLN]!['knowPassword?']!),
             const SizedBox(width: 5),
             TextButton(
               onPressed: () => Get.to(() => const Registration()),
-              child: const Text(
-                'Hasaba girmek',
+              child: Text(
+                locale[curLN]!['logAccount']!,
                 style: TextStyle(color: orange),
               ),
             )
