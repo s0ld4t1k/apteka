@@ -1,12 +1,14 @@
 
 // ignore_for_file: file_names
 
+import 'package:apte/widgets/bag&Card/newAdresManual.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 var _selectedAdresType=0;
 MapController _mc=MapController();
@@ -74,7 +76,7 @@ class _NewAdresState extends State<NewAdres> {
                             );
                           }
                         }catch(e){
-                          debugPrint('positi =================== $e');
+                          print('positi =================== $e');
                         }
 
                       },
@@ -122,7 +124,7 @@ class _NewAdresState extends State<NewAdres> {
             right: 0,
             left: 0,
             child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
+              // margin: const EdgeInsets.only(bottom: 10),
               height: MediaQuery.of(context).size.height/2,
               padding: const EdgeInsets.symmetric(horizontal: 25),
               decoration: const BoxDecoration(
@@ -145,7 +147,7 @@ class _NewAdresState extends State<NewAdres> {
                             SvgPicture.asset('assets/icons/gps.svg'),
                           ],
                         ),
-                        const SizedBox(height: 30,),
+                        const SizedBox(height: 15,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -165,7 +167,7 @@ class _NewAdresState extends State<NewAdres> {
                                         borderRadius: BorderRadius.circular(6),
                                       ))
                                     ),
-                                    onPressed: ()=>Navigator.pushNamed(context,'/bag/salgymManual',arguments: ['','',]), 
+                                    onPressed: ()=>Get.to(()=>const NewAdresManual()), 
                                     child: Text('${locale[curLN]?['change']}',style: const TextStyle(
                                       color: green,
                                       fontSize: 13,
@@ -177,11 +179,11 @@ class _NewAdresState extends State<NewAdres> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(height: 5,),
                         Container(
                           width: double.infinity,
                           height: 1,
-                          margin: const EdgeInsets.symmetric(vertical: 18),
+                          margin: const EdgeInsets.symmetric(vertical: 10),
                           decoration: const BoxDecoration(
                             color: Color.fromRGBO(237, 237, 237, 1),
                           ),
@@ -194,7 +196,7 @@ class _NewAdresState extends State<NewAdres> {
                             ),),
                           ],
                         ),
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         Row(
                           children: [
                             Wrap(
@@ -224,12 +226,14 @@ class _NewAdresState extends State<NewAdres> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30,),
+                        const SizedBox(height: 20,),
                         ElevatedButton(
                           style: ButtonStyle(
                             minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50))
                           ),
-                          onPressed: (){}, 
+                          onPressed: (){
+                            Get.back();
+                          }, 
                           child:  Text('${locale[curLN]?['confirm']}',style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,

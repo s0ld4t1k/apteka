@@ -40,46 +40,51 @@ class _AddAdresState extends State<AddAdres> {
                 ],
               ),
               const SizedBox(height: 23,),
-              SizedBox(
-                height: 140,
-                child: ListView(
-                  children: List.generate(adressList.length, (index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _selectedAdres=index;
-                        });
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 15),
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        height: 56,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: _selectedAdres==index?green:const Color.fromRGBO(237, 237, 237, 1),
-                          )
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(child: Text(adressList[index][0],maxLines: 1,overflow: TextOverflow.ellipsis,)),
-                            const SizedBox(width: 10,),
-                            Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: _selectedAdres==index?green:const Color.fromRGBO(216, 216, 216, 1),
-                                  width: _selectedAdres==index?4:2,
-                                )
-                              ),
+              Scrollbar(
+                thumbVisibility: true,
+                trackVisibility: true,
+                child: Container(
+                  height: 140,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ListView(
+                    children: List.generate(adressList.length, (index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedAdres=index;
+                          });
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 15),
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          height: 56,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: _selectedAdres==index?green:const Color.fromRGBO(237, 237, 237, 1),
                             )
-                          ],
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(child: Text(adressList[index][0],maxLines: 1,overflow: TextOverflow.ellipsis,)),
+                              const SizedBox(width: 10,),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: _selectedAdres==index?green:const Color.fromRGBO(216, 216, 216, 1),
+                                    width: _selectedAdres==index?4:2,
+                                  )
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 ),
               ),
               SizedBox(

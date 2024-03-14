@@ -1,124 +1,78 @@
 // ignore_for_file: file_names, deprecated_member_use
 
-import 'package:apte/pages/kategory/kategory.dart';
-import 'package:apte/pages/main/mainPage.dart';
-import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-List subKategory=[
-  'Akuşerlik, ginekologiýa',
-  'Dermotologiýa',
-  'Immun ulgamy',
-  'Onkologiýa',
-  'Agyry aýyryjylar, anestezik',
-  'Allergiýa garşy',
-  'Stomatologik serişdeler',
-  'Nerw ulgamy',
-  'Parazitlere garşy',
-  'Dem alyş ulgamy',
-];
-class SubKategory extends StatefulWidget {
+import 'package:get/get.dart';
+
+import '../../data/model/category/controller.dart';
+
+class SubKategory extends StatelessWidget {
   const SubKategory({super.key});
 
   @override
-  State<SubKategory> createState() => _SubKategoryState();
-}
-
-class _SubKategoryState extends State<SubKategory> {
-  @override
   Widget build(BuildContext context) {
-    var index=ModalRoute.of(context)?.settings.arguments as int;
-    var title=kategoryList[index][0];
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          padding: const EdgeInsets.all(0),
-          constraints: const BoxConstraints(
-            maxHeight: 24,
-            maxWidth: 24,
-            minHeight: 24,
-            minWidth: 24,
-          ),
-          onPressed: ()=>Navigator.pop(context), 
-          icon: const Icon(Icons.chevron_left_rounded)
-        ),
-        title: Text(title),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          separatorBuilder: (context, index) {
-            return Container(
-              width: double.infinity,
-              height: 1,
-              color: const Color.fromRGBO(237, 237, 237, 1),
-            );
-          },
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () =>Navigator.of(context).pushNamed(
-                '/kategory/subKategoryPage',
-                arguments: index,
+    return GetBuilder<CategoryController>(builder: (cc) {
+      var subcategory = cc.categories.detail!.loc![cc.selectedCategory];
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              padding: const EdgeInsets.all(0),
+              constraints: const BoxConstraints(
+                maxHeight: 24,
+                maxWidth: 24,
+                minHeight: 24,
+                minWidth: 24,
               ),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Row(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.chevron_left_rounded)),
+          title: Text(cc.getTitle(subcategory.title!)),
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  cc.selectedSubategory = index;
+                  cc.getCategoryProducts();
+                  Navigator.of(context).pushNamed('/kategory/subKategoryPage');
+                },
+                child: Column(
                   children: [
-                    Text(subKategory[index],style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),),
-                    const Spacer(),
-                    const Icon(Icons.chevron_right_rounded),
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              cc.getTitle(
+                                  subcategory.subcategories![index].title!),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Icon(Icons.chevron_right_rounded),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 1,
+                      color: const Color.fromRGBO(237, 237, 237, 1),
+                    )
                   ],
                 ),
-              ),
-            );
-          },
-          itemCount: subKategory.length,
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          margin: const EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: List.generate(bottomAppBarList.length, (index) => 
-            (index==2)?
-            GestureDetector(
-              onTap: () {
-                selectedTab=index;
-                Navigator.of(context).pushNamedAndRemoveUntil('/',(_)=>false);
-              },
-              child: Container(
-                width: 46,
-                height: 46,
-                decoration: BoxDecoration(
-                  color: green,
-                  borderRadius: BorderRadius.circular(46),
-                ),
-                child: Center(child: SvgPicture.asset(bottomAppBarList[index])),
-              ),
-            )
-            :IconButton(
-              onPressed: (){
-                setState(() {
-                  selectedTab=index;
-                  Navigator.of(context).pushNamedAndRemoveUntil('/',(_)=>false);
-                });
-              }, 
-              icon: SvgPicture.asset(
-                bottomAppBarList[index],
-                color: (selectedTab==index)?green:tabIconGrey,
-              ),
-            ),),
+              );
+            },
+            itemCount: subcategory.subcategories!.length,
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

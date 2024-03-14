@@ -1,8 +1,10 @@
 // ignore_for_file: file_names
 
+import 'package:apte/widgets/bag&Card/newCard.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 List cardList=[
   ['assets/images/turkmenbasyBank.png','Türkmenbaşy Bank','**** **** **** 1234',],
   ['assets/images/dayhanBank.png','Daýhanbank','**** **** **** 1234',],
@@ -101,7 +103,7 @@ class _AddCardState extends State<AddCard> {
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(const EdgeInsets.all(0))
                   ),
-                  onPressed: ()=>Navigator.pushNamed(context, '/kard/newCard',arguments: ['','','','',]), 
+                  onPressed: ()=>Get.to(()=>NewCard()), 
                   child:  Text('+ ${locale[curLN]?['addNewCard']}',style: const TextStyle(
                     color: orange,
                     fontWeight: FontWeight.w500,

@@ -11,7 +11,7 @@ TextEditingController tel=TextEditingController();
 TextEditingController com=TextEditingController();
 RxBool nameErr=false.obs,telErr=false.obs,comErr=false.obs;
 class Nagt extends StatelessWidget {
-  Nagt({super.key});
+  const Nagt({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class Nagt extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => nameErr.value?ErrMsg():Container()),
+                Obx(() => nameErr.value?const ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['tel']}'),
                 const SizedBox(height: 10,),
@@ -64,7 +64,7 @@ class Nagt extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Text('+993 ',style: TextStyle(
+                      const Text('+993 ',style: TextStyle(
                         fontSize: 16,
                       ),),
                       Expanded(
@@ -72,11 +72,11 @@ class Nagt extends StatelessWidget {
                           onChanged: (value)=>telErr.value=false,
                           controller: tel,
                           maxLength: 8,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                           ),
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             counterText: '',
                             contentPadding: EdgeInsets.all(0),
                             border: OutlineInputBorder(
@@ -89,7 +89,7 @@ class Nagt extends StatelessWidget {
                     ],
                   ),
                 ),
-                Obx(() => telErr.value?ErrMsg():Container()),
+                Obx(() => telErr.value?const ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['adres']}'),
                 const SizedBox(height: 10,),
@@ -157,7 +157,7 @@ class Nagt extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => comErr.value?ErrMsg():Container()),
+                Obx(() => comErr.value?const ErrMsg():Container()),
                 const SizedBox(height: 30,),
               ],
             ),

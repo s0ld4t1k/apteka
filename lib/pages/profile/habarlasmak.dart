@@ -188,23 +188,24 @@ class _HabarlasmakState extends State<Habarlasmak> {
   }
 }
 class ErrMsg extends StatelessWidget {
-  const ErrMsg();
+  const ErrMsg({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 10,),
-        Row(
-          children: [
-            SvgPicture.asset('assets/icons/qMark.svg'),
-            const SizedBox(width: 8,),
-             Text('${locale[curLN]?['errorText']}',style: const TextStyle(
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SvgPicture.asset('assets/icons/qMark.svg'),
+          const SizedBox(width: 8,),
+           Expanded(
+             child: Text('${locale[curLN]?['errorText']}',style: const TextStyle(
               color: red,
-            ),),
-          ],
-        ),
-      ],
+                       ),),
+           ),
+        ],
+      ),
     );
   }
 }

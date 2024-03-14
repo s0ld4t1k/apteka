@@ -1,7 +1,9 @@
+import 'package:apte/widgets/bag&Card/newAdresManual.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 List adresType=[];
 List adres=[
   [0,'Arçabil şaýoly jaý 142 , 3-nji etaj otag 25',],
@@ -131,7 +133,11 @@ class _AdresState extends State<Adres> {
                 top: 16,
                 right: 60,
                 child: GestureDetector(
-                  onTap: ()=>Navigator.pushNamed(context, '/bag/salgymManual',arguments: adres[index]),
+                  onTap: () {
+                    selectedAdresType=adres[index][0];
+                    adr.text=adres[index][1];
+                    Get.to(()=>const NewAdresManual());
+                  },
                   child: SizedBox(
                     width: 22,
                     height: 22,

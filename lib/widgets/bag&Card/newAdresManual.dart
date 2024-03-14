@@ -4,8 +4,8 @@ import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
-var _selectedAdresType=0;
-TextEditingController _adr=TextEditingController();
+var selectedAdresType=0;
+TextEditingController adr=TextEditingController();
 class NewAdresManual extends StatefulWidget {
   const NewAdresManual({super.key});
 
@@ -15,9 +15,6 @@ class NewAdresManual extends StatefulWidget {
 class _NewAdresManualState extends State<NewAdresManual> {
   @override
   Widget build(BuildContext context) {
-   dynamic list=ModalRoute.of(context)?.settings.arguments;
-    _selectedAdresType=list[0]??0;
-    _adr.text=list[1]??'';
     adresTypeList=[
       '${locale[curLN]?['home']}',
       '${locale[curLN]?['work']}',
@@ -64,7 +61,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                           ),
                           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                           child: TextField(
-                            controller: _adr,
+                            controller: adr,
                             textAlignVertical: TextAlignVertical.top,
                             expands: true,
                             minLines: null,
@@ -87,7 +84,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                               style: ButtonStyle(
                                 padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 25,vertical: 6)),
                                 side: MaterialStateProperty.all(BorderSide(
-                                  color: _selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
+                                  color: selectedAdresType==index?green:const Color.fromRGBO(237, 237, 237, 1),
                                 )),
                                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
@@ -95,11 +92,11 @@ class _NewAdresManualState extends State<NewAdresManual> {
                               ),
                               onPressed: (){
                                 setState(() {
-                                  _selectedAdresType=index;
+                                  selectedAdresType=index;
                                 });
                               }, 
                               child: Text(adresTypeList[index],style: TextStyle(
-                                color: _selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
+                                color: selectedAdresType==index?green:const Color.fromRGBO(168, 168, 168, 1),
                                 fontWeight: FontWeight.w500,
                               ),)
                             );

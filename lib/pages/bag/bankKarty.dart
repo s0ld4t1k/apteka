@@ -59,7 +59,7 @@ class _BankKartyState extends State<BankKarty> {
                     ),
                   ),
                 ),
-                Obx(() => nameErrBank.value?ErrMsg():Container()),
+                Obx(() => nameErrBank.value?const ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['tel']}'),
                 const SizedBox(height: 10,),
@@ -73,14 +73,14 @@ class _BankKartyState extends State<BankKarty> {
                   ),
                   child: Row(
                     children: [
-                      Text('+993 ',style: TextStyle(
+                      const Text('+993 ',style: TextStyle(
                         fontSize: 16,
                       ),),
                       Expanded(
                         child: TextField(
                           controller: telBank,
                           onChanged: (value) => telErrBank.value=false,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding: EdgeInsets.all(0),
                             border: OutlineInputBorder(
                               borderSide: BorderSide.none
@@ -91,7 +91,7 @@ class _BankKartyState extends State<BankKarty> {
                     ],
                   ),
                 ),
-                Obx(() => telErrBank.value?ErrMsg():Container()),
+                Obx(() => telErrBank.value?const ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['adres']}'),
                 const SizedBox(height: 10,),
@@ -194,7 +194,7 @@ class _BankKartyState extends State<BankKarty> {
                     ),
                   ),
                 ),
-                Obx(() => comErrBank.value?ErrMsg():Container()),
+                Obx(() => comErrBank.value?const ErrMsg():Container()),
                 const SizedBox(height: 30,),
                 
               ],

@@ -1,3 +1,4 @@
+import 'package:apte/controller/my_controller.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/pages/profile/adres.dart';
@@ -8,9 +9,8 @@ import 'package:apte/pages/profile/like.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
+import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/widgets/bag&Card/newAdres.dart';
-import 'package:apte/widgets/bag&Card/newAdresManual.dart';
-import 'package:apte/widgets/bag&Card/newCard.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
@@ -29,12 +29,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-var langg='';
-void main() async{
+import 'package:jwt_decoder/jwt_decoder.dart';
+
+var langg = '';
+var tokenn = '';
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  langg=await const FlutterSecureStorage().read(key: 'lang')??'';
-  if(langg!='')curLN=langg;
-  // Future.delayed(const Duration(seconds: 5));
+  langg = await const FlutterSecureStorage().read(key: 'lang') ?? '';
+  if (langg != '') curLN = langg;
+  tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
+  tokenn = tokenn.substring(7, tokenn.length);
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
@@ -47,7 +51,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  LangCont lc=Get.put(LangCont());
+  final MyController mc = Get.put(MyController());
+  LangCont lc = Get.put(LangCont());
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -55,17 +60,19 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
-      builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)), child: child!),
+      builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: child!),
       theme: ThemeData(
-        
-        colorScheme: const ColorScheme.light(
-          primary: green,
-        ),
-        brightness: Brightness.light,
-        fontFamily: 'DMSans',
-        primarySwatch: createMaterialColor(green),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
+          colorScheme: const ColorScheme.light(
+            primary: green,
+          ),
+          brightness: Brightness.light,
+          fontFamily: 'DMSans',
+          primarySwatch: createMaterialColor(green),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(green),
             foregroundColor: MaterialStateProperty.all(Colors.white),
             padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
@@ -73,72 +80,70 @@ class _MyAppState extends State<MyApp> {
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             )),
-          )
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(54)
-          )
-        ),
-        appBarTheme: const AppBarTheme(
-          
-          centerTitle: true,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarBrightness: Brightness.light
+          )),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(54))),
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+            titleTextStyle: TextStyle(
+              fontSize: 18,
+              fontFamily: "DMSans",
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
+            ),
+            shadowColor: Colors.white24,
+            elevation: 2,
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
           ),
-          titleTextStyle: TextStyle(
-            fontSize: 18,
-            fontFamily: "DMSans",
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
-          ),
-          shadowColor: Colors.white24,
-          elevation: 2,
-          foregroundColor: Colors.black,
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
-        ),
-        primaryColor: green,
-        primaryColorDark: green,
-        primaryColorLight: green,
-        bottomAppBarTheme: BottomAppBarTheme(
-          color: Colors.white,
-          surfaceTintColor: Colors.white,
-          elevation: 10,
-          shadowColor: Colors.black.withOpacity(1),
-        )
-      ),
+          primaryColor: green,
+          primaryColorDark: green,
+          primaryColorLight: green,
+          bottomAppBarTheme: BottomAppBarTheme(
+            color: Colors.white,
+            surfaceTintColor: Colors.white,
+            elevation: 10,
+            shadowColor: Colors.black.withOpacity(1),
+          )),
       debugShowCheckedModeBanner: false,
       title: 'Apteka',
       routes: {
-        '/':(context) => const MainPage(),
-        '/leading':(context) => const Leading(),
-        '/mainPage':(context) => const MainPageWidget(),
-        '/mainPage/harmfulInfo':(context) => const HarmfulInfo(),
-        '/mainPage/search':(context) => const Searck(),
-        '/mainPage/searchPage':(context) => const SearchPage(),
-        '/kategory':(context) => const Kategory(),
-        '/kategory/subKategory':(context) => const SubKategory(),
-        '/kategory/subKategoryPage':(context) => const SubKategoryPage(),
-        '/bag':(context) => const Bag(),
-        '/bag/sargytEtmek':(context) => const SargytEtmek(),
-        '/bag/salgym':(context) => const NewAdres(),
-        '/bag/salgymManual':(context) => const NewAdresManual(),
-        '/kard':(context) => const Kard(),
-        '/kard/newCard':(context) => const NewCard(),
-        '/profile':(context) => const Profile(),
-        '/profile/user':(context) => const User(),
-        '/profile/user/changePW':(context) => const ChangePW(),
-        '/profile/lang':(context) => const Language(),
-        '/profile/habarlasmak':(context) => const Habarlasmak(),
-        '/profile/like':(context) => const Like(),
-        '/profile/adres':(context) => const Adres(),
-        '/profile/sargyt':(context) => const Sargyt(),
+        '/': (context) => const MainPage(),
+        '/registration': (context) => const Registration(),
+        '/leading': (context) => const Leading(),
+        '/mainPage': (context) => const MainPageWidget(),
+        '/mainPage/harmfulInfo': (context) => const HarmfulInfo(),
+        '/mainPage/search': (context) => const Searck(),
+        '/mainPage/searchPage': (context) => const SearchPage(),
+        '/kategory': (context) => const Kategory(),
+        '/kategory/subKategory': (context) => const SubKategory(),
+        '/kategory/subKategoryPage': (context) => SubKategoryPage(),
+        '/bag': (context) => const Bag(),
+        '/bag/sargytEtmek': (context) => const SargytEtmek(),
+        '/bag/salgym': (context) => const NewAdres(),
+        '/kard': (context) => Kard(),
+        '/profile': (context) => const Profile(),
+        '/profile/user': (context) => const User(),
+        '/profile/user/changePW': (context) => const ChangePW(),
+        '/profile/lang': (context) => const Language(),
+        '/profile/habarlasmak': (context) => const Habarlasmak(),
+        '/profile/like': (context) => const Like(),
+        '/profile/adres': (context) => const Adres(),
+        '/profile/sargyt': (context) => const Sargyt(),
       },
-      initialRoute: (langg!='')?'/':'/leading',
+      initialRoute: (langg.isNotEmpty)
+          ? (tokenn.isNotEmpty && !JwtDecoder.isExpired(tokenn))
+              ? '/'
+              : '/registration'
+          : '/leading',
     );
   }
 }
+
 MaterialColor createMaterialColor(Color color) {
   List<int> strengths = <int>[50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
   Map<int, Color> swatch = <int, Color>{};

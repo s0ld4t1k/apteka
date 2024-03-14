@@ -50,7 +50,7 @@ class Terminal extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => nameErrTer.value?ErrMsg():Container()),
+                Obx(() => nameErrTer.value?const ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['tel']}'),
                 const SizedBox(height: 10,),
@@ -64,7 +64,7 @@ class Terminal extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Text('+993 ',style: TextStyle(
+                      const Text('+993 ',style: TextStyle(
                         fontSize: 16,
                       ),),
                       Expanded(
@@ -72,11 +72,11 @@ class Terminal extends StatelessWidget {
                           onChanged: (value)=>telErrTer.value=false,
                           controller: telTer,
                           maxLength: 8,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                           ),
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             counterText: '',
                             contentPadding: EdgeInsets.all(0),
                             border: OutlineInputBorder(
@@ -89,7 +89,7 @@ class Terminal extends StatelessWidget {
                     ],
                   ),
                 ),
-                Obx(() => telErrTer.value?ErrMsg():Container()),
+                Obx(() => telErrTer.value?const ErrMsg():Container()),
                 const SizedBox(height: 15,),
                  Text('${locale[curLN]?['adres']}'),
                 const SizedBox(height: 10,),
@@ -157,7 +157,7 @@ class Terminal extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => comErrTer.value?ErrMsg():Container()),
+                Obx(() => comErrTer.value?const ErrMsg():Container()),
                 const SizedBox(height: 30,),
               ],
             ),

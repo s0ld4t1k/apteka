@@ -156,7 +156,7 @@ class SargytPage extends StatelessWidget {
               onPressed: (){
                 Get.back();
               }, 
-              child: Text(locale[curLN]!['cancel']!,style: TextStyle(
+              child: Text(locale[curLN]!['cancel']!,style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: red
@@ -172,7 +172,7 @@ class SargytPage extends StatelessWidget {
                 selectedTab=0;
                 Get.offAll(()=>const MainPage());
               }, 
-              child: Text(locale[curLN]!['continueShop']!,style: TextStyle(
+              child: Text(locale[curLN]!['continueShop']!,style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),)

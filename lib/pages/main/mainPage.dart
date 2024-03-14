@@ -21,7 +21,7 @@ List _tabs=[
   const MainPageWidget(),
   const Kategory(),
   const Bag(),
-  const Kard(),
+  Kard(),
   const Profile(),
 ];
 class MainPage extends StatefulWidget {
