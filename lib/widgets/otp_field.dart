@@ -21,10 +21,10 @@ class OtpField extends StatelessWidget {
           onTap: () => FocusScope.of(context).requestFocus(fc0),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(30, 35, 44, 1)),
+              border: Border.all(color: const Color.fromRGBO(30, 35, 44, 1)),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             width: 50,
             alignment: Alignment.center,
             height: 45,
@@ -38,7 +38,7 @@ class OtpField extends StatelessWidget {
                   FocusScope.of(context).requestFocus(fc1);
                 }
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 counterText: '',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0),
@@ -50,10 +50,10 @@ class OtpField extends StatelessWidget {
           onTap: () => FocusScope.of(context).requestFocus(fc1),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(30, 35, 44, 1)),
+              border: Border.all(color: const Color.fromRGBO(30, 35, 44, 1)),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             width: 50,
             alignment: Alignment.center,
             height: 45,
@@ -67,7 +67,7 @@ class OtpField extends StatelessWidget {
                   FocusScope.of(context).requestFocus(fc2);
                 }
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 counterText: '',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0),
@@ -79,10 +79,10 @@ class OtpField extends StatelessWidget {
           onTap: () => FocusScope.of(context).requestFocus(fc2),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(30, 35, 44, 1)),
+              border: Border.all(color: const Color.fromRGBO(30, 35, 44, 1)),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             width: 50,
             alignment: Alignment.center,
             height: 45,
@@ -96,7 +96,7 @@ class OtpField extends StatelessWidget {
                   FocusScope.of(context).requestFocus(fc3);
                 }
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 counterText: '',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0),
@@ -108,10 +108,10 @@ class OtpField extends StatelessWidget {
           onTap: () => FocusScope.of(context).requestFocus(fc3),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(30, 35, 44, 1)),
+              border: Border.all(color: const Color.fromRGBO(30, 35, 44, 1)),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             width: 50,
             alignment: Alignment.center,
             height: 45,
@@ -125,7 +125,7 @@ class OtpField extends StatelessWidget {
                   FocusScope.of(context).requestFocus(fc4);
                 }
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 counterText: '',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0),
@@ -137,10 +137,10 @@ class OtpField extends StatelessWidget {
           onTap: () => FocusScope.of(context).requestFocus(fc4),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(30, 35, 44, 1)),
+              border: Border.all(color: const Color.fromRGBO(30, 35, 44, 1)),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             width: 50,
             alignment: Alignment.center,
             height: 45,
@@ -154,7 +154,7 @@ class OtpField extends StatelessWidget {
                   FocusScope.of(context).requestFocus(fc5);
                 }
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 counterText: '',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0),
@@ -166,10 +166,10 @@ class OtpField extends StatelessWidget {
           onTap: () => FocusScope.of(context).requestFocus(fc5),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(30, 35, 44, 1)),
+              border: Border.all(color: const Color.fromRGBO(30, 35, 44, 1)),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             width: 50,
             alignment: Alignment.center,
             height: 45,
@@ -181,7 +181,7 @@ class OtpField extends StatelessWidget {
                 s.value += value;
                 FocusScope.of(context).requestFocus(FocusNode());
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 counterText: '',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0),

@@ -5,13 +5,13 @@ class CategoryModel {
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
     detail =
-        json['detail'] != null ? new Detail.fromJson(json['detail']) : null;
+        json['detail'] != null ? Detail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.detail != null) {
-      data['detail'] = this.detail!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (detail != null) {
+      data['detail'] = detail!.toJson();
     }
     return data;
   }
@@ -28,7 +28,7 @@ class Detail {
     if (json['loc'] != null) {
       loc = <Loc>[];
       json['loc'].forEach((v) {
-        loc!.add(new Loc.fromJson(v));
+        loc!.add(Loc.fromJson(v));
       });
     }
     msg = json['msg'];
@@ -36,12 +36,12 @@ class Detail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.loc != null) {
-      data['loc'] = this.loc!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (loc != null) {
+      data['loc'] = loc!.map((v) => v.toJson()).toList();
     }
-    data['msg'] = this.msg;
-    data['type'] = this.type;
+    data['msg'] = msg;
+    data['type'] = type;
     return data;
   }
 }
@@ -64,12 +64,12 @@ class Loc {
 
   Loc.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
     slug = json['slug'];
     if (json['subcategories'] != null) {
       subcategories = <Subcategories>[];
       json['subcategories'].forEach((v) {
-        subcategories!.add(new Subcategories.fromJson(v));
+        subcategories!.add(Subcategories.fromJson(v));
       });
     }
     imgUrl = json['img_url'];
@@ -77,18 +77,18 @@ class Loc {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    data['slug'] = this.slug;
-    if (this.subcategories != null) {
+    data['slug'] = slug;
+    if (subcategories != null) {
       data['subcategories'] =
-          this.subcategories!.map((v) => v.toJson()).toList();
+          subcategories!.map((v) => v.toJson()).toList();
     }
-    data['img_url'] = this.imgUrl;
-    data['products_count'] = this.productsCount;
+    data['img_url'] = imgUrl;
+    data['products_count'] = productsCount;
     return data;
   }
 }
@@ -107,10 +107,10 @@ class Title {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tk'] = this.tk;
-    data['ru'] = this.ru;
-    data['en'] = this.en;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tk'] = tk;
+    data['ru'] = ru;
+    data['en'] = en;
     return data;
   }
 }
@@ -127,21 +127,21 @@ class Subcategories {
 
   Subcategories.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
     slug = json['slug'];
     imgUrl = json['img_url'];
     productsCount = json['products_count'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    data['slug'] = this.slug;
-    data['img_url'] = this.imgUrl;
-    data['products_count'] = this.productsCount;
+    data['slug'] = slug;
+    data['img_url'] = imgUrl;
+    data['products_count'] = productsCount;
     return data;
   }
 }

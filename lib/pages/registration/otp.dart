@@ -26,7 +26,7 @@ class OTP extends StatelessWidget {
                 const SizedBox(height: 45),
                 Text(
                   locale[curLN]!['otp']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
@@ -34,7 +34,7 @@ class OTP extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   locale[curLN]!['inputOtp']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromRGBO(160, 160, 160, 1),
                   ),
@@ -69,7 +69,7 @@ class OTP extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 locale[curLN]!['resend']!,
-                style: TextStyle(color: orange),
+                style: const TextStyle(color: orange),
               ),
             )
           ],

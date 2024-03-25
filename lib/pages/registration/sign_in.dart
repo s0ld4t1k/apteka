@@ -34,7 +34,7 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 45),
                 Text(
                   locale[curLN]!['inputForAccount']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
@@ -84,7 +84,7 @@ class SignIn extends StatelessWidget {
               onPressed: () => Get.back(),
               child: Text(
                 locale[curLN]!['logAccount']!,
-                style: TextStyle(color: orange),
+                style: const TextStyle(color: orange),
               ),
             )
           ],

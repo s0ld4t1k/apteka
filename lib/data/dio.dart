@@ -1,26 +1,58 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 
-Dio dio = Dio();
-addInter(Dio dio) {
-  dio.interceptors.add(DioInter());
-}
+import '../widgets/langDictionary.dart';
 
-class DioInter extends Interceptor {
-  @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
-    options.headers.addAll({
-      'Content-Type': 'application/json',
-    });
-    String? token = await const FlutterSecureStorage().read(key: 'token');
-    if (token!.isNotEmpty) {
-      options.headers.addAll({
-        'Authorization': token,
-      });
+class Dioo {
+  var dio = Dio();
+  void conErr(ontap) {
+    Get.dialog(
+      AlertDialog(
+        title: const Text('Connection error'),
+        content: const Text('Please try again'),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+              ontap();
+            },
+            child: const Text('Retry'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static String getTitle(s) {
+    if (s != null) {
+      if (curLN == 'tm') {
+        return s.tk;
+      } else if (curLN == 'ru') {
+        return s.ru;
+      } else {
+        try {
+          return s.en;
+        } catch (e) {
+          return s.tk;
+        }
+      }
+    } else {
+      return '';
     }
-    super.onRequest(options, handler);
+  }
+
+  Dioo() {
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        options.headers['Content-Type'] = 'application/json';
+        String? token = await const FlutterSecureStorage().read(key: 'token');
+        if (token!.isNotEmpty) {
+          options.headers['Authorization'] = token;
+        }
+        return handler.next(options);
+      },
+    ));
   }
 }

@@ -134,7 +134,7 @@ class _LikeState extends State<Like> {
                         like.length,
                         (index) => GestureDetector(
                               onTap: () => Get.to(
-                                  () => ProductPage(url: '/product/babenak/')),
+                                  () => const ProductPage(url: '/product/babenak/')),
                               child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 12),

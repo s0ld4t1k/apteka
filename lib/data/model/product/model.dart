@@ -5,13 +5,13 @@ class ProductModel {
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     detail =
-        json['detail'] != null ? new Detail.fromJson(json['detail']) : null;
+        json['detail'] != null ? Detail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.detail != null) {
-      data['detail'] = this.detail!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (detail != null) {
+      data['detail'] = detail!.toJson();
     }
     return data;
   }
@@ -28,7 +28,7 @@ class Detail {
     if (json['loc'] != null) {
       loc = <Loc>[];
       json['loc'].forEach((v) {
-        loc!.add(new Loc.fromJson(v));
+        loc!.add(Loc.fromJson(v));
       });
     }
     msg = json['msg'];
@@ -36,12 +36,12 @@ class Detail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.loc != null) {
-      data['loc'] = this.loc!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (loc != null) {
+      data['loc'] = loc!.map((v) => v.toJson()).toList();
     }
-    data['msg'] = this.msg;
-    data['type'] = this.type;
+    data['msg'] = msg;
+    data['type'] = type;
     return data;
   }
 }
@@ -55,6 +55,11 @@ class Loc {
   Price? price;
   Price? lastPrice;
   int? humanType;
+  String? releaseForm;
+  String? productionDate;
+  String? expirationDate;
+  int? volume;
+  String? volumeType;
   Title? description;
   Title? composition;
   Title? indication;
@@ -80,6 +85,11 @@ class Loc {
       this.price,
       this.lastPrice,
       this.humanType,
+      this.releaseForm,
+      this.productionDate,
+      this.expirationDate,
+      this.volume,
+      this.volumeType,
       this.description,
       this.composition,
       this.indication,
@@ -99,37 +109,42 @@ class Loc {
   Loc.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     brandFk = json['brand_fk'] != null
-        ? new BrandFk.fromJson(json['brand_fk'])
+        ? BrandFk.fromJson(json['brand_fk'])
         : null;
     categoryFk = json['category_fk'] != null
-        ? new CategoryFk.fromJson(json['category_fk'])
+        ? CategoryFk.fromJson(json['category_fk'])
         : null;
     subcategoryFk = json['subcategory_fk'] != null
-        ? new Subcategories.fromJson(json['subcategory_fk'])
+        ? Subcategories.fromJson(json['subcategory_fk'])
         : null;
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
-    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
+    price = json['price'] != null ? Price.fromJson(json['price']) : null;
     lastPrice = json['last_price'] != null
-        ? new Price.fromJson(json['last_price'])
+        ? Price.fromJson(json['last_price'])
         : null;
     humanType = json['human_type'];
+    releaseForm = json['release_form'];
+    productionDate = json['production_date'];
+    expirationDate = json['expiration_date'];
+    volume = json['volume'];
+    volumeType = json['volume_type'];
     description = json['description'] != null
-        ? new Title.fromJson(json['description'])
+        ? Title.fromJson(json['description'])
         : null;
     composition = json['composition'] != null
-        ? new Title.fromJson(json['composition'])
+        ? Title.fromJson(json['composition'])
         : null;
     indication = json['indication'] != null
-        ? new Title.fromJson(json['indication'])
+        ? Title.fromJson(json['indication'])
         : null;
     contraindications = json['contraindications'] != null
-        ? new Title.fromJson(json['contraindications'])
+        ? Title.fromJson(json['contraindications'])
         : null;
     sideEffects = json['side_effects'] != null
-        ? new Title.fromJson(json['side_effects'])
+        ? Title.fromJson(json['side_effects'])
         : null;
     howToTakeTk = json['how_to_take_tk'] != null
-        ? new Title.fromJson(json['how_to_take_tk'])
+        ? Title.fromJson(json['how_to_take_tk'])
         : null;
     country = json['country'];
     viewCount = json['view_count'];
@@ -140,77 +155,82 @@ class Loc {
     if (json['images'] != null) {
       images = <Images>[];
       json['images'].forEach((v) {
-        images!.add(new Images.fromJson(v));
+        images!.add(Images.fromJson(v));
       });
     }
     if (json['similars'] != null) {
       similars = <Similars>[];
       json['similars'].forEach((v) {
-        similars!.add(new Similars.fromJson(v));
+        similars!.add(Similars.fromJson(v));
       });
     }
     if (json['reviews'] != null) {
       reviews = <Reviews>[];
       json['reviews'].forEach((v) {
-        reviews!.add(new Reviews.fromJson(v));
+        reviews!.add(Reviews.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.brandFk != null) {
-      data['brand_fk'] = this.brandFk!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (brandFk != null) {
+      data['brand_fk'] = brandFk!.toJson();
     }
-    if (this.categoryFk != null) {
-      data['category_fk'] = this.categoryFk!.toJson();
+    if (categoryFk != null) {
+      data['category_fk'] = categoryFk!.toJson();
     }
-    if (this.subcategoryFk != null) {
-      data['subcategory_fk'] = this.subcategoryFk!.toJson();
+    if (subcategoryFk != null) {
+      data['subcategory_fk'] = subcategoryFk!.toJson();
     }
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    if (this.price != null) {
-      data['price'] = this.price!.toJson();
+    if (price != null) {
+      data['price'] = price!.toJson();
     }
-    if (this.lastPrice != null) {
-      data['last_price'] = this.lastPrice!.toJson();
+    if (lastPrice != null) {
+      data['last_price'] = lastPrice!.toJson();
     }
-    data['human_type'] = this.humanType;
-    if (this.description != null) {
-      data['description'] = this.description!.toJson();
+    data['human_type'] = humanType;
+    data['release_form'] = releaseForm;
+    data['production_date'] = productionDate;
+    data['expiration_date'] = expirationDate;
+    data['volume'] = volume;
+    data['volume_type'] = volumeType;
+    if (description != null) {
+      data['description'] = description!.toJson();
     }
-    if (this.composition != null) {
-      data['composition'] = this.composition!.toJson();
+    if (composition != null) {
+      data['composition'] = composition!.toJson();
     }
-    if (this.indication != null) {
-      data['indication'] = this.indication!.toJson();
+    if (indication != null) {
+      data['indication'] = indication!.toJson();
     }
-    if (this.contraindications != null) {
-      data['contraindications'] = this.contraindications!.toJson();
+    if (contraindications != null) {
+      data['contraindications'] = contraindications!.toJson();
     }
-    if (this.sideEffects != null) {
-      data['side_effects'] = this.sideEffects!.toJson();
+    if (sideEffects != null) {
+      data['side_effects'] = sideEffects!.toJson();
     }
-    if (this.howToTakeTk != null) {
-      data['how_to_take_tk'] = this.howToTakeTk!.toJson();
+    if (howToTakeTk != null) {
+      data['how_to_take_tk'] = howToTakeTk!.toJson();
     }
-    data['country'] = this.country;
-    data['view_count'] = this.viewCount;
-    data['stock'] = this.stock;
-    data['rate'] = this.rate;
-    data['reviews_sum'] = this.reviewsSum;
-    data['main_image'] = this.mainImage;
-    if (this.images != null) {
-      data['images'] = this.images!.map((v) => v.toJson()).toList();
+    data['country'] = country;
+    data['view_count'] = viewCount;
+    data['stock'] = stock;
+    data['rate'] = rate;
+    data['reviews_sum'] = reviewsSum;
+    data['main_image'] = mainImage;
+    if (images != null) {
+      data['images'] = images!.map((v) => v.toJson()).toList();
     }
-    if (this.similars != null) {
-      data['similars'] = this.similars!.map((v) => v.toJson()).toList();
+    if (similars != null) {
+      data['similars'] = similars!.map((v) => v.toJson()).toList();
     }
-    if (this.reviews != null) {
-      data['reviews'] = this.reviews!.map((v) => v.toJson()).toList();
+    if (reviews != null) {
+      data['reviews'] = reviews!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -239,12 +259,12 @@ class BrandFk {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['img_url'] = this.imgUrl;
-    data['products_count'] = this.productsCount;
-    data['get_absolute_url'] = this.getAbsoluteUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['img_url'] = imgUrl;
+    data['products_count'] = productsCount;
+    data['get_absolute_url'] = getAbsoluteUrl;
     return data;
   }
 }
@@ -267,12 +287,12 @@ class CategoryFk {
 
   CategoryFk.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
     slug = json['slug'];
     if (json['subcategories'] != null) {
       subcategories = <Subcategories>[];
       json['subcategories'].forEach((v) {
-        subcategories!.add(new Subcategories.fromJson(v));
+        subcategories!.add(Subcategories.fromJson(v));
       });
     }
     imgUrl = json['img_url'];
@@ -280,18 +300,18 @@ class CategoryFk {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    data['slug'] = this.slug;
-    if (this.subcategories != null) {
+    data['slug'] = slug;
+    if (subcategories != null) {
       data['subcategories'] =
-          this.subcategories!.map((v) => v.toJson()).toList();
+          subcategories!.map((v) => v.toJson()).toList();
     }
-    data['img_url'] = this.imgUrl;
-    data['products_count'] = this.productsCount;
+    data['img_url'] = imgUrl;
+    data['products_count'] = productsCount;
     return data;
   }
 }
@@ -310,10 +330,10 @@ class Title {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tk'] = this.tk;
-    data['ru'] = this.ru;
-    data['en'] = this.en;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tk'] = tk;
+    data['ru'] = ru;
+    data['en'] = en;
     return data;
   }
 }
@@ -330,21 +350,21 @@ class Subcategories {
 
   Subcategories.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
     slug = json['slug'];
     imgUrl = json['img_url'];
     productsCount = json['products_count'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    data['slug'] = this.slug;
-    data['img_url'] = this.imgUrl;
-    data['products_count'] = this.productsCount;
+    data['slug'] = slug;
+    data['img_url'] = imgUrl;
+    data['products_count'] = productsCount;
     return data;
   }
 }
@@ -352,9 +372,9 @@ class Subcategories {
 class Price {
   double? price;
   bool? hasDiscount;
-  int? oldPrice;
+  var oldPrice;
 
-  Price({this.price, this.hasDiscount, this.oldPrice});
+  Price({this.price, this.hasDiscount, this.oldPrice = 0.0});
 
   Price.fromJson(Map<String, dynamic> json) {
     price = json['price'];
@@ -363,10 +383,10 @@ class Price {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['price'] = this.price;
-    data['has_discount'] = this.hasDiscount;
-    data['old_price'] = this.oldPrice;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['price'] = price;
+    data['has_discount'] = hasDiscount;
+    data['old_price'] = oldPrice;
     return data;
   }
 }
@@ -385,10 +405,10 @@ class Images {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['img_url'] = this.imgUrl;
-    data['order'] = this.order;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['img_url'] = imgUrl;
+    data['order'] = order;
     return data;
   }
 }
@@ -426,55 +446,55 @@ class Similars {
   Similars.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     brandFk = json['brand_fk'] != null
-        ? new BrandFk.fromJson(json['brand_fk'])
+        ? BrandFk.fromJson(json['brand_fk'])
         : null;
     categoryFk = json['category_fk'] != null
-        ? new CategoryFk.fromJson(json['category_fk'])
+        ? CategoryFk.fromJson(json['category_fk'])
         : null;
     subcategoryFk = json['subcategory_fk'] != null
-        ? new Subcategories.fromJson(json['subcategory_fk'])
+        ? Subcategories.fromJson(json['subcategory_fk'])
         : null;
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
-    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
+    price = json['price'] != null ? Price.fromJson(json['price']) : null;
     lastPrice = json['last_price'] != null
-        ? new Price.fromJson(json['last_price'])
+        ? Price.fromJson(json['last_price'])
         : null;
     stock = json['stock'];
     absoluteUrl = json['absolute_url'];
     rate = json['rate'];
     reviewsSum = json['reviews_sum'];
     getAbsoluteUrl = json['get_absolute_url'];
-    image = json['image'] != null ? new Images.fromJson(json['image']) : null;
+    image = json['image'] != null ? Images.fromJson(json['image']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.brandFk != null) {
-      data['brand_fk'] = this.brandFk!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (brandFk != null) {
+      data['brand_fk'] = brandFk!.toJson();
     }
-    if (this.categoryFk != null) {
-      data['category_fk'] = this.categoryFk!.toJson();
+    if (categoryFk != null) {
+      data['category_fk'] = categoryFk!.toJson();
     }
-    if (this.subcategoryFk != null) {
-      data['subcategory_fk'] = this.subcategoryFk!.toJson();
+    if (subcategoryFk != null) {
+      data['subcategory_fk'] = subcategoryFk!.toJson();
     }
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    if (this.price != null) {
-      data['price'] = this.price!.toJson();
+    if (price != null) {
+      data['price'] = price!.toJson();
     }
-    if (this.lastPrice != null) {
-      data['last_price'] = this.lastPrice!.toJson();
+    if (lastPrice != null) {
+      data['last_price'] = lastPrice!.toJson();
     }
-    data['stock'] = this.stock;
-    data['absolute_url'] = this.absoluteUrl;
-    data['rate'] = this.rate;
-    data['reviews_sum'] = this.reviewsSum;
-    data['get_absolute_url'] = this.getAbsoluteUrl;
-    if (this.image != null) {
-      data['image'] = this.image!.toJson();
+    data['stock'] = stock;
+    data['absolute_url'] = absoluteUrl;
+    data['rate'] = rate;
+    data['reviews_sum'] = reviewsSum;
+    data['get_absolute_url'] = getAbsoluteUrl;
+    if (image != null) {
+      data['image'] = image!.toJson();
     }
     return data;
   }
@@ -506,13 +526,13 @@ class Reviews {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['customer'] = this.customer;
-    data['subject'] = this.subject;
-    data['feedback'] = this.feedback;
-    data['rate'] = this.rate;
-    data['created_at'] = this.createdAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['customer'] = customer;
+    data['subject'] = subject;
+    data['feedback'] = feedback;
+    data['rate'] = rate;
+    data['created_at'] = createdAt;
     return data;
   }
 }

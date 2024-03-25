@@ -141,25 +141,29 @@ class _BagState extends State<Bag> {
                                         child: Container(
                                           padding: const EdgeInsets.only(
                                               left: 16,
-                                              right: 40,
+                                              right: 16,
                                               top: 20,
                                               bottom: 20),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                cartProductList[index]['name'],
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.only(right: 24),
+                                                child: Text(
+                                                  cartProductList[index]
+                                                      ['name'],
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                 ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
+                                              const SizedBox(height: 8),
                                               Text(
                                                 cartProductList[index]['desc'],
                                                 style: const TextStyle(
@@ -180,7 +184,7 @@ class _BagState extends State<Bag> {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    '${cartProductList[index]['price']}',
+                                                    '${cartProductList[index]['price']} TMT',
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                       fontWeight:
@@ -213,11 +217,12 @@ class _BagState extends State<Bag> {
                                                                               index]
                                                                           [
                                                                           'count'] >
-                                                                      1)
+                                                                      1) {
                                                                     cartProductList[
                                                                             index]
                                                                         [
                                                                         'count']--;
+                                                                  }
                                                                 },
                                                               );
                                                             },
@@ -277,11 +282,14 @@ class _BagState extends State<Bag> {
                                                               minWidth: 24,
                                                             ),
                                                             onPressed: () {
-                                                              setState(() {
-                                                                cartProductList[
-                                                                        index]
-                                                                    ['count']++;
-                                                              });
+                                                              setState(
+                                                                () {
+                                                                  cartProductList[
+                                                                          index]
+                                                                      [
+                                                                      'count']++;
+                                                                },
+                                                              );
                                                             },
                                                             icon: const Icon(
                                                               Icons.add_rounded,
@@ -516,7 +524,7 @@ class _BagState extends State<Bag> {
                                 ))),
                             onPressed: () {
                               jem = arzanladys + harytJemi + eltipberme;
-                              Get.to(() => SargytEtmek());
+                              Get.to(() => const SargytEtmek());
                             },
                             child: Text(
                               '${locale[curLN]?["toDeliv"]}',

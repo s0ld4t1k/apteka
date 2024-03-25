@@ -39,6 +39,7 @@ void main() async {
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
   tokenn = tokenn.substring(7, tokenn.length);
+  print('------tokenn-----$tokenn');
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }

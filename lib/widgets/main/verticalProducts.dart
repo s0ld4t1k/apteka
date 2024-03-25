@@ -30,7 +30,7 @@ class _VerticalProductsState extends State<VerticalProducts> {
           products.length,
           (index) => GestureDetector(
                 onTap: () =>
-                    Get.to(() => ProductPage(url: '/product/babenak/')),
+                    Get.to(() => const ProductPage(url: '/product/babenak/')),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   width: 162,

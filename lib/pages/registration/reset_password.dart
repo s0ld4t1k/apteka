@@ -26,7 +26,7 @@ class ResetPassword extends StatelessWidget {
                 const SizedBox(height: 45),
                 Text(
                   locale[curLN]!['forgetPassword?']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
@@ -34,7 +34,7 @@ class ResetPassword extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   locale[curLN]!['inputTel']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromRGBO(160, 160, 160, 1),
                   ),
@@ -64,7 +64,7 @@ class ResetPassword extends StatelessWidget {
               onPressed: () => Get.to(() => const Registration()),
               child: Text(
                 locale[curLN]!['logAccount']!,
-                style: TextStyle(color: orange),
+                style: const TextStyle(color: orange),
               ),
             )
           ],

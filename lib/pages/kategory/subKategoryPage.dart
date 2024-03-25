@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, deprecated_member_use
 
+import 'package:apte/data/dio.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/category_products.dart';
@@ -32,8 +33,8 @@ class SubKategoryPage extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.chevron_left_rounded)),
           title: Text(
-            cc.getTitle(cc.categories.detail!.loc![cc.selectedCategory]
-                .subcategories![cc.selectedSubategory].title!),
+            Dioo.getTitle(cc.categories.detail?.loc?[cc.selectedCategory]
+                .subcategories?[cc.selectedSubategory].title),
           ),
         ),
         body: SingleChildScrollView(

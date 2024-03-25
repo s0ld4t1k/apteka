@@ -27,7 +27,7 @@ class NewPassword extends StatelessWidget {
                 const SizedBox(height: 45),
                 Text(
                   locale[curLN]!['newPasswordText1']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
@@ -35,12 +35,12 @@ class NewPassword extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   locale[curLN]!['newPasswordText2']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromRGBO(160, 160, 160, 1),
                   ),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 PasswordField(
                     title: locale[curLN]!['newPassword']!, pass: NPpass),
                 const SizedBox(height: 20),
@@ -67,7 +67,7 @@ class NewPassword extends StatelessWidget {
               onPressed: () => Get.to(() => const SignIn()),
               child: Text(
                 locale[curLN]!['createAccount']!,
-                style: TextStyle(color: orange),
+                style: const TextStyle(color: orange),
               ),
             )
           ],

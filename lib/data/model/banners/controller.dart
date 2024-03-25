@@ -15,7 +15,7 @@ class BannerController extends GetxController {
   void get() async {
     String url = 'banners/';
     try {
-      var res = await dio.get(baseUrl + url);
+      var res = await Dioo().dio.get(baseUrl + url);
       if (res.statusCode == 200) {
         banners = BannerModel.fromJson(res.data);
       }

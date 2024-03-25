@@ -19,7 +19,7 @@ class ProductController extends GetxController {
   void get() async {
     // print(baseUrl + productUrl.value.substring(1, productUrl.value.length));
     try {
-      var res = await dio.get(
+      var res = await Dioo().dio.get(
           baseUrl + productUrl.value.substring(1, productUrl.value.length));
       if (res.statusCode == 200) {
         product = ProductModel.fromJson(res.data);

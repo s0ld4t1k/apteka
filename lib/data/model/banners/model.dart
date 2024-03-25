@@ -5,13 +5,13 @@ class BannerModel {
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     detail =
-        json['detail'] != null ? new Detail.fromJson(json['detail']) : null;
+        json['detail'] != null ? Detail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.detail != null) {
-      data['detail'] = this.detail!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (detail != null) {
+      data['detail'] = detail!.toJson();
     }
     return data;
   }
@@ -28,7 +28,7 @@ class Detail {
     if (json['loc'] != null) {
       loc = <Loc>[];
       json['loc'].forEach((v) {
-        loc!.add(new Loc.fromJson(v));
+        loc!.add(Loc.fromJson(v));
       });
     }
     msg = json['msg'];
@@ -36,12 +36,12 @@ class Detail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.loc != null) {
-      data['loc'] = this.loc!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (loc != null) {
+      data['loc'] = loc!.map((v) => v.toJson()).toList();
     }
-    data['msg'] = this.msg;
-    data['type'] = this.type;
+    data['msg'] = msg;
+    data['type'] = type;
     return data;
   }
 }
@@ -60,10 +60,10 @@ class Loc {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['img_url'] = this.imgUrl;
-    data['url'] = this.url;
-    data['location'] = this.location;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['img_url'] = imgUrl;
+    data['url'] = url;
+    data['location'] = location;
     return data;
   }
 }

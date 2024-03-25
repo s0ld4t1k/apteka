@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-var _selectebLang=0;
+
+var _selectebLang = 0;
+
 class Language extends StatefulWidget {
   const Language({super.key});
 
@@ -15,16 +17,18 @@ class Language extends StatefulWidget {
 }
 
 class _LanguageState extends State<Language> {
-  final LangCont lc=Get.find();
+  final LangCont lc = Get.find();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LangCont>(
-      builder: (cont) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            leading: IconButton(
+    if (curLN == 'tm') _selectebLang = 0;
+    if (curLN == 'ru') _selectebLang = 1;
+    if (curLN == 'en') _selectebLang = 2;
+    return GetBuilder<LangCont>(builder: (cont) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
               padding: const EdgeInsets.all(0),
               constraints: const BoxConstraints(
                 maxHeight: 24,
@@ -32,22 +36,23 @@ class _LanguageState extends State<Language> {
                 minHeight: 24,
                 minWidth: 24,
               ),
-              onPressed: ()=>Navigator.pop(context), 
-              icon: const Icon(Icons.chevron_left_rounded)
-            ),
-            title:  Text('${locale[curLN]?['changeLang']}'),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Column(
-              children: List.generate(langList.length, (index) => GestureDetector(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.chevron_left_rounded)),
+          title: Text('${locale[curLN]?['changeLang']}'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            children: List.generate(
+              langList.length,
+              (index) => GestureDetector(
                 onTap: () {
                   setState(() {
-                    _selectebLang=index;
+                    _selectebLang = index;
                   });
-                  if(_selectebLang==0)lc.change('tm');
-                  if(_selectebLang==1)lc.change('ru');
-                  if(_selectebLang==2)lc.change('en');
+                  if (_selectebLang == 0) lc.change('tm');
+                  if (_selectebLang == 1) lc.change('ru');
+                  if (_selectebLang == 2) lc.change('en');
                   const FlutterSecureStorage().write(key: 'lang', value: curLN);
                 },
                 child: Container(
@@ -55,33 +60,40 @@ class _LanguageState extends State<Language> {
                   margin: const EdgeInsets.symmetric(vertical: 7),
                   height: 52,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: (_selectebLang==index)?green:conGrey)
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: (_selectebLang == index) ? green : conGrey)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircleAvatar(
                         radius: 16,
-                        child: Image.asset('assets/images/${langList[index][0]}.png'),
+                        child: Image.asset(
+                            'assets/images/${langList[index][0]}.png'),
                       ),
-                      const SizedBox(width: 22,),
+                      const SizedBox(
+                        width: 22,
+                      ),
                       Expanded(
-                        child: Text(langList[index][1],style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),),
+                        child: Text(
+                          langList[index][1],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
-                      (_selectebLang==index)?SvgPicture.asset('assets/icons/done.svg')
-                      :Container(),
+                      (_selectebLang == index)
+                          ? SvgPicture.asset('assets/icons/done.svg')
+                          : Container(),
                     ],
                   ),
                 ),
-              ),),
+              ),
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }

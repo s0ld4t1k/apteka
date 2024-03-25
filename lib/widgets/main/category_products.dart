@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
+import 'package:apte/data/dio.dart';
 import 'package:apte/pages/main/productPage.dart';
+import 'package:apte/widgets/circul.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +18,7 @@ class CategoryProducts extends StatelessWidget {
       init: CategoryController(),
       builder: (cc) {
         return cc.categoryProdyctIsload
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const Circul()
             : GridView(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -29,15 +29,16 @@ class CategoryProducts extends StatelessWidget {
                   crossAxisSpacing: 21,
                 ),
                 children: List.generate(
-                  cc.categoryProducts.detail!.loc![0].products!.length,
+                  cc.categoryProducts.detail?.loc?[0].products?.length ?? 0,
                   (index) => GestureDetector(
                     onTap: () {
-                      print(cc.categoryProducts.detail!.loc![0].products![index]
-                          .absoluteUrl!);
+                      debugPrint(cc.categoryProducts.detail?.loc?[0]
+                          .products?[index].absoluteUrl);
                       Get.to(
                         () => ProductPage(
-                          url: cc.categoryProducts.detail!.loc![0]
-                              .products![index].absoluteUrl!,
+                          url: cc.categoryProducts.detail?.loc?[0]
+                                  .products?[index].absoluteUrl ??
+                              '',
                         ),
                       );
                     },
@@ -75,8 +76,8 @@ class CategoryProducts extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                cc.getTitle(cc.categoryProducts.detail!.loc![0]
-                                    .products![index].title!),
+                                Dioo.getTitle(cc.categoryProducts.detail
+                                    ?.loc?[0].products?[index].title),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -88,7 +89,7 @@ class CategoryProducts extends StatelessWidget {
                                 height: 18,
                               ),
                               Text(
-                                '${cc.categoryProducts.detail!.loc![0].products![index].price!.price} TMT',
+                                '${cc.categoryProducts.detail?.loc?[0].products?[index].price?.price} TMT',
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
@@ -112,7 +113,7 @@ class CategoryProducts extends StatelessWidget {
                                   color: orange,
                                   borderRadius: BorderRadius.circular(32),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.add,
                                   color: Colors.white,
                                   size: 20,

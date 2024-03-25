@@ -337,7 +337,7 @@ Map<String, Map<String, String>> locale = {
     'productInfo': 'Product Information',
     'onduriji': 'Manufacturer',
     'gornushi': 'View',
-    'UlanyshDate': 'Expiration date',
+    'ulanyshDate': 'Expiration date',
     'daneSany': 'Number of grains',
     'gorkezme': 'Instructions',
     'aboutproduct': 'About product',

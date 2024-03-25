@@ -1,10 +1,11 @@
-class CategoryProductsModel {
+class ProductsModel {
   Detail? detail;
 
-  CategoryProductsModel({this.detail});
+  ProductsModel({this.detail});
 
-  CategoryProductsModel.fromJson(Map<String, dynamic> json) {
-    detail = json['detail'] != null ? Detail.fromJson(json['detail']) : null;
+  ProductsModel.fromJson(Map<String, dynamic> json) {
+    detail =
+        json['detail'] != null ? Detail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -46,85 +47,6 @@ class Detail {
 }
 
 class Loc {
-  Pagination? pagination;
-  Title? title;
-  List<Products>? products;
-
-  Loc({this.pagination, this.title, this.products});
-
-  Loc.fromJson(Map<String, dynamic> json) {
-    pagination = json['pagination'] != null
-        ? Pagination.fromJson(json['pagination'])
-        : null;
-    title = json['title'] != null ? Title.fromJson(json['title']) : null;
-    if (json['products'] != null) {
-      products = <Products>[];
-      json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (pagination != null) {
-      data['pagination'] = pagination!.toJson();
-    }
-    if (title != null) {
-      data['title'] = title!.toJson();
-    }
-    if (products != null) {
-      data['products'] = products!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Pagination {
-  int? totalPages;
-  int? currentPage;
-  bool? previous;
-  bool? next;
-
-  Pagination({this.totalPages, this.currentPage, this.previous, this.next});
-
-  Pagination.fromJson(Map<String, dynamic> json) {
-    totalPages = json['total_pages'];
-    currentPage = json['current_page'];
-    previous = json['previous'];
-    next = json['next'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['total_pages'] = totalPages;
-    data['current_page'] = currentPage;
-    data['previous'] = previous;
-    data['next'] = next;
-    return data;
-  }
-}
-
-class Title {
-  String? tk;
-  String? ru;
-
-  Title({this.tk, this.ru});
-
-  Title.fromJson(Map<String, dynamic> json) {
-    tk = json['tk'];
-    ru = json['ru'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['tk'] = tk;
-    data['ru'] = ru;
-    return data;
-  }
-}
-
-class Products {
   int? id;
   BrandFk? brandFk;
   CategoryFk? categoryFk;
@@ -137,9 +59,9 @@ class Products {
   int? rate;
   int? reviewsSum;
   String? getAbsoluteUrl;
-  Image? image;
+  Imag? image;
 
-  Products(
+  Loc(
       {this.id,
       this.brandFk,
       this.categoryFk,
@@ -154,10 +76,11 @@ class Products {
       this.getAbsoluteUrl,
       this.image});
 
-  Products.fromJson(Map<String, dynamic> json) {
+  Loc.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brandFk =
-        json['brand_fk'] != null ? BrandFk.fromJson(json['brand_fk']) : null;
+    brandFk = json['brand_fk'] != null
+        ? BrandFk.fromJson(json['brand_fk'])
+        : null;
     categoryFk = json['category_fk'] != null
         ? CategoryFk.fromJson(json['category_fk'])
         : null;
@@ -166,14 +89,15 @@ class Products {
         : null;
     title = json['title'] != null ? Title.fromJson(json['title']) : null;
     price = json['price'] != null ? Price.fromJson(json['price']) : null;
-    lastPrice =
-        json['last_price'] != null ? Price.fromJson(json['last_price']) : null;
+    lastPrice = json['last_price'] != null
+        ? Price.fromJson(json['last_price'])
+        : null;
     stock = json['stock'];
     absoluteUrl = json['absolute_url'];
     rate = json['rate'];
     reviewsSum = json['reviews_sum'];
     getAbsoluteUrl = json['get_absolute_url'];
-    image = json['image'] != null ? Image.fromJson(json['image']) : null;
+    image = json['image'] != null ? Imag.fromJson(json['image']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -280,10 +204,33 @@ class CategoryFk {
     }
     data['slug'] = slug;
     if (subcategories != null) {
-      data['subcategories'] = subcategories!.map((v) => v.toJson()).toList();
+      data['subcategories'] =
+          subcategories!.map((v) => v.toJson()).toList();
     }
     data['img_url'] = imgUrl;
     data['products_count'] = productsCount;
+    return data;
+  }
+}
+
+class Title {
+  String? tk;
+  String? ru;
+  String? en;
+
+  Title({this.tk, this.ru, this.en});
+
+  Title.fromJson(Map<String, dynamic> json) {
+    tk = json['tk'];
+    ru = json['ru'];
+    en = json['en'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tk'] = tk;
+    data['ru'] = ru;
+    data['en'] = en;
     return data;
   }
 }
@@ -341,14 +288,14 @@ class Price {
   }
 }
 
-class Image {
+class Imag {
   int? id;
   String? imgUrl;
   int? order;
 
-  Image({this.id, this.imgUrl, this.order});
+  Imag({this.id, this.imgUrl, this.order});
 
-  Image.fromJson(Map<String, dynamic> json) {
+  Imag.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     imgUrl = json['img_url'];
     order = json['order'];

@@ -66,7 +66,7 @@ class _HorizontalProductsState extends State<HorizontalProducts> {
                   // var _added=false;
                   return GestureDetector(
                     onTap: () =>
-                        Get.to(() => ProductPage(url: '/product/babenak/')),
+                        Get.to(() => const ProductPage(url: '/product/babenak/')),
                     child: Container(
                       margin: const EdgeInsets.only(right: 18),
                       padding: const EdgeInsets.symmetric(horizontal: 12),

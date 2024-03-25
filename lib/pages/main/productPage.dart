@@ -10,6 +10,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../data/dio.dart';
+
 RxBool _liked = false.obs;
 RxInt _curIndex = 0.obs;
 List infoList = [];
@@ -24,47 +26,48 @@ class ProductPage extends StatelessWidget {
     countProd = 1.obs;
     isClickProd = false.obs;
     productUrl(url);
+    _curIndex(0);
     return GetBuilder<ProductController>(
         init: ProductController(),
         builder: (pc) {
           gorkezmeList = [
             [
               '${locale[curLN]?["aboutproduct"]}',
-              pc.getTitle(pc.product.detail?.loc![0].description)
+              Dioo.getTitle(pc.product.detail?.loc?[0].description)
             ],
             [
               '${locale[curLN]?["duzum"]}',
-              pc.getTitle(pc.product.detail?.loc![0].composition)
+              Dioo.getTitle(pc.product.detail?.loc?[0].composition)
             ],
             [
               '${locale[curLN]?["saklanyshy"]}',
-              pc.getTitle(pc.product.detail?.loc![0].indication)
+              Dioo.getTitle(pc.product.detail?.loc?[0].indication)
             ],
             [
               '${locale[curLN]?["ulanylyshy"]}',
-              pc.getTitle(pc.product.detail?.loc![0].howToTakeTk)
+              Dioo.getTitle(pc.product.detail?.loc?[0].howToTakeTk)
             ],
             [
               '${locale[curLN]?["manLimit"]}',
-              pc.getTitle(pc.product.detail?.loc![0].contraindications)
+              Dioo.getTitle(pc.product.detail?.loc?[0].contraindications)
             ],
           ];
           infoList = [
             [
               '${locale[curLN]?["onduriji"]}:',
-              pc.getTitle(pc.product.detail?.loc![0].composition)
+              pc.product.detail?.loc?[0].brandFk?.title ?? '',
             ],
             [
               '${locale[curLN]?["gornushi"]}:',
-              pc.getTitle(pc.product.detail?.loc![0].composition)
+              pc.product.detail?.loc?[0].releaseForm ?? '',
             ],
             [
               '${locale[curLN]?["ulanyshDate"]}:',
-              pc.getTitle(pc.product.detail?.loc![0].composition)
+              '${pc.product.detail?.loc?[0].productionDate}/${pc.product.detail?.loc?[0].expirationDate}'
             ],
             [
               '${locale[curLN]?["daneSany"]}:',
-              pc.getTitle(pc.product.detail?.loc![0].composition)
+              '${pc.product.detail?.loc?[0].volume} ${pc.product.detail?.loc?[0].volumeType}'
             ],
           ];
           return Scaffold(
@@ -226,7 +229,7 @@ class ProductPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                pc.getTitle(pc.product.detail?.loc![0].title),
+                                Dioo.getTitle(pc.product.detail?.loc![0].title),
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, deprecated_member_use, curly_braces_in_flow_control_structures
 
 import 'package:apte/data/model/banners/controller.dart';
+import 'package:apte/data/model/products/controller.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/searchPage.dart';
 import 'package:apte/widgets/colors.dart';
@@ -9,6 +10,7 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/category.dart';
 import 'package:apte/widgets/main/harmful.dart';
 import 'package:apte/widgets/main/horizontalProducts.dart';
+import 'package:apte/widgets/main/new_products.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,14 +48,11 @@ class _MainPageWidgetState extends State<MainPageWidget> {
           titleSpacing: 25,
           title: Row(
             children: [
-              const SizedBox(
-                width: 1,
-              ),
+              const SizedBox(width: 1),
               Expanded(
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/mainPage/search');
-                  },
+                  onTap: () =>
+                      Navigator.of(context).pushNamed('/mainPage/search'),
                   child: Container(
                     height: 50,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,9 +69,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                 'assets/icons/search.svg',
                                 color: textGrey3,
                               ),
-                              const SizedBox(
-                                width: 15,
-                              ),
+                              const SizedBox(width: 15),
                               Expanded(
                                 child: Text(
                                   '${locale[curLN]?["searchHint"]}',
@@ -91,9 +88,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           width: 1,
                           color: textGrey3,
                         ),
-                        const SizedBox(
-                          width: 14,
-                        ),
+                        const SizedBox(width: 14),
                         GestureDetector(
                           onTap: scan,
                           child: SvgPicture.asset(
@@ -106,9 +101,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () async {
                   if (await canLaunchUrl(
@@ -126,81 +119,63 @@ class _MainPageWidgetState extends State<MainPageWidget> {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          controller: contrl,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 15,
-              ),
-              GetBuilder<BannerController>(
-                  init: BannerController(),
-                  builder: (bc) {
-                    return CarouselSlider(
-                        items: List.generate(
-                          bc.banners.detail?.loc?.length ?? 0,
-                          (index) => Container(
-                            width: 325,
-                            margin: const EdgeInsets.only(right: 12),
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Image.network(
-                              bc.banners.detail?.loc?[index].imgUrl ?? '',
-                              fit: BoxFit.fill,
+        body: GetBuilder<ProductsController>(
+            init: ProductsController(),
+            builder: (ps) {
+              return SingleChildScrollView(
+                controller: contrl,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 15),
+                    GetBuilder<BannerController>(
+                      init: BannerController(),
+                      builder: (bc) {
+                        return CarouselSlider(
+                          items: List.generate(
+                            bc.banners.detail?.loc?.length ?? 0,
+                            (index) => Container(
+                              width: 325,
+                              margin: const EdgeInsets.only(right: 12),
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Image.network(
+                                bc.banners.detail?.loc?[index].imgUrl ?? '',
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
-                        ),
-                        options: CarouselOptions(
-                          viewportFraction: 0.85,
-                          height: 150,
-                          autoPlay: true,
-                          enableInfiniteScroll: false,
-                        ));
-                  }),
-              const SizedBox(
-                height: 15,
-              ),
-              const MainCategory(),
-              const HorizontalProducts(
-                text: 'Arzanladyşlar',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const HorizontalProducts(
-                text: 'Täzeler',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const HorizontalProducts(
-                text: 'Kosmetiki serişdeler',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const MainHarmful(),
-              const SizedBox(
-                height: 15,
-              ),
-              const HorizontalProducts(
-                text: 'Dermanlyk serişdeler',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const HorizontalProducts(
-                text: 'Lukmançylyk hajatly önümler',
-              ),
-              const SizedBox(
-                height: 34 - 15,
-              ),
-            ],
-          ),
-        ),
+                          options: CarouselOptions(
+                            viewportFraction: 0.85,
+                            height: 150,
+                            autoPlay: true,
+                            enableInfiniteScroll: false,
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    const MainCategory(),
+                    NewProducts(
+                        text: 'Köp satylanlar', prs: ps.mostsoldProducts),
+                    const SizedBox(height: 15),
+                    NewProducts(text: 'Täzeler', prs: ps.newProducts),
+                    const SizedBox(height: 15),
+                    const HorizontalProducts(text: 'Kosmetiki serişdeler'),
+                    const SizedBox(height: 15),
+                    const MainHarmful(),
+                    const SizedBox(height: 15),
+                    const HorizontalProducts(text: 'Dermanlyk serişdeler'),
+                    const SizedBox(height: 15),
+                    const HorizontalProducts(
+                        text: 'Lukmançylyk hajatly önümler'),
+                    const SizedBox(height: 34 - 15),
+                  ],
+                ),
+              );
+            }),
       );
     });
   }

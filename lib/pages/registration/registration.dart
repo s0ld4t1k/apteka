@@ -30,7 +30,7 @@ class Registration extends StatelessWidget {
                 const SizedBox(height: 45),
                 Text(
                   locale[curLN]!['login']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
                   ),
@@ -53,7 +53,7 @@ class Registration extends StatelessWidget {
                       onPressed: () => Get.to(() => const ResetPassword()),
                       child: Text(
                         locale[curLN]!['forgetPassword']!,
-                        style: TextStyle(color: orange),
+                        style: const TextStyle(color: orange),
                       ),
                     )
                   ],
