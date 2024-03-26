@@ -2,8 +2,15 @@ import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/bag&Card/newCard.dart';
 // import 'package:apte/widgets/langDictionary.dart';
 import 'package:get/state_manager.dart';
+import 'package:hive/hive.dart';
 
 class MyController extends GetxController {
+  @override
+  void onInit() {
+    cards.value = Hive.box('box').get('cards');
+    super.onInit();
+  }
+
   void setCardTypeValue(o) {
     selectedCardType = o;
     update();
@@ -25,6 +32,7 @@ class MyController extends GetxController {
     o[3] = eyesi.text;
     o[5] = year.text;
     o[4] = selectedMonth;
+    Hive.box('box').put('cards', cards);
     update();
   }
 
@@ -37,6 +45,7 @@ class MyController extends GetxController {
       selectedMonth,
       year.text,
     ]);
+    Hive.box('box').put('cards', cards);
     update();
   }
 
@@ -46,7 +55,7 @@ class MyController extends GetxController {
     cvc.text = '';
     eyesi.text = '';
     year.text = '';
-    selectedMonth = -1;
+    selectedMonth = 0;
     update();
   }
 }

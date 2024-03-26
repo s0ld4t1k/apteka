@@ -2,6 +2,7 @@
 
 import 'package:apte/data/dio.dart';
 import 'package:apte/pages/main/mainPage.dart';
+import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/category_products.dart';
 import 'package:apte/widgets/main/filtrBottomSheet.dart';
@@ -19,7 +20,7 @@ class SubKategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoryController>(builder: (cc) {
       return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: bc,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
@@ -47,6 +48,10 @@ class SubKategoryPage extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
+                        side: MaterialStateProperty.all(
+                          const BorderSide(
+                              color: Color.fromRGBO(237, 237, 237, 1)),
+                        ),
                         minimumSize: MaterialStateProperty.all(
                             const Size(double.infinity, 42)),
                         backgroundColor:
@@ -54,9 +59,6 @@ class SubKategoryPage extends StatelessWidget {
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(
-                              color: Color.fromRGBO(237, 237, 237, 1),
-                            ),
                           ),
                         ),
                       ),
@@ -95,6 +97,10 @@ class SubKategoryPage extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                            const BorderSide(
+                                color: Color.fromRGBO(237, 237, 237, 1)),
+                          ),
                           minimumSize: MaterialStateProperty.all(
                               const Size(double.infinity, 42)),
                           backgroundColor:

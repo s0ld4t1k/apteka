@@ -18,199 +18,200 @@ List cardImages = [
   'assets/images/dayhanBank.png',
   'assets/images/turkmenbasyBank.png',
 ];
-RxList<dynamic> cards = [
-  ['**** **** **** 1234', 3, '345', 'Random name', 3, '2023'],
-  ['**** **** **** 1234', 2, '345', 'Random name', 2, '2023'],
-  ['**** **** **** 1234', 0, '345', 'Random name', 11, '2023'],
-].obs;
+RxList<dynamic> cards = [].obs;
 
 class Kard extends StatelessWidget {
-  Kard({super.key});
-  final MyController mc = Get.find();
+  const Kard({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MyController>(builder: (mc) {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text('${locale[curLN]?['myCards']}'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Get.to(() => const PaymentHistory());
-              },
-              icon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: SvgPicture.asset('assets/icons/wallet.svg')),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          controller: contrl,
-          child: cards.value.isEmpty
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Column(
-                    children: [
-                      Image.asset('assets/images/noCard.png'),
-                      const SizedBox(
-                        height: 18,
-                      ),
-                      Text(
-                        '${locale[curLN]?['noneBankCardText1']}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 17,
-                      ),
-                      Text(
-                        '${locale[curLN]?['noneBankCardText2']}',
-                        style: const TextStyle(
-                          color: Color.fromRGBO(131, 135, 140, 1),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 33,
-                      ),
-                      OutlinedButton(
-                          style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.all(
-                                orange.withOpacity(0.1)),
-                            minimumSize: MaterialStateProperty.all(
-                                const Size(double.infinity, 50)),
-                            side: MaterialStateProperty.all(
-                                const BorderSide(color: orange)),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )),
-                          ),
-                          onPressed: () {
-                            Get.to(() => NewCard());
-                          },
-                          child: Text(
-                            '${locale[curLN]?['addCard']}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: orange,
-                            ),
-                          ))
-                    ],
+    return GetBuilder<MyController>(
+        init: MyController(),
+        builder: (mc) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              title: Text('${locale[curLN]?['myCards']}'),
+              centerTitle: true,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Get.to(() => const PaymentHistory());
+                  },
+                  icon: SizedBox(
+                    width: 23,
+                    height: 23,
+                    child: SvgPicture.asset('assets/icons/wallet.svg'),
                   ),
-                )
-              : Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                  child: Obx(() {
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.all(0),
-                      itemBuilder: (context, index) {
-                        return Slidable(
-                          endActionPane:
-                              ActionPane(motion: const ScrollMotion(), children: [
-                            SlidableAction(
-                              onPressed: (context) => cards.removeAt(index),
-                              borderRadius: BorderRadius.circular(10),
-                              backgroundColor: red,
-                              icon: Icons.delete,
-                              autoClose: true,
-                            )
-                          ]),
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.to(() => NewCard(
-                                    index: index,
-                                  ));
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 12),
-                              width: double.infinity,
-                              height: 85,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: const Color.fromRGBO(
-                                          237, 237, 237, 1))),
-                              child: Row(
-                                children: [
-                                  Image.asset(cardImages[cards[index][1]]),
-                                  const SizedBox(
-                                    width: 35,
-                                  ),
-                                  Expanded(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                cardsType[cards[index][1]],
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 16),
-                                              ),
-                                              const SizedBox(
-                                                height: 6,
-                                              ),
-                                              Text(
-                                                cards[index][0],
-                                                style: const TextStyle(
-                                                  color: Color.fromRGBO(
-                                                      131, 131, 131, 1),
-                                                  fontSize: 14,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.chevron_right_rounded,
-                                          size: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+            body: SingleChildScrollView(
+              controller: contrl,
+              child: cards.value.isEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/noCard.png'),
+                          const SizedBox(
+                            height: 18,
+                          ),
+                          Text(
+                            '${locale[curLN]?['noneBankCardText1']}',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                        );
-                      },
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 15,
+                          const SizedBox(
+                            height: 17,
+                          ),
+                          Text(
+                            '${locale[curLN]?['noneBankCardText2']}',
+                            style: const TextStyle(
+                              color: Color.fromRGBO(131, 135, 140, 1),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 33,
+                          ),
+                          OutlinedButton(
+                              style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    orange.withOpacity(0.1)),
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(double.infinity, 50)),
+                                side: MaterialStateProperty.all(
+                                    const BorderSide(color: orange)),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                              ),
+                              onPressed: () {
+                                Get.to(() => NewCard());
+                              },
+                              child: Text(
+                                '${locale[curLN]?['addCard']}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: orange,
+                                ),
+                              ))
+                        ],
                       ),
-                      itemCount: cards.value.length,
-                    );
-                  }),
-                ),
-        ),
-        floatingActionButton: cards.isEmpty
-            ? null
-            : FloatingActionButton(
-                elevation: 0,
-                onPressed: () => Get.to(() => NewCard()),
-                backgroundColor: orange,
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-              ),
-      );
-    });
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 25, vertical: 20),
+                      child: Obx(() {
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.all(0),
+                          itemBuilder: (context, index) {
+                            return Slidable(
+                              endActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      onPressed: (context) =>
+                                          cards.removeAt(index),
+                                      borderRadius: BorderRadius.circular(10),
+                                      backgroundColor: red,
+                                      icon: Icons.delete,
+                                      autoClose: true,
+                                    )
+                                  ]),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(() => NewCard(
+                                        index: index,
+                                      ));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 12),
+                                  width: double.infinity,
+                                  height: 85,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color: const Color.fromRGBO(
+                                              237, 237, 237, 1))),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(cardImages[cards[index][1]]),
+                                      const SizedBox(
+                                        width: 35,
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    cardsType[cards[index][1]],
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 16),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 6,
+                                                  ),
+                                                  Text(
+                                                    cards[index][0],
+                                                    style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          131, 131, 131, 1),
+                                                      fontSize: 14,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            const Icon(
+                                              Icons.chevron_right_rounded,
+                                              size: 20,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 15,
+                          ),
+                          itemCount: cards.value.length,
+                        );
+                      }),
+                    ),
+            ),
+            floatingActionButton: cards.isEmpty
+                ? null
+                : FloatingActionButton(
+                    elevation: 0,
+                    onPressed: () => Get.to(() => NewCard()),
+                    backgroundColor: orange,
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                  ),
+          );
+        });
   }
 }

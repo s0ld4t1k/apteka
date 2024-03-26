@@ -22,7 +22,7 @@ List _tabs = [
   const MainPageWidget(),
   const Kategory(),
   const Bag(),
-  Kard(),
+  const Kard(),
   const Profile(),
 ];
 

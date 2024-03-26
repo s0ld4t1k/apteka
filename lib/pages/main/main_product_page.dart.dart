@@ -49,6 +49,10 @@ class MainProductsPage extends StatelessWidget {
                       Expanded(
                         child: OutlinedButton(
                           style: ButtonStyle(
+                            side: MaterialStateProperty.all(
+                              const BorderSide(
+                                  color: Color.fromRGBO(237, 237, 237, 1)),
+                            ),
                             minimumSize: MaterialStateProperty.all(
                                 const Size(double.infinity, 42)),
                             backgroundColor:
@@ -97,6 +101,10 @@ class MainProductsPage extends StatelessWidget {
                       Expanded(
                         child: OutlinedButton(
                           style: ButtonStyle(
+                              side: MaterialStateProperty.all(
+                                const BorderSide(
+                                    color: Color.fromRGBO(237, 237, 237, 1)),
+                              ),
                               minimumSize: MaterialStateProperty.all(
                                   const Size(double.infinity, 42)),
                               backgroundColor:

@@ -29,12 +29,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 var langg = '';
 var tokenn = '';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('box');
   langg = await const FlutterSecureStorage().read(key: 'lang') ?? '';
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
@@ -126,7 +130,7 @@ class _MyAppState extends State<MyApp> {
         '/bag': (context) => const Bag(),
         '/bag/sargytEtmek': (context) => const SargytEtmek(),
         '/bag/salgym': (context) => const NewAdres(),
-        '/kard': (context) => Kard(),
+        '/kard': (context) => const Kard(),
         '/profile': (context) => const Profile(),
         '/profile/user': (context) => const User(),
         '/profile/user/changePW': (context) => const ChangePW(),

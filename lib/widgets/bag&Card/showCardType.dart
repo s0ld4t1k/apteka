@@ -42,9 +42,7 @@ class ShowCardType extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 33 - 18,
-            ),
+            const SizedBox(height: 33 - 18),
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

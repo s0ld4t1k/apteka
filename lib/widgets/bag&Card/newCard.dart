@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-int selectedMonth = -1;
+int selectedMonth = 0;
 int selectedCardType = -1;
 List month = [
   'Ýanwar',
@@ -115,82 +115,80 @@ class NewCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                        child: Container(
-                      height: 50,
-                      // padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(251, 251, 251, 1),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: const Color.fromRGBO(237, 237, 237, 1)),
-                      ),
-                      child: DropdownMenu(
-                        initialSelection:
-                            selectedMonth >= 0 ? selectedMonth : 0,
-                        expandedInsets: const EdgeInsets.symmetric(vertical: 25),
-                        inputDecorationTheme: const InputDecorationTheme(
-                            hintStyle: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromRGBO(193, 193, 193, 1),
-                            ),
-                            fillColor: Colors.transparent,
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 15),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none)),
-                        hintText: locale[curLN]!['month'],
-                        trailingIcon: const Icon(
-                          CupertinoIcons.chevron_down,
-                          size: 20,
+                      child: Container(
+                        height: 50,
+                        // padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(251, 251, 251, 1),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: const Color.fromRGBO(237, 237, 237, 1)),
                         ),
-                        onSelected: (value) => selectedMonth = value!,
-                        dropdownMenuEntries: List.generate(
-                            month.length,
-                            (index) => DropdownMenuEntry(
-                                value: index, label: month[index])),
+                        child: DropdownMenu(
+                          initialSelection:
+                              selectedMonth >= 0 ? selectedMonth : 0,
+                          expandedInsets:
+                              const EdgeInsets.symmetric(vertical: 25),
+                          inputDecorationTheme: const InputDecorationTheme(
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Color.fromRGBO(193, 193, 193, 1),
+                              ),
+                              fillColor: Colors.transparent,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 15),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none)),
+                          hintText: locale[curLN]!['month'],
+                          trailingIcon: const Icon(
+                            CupertinoIcons.chevron_down,
+                            size: 20,
+                          ),
+                          onSelected: (value) => selectedMonth = value!,
+                          dropdownMenuEntries: List.generate(
+                              month.length,
+                              (index) => DropdownMenuEntry(
+                                  value: index, label: month[index])),
+                        ),
                       ),
-                    )),
-                    const SizedBox(
-                      width: 11,
                     ),
+                    const SizedBox(width: 11),
                     Expanded(
                       child: Column(
                         children: [
                           Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(251, 251, 251, 1),
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(237, 237, 237, 1)),
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(251, 251, 251, 1),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: const Color.fromRGBO(237, 237, 237, 1),
                               ),
-                              child: TextField(
-                                controller: year,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    hintText: '${locale[curLN]?['year']}',
-                                    hintStyle: const TextStyle(
-                                      fontSize: 16,
-                                      color: Color.fromRGBO(193, 193, 193, 1),
-                                    ),
-                                    border: const OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              )),
+                            ),
+                            child: TextField(
+                              controller: year,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                hintText: '${locale[curLN]?['year']}',
+                                hintStyle: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(193, 193, 193, 1),
+                                ),
+                                border: const OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 Text('${locale[curLN]?['cvc']}'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   width: double.infinity,
                   height: 50,
@@ -299,40 +297,43 @@ class NewCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                    style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
-                            const Size(double.infinity, 50))),
-                    onPressed: () {
-                      if (belgisi.text != '' &&
-                          cvc.text != '' &&
-                          eyesi.text != '' &&
-                          year.text != '' &&
-                          selectedCardType >= 0 &&
-                          selectedMonth >= 0) {
-                        if (index == -1) {
-                          mc.addCard();
-                        } else {
-                          mc.setCardsValue(cards[index]);
-                        }
-                        Get.back();
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                      const Size(double.infinity, 50),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (belgisi.text != '' &&
+                        cvc.text != '' &&
+                        eyesi.text != '' &&
+                        year.text != '' &&
+                        selectedCardType >= 0 &&
+                        selectedMonth >= 0) {
+                      if (index == -1) {
+                        mc.addCard();
                       } else {
-                        Get.snackbar(
-                          'Error',
-                          'vvedite vse pole',
-                          backgroundColor: red,
-                          colorText: Colors.white,
-                          dismissDirection: DismissDirection.horizontal,
-                        );
+                        mc.setCardsValue(cards[index]);
                       }
-                      mc.reset();
-                    },
-                    child: Text(
-                      '${locale[curLN]?['save']}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ))
+                      Get.back();
+                    } else {
+                      Get.snackbar(
+                        'Maglumatlary dolduryň',
+                        'Ähli meýdanlar hökmany',
+                        backgroundColor: red,
+                        colorText: Colors.white,
+                        dismissDirection: DismissDirection.horizontal,
+                      );
+                    }
+                    mc.reset();
+                  },
+                  child: Text(
+                    '${locale[curLN]?['save']}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )
               ],
             ),
           ),

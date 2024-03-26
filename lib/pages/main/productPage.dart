@@ -1,4 +1,5 @@
 // ignore_for_file: file_names, deprecated_member_use
+import 'package:apte/data/api/register.dart';
 import 'package:apte/data/model/product/controller.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/widgets/colors.dart';
@@ -360,51 +361,88 @@ class ProductPage extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: Obx(() {
-                            return isClickProd.value
-                                ? Row(
-                                    children: [
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            countProd.value--;
-                                            if (countProd.value <= 0) {
-                                              isClickProd.value = false;
-                                              countProd.value = 1;
-                                            }
-                                          },
-                                          child: const Icon(Icons.remove)),
-                                      Expanded(
-                                          child: Center(
-                                              child:
-                                                  Text('${countProd.value}'))),
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            countProd.value++;
-                                          },
-                                          child: const Icon(Icons.add)),
-                                    ],
-                                  )
-                                : ElevatedButton(
-                                    style: ButtonStyle(
-                                      shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      )),
-                                      minimumSize: MaterialStateProperty.all(
-                                          const Size(double.infinity, 47)),
-                                    ),
-                                    onPressed: () {
-                                      isClickProd.value = true;
-                                      addToCart();
-                                    },
-                                    child: Text(
-                                      '${locale[curLN]?["addCart"]}',
-                                      style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
+                          child: Obx(
+                            () {
+                              return isClickProd.value
+                                  ? Row(
+                                      children: [
+                                        ElevatedButton(
+                                            onPressed: () async {
+                                              try {
+                                                countProd.value--;
+                                                if (countProd.value <= 0) {
+                                                  isClickProd.value = false;
+                                                  countProd.value = 1;
+                                                }
+                                                await Dioo().dio.post(
+                                                  '${baseUrl}cart/',
+                                                  data: {
+                                                    'product': pc.product.detail
+                                                        ?.loc?[0].id,
+                                                    'quantity': 1,
+                                                    'action': 'remove'
+                                                  },
+                                                );
+                                              } catch (e) {}
+                                            },
+                                            child: const Icon(Icons.remove)),
+                                        Expanded(
+                                            child: Center(
+                                                child: Text(
+                                                    '${countProd.value}'))),
+                                        ElevatedButton(
+                                            onPressed: () async {
+                                              try {
+                                                countProd.value++;
+                                                await Dioo().dio.post(
+                                                  '${baseUrl}cart/',
+                                                  data: {
+                                                    'product': pc.product.detail
+                                                        ?.loc?[0].id,
+                                                    'quantity': 1,
+                                                    'action': 'add'
+                                                  },
+                                                );
+                                              } catch (e) {}
+                                            },
+                                            child: const Icon(Icons.add)),
+                                      ],
+                                    )
+                                  : ElevatedButton(
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
+                                        minimumSize: MaterialStateProperty.all(
+                                            const Size(double.infinity, 47)),
                                       ),
-                                    ));
-                          }),
+                                      onPressed: () async {
+                                        try {
+                                          await Dioo().dio.post(
+                                            '${baseUrl}cart/',
+                                            data: {
+                                              'product':
+                                                  pc.product.detail?.loc?[0].id,
+                                              'quantity': 1,
+                                              'action': 'add'
+                                            },
+                                          );
+                                          isClickProd.value = true;
+                                          addToCart();
+                                        } catch (e) {}
+                                      },
+                                      child: Text(
+                                        '${locale[curLN]?["addCart"]}',
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    );
+                            },
+                          ),
                         )
                       ],
                     ),
