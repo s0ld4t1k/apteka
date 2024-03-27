@@ -5,7 +5,7 @@ import 'package:apte/pages/profile/adres.dart';
 import 'package:apte/pages/profile/changePW.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/profile/lang.dart';
-import 'package:apte/pages/profile/like.dart';
+// import 'package:apte/pages/profile/like.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
@@ -43,6 +43,7 @@ void main() async {
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
   tokenn = tokenn.substring(7, tokenn.length);
+  // print(JwtDecoder.isExpired(tokenn));
   print('------tokenn-----$tokenn');
   FlutterNativeSplash.remove();
   runApp(const MyApp());
@@ -136,7 +137,7 @@ class _MyAppState extends State<MyApp> {
         '/profile/user/changePW': (context) => const ChangePW(),
         '/profile/lang': (context) => const Language(),
         '/profile/habarlasmak': (context) => const Habarlasmak(),
-        '/profile/like': (context) => const Like(),
+        // '/profile/like': (context) => const Like(),
         '/profile/adres': (context) => const Adres(),
         '/profile/sargyt': (context) => const Sargyt(),
       },

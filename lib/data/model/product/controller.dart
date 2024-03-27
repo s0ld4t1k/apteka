@@ -14,6 +14,7 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
+  bool like = false;
   RxBool isload = true.obs;
   ProductModel product = ProductModel();
   void get() async {
@@ -22,7 +23,16 @@ class ProductController extends GetxController {
       var res = await Dioo().dio.get(
           baseUrl + productUrl.value.substring(1, productUrl.value.length));
       if (res.statusCode == 200) {
+        String url2 = '${baseUrl}user/whishlists/';
         product = ProductModel.fromJson(res.data);
+        var res2 = await Dioo().dio.get(url2);
+        for (var i = 0; i < res2.data['detail']['loc'].length; i++) {
+          if (product.detail?.loc?[0].id ==
+              res2.data['detail']['loc'][i]['id']) {
+            like = true;
+            update();
+          }
+        }
         update();
       }
     } catch (e) {

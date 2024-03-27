@@ -3,13 +3,17 @@ import 'package:apte/data/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../products/model.dart';
+
 class UserController extends GetxController {
   @override
   void onInit() {
     get();
+    getWhishlists();
     super.onInit();
   }
 
+  ProductsModel whishlists = ProductsModel();
   TextEditingController nam = TextEditingController();
   TextEditingController tel = TextEditingController();
   bool isLoad = true;
@@ -26,5 +30,19 @@ class UserController extends GetxController {
       debugPrint('---user-----$e');
       Dioo().conErr(get);
     }
+  }
+
+  void getWhishlists() async {
+    String url = 'user/whishlists/';
+    try {
+      var res = await Dioo().dio.get(baseUrl + url);
+      if (res.statusCode == 200) {
+        whishlists = ProductsModel.fromJson(res.data);
+        // print(newProducts);
+      }
+    } catch (e) {
+      debugPrint('----whishlist-------$e');
+    }
+    update();
   }
 }

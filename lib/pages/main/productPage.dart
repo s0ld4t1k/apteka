@@ -13,7 +13,6 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../data/dio.dart';
 
-RxBool _liked = false.obs;
 RxInt _curIndex = 0.obs;
 List infoList = [];
 RxInt countProd = 1.obs;
@@ -71,6 +70,7 @@ class ProductPage extends StatelessWidget {
               '${pc.product.detail?.loc?[0].volume} ${pc.product.detail?.loc?[0].volumeType}'
             ],
           ];
+
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -99,23 +99,22 @@ class ProductPage extends StatelessWidget {
                         },
                         child: SvgPicture.asset('assets/icons/share.svg')),
                   ),
-                  const SizedBox(
-                    width: 22,
-                  ),
+                  const SizedBox(width: 22),
                   SizedBox(
                     width: 20,
                     height: 20,
                     child: GestureDetector(
-                      onTap: () {
-                        _liked(!_liked.value);
+                      onTap: () async {
+                        String url = '${baseUrl}user/whishlists/';
+                        await Dioo().dio.post(url,
+                            data: {'id': pc.product.detail?.loc?[0].id});
+                        pc.like = !pc.like;
                         pc.update();
                       },
-                      child: (_liked.value)
+                      child: pc.like
                           ? SvgPicture.asset('assets/icons/redHeart.svg')
-                          : SvgPicture.asset(
-                              'assets/icons/heart.svg',
-                              color: Colors.black.withOpacity(0.75),
-                            ),
+                          : SvgPicture.asset('assets/icons/heart.svg',
+                              color: Colors.black.withOpacity(0.75)),
                     ),
                   ),
                 ],
@@ -197,35 +196,33 @@ class ProductPage extends StatelessWidget {
                                       ),
                                     ),
                                     Positioned(
-                                        bottom: 23,
-                                        left: 0,
-                                        right: 0,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: List.generate(
-                                              pc.product.detail?.loc?[0].images!
-                                                      .length ??
-                                                  0,
-                                              (index) => Container(
-                                                    width: 6,
-                                                    height: 6,
-                                                    margin: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 2),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              6),
-                                                      color: _curIndex.value ==
-                                                              index
-                                                          ? green
-                                                          : const Color
-                                                              .fromRGBO(
-                                                              234, 234, 234, 1),
-                                                    ),
-                                                  )),
-                                        ))
+                                      bottom: 23,
+                                      left: 0,
+                                      right: 0,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: List.generate(
+                                          pc.product.detail?.loc?[0].images!
+                                                  .length ??
+                                              0,
+                                          (index) => Container(
+                                            width: 6,
+                                            height: 6,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 2),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              color: _curIndex.value == index
+                                                  ? green
+                                                  : const Color.fromRGBO(
+                                                      234, 234, 234, 1),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),

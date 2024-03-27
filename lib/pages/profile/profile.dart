@@ -1,5 +1,6 @@
 import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/pages/main/mainPage.dart';
+import 'package:apte/pages/profile/product_page.dart.dart';
 import 'package:apte/pages/profile/user.dart';
 import 'package:apte/widgets/circul.dart';
 import 'package:apte/widgets/colors.dart';
@@ -10,41 +11,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 final List hasap = [
-  [
-    'assets/icons/profile/sargytlarym.svg',
-    '',
-    '/profile/sargyt',
-  ],
-  [
-    'assets/icons/profile/adres.svg',
-    '',
-    '/profile/adres',
-  ],
-  [
-    'assets/icons/profile/like.svg',
-    '',
-    '/profile/like',
-  ],
+  ['assets/icons/profile/sargytlarym.svg', ''],
+  ['assets/icons/profile/adres.svg', ''],
+  ['assets/icons/profile/like.svg', ''],
 ];
 final List sazlama = [
-  [
-    'assets/icons/profile/language.svg',
-    '',
-    '',
-    '/profile/lang',
-  ],
+  ['assets/icons/profile/language.svg', '', '', '/profile/lang'],
 ];
 final List habarlas = [
-  [
-    'assets/icons/profile/call.svg',
-    '',
-    '/profile/habarlasmak',
-  ],
-  [
-    'assets/icons/profile/info.svg',
-    '',
-    '/profile',
-  ],
+  ['assets/icons/profile/call.svg', '', '/profile/habarlasmak'],
+  ['assets/icons/profile/info.svg', '', '/profile'],
 ];
 
 class Profile extends StatelessWidget {
@@ -72,7 +48,6 @@ class Profile extends StatelessWidget {
         body: GetBuilder<UserController>(
             init: UserController(),
             builder: (uc) {
-              // print(uc.profileUser.detail?.loc?[0].phone);
               return uc.isLoad
                   ? const Circul()
                   : SingleChildScrollView(
@@ -141,8 +116,14 @@ class Profile extends StatelessWidget {
                                 (index) => Column(
                                       children: [
                                         InkWell(
-                                          onTap: () => Navigator.pushNamed(
-                                              context, hasap[index][2]),
+                                          onTap: () {
+                                            Get.to(
+                                              () => ProfileProductsPage(
+                                                text: hasap[index][1],
+                                                prm: uc.whishlists,
+                                              ),
+                                            );
+                                          },
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 18),
@@ -150,9 +131,7 @@ class Profile extends StatelessWidget {
                                               children: [
                                                 SvgPicture.asset(
                                                     hasap[index][0]),
-                                                const SizedBox(
-                                                  width: 20,
-                                                ),
+                                                const SizedBox(width: 20),
                                                 Text(hasap[index][1]),
                                                 const Spacer(),
                                                 const Icon(
@@ -173,9 +152,7 @@ class Profile extends StatelessWidget {
                                       ],
                                     )),
                           ),
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          const SizedBox(height: 30),
                           Text(
                             '${locale[curLN]?['settings']}',
                             style: const TextStyle(

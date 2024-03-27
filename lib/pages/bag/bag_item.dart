@@ -197,6 +197,7 @@ class _BagItemState extends State<BagItem> {
                   },
                 );
                 widget.cc.cartProducts.detail?.loc?.removeAt(widget.index);
+                widget.cc.update();
               } catch (e) {}
               setState(() {});
             },
