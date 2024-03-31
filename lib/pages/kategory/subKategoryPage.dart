@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, deprecated_member_use
 
+import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
+import 'package:apte/data/model/products/model.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -13,12 +15,15 @@ import 'package:get/get.dart';
 
 import '../../data/model/category/controller.dart';
 
+// List filtrList = [];
+
 class SubKategoryPage extends StatelessWidget {
-  SubKategoryPage({super.key});
-  final CategoryController cc = Get.put(CategoryController());
+  const SubKategoryPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CategoryController>(builder: (cc) {
+    return GetBuilder<CategoryController>(
+        // init: CategoryController(),
+        builder: (cc) {
       return Scaffold(
         backgroundColor: bc,
         appBar: AppBar(
@@ -72,7 +77,15 @@ class SubKategoryPage extends StatelessWidget {
                           )),
                           context: context,
                           builder: (context) {
-                            return const TertipleBottomSheet();
+                            return TertipleBottomSheet(
+                              fromJson: Products.fromJson,
+                              update: cc.update,
+                              url:
+                                  '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/',
+                              products: cc.categoryProducts.detail?.loc?[0]
+                                      .products ??
+                                  [],
+                            );
                           },
                         );
                       },
@@ -97,32 +110,44 @@ class SubKategoryPage extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
-                          side: MaterialStateProperty.all(
-                            const BorderSide(
-                                color: Color.fromRGBO(237, 237, 237, 1)),
+                        side: MaterialStateProperty.all(
+                          const BorderSide(
+                              color: Color.fromRGBO(237, 237, 237, 1)),
+                        ),
+                        minimumSize: MaterialStateProperty.all(
+                            const Size(double.infinity, 42)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(
+                              color: Color.fromRGBO(237, 237, 237, 1),
+                            ),
                           ),
-                          minimumSize: MaterialStateProperty.all(
-                              const Size(double.infinity, 42)),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  side: const BorderSide(
-                                      color:
-                                          Color.fromRGBO(237, 237, 237, 1))))),
+                        ),
+                      ),
                       onPressed: () {
                         showModalBottomSheet(
                           isScrollControlled: true,
                           showDragHandle: true,
                           shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          )),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                          ),
                           context: context,
                           builder: (context) {
-                            return const FiltrBottomSheet();
+                            return FiltrBottomSheet(
+                              products: cc.categoryProducts.detail?.loc?[0]
+                                      .products ??
+                                  [],
+                              update: cc.update,
+                              url:
+                                  '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/?sort=${prices[selectedTertip]}',
+                              fromJson: Products.fromJson,
+                            );
                           },
                         );
                       },

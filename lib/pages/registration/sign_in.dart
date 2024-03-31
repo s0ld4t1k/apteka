@@ -11,10 +11,10 @@ import 'package:get/get.dart';
 
 String sid = '';
 UserModel user = UserModel();
-TextEditingController SIname = TextEditingController();
-TextEditingController SItel = TextEditingController();
-TextEditingController SIpass = TextEditingController();
-TextEditingController SIpass2 = TextEditingController();
+TextEditingController siName = TextEditingController();
+TextEditingController siTel = TextEditingController();
+TextEditingController siPass = TextEditingController();
+TextEditingController siPass2 = TextEditingController();
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
@@ -40,25 +40,25 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                NameField(name: SIname),
+                NameField(name: siName),
                 const SizedBox(height: 20),
-                TelNumField(tel: SItel),
+                TelNumField(tel: siTel),
                 const SizedBox(height: 20),
-                PasswordField(title: locale[curLN]!['password']!, pass: SIpass),
+                PasswordField(title: locale[curLN]!['password']!, pass: siPass),
                 const SizedBox(height: 20),
                 PasswordField(
-                    title: locale[curLN]!['confirmPassword']!, pass: SIpass2),
+                    title: locale[curLN]!['confirmPassword']!, pass: siPass2),
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
                           const Size(double.infinity, 50))),
                   onPressed: () {
-                    if (SIpass.text == SIpass2.text) {
+                    if (siPass.text == siPass2.text) {
                       user = UserModel(
-                        name: SIname.text,
-                        phone: SItel.text,
-                        password: SIpass.text,
+                        name: siName.text,
+                        phone: siTel.text,
+                        password: siPass.text,
                       );
                       sendSMS(user);
                       Get.to(() => OTP(userr: user));

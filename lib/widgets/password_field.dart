@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/state_manager.dart';
 
-RxBool obsec = true.obs;
-
 class PasswordField extends StatelessWidget {
   final String title;
   final TextEditingController pass;
@@ -11,6 +9,7 @@ class PasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RxBool obsec = true.obs;
     return Obx(() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,

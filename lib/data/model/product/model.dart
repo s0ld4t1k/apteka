@@ -4,8 +4,7 @@ class ProductModel {
   ProductModel({this.detail});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    detail =
-        json['detail'] != null ? Detail.fromJson(json['detail']) : null;
+    detail = json['detail'] != null ? Detail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -108,9 +107,8 @@ class Loc {
 
   Loc.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brandFk = json['brand_fk'] != null
-        ? BrandFk.fromJson(json['brand_fk'])
-        : null;
+    brandFk =
+        json['brand_fk'] != null ? BrandFk.fromJson(json['brand_fk']) : null;
     categoryFk = json['category_fk'] != null
         ? CategoryFk.fromJson(json['category_fk'])
         : null;
@@ -119,9 +117,8 @@ class Loc {
         : null;
     title = json['title'] != null ? Title.fromJson(json['title']) : null;
     price = json['price'] != null ? Price.fromJson(json['price']) : null;
-    lastPrice = json['last_price'] != null
-        ? Price.fromJson(json['last_price'])
-        : null;
+    lastPrice =
+        json['last_price'] != null ? Price.fromJson(json['last_price']) : null;
     humanType = json['human_type'];
     releaseForm = json['release_form'];
     productionDate = json['production_date'];
@@ -134,9 +131,8 @@ class Loc {
     composition = json['composition'] != null
         ? Title.fromJson(json['composition'])
         : null;
-    indication = json['indication'] != null
-        ? Title.fromJson(json['indication'])
-        : null;
+    indication =
+        json['indication'] != null ? Title.fromJson(json['indication']) : null;
     contraindications = json['contraindications'] != null
         ? Title.fromJson(json['contraindications'])
         : null;
@@ -307,8 +303,7 @@ class CategoryFk {
     }
     data['slug'] = slug;
     if (subcategories != null) {
-      data['subcategories'] =
-          subcategories!.map((v) => v.toJson()).toList();
+      data['subcategories'] = subcategories!.map((v) => v.toJson()).toList();
     }
     data['img_url'] = imgUrl;
     data['products_count'] = productsCount;
@@ -372,7 +367,7 @@ class Subcategories {
 class Price {
   double? price;
   bool? hasDiscount;
-  var oldPrice;
+  dynamic oldPrice;
 
   Price({this.price, this.hasDiscount, this.oldPrice = 0.0});
 
@@ -445,9 +440,8 @@ class Similars {
 
   Similars.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brandFk = json['brand_fk'] != null
-        ? BrandFk.fromJson(json['brand_fk'])
-        : null;
+    brandFk =
+        json['brand_fk'] != null ? BrandFk.fromJson(json['brand_fk']) : null;
     categoryFk = json['category_fk'] != null
         ? CategoryFk.fromJson(json['category_fk'])
         : null;
@@ -456,9 +450,8 @@ class Similars {
         : null;
     title = json['title'] != null ? Title.fromJson(json['title']) : null;
     price = json['price'] != null ? Price.fromJson(json['price']) : null;
-    lastPrice = json['last_price'] != null
-        ? Price.fromJson(json['last_price'])
-        : null;
+    lastPrice =
+        json['last_price'] != null ? Price.fromJson(json['last_price']) : null;
     stock = json['stock'];
     absoluteUrl = json['absolute_url'];
     rate = json['rate'];

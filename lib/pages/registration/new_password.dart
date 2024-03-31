@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import '../../widgets/colors.dart';
 import '../../widgets/password_field.dart';
 
-TextEditingController NPpass = TextEditingController();
-TextEditingController NPpass2 = TextEditingController();
+TextEditingController npPass = TextEditingController();
+TextEditingController npPass2 = TextEditingController();
 
 class NewPassword extends StatelessWidget {
   const NewPassword({super.key});
@@ -42,10 +42,10 @@ class NewPassword extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 PasswordField(
-                    title: locale[curLN]!['newPassword']!, pass: NPpass),
+                    title: locale[curLN]!['newPassword']!, pass: npPass),
                 const SizedBox(height: 20),
                 PasswordField(
-                    title: locale[curLN]!['confirmPassword']!, pass: NPpass2),
+                    title: locale[curLN]!['confirmPassword']!, pass: npPass2),
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../widgets/langDictionary.dart';
 import '../../widgets/tel_num_field.dart';
 
-TextEditingController RStel = TextEditingController();
+TextEditingController rsTel = TextEditingController();
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({super.key});
@@ -40,7 +40,7 @@ class ResetPassword extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                TelNumField(tel: RStel),
+                TelNumField(tel: rsTel),
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(

@@ -1,6 +1,7 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/products/model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -34,7 +35,7 @@ class CartController extends GetxController {
         update();
       }
     } catch (e) {
-      print('-------cart=---------$e');
+      debugPrint('-------cart=---------$e');
       Dioo().conErr(get);
     }
   }

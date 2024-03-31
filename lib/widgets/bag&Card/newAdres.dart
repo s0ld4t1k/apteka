@@ -79,7 +79,7 @@ class _NewAdresState extends State<NewAdres> {
                               );
                             }
                           } catch (e) {
-                            print('positi =================== $e');
+                            debugPrint('-----geolocator------$e');
                           }
                         },
                         onLongPress: (tapPosition, point) {

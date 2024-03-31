@@ -27,6 +27,7 @@ class Kategory extends StatelessWidget {
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Text('${locale[curLN]?["category"]}'),
             ),
             body: SingleChildScrollView(

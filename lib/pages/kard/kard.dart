@@ -30,6 +30,7 @@ class Kard extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Text('${locale[curLN]?['myCards']}'),
               centerTitle: true,
               actions: [

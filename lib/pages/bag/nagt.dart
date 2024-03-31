@@ -149,9 +149,7 @@ class Nagt extends StatelessWidget {
                                   )
                                 : Text(adressList[selectedAdres.value][0]),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
+                          const SizedBox(width: 5),
                           const Icon(
                             CupertinoIcons.chevron_down,
                             size: 16,
@@ -161,13 +159,9 @@ class Nagt extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 Text('${locale[curLN]?['bellik']}'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -281,13 +275,12 @@ class Nagt extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           SizedBox(
-                                              width: 81,
-                                              height: 81,
-                                              child: Image.asset(
-                                                  'assets/images/greenTick.png')),
-                                          const SizedBox(
-                                            height: 10,
+                                            width: 81,
+                                            height: 81,
+                                            child: Image.asset(
+                                                'assets/images/greenTick.png'),
                                           ),
+                                          const SizedBox(height: 10),
                                           Text(
                                             locale[curLN]!['succesOrderText1']!,
                                             style: const TextStyle(
@@ -295,9 +288,7 @@ class Nagt extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
+                                          const SizedBox(height: 10),
                                           Text(
                                             locale[curLN]!['succesOrderText2']!,
                                             style: const TextStyle(

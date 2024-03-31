@@ -1,3 +1,5 @@
+import 'package:apte/data/model/products/model.dart';
+
 class CategoryProductsModel {
   Detail? detail;
 
@@ -124,91 +126,6 @@ class Title {
   }
 }
 
-class Products {
-  int? id;
-  BrandFk? brandFk;
-  CategoryFk? categoryFk;
-  Subcategories? subcategoryFk;
-  Title? title;
-  Price? price;
-  Price? lastPrice;
-  int? stock;
-  String? absoluteUrl;
-  int? rate;
-  int? reviewsSum;
-  String? getAbsoluteUrl;
-  Image? image;
-
-  Products(
-      {this.id,
-      this.brandFk,
-      this.categoryFk,
-      this.subcategoryFk,
-      this.title,
-      this.price,
-      this.lastPrice,
-      this.stock,
-      this.absoluteUrl,
-      this.rate,
-      this.reviewsSum,
-      this.getAbsoluteUrl,
-      this.image});
-
-  Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    brandFk =
-        json['brand_fk'] != null ? BrandFk.fromJson(json['brand_fk']) : null;
-    categoryFk = json['category_fk'] != null
-        ? CategoryFk.fromJson(json['category_fk'])
-        : null;
-    subcategoryFk = json['subcategory_fk'] != null
-        ? Subcategories.fromJson(json['subcategory_fk'])
-        : null;
-    title = json['title'] != null ? Title.fromJson(json['title']) : null;
-    price = json['price'] != null ? Price.fromJson(json['price']) : null;
-    lastPrice =
-        json['last_price'] != null ? Price.fromJson(json['last_price']) : null;
-    stock = json['stock'];
-    absoluteUrl = json['absolute_url'];
-    rate = json['rate'];
-    reviewsSum = json['reviews_sum'];
-    getAbsoluteUrl = json['get_absolute_url'];
-    image = json['image'] != null ? Image.fromJson(json['image']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    if (brandFk != null) {
-      data['brand_fk'] = brandFk!.toJson();
-    }
-    if (categoryFk != null) {
-      data['category_fk'] = categoryFk!.toJson();
-    }
-    if (subcategoryFk != null) {
-      data['subcategory_fk'] = subcategoryFk!.toJson();
-    }
-    if (title != null) {
-      data['title'] = title!.toJson();
-    }
-    if (price != null) {
-      data['price'] = price!.toJson();
-    }
-    if (lastPrice != null) {
-      data['last_price'] = lastPrice!.toJson();
-    }
-    data['stock'] = stock;
-    data['absolute_url'] = absoluteUrl;
-    data['rate'] = rate;
-    data['reviews_sum'] = reviewsSum;
-    data['get_absolute_url'] = getAbsoluteUrl;
-    if (image != null) {
-      data['image'] = image!.toJson();
-    }
-    return data;
-  }
-}
-
 class BrandFk {
   int? id;
   String? title;
@@ -322,7 +239,7 @@ class Subcategories {
 class Price {
   double? price;
   bool? hasDiscount;
-  var oldPrice;
+  dynamic oldPrice;
 
   Price({this.price, this.hasDiscount, this.oldPrice = 0.0});
 

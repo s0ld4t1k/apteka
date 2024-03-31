@@ -36,32 +36,17 @@ class Bag extends StatefulWidget {
 }
 
 class _BagState extends State<Bag> {
-  LangCont lc = Get.find();
+  LangCont lc = Get.put(LangCont());
   @override
   Widget build(BuildContext context) {
     jemiList = [
-      [
-        '${locale[curLN]?["resPrice"]}',
-        '0.0 TMT',
-      ],
-      [
-        '${locale[curLN]?["arzanladysh"]}',
-        '0.0 TMT',
-      ],
-      [
-        '${locale[curLN]?["deliveryHyzmat"]}',
-        '$eltipberme TMT',
-      ],
+      ['${locale[curLN]?["resPrice"]}', '0.0 TMT'],
+      ['${locale[curLN]?["arzanladysh"]}', '0.0 TMT'],
+      ['${locale[curLN]?["deliveryHyzmat"]}', '$eltipberme TMT'],
     ];
     eltmeList = [
-      [
-        '${locale[curLN]?["delivery1Hour"]}',
-        '15 ${locale[curLN]?["manat"]}',
-      ],
-      [
-        '${locale[curLN]?["delivery30min"]}',
-        '25 ${locale[curLN]?["manat"]}',
-      ],
+      ['${locale[curLN]?["delivery1Hour"]}', '15 ${locale[curLN]?["manat"]}'],
+      ['${locale[curLN]?["delivery30min"]}', '25 ${locale[curLN]?["manat"]}'],
     ];
     harytJemi = 0.0;
     jemiList[0][1] = '$harytJemi TMT';
@@ -94,10 +79,10 @@ class _BagState extends State<Bag> {
                       }
                       cc.cartProducts.detail?.loc?.clear();
                       cc.quantity.clear();
-                      print(cc.cartProducts.detail?.loc?.length);
+                      debugPrint('${cc.cartProducts.detail?.loc?.length}');
                       cc.update();
                     } catch (e) {
-                      print('--------clear cart-------------');
+                      debugPrint('--------clear cart--------$e');
                     }
                   },
                   child: Text(

@@ -44,7 +44,7 @@ class CategoryController extends GetxController {
       isErr = false;
     } catch (e) {
       isErr = true;
-      print('-=------category $e');
+      debugPrint('-=------category $e');
       update();
       Dioo().conErr(get);
     }
@@ -71,16 +71,15 @@ class CategoryController extends GetxController {
     subcategorySlug = categories.detail!.loc![selectedCategory]
         .subcategories![selectedSubategory].slug!;
     url = 'category/$categorySlug/subcategory/$subcategorySlug/';
-    print(url);
+    debugPrint(url);
     categoryProdyctIsload = true;
     update();
-    print(url);
     try {
       var res = await Dioo().dio.get(baseUrl + url);
       categoryProducts = CategoryProductsModel.fromJson(res.data);
       // print(categoryProducts);
     } catch (e) {
-      print('-=------categoryProducts $e');
+      debugPrint('-=------categoryProducts $e');
     }
     categoryProdyctIsload = false;
     update();

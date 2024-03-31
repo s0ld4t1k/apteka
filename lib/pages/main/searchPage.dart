@@ -16,17 +16,19 @@ class SearchPage extends StatefulWidget {
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
-String searchText='';
+
+String searchText = '';
+
 class _SearchPageState extends State<SearchPage> {
-  final TextEditingController _tc=TextEditingController();
+  final TextEditingController _tc = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if(searchText!='') {
-      _tc.text=searchText;
+    if (searchText != '') {
+      _tc.text = searchText;
     }
-    if(barRes.value!='' && barRes.value!='-1')_tc.text=barRes.value;
+    if (barRes.value != '' && barRes.value != '-1') _tc.text = barRes.value;
     return GestureDetector(
-      onTap: ()=>FocusScope.of(context).requestFocus(FocusNode()),
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -41,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
               maxHeight: 24,
               maxWidth: 24,
             ),
-            onPressed: ()=>Get.back(), 
+            onPressed: () => Get.back(),
             icon: const Icon(Icons.chevron_left_rounded),
           ),
           title: Row(
@@ -64,35 +66,39 @@ class _SearchPageState extends State<SearchPage> {
                             color: Color.fromRGBO(131, 132, 139, 1),
                           ),
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(0),
-                            prefixIconConstraints: const BoxConstraints(
-                              maxHeight: 20,
-                              maxWidth: 20,
-                              minHeight: 20,
-                              minWidth: 20,
-                            ),
-                            prefixText: '   ',
-                            prefixIcon: SvgPicture.asset('assets/icons/search.svg',color: green,),
-                            border: InputBorder.none,
-                            hintText: '${locale[curLN]?["searchHint"]}',
-                            hintStyle: const TextStyle(
-                              fontSize: 14,
-                              color: textGrey3,
-                              fontWeight: FontWeight.w500,
-                            )
-                          ),
+                              contentPadding: const EdgeInsets.all(0),
+                              prefixIconConstraints: const BoxConstraints(
+                                maxHeight: 20,
+                                maxWidth: 20,
+                                minHeight: 20,
+                                minWidth: 20,
+                              ),
+                              prefixText: '   ',
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/search.svg',
+                                color: green,
+                              ),
+                              border: InputBorder.none,
+                              hintText: '${locale[curLN]?["searchHint"]}',
+                              hintStyle: const TextStyle(
+                                fontSize: 14,
+                                color: textGrey3,
+                                fontWeight: FontWeight.w500,
+                              )),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(width: 25,),
+              const SizedBox(
+                width: 25,
+              ),
             ],
           ),
         ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
           child: Column(
             children: [
               Row(
@@ -100,87 +106,106 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 42)),
-                        backgroundColor: MaterialStateProperty.all(Colors.white),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          side: const BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
-                        ))
-                      ),
-                      onPressed: (){
-                        showModalBottomSheet(
-                          showDragHandle: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            )
-                          ),
-                          context: context, 
-                          builder:(context) {
-                            return const TertipleBottomSheet();
-                          },
-                        );
-                      }, 
+                          minimumSize: MaterialStateProperty.all(
+                              const Size(double.infinity, 42)),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: const BorderSide(
+                                      color:
+                                          Color.fromRGBO(237, 237, 237, 1))))),
+                      onPressed: () {
+                        // showModalBottomSheet(
+                        //   showDragHandle: true,
+                        //   shape: const RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.only(
+                        //     topLeft: Radius.circular(20),
+                        //     topRight: Radius.circular(20),
+                        //   )),
+                        //   context: context,
+                        //   builder: (context) {
+                        //     return const TertipleBottomSheet();
+                        //   },
+                        // );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('assets/icons/tertiple.svg'),
-                          const SizedBox(width: 7,),
-                          Text('${locale[curLN]?["sort"]}',style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                          ),),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            '${locale[curLN]?["sort"]}',
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(width: 21,),
+                  const SizedBox(
+                    width: 21,
+                  ),
                   Expanded(
                     child: OutlinedButton(
                       style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 42)),
-                        backgroundColor: MaterialStateProperty.all(Colors.white),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          side: const BorderSide(color: Color.fromRGBO(237, 237, 237, 1))
-                        ))
-                      ),
-                      onPressed: (){
-                        showModalBottomSheet(
-                          useRootNavigator: true,
-                          isScrollControlled: true,
-                          showDragHandle: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            )
-                          ),
-                          context: context, 
-                          builder:(context) {
-                            return const FiltrBottomSheet();
-                          },
-                        );
-                      }, 
+                          minimumSize: MaterialStateProperty.all(
+                              const Size(double.infinity, 42)),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: const BorderSide(
+                                      color:
+                                          Color.fromRGBO(237, 237, 237, 1))))),
+                      onPressed: () {
+                        // showModalBottomSheet(
+                        //   useRootNavigator: true,
+                        //   isScrollControlled: true,
+                        //   showDragHandle: true,
+                        //   shape: const RoundedRectangleBorder(
+                        //     borderRadius: BorderRadius.only(
+                        //       topLeft: Radius.circular(20),
+                        //       topRight: Radius.circular(20),
+                        //     )
+                        //   ),
+                        //   context: context,
+                        //   builder:(context) {
+                        //     return const FiltrBottomSheet();
+                        //   },
+                        // );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('assets/icons/filter.svg'),
-                          const SizedBox(width: 7,),
-                          Text('${locale[curLN]?["filtr"]}',style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                          ),),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            '${locale[curLN]?["filtr"]}',
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 17,),
+              const SizedBox(
+                height: 17,
+              ),
               const VerticalProducts(),
             ],
           ),

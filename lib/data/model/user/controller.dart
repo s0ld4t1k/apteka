@@ -18,6 +18,8 @@ class UserController extends GetxController {
   TextEditingController tel = TextEditingController();
   bool isLoad = true;
   void get() async {
+    isLoad = true;
+    update();
     String url = 'user/me/';
     try {
       var res = await Dioo().dio.get(baseUrl + url);

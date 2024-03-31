@@ -4,8 +4,7 @@ class ProductsModel {
   ProductsModel({this.detail});
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
-    detail =
-        json['detail'] != null ? Detail.fromJson(json['detail']) : null;
+    detail = json['detail'] != null ? Detail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -18,7 +17,7 @@ class ProductsModel {
 }
 
 class Detail {
-  List<Loc>? loc;
+  List<Products>? loc;
   String? msg;
   String? type;
 
@@ -26,9 +25,9 @@ class Detail {
 
   Detail.fromJson(Map<String, dynamic> json) {
     if (json['loc'] != null) {
-      loc = <Loc>[];
+      loc = <Products>[];
       json['loc'].forEach((v) {
-        loc!.add(Loc.fromJson(v));
+        loc!.add(Products.fromJson(v));
       });
     }
     msg = json['msg'];
@@ -46,7 +45,7 @@ class Detail {
   }
 }
 
-class Loc {
+class Products {
   int? id;
   BrandFk? brandFk;
   CategoryFk? categoryFk;
@@ -61,7 +60,7 @@ class Loc {
   String? getAbsoluteUrl;
   Imag? image;
 
-  Loc(
+  Products(
       {this.id,
       this.brandFk,
       this.categoryFk,
@@ -76,11 +75,10 @@ class Loc {
       this.getAbsoluteUrl,
       this.image});
 
-  Loc.fromJson(Map<String, dynamic> json) {
+  Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brandFk = json['brand_fk'] != null
-        ? BrandFk.fromJson(json['brand_fk'])
-        : null;
+    brandFk =
+        json['brand_fk'] != null ? BrandFk.fromJson(json['brand_fk']) : null;
     categoryFk = json['category_fk'] != null
         ? CategoryFk.fromJson(json['category_fk'])
         : null;
@@ -89,9 +87,8 @@ class Loc {
         : null;
     title = json['title'] != null ? Title.fromJson(json['title']) : null;
     price = json['price'] != null ? Price.fromJson(json['price']) : null;
-    lastPrice = json['last_price'] != null
-        ? Price.fromJson(json['last_price'])
-        : null;
+    lastPrice =
+        json['last_price'] != null ? Price.fromJson(json['last_price']) : null;
     stock = json['stock'];
     absoluteUrl = json['absolute_url'];
     rate = json['rate'];
@@ -204,8 +201,7 @@ class CategoryFk {
     }
     data['slug'] = slug;
     if (subcategories != null) {
-      data['subcategories'] =
-          subcategories!.map((v) => v.toJson()).toList();
+      data['subcategories'] = subcategories!.map((v) => v.toJson()).toList();
     }
     data['img_url'] = imgUrl;
     data['products_count'] = productsCount;
@@ -269,7 +265,7 @@ class Subcategories {
 class Price {
   double? price;
   bool? hasDiscount;
-  var oldPrice;
+  dynamic oldPrice;
 
   Price({this.price, this.hasDiscount, this.oldPrice = 0.0});
 

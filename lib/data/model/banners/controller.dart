@@ -1,6 +1,7 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/banners/model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BannerController extends GetxController {
@@ -20,7 +21,7 @@ class BannerController extends GetxController {
         banners = BannerModel.fromJson(res.data);
       }
     } catch (e) {
-      print('--------banner $e');
+      debugPrint('--------banner $e');
     }
     update();
   }

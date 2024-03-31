@@ -1,23 +1,18 @@
 // ignore_for_file: file_names
 
+import 'package:apte/data/dio.dart';
+import 'package:apte/data/model/products/model.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-List _selectedFiltr = [
-  -1,
-  -1,
-  -1,
-  -1,
-];
+List<int> _selectedFiltr = [-1, -1, -1];
+List volumeType = ['ml', 'l', 'mg', 'kg'];
 List filtrList = [
   [
-    '${locale[curLN]?["arzanladysh"]}',
-    ['Arzanladyş'],
-  ],
-  [
     '${locale[curLN]?["gowrum"]}',
-    ['10 ml', '5 ml', '15 ml'],
+    ['ml', 'l', 'g', 'kg'],
   ],
   [
     '${locale[curLN]?["madeIn"]}',
@@ -34,12 +29,23 @@ List filtrList = [
   ],
   [
     '${locale[curLN]?["sex"]}',
-    ['Aýal', 'Erkek', 'Çaga'],
+    ['Erkek', 'Aýal', 'Çaga', 'Bäbek'],
   ],
 ];
 
+// ignore: must_be_immutable
 class FiltrBottomSheet extends StatefulWidget {
-  const FiltrBottomSheet({super.key});
+  List<Products> products;
+  final dynamic update;
+  String url;
+  final dynamic fromJson;
+  FiltrBottomSheet({
+    super.key,
+    required this.products,
+    this.update,
+    required this.url,
+    this.fromJson,
+  });
 
   @override
   State<FiltrBottomSheet> createState() => _FiltrBottomSheetState();
@@ -93,9 +99,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        const SizedBox(height: 15),
                         Wrap(
                           spacing: 12,
                           runSpacing: 9,
@@ -124,7 +128,11 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                                         const Size(80, 34))),
                                 onPressed: () {
                                   setState(() {
-                                    _selectedFiltr[index] = i;
+                                    if (_selectedFiltr[index] == i) {
+                                      _selectedFiltr[index] = -1;
+                                    } else {
+                                      _selectedFiltr[index] = i;
+                                    }
                                   });
                                 },
                                 child: Text(
@@ -155,12 +163,43 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                 const SizedBox(height: 25),
                 ElevatedButton(
                   style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
-                          const Size(double.infinity, 45)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    minimumSize: MaterialStateProperty.all(
+                        const Size(double.infinity, 45)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                      ))),
-                  onPressed: () => Navigator.pop(context),
+                      ),
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (_selectedFiltr[2] >= 0) {
+                      widget.url += '&type=${_selectedFiltr[2] + 1}';
+                    }
+                    if (_selectedFiltr[0] >= 0) {
+                      widget.url +=
+                          '&volume_type=${volumeType[_selectedFiltr[0]]}';
+                    }
+                    print(_selectedFiltr.toString());
+                    print(widget.url);
+                    try {
+                      var res = await Dioo().dio.get(widget.url);
+                      if (res.statusCode == 200) {
+                        List<Products> list = [];
+                        for (var i = 0;
+                            i < res.data['detail']['loc'][0]['products'].length;
+                            i++) {
+                          list.add(widget.fromJson(
+                              res.data['detail']['loc'][0]['products'][i]));
+                        }
+                        widget.products.clear();
+                        widget.products.addAll(list);
+                      }
+                      widget.update();
+                    } catch (e) {
+                      debugPrint('----filtr-----$e');
+                    }
+                    Get.back();
+                  },
                   child: Text(
                     '${locale[curLN]?["toFiltr"]}',
                     style: const TextStyle(

@@ -107,7 +107,9 @@ class _BagItemState extends State<BagItem> {
                                         if (quantity > 1) {
                                           quantity--;
                                         }
-                                      } catch (e) {}
+                                      } catch (e) {
+                                        debugPrint('----minus-----$e');
+                                      }
                                       setState(
                                         () {},
                                       );
@@ -157,7 +159,9 @@ class _BagItemState extends State<BagItem> {
                                           'action': 'add'
                                         });
                                         quantity++;
-                                      } catch (e) {}
+                                      } catch (e) {
+                                        debugPrint('-----add------$e');
+                                      }
                                       setState(
                                         () {},
                                       );
@@ -198,7 +202,9 @@ class _BagItemState extends State<BagItem> {
                 );
                 widget.cc.cartProducts.detail?.loc?.removeAt(widget.index);
                 widget.cc.update();
-              } catch (e) {}
+              } catch (e) {
+                debugPrint('----remove product-------$e');
+              }
               setState(() {});
             },
             padding: const EdgeInsets.all(0),

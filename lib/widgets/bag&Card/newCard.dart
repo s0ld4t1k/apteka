@@ -38,307 +38,306 @@ class NewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (index > -1) mc.setCardListeValue(cards[index]);
-    print('buid');
     return GetBuilder<MyController>(
-        // init: MyController(),
-        builder: (mc) {
-      return GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            leading: IconButton(
-                padding: const EdgeInsets.all(0),
-                constraints: const BoxConstraints(
-                  maxHeight: 24,
-                  maxWidth: 24,
-                  minHeight: 24,
-                  minWidth: 24,
-                ),
-                onPressed: () {
-                  Get.back();
-                  mc.reset();
-                },
-                icon: const Icon(Icons.chevron_left_rounded)),
-            title: Text('${locale[curLN]?['cardInfos']}'),
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('${locale[curLN]?['cardID']}'),
-                const SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(251, 251, 251, 1),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: const Color.fromRGBO(237, 237, 237, 1),
+      builder: (mc) {
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                  padding: const EdgeInsets.all(0),
+                  constraints: const BoxConstraints(
+                    maxHeight: 24,
+                    maxWidth: 24,
+                    minHeight: 24,
+                    minWidth: 24,
+                  ),
+                  onPressed: () {
+                    Get.back();
+                    mc.reset();
+                  },
+                  icon: const Icon(Icons.chevron_left_rounded)),
+              title: Text('${locale[curLN]?['cardInfos']}'),
+            ),
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.all(25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${locale[curLN]?['cardID']}'),
+                  const SizedBox(height: 10),
+                  Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(251, 251, 251, 1),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: const Color.fromRGBO(237, 237, 237, 1),
+                      ),
+                    ),
+                    child: TextField(
+                      onChanged: (value) {
+                        String s = belgisi.text;
+                        if (s.length < 16 + 3 &&
+                            s.length > 3 &&
+                            s[s.length - 1] != ' ' &&
+                            s[s.length - 2] != ' ' &&
+                            s[s.length - 3] != ' ' &&
+                            s[s.length - 4] != ' ') {
+                          s += ' ';
+                        }
+                        belgisi.text = s;
+                      },
+                      controller: belgisi,
+                      maxLength: 16 + 3,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          counterText: '',
+                          hintText: '0000 0000 0000 0000',
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(193, 193, 193, 1),
+                          ),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none)),
                     ),
                   ),
-                  child: TextField(
-                    onChanged: (value) {
-                      String s = belgisi.text;
-                      if (s.length < 16 + 3 &&
-                          s.length > 3 &&
-                          s[s.length - 1] != ' ' &&
-                          s[s.length - 2] != ' ' &&
-                          s[s.length - 3] != ' ' &&
-                          s[s.length - 4] != ' ') {
-                        s += ' ';
-                      }
-                      belgisi.text = s;
-                    },
-                    controller: belgisi,
-                    maxLength: 16 + 3,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                        counterText: '',
-                        hintText: '0000 0000 0000 0000',
-                        hintStyle: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(193, 193, 193, 1),
+                  const SizedBox(height: 16),
+                  Text('${locale[curLN]?['dateLimit']}'),
+                  const SizedBox(height: 10),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(251, 251, 251, 1),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: const Color.fromRGBO(237, 237, 237, 1)),
+                          ),
+                          child: DropdownMenu(
+                            initialSelection:
+                                selectedMonth >= 0 ? selectedMonth : 0,
+                            expandedInsets:
+                                const EdgeInsets.symmetric(vertical: 25),
+                            inputDecorationTheme: const InputDecorationTheme(
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(193, 193, 193, 1),
+                                ),
+                                fillColor: Colors.transparent,
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 15),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none)),
+                            hintText: locale[curLN]!['month'],
+                            trailingIcon: const Icon(
+                              CupertinoIcons.chevron_down,
+                              size: 20,
+                            ),
+                            onSelected: (value) => selectedMonth = value!,
+                            dropdownMenuEntries: List.generate(
+                                month.length,
+                                (index) => DropdownMenuEntry(
+                                    value: index, label: month[index])),
+                          ),
                         ),
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none)),
+                      ),
+                      const SizedBox(width: 11),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: const Color.fromRGBO(251, 251, 251, 1),
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(237, 237, 237, 1),
+                                ),
+                              ),
+                              child: TextField(
+                                controller: year,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  hintText: '${locale[curLN]?['year']}',
+                                  hintStyle: const TextStyle(
+                                    fontSize: 16,
+                                    color: Color.fromRGBO(193, 193, 193, 1),
+                                  ),
+                                  border: const OutlineInputBorder(
+                                      borderSide: BorderSide.none),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 16),
-                Text('${locale[curLN]?['dateLimit']}'),
-                const SizedBox(height: 10),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Container(
+                  const SizedBox(height: 16),
+                  Text('${locale[curLN]?['cvc']}'),
+                  const SizedBox(height: 10),
+                  Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(251, 251, 251, 1),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: const Color.fromRGBO(237, 237, 237, 1)),
+                    ),
+                    child: TextField(
+                      controller: cvc,
+                      maxLength: 3,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          counterText: '',
+                          hintText: '***',
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(193, 193, 193, 1),
+                          ),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none)),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text('${locale[curLN]?['cardHolder']}'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(251, 251, 251, 1),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: const Color.fromRGBO(237, 237, 237, 1)),
+                    ),
+                    child: TextField(
+                      controller: eyesi,
+                      decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 20),
+                          counterText: '',
+                          hintText: '${locale[curLN]?['cardHolder']}',
+                          hintStyle: const TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(193, 193, 193, 1),
+                          ),
+                          border: const OutlineInputBorder(
+                              borderSide: BorderSide.none)),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text('${locale[curLN]?['cardBankType']}'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () => showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20)),
+                      ),
+                      showDragHandle: true,
+                      context: context,
+                      builder: (context) {
+                        return ShowCardType();
+                      },
+                    ),
+                    child: Container(
+                        width: double.infinity,
                         height: 50,
-                        // padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(251, 251, 251, 1),
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                               color: const Color.fromRGBO(237, 237, 237, 1)),
                         ),
-                        child: DropdownMenu(
-                          initialSelection:
-                              selectedMonth >= 0 ? selectedMonth : 0,
-                          expandedInsets:
-                              const EdgeInsets.symmetric(vertical: 25),
-                          inputDecorationTheme: const InputDecorationTheme(
-                              hintStyle: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromRGBO(193, 193, 193, 1),
-                              ),
-                              fillColor: Colors.transparent,
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 15),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none)),
-                          hintText: locale[curLN]!['month'],
-                          trailingIcon: const Icon(
-                            CupertinoIcons.chevron_down,
-                            size: 20,
-                          ),
-                          onSelected: (value) => selectedMonth = value!,
-                          dropdownMenuEntries: List.generate(
-                              month.length,
-                              (index) => DropdownMenuEntry(
-                                  value: index, label: month[index])),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 11),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(251, 251, 251, 1),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: const Color.fromRGBO(237, 237, 237, 1),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                selectedCardType >= 0
+                                    ? cardsType[selectedCardType]
+                                    : '${locale[curLN]?['chooseBank']}',
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: selectedCardType >= 0
+                                        ? Colors.black
+                                        : const Color.fromRGBO(
+                                            193, 193, 193, 1)),
                               ),
                             ),
-                            child: TextField(
-                              controller: year,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                hintText: '${locale[curLN]?['year']}',
-                                hintStyle: const TextStyle(
-                                  fontSize: 16,
-                                  color: Color.fromRGBO(193, 193, 193, 1),
-                                ),
-                                border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none),
-                              ),
+                            const Icon(
+                              CupertinoIcons.chevron_down,
+                              size: 16,
                             ),
-                          ),
-                        ],
+                          ],
+                        )),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(
+                        const Size(double.infinity, 50),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Text('${locale[curLN]?['cvc']}'),
-                const SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(251, 251, 251, 1),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: const Color.fromRGBO(237, 237, 237, 1)),
-                  ),
-                  child: TextField(
-                    controller: cvc,
-                    maxLength: 3,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                        counterText: '',
-                        hintText: '***',
-                        hintStyle: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(193, 193, 193, 1),
-                        ),
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none)),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text('${locale[curLN]?['cardHolder']}'),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(251, 251, 251, 1),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: const Color.fromRGBO(237, 237, 237, 1)),
-                  ),
-                  child: TextField(
-                    controller: eyesi,
-                    decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
-                        counterText: '',
-                        hintText: '${locale[curLN]?['cardHolder']}',
-                        hintStyle: const TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(193, 193, 193, 1),
-                        ),
-                        border: const OutlineInputBorder(
-                            borderSide: BorderSide.none)),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text('${locale[curLN]?['cardBankType']}'),
-                const SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: () => showModalBottomSheet(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(20)),
-                    ),
-                    showDragHandle: true,
-                    context: context,
-                    builder: (context) {
-                      return ShowCardType();
-                    },
-                  ),
-                  child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(251, 251, 251, 1),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: const Color.fromRGBO(237, 237, 237, 1)),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              selectedCardType >= 0
-                                  ? cardsType[selectedCardType]
-                                  : '${locale[curLN]?['chooseBank']}',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: selectedCardType >= 0
-                                      ? Colors.black
-                                      : const Color.fromRGBO(193, 193, 193, 1)),
-                            ),
-                          ),
-                          const Icon(
-                            CupertinoIcons.chevron_down,
-                            size: 16,
-                          ),
-                        ],
-                      )),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(
-                      const Size(double.infinity, 50),
-                    ),
-                  ),
-                  onPressed: () {
-                    if (belgisi.text != '' &&
-                        cvc.text != '' &&
-                        eyesi.text != '' &&
-                        year.text != '' &&
-                        selectedCardType >= 0 &&
-                        selectedMonth >= 0) {
-                      if (index == -1) {
-                        mc.addCard();
+                    onPressed: () {
+                      if (belgisi.text != '' &&
+                          cvc.text != '' &&
+                          eyesi.text != '' &&
+                          year.text != '' &&
+                          selectedCardType >= 0 &&
+                          selectedMonth >= 0) {
+                        if (index == -1) {
+                          mc.addCard();
+                        } else {
+                          mc.setCardsValue(cards[index]);
+                        }
+                        Get.back();
                       } else {
-                        mc.setCardsValue(cards[index]);
+                        Get.snackbar(
+                          'Maglumatlary dolduryň',
+                          'Ähli meýdanlar hökmany',
+                          backgroundColor: red,
+                          colorText: Colors.white,
+                          dismissDirection: DismissDirection.horizontal,
+                        );
                       }
-                      Get.back();
-                    } else {
-                      Get.snackbar(
-                        'Maglumatlary dolduryň',
-                        'Ähli meýdanlar hökmany',
-                        backgroundColor: red,
-                        colorText: Colors.white,
-                        dismissDirection: DismissDirection.horizontal,
-                      );
-                    }
-                    mc.reset();
-                  },
-                  child: Text(
-                    '${locale[curLN]?['save']}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                      mc.reset();
+                    },
+                    child: Text(
+                      '${locale[curLN]?['save']}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

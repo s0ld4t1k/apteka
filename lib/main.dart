@@ -1,11 +1,9 @@
-import 'package:apte/controller/my_controller.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/pages/profile/adres.dart';
 import 'package:apte/pages/profile/changePW.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/profile/lang.dart';
-// import 'package:apte/pages/profile/like.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
@@ -22,7 +20,6 @@ import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/pages/main/search.dart';
 import 'package:apte/pages/main/searchPage.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,16 +33,16 @@ var langg = '';
 var tokenn = '';
 
 void main() async {
+  await Future.delayed(const Duration(seconds: 1));
+  FlutterNativeSplash.remove();
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('box');
   langg = await const FlutterSecureStorage().read(key: 'lang') ?? '';
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
-  tokenn = tokenn.substring(7, tokenn.length);
-  // print(JwtDecoder.isExpired(tokenn));
-  print('------tokenn-----$tokenn');
-  FlutterNativeSplash.remove();
+  // tokenn = tokenn.substring(7, tokenn.length);
+  debugPrint('------tokenn-----$tokenn');
   runApp(const MyApp());
 }
 
@@ -57,8 +54,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final MyController mc = Get.put(MyController());
-  LangCont lc = Get.put(LangCont());
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -71,55 +66,62 @@ class _MyAppState extends State<MyApp> {
               .copyWith(textScaler: const TextScaler.linear(1.0)),
           child: child!),
       theme: ThemeData(
-          colorScheme: const ColorScheme.light(
-            primary: green,
-          ),
-          brightness: Brightness.light,
-          fontFamily: 'DMSans',
-          primarySwatch: createMaterialColor(green),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ButtonStyle(
+        useMaterial3: true,
+        colorScheme: const ColorScheme.light(
+          primary: green,
+        ),
+        brightness: Brightness.light,
+        fontFamily: 'DMSans',
+        primarySwatch: createMaterialColor(green),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(green),
             foregroundColor: MaterialStateProperty.all(Colors.white),
             padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
             elevation: MaterialStateProperty.all(0),
-            shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            )),
-          )),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(54))),
-          appBarTheme: const AppBarTheme(
-            centerTitle: true,
-            systemOverlayStyle:
-                SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
-            titleTextStyle: TextStyle(
-              fontSize: 18,
-              fontFamily: "DMSans",
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
-            shadowColor: Colors.white24,
-            elevation: 2,
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
           ),
-          primaryColor: green,
-          primaryColorDark: green,
-          primaryColorLight: green,
-          bottomAppBarTheme: BottomAppBarTheme(
-            color: Colors.white,
-            surfaceTintColor: Colors.white,
-            elevation: 10,
-            shadowColor: Colors.black.withOpacity(1),
-          )),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(54),
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          systemOverlayStyle:
+              SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+          titleTextStyle: TextStyle(
+            fontSize: 18,
+            fontFamily: "DMSans",
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+          shadowColor: Colors.white24,
+          elevation: 2,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+        ),
+        primaryColor: green,
+        primaryColorDark: green,
+        primaryColorLight: green,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          elevation: 10,
+          shadowColor: Colors.black.withOpacity(1),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Apteka',
       routes: {
-        '/': (context) => const MainPage(),
-        '/registration': (context) => const Registration(),
+        '/main': (context) => const MainPage(),
+        '/': (context) => const Registration(),
         '/leading': (context) => const Leading(),
         '/mainPage': (context) => const MainPageWidget(),
         '/mainPage/harmfulInfo': (context) => const HarmfulInfo(),
@@ -127,7 +129,7 @@ class _MyAppState extends State<MyApp> {
         '/mainPage/searchPage': (context) => const SearchPage(),
         '/kategory': (context) => const Kategory(),
         '/kategory/subKategory': (context) => const SubKategory(),
-        '/kategory/subKategoryPage': (context) => SubKategoryPage(),
+        '/kategory/subKategoryPage': (context) => const SubKategoryPage(),
         '/bag': (context) => const Bag(),
         '/bag/sargytEtmek': (context) => const SargytEtmek(),
         '/bag/salgym': (context) => const NewAdres(),
@@ -137,14 +139,13 @@ class _MyAppState extends State<MyApp> {
         '/profile/user/changePW': (context) => const ChangePW(),
         '/profile/lang': (context) => const Language(),
         '/profile/habarlasmak': (context) => const Habarlasmak(),
-        // '/profile/like': (context) => const Like(),
         '/profile/adres': (context) => const Adres(),
         '/profile/sargyt': (context) => const Sargyt(),
       },
       initialRoute: (langg.isNotEmpty)
           ? (tokenn.isNotEmpty && !JwtDecoder.isExpired(tokenn))
-              ? '/'
-              : '/registration'
+              ? '/main'
+              : '/'
           : '/leading',
     );
   }

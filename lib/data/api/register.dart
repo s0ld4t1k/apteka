@@ -16,9 +16,9 @@ Future<void> sendSMS(UserModel user) async {
     var res = await Dio().post(url, data: {'phone': user.phone});
     user.sid = res.data['detail']['loc'][0]['sid'];
   } catch (e) {
-    print('---sms $e');
+    debugPrint('---sms $e');
   }
-  print('------sid   ${user.sid}');
+  debugPrint('------sid   ${user.sid}');
 }
 
 Future<int> logIN(UserModel user) async {
@@ -31,7 +31,7 @@ Future<int> logIN(UserModel user) async {
     const FlutterSecureStorage().write(key: 'token', value: token);
     return res.statusCode!;
   } catch (e) {
-    print('---login $e');
+    debugPrint('---login $e');
     return 0;
   }
 }
@@ -65,6 +65,6 @@ Future<void> register(UserModel userr, otp) async {
       }
     }
   } catch (e) {
-    print('---registr $e');
+    debugPrint('---registr $e');
   }
 }
