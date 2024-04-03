@@ -1,9 +1,6 @@
-// ignore_for_file: file_names, deprecated_member_use
+// ignore_for_file: file_names, deprecated_member_use, must_be_immutable
 
-import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
-import 'package:apte/data/model/products/model.dart';
-import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/main/category_products.dart';
@@ -15,15 +12,35 @@ import 'package:get/get.dart';
 
 import '../../data/model/category/controller.dart';
 
-// List filtrList = [];
+ScrollController _scont = ScrollController();
 
-class SubKategoryPage extends StatelessWidget {
-  const SubKategoryPage({super.key});
+class SubKategoryPage extends StatefulWidget {
+  String url;
+  SubKategoryPage({super.key, required this.url});
+
+  @override
+  State<SubKategoryPage> createState() => _SubKategoryPageState();
+}
+
+class _SubKategoryPageState extends State<SubKategoryPage> {
+  @override
+  void initState() {
+    _scont.addListener(() {
+      print('maxxxxxxx');
+      if (_scont.position.pixels == _scont.position.maxScrollExtent) {}
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scont.removeListener(() {});
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CategoryController>(
-        // init: CategoryController(),
-        builder: (cc) {
+    return GetBuilder<CategoryController>(builder: (cc) {
       return Scaffold(
         backgroundColor: bc,
         appBar: AppBar(
@@ -44,7 +61,7 @@ class SubKategoryPage extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          controller: contrl,
+          controller: _scont,
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 18),
           child: Column(
             children: [
@@ -55,7 +72,8 @@ class SubKategoryPage extends StatelessWidget {
                       style: ButtonStyle(
                         side: MaterialStateProperty.all(
                           const BorderSide(
-                              color: Color.fromRGBO(237, 237, 237, 1)),
+                            color: Color.fromRGBO(237, 237, 237, 1),
+                          ),
                         ),
                         minimumSize: MaterialStateProperty.all(
                             const Size(double.infinity, 42)),
@@ -77,15 +95,7 @@ class SubKategoryPage extends StatelessWidget {
                           )),
                           context: context,
                           builder: (context) {
-                            return TertipleBottomSheet(
-                              fromJson: Products.fromJson,
-                              update: cc.update,
-                              url:
-                                  '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/',
-                              products: cc.categoryProducts.detail?.loc?[0]
-                                      .products ??
-                                  [],
-                            );
+                            return TertipleBottomSheet(url: widget.url);
                           },
                         );
                       },
@@ -139,15 +149,7 @@ class SubKategoryPage extends StatelessWidget {
                           ),
                           context: context,
                           builder: (context) {
-                            return FiltrBottomSheet(
-                              products: cc.categoryProducts.detail?.loc?[0]
-                                      .products ??
-                                  [],
-                              update: cc.update,
-                              url:
-                                  '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/?sort=${prices[selectedTertip]}',
-                              fromJson: Products.fromJson,
-                            );
+                            return FiltrBottomSheet(url: widget.url);
                           },
                         );
                       },

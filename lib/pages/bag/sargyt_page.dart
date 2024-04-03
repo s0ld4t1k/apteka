@@ -1,5 +1,6 @@
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/cart/controller.dart';
+import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
 // import 'package:apte/widgets/bag&Card/cart_product_list.dart';
@@ -223,7 +224,7 @@ class SargytPage extends StatelessWidget {
                     Get.back();
                   },
                   child: Text(
-                    locale[curLN]!['cancel']!,
+                    '${locale[curLN]!['cancel']!} $minutes:$secunds',
                     style: const TextStyle(
                         fontSize: 14, fontWeight: FontWeight.w500, color: red),
                   )),

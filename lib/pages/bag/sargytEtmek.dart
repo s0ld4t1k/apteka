@@ -8,6 +8,8 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 
 var jem = 0.0;
+int minutes = 0;
+int secunds = 0;
 
 class SargytEtmek extends StatelessWidget {
   const SargytEtmek({super.key});

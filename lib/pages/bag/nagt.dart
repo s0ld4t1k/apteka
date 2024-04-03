@@ -27,13 +27,9 @@ class Nagt extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 5,
-                ),
+                const SizedBox(height: 5),
                 Text('${locale[curLN]?['dolyAdynyz']}'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   height: 50,
@@ -59,13 +55,9 @@ class Nagt extends StatelessWidget {
                   ),
                 ),
                 Obx(() => nameErr.value ? const ErrMsg() : Container()),
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 Text('${locale[curLN]?['tel']}'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   height: 50,
@@ -79,18 +71,14 @@ class Nagt extends StatelessWidget {
                     children: [
                       const Text(
                         '+993 ',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
+                        style: TextStyle(fontSize: 16),
                       ),
                       Expanded(
                         child: TextField(
                           onChanged: (value) => telErr.value = false,
                           controller: tel,
                           maxLength: 8,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
+                          style: const TextStyle(fontSize: 16),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             counterText: '',
@@ -104,13 +92,9 @@ class Nagt extends StatelessWidget {
                   ),
                 ),
                 Obx(() => telErr.value ? const ErrMsg() : Container()),
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 Text('${locale[curLN]?['adres']}'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
@@ -150,10 +134,7 @@ class Nagt extends StatelessWidget {
                                 : Text(adressList[selectedAdres.value][0]),
                           ),
                           const SizedBox(width: 5),
-                          const Icon(
-                            CupertinoIcons.chevron_down,
-                            size: 16,
-                          ),
+                          const Icon(CupertinoIcons.chevron_down, size: 16),
                         ],
                       ),
                     ),
@@ -197,144 +178,146 @@ class Nagt extends StatelessWidget {
             ),
           ),
           Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 5,
-                    color: Colors.black.withOpacity(0.05),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${locale[curLN]?['res']}',
-                              style: const TextStyle(
-                                color: Color.fromRGBO(107, 107, 107, 1),
-                              ),
-                            ),
-                            Text(
-                              '$jem TMT',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          minimumSize:
-                              MaterialStateProperty.all(const Size(196, 46)),
-                          elevation: MaterialStateProperty.all(1),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 5,
+                  color: Colors.black.withOpacity(0.05),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${locale[curLN]?['res']}',
+                            style: const TextStyle(
+                              color: Color.fromRGBO(107, 107, 107, 1),
                             ),
                           ),
+                          Text(
+                            '$jem TMT',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(196, 46)),
+                        elevation: MaterialStateProperty.all(1),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
-                        onPressed: () {
-                          if (name.text == '' ||
-                              tel.text == '' ||
-                              com.text == '') {
-                            if (name.text == '') nameErr.value = true;
-                            if (tel.text == '') telErr.value = true;
-                            if (com.text == '') comErr.value = true;
-                          } else {
-                            FocusScope.of(context).requestFocus(FocusNode());
-                            Get.to(
-                              () => SargytPage(
-                                total: arzanladys + harytJemi + eltipberme,
-                                totalPrice: harytJemi,
-                                discount: arzanladys,
-                                delivery: eltipberme,
+                      ),
+                      onPressed: () {
+                        if (name.text == '' ||
+                            tel.text == '' ||
+                            com.text == '') {
+                          if (name.text == '') nameErr.value = true;
+                          if (tel.text == '') telErr.value = true;
+                          if (com.text == '') comErr.value = true;
+                        } else {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          Get.to(
+                            () => SargytPage(
+                              total: arzanladys + harytJemi + eltipberme,
+                              totalPrice: harytJemi,
+                              discount: arzanladys,
+                              delivery: eltipberme,
+                            ),
+                          );
+                          minutes = 3;
+                          Get.dialog(
+                            AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            );
-                            Get.dialog(
-                              AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                surfaceTintColor: Colors.white,
-                                content: SizedBox(
-                                  width: 271,
-                                  height: 249,
-                                  child: Stack(
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 81,
-                                            height: 81,
-                                            child: Image.asset(
-                                                'assets/images/greenTick.png'),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Text(
-                                            locale[curLN]!['succesOrderText1']!,
-                                            style: const TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Text(
-                                            locale[curLN]!['succesOrderText2']!,
-                                            style: const TextStyle(
-                                              color: Color.fromRGBO(
-                                                  160, 160, 160, 1),
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                      Positioned(
-                                        top: 0,
-                                        right: 0,
-                                        child: GestureDetector(
-                                          onTap: () => Get.back(),
-                                          child: Container(
-                                            width: 37,
-                                            height: 37,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(37),
-                                                color: const Color.fromRGBO(
-                                                    250, 250, 250, 1)),
-                                            child: const Icon(Icons.close),
+                              surfaceTintColor: Colors.white,
+                              content: SizedBox(
+                                width: 271,
+                                height: 249,
+                                child: Stack(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 81,
+                                          height: 81,
+                                          child: Image.asset(
+                                              'assets/images/greenTick.png'),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          locale[curLN]!['succesOrderText1']!,
+                                          style: const TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          locale[curLN]!['succesOrderText2']!,
+                                          style: const TextStyle(
+                                            color: Color.fromRGBO(
+                                                160, 160, 160, 1),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                    Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: GestureDetector(
+                                        onTap: () => Get.back(),
+                                        child: Container(
+                                          width: 37,
+                                          height: 37,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(37),
+                                              color: const Color.fromRGBO(
+                                                  250, 250, 250, 1)),
+                                          child: const Icon(Icons.close),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                            );
-                          }
-                        },
-                        child: Text(
-                          '${locale[curLN]?['toDeliv']}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                            ),
+                          );
+                        }
+                      },
+                      child: Text(
+                        '${locale[curLN]?['toDeliv']}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ))
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

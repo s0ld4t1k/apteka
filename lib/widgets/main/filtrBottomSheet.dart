@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:apte/data/dio.dart';
-import 'package:apte/data/model/products/model.dart';
+import 'package:apte/data/model/category/controller.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
@@ -35,17 +34,8 @@ List filtrList = [
 
 // ignore: must_be_immutable
 class FiltrBottomSheet extends StatefulWidget {
-  List<Products> products;
-  final dynamic update;
   String url;
-  final dynamic fromJson;
-  FiltrBottomSheet({
-    super.key,
-    required this.products,
-    this.update,
-    required this.url,
-    this.fromJson,
-  });
+  FiltrBottomSheet({super.key, required this.url});
 
   @override
   State<FiltrBottomSheet> createState() => _FiltrBottomSheetState();
@@ -54,166 +44,151 @@ class FiltrBottomSheet extends StatefulWidget {
 class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      '${locale[curLN]?["filtr"]}',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      padding: const EdgeInsets.all(0),
-                      constraints: const BoxConstraints(
-                        maxHeight: 24,
-                        maxWidth: 24,
-                        minHeight: 24,
-                        minWidth: 24,
-                      ),
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.close),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 28),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          filtrList[index][0],
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+    return GetBuilder<CategoryController>(builder: (cc) {
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '${locale[curLN]?["filtr"]}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
                         ),
-                        const SizedBox(height: 15),
-                        Wrap(
-                          spacing: 12,
-                          runSpacing: 9,
-                          children: List.generate(
-                            filtrList[index][1].length,
-                            (i) => SizedBox(
-                              height: 34,
-                              child: OutlinedButton(
-                                style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
-                                        const EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 1,
-                                    )),
-                                    side: MaterialStateProperty.all(BorderSide(
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        padding: const EdgeInsets.all(0),
+                        constraints: const BoxConstraints(
+                          maxHeight: 24,
+                          maxWidth: 24,
+                          minHeight: 24,
+                          minWidth: 24,
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            filtrList[index][0],
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          Wrap(
+                            spacing: 12,
+                            runSpacing: 9,
+                            children: List.generate(
+                              filtrList[index][1].length,
+                              (i) => SizedBox(
+                                height: 34,
+                                child: OutlinedButton(
+                                  style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          const EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                        vertical: 1,
+                                      )),
+                                      side:
+                                          MaterialStateProperty.all(BorderSide(
+                                        color: _selectedFiltr[index] == i
+                                            ? green
+                                            : const Color.fromRGBO(
+                                                237, 237, 237, 1),
+                                      )),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      )),
+                                      minimumSize: MaterialStateProperty.all(
+                                          const Size(80, 34))),
+                                  onPressed: () {
+                                    setState(() {
+                                      if (_selectedFiltr[index] == i) {
+                                        _selectedFiltr[index] = -1;
+                                      } else {
+                                        _selectedFiltr[index] = i;
+                                      }
+                                    });
+                                  },
+                                  child: Text(
+                                    filtrList[index][1][i],
+                                    style: TextStyle(
                                       color: _selectedFiltr[index] == i
                                           ? green
-                                          : const Color.fromRGBO(
-                                              237, 237, 237, 1),
-                                    )),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    )),
-                                    minimumSize: MaterialStateProperty.all(
-                                        const Size(80, 34))),
-                                onPressed: () {
-                                  setState(() {
-                                    if (_selectedFiltr[index] == i) {
-                                      _selectedFiltr[index] = -1;
-                                    } else {
-                                      _selectedFiltr[index] = i;
-                                    }
-                                  });
-                                },
-                                child: Text(
-                                  filtrList[index][1][i],
-                                  style: TextStyle(
-                                    color: _selectedFiltr[index] == i
-                                        ? green
-                                        : const Color.fromRGBO(71, 71, 71, 1),
+                                          : const Color.fromRGBO(71, 71, 71, 1),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
+                        ],
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Container(
+                        height: 1,
+                        margin: const EdgeInsets.symmetric(vertical: 18),
+                        width: double.infinity,
+                        color: const Color.fromRGBO(237, 237, 237, 1),
+                      );
+                    },
+                    itemCount: filtrList.length,
+                  ),
+                  const SizedBox(height: 25),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(
+                          const Size(double.infinity, 45)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ],
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Container(
-                      height: 1,
-                      margin: const EdgeInsets.symmetric(vertical: 18),
-                      width: double.infinity,
-                      color: const Color.fromRGBO(237, 237, 237, 1),
-                    );
-                  },
-                  itemCount: filtrList.length,
-                ),
-                const SizedBox(height: 25),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(
-                        const Size(double.infinity, 45)),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_selectedFiltr[2] >= 0) {
+                        widget.url += '&type=${_selectedFiltr[2] + 1}';
+                      }
+                      if (_selectedFiltr[0] >= 0) {
+                        widget.url +=
+                            '&volume_type=${volumeType[_selectedFiltr[0]]}';
+                      }
+                      cc.getCategoryProducts(widget.url);
+                      Get.back();
+                    },
+                    child: Text(
+                      '${locale[curLN]?["toFiltr"]}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  onPressed: () async {
-                    if (_selectedFiltr[2] >= 0) {
-                      widget.url += '&type=${_selectedFiltr[2] + 1}';
-                    }
-                    if (_selectedFiltr[0] >= 0) {
-                      widget.url +=
-                          '&volume_type=${volumeType[_selectedFiltr[0]]}';
-                    }
-                    print(_selectedFiltr.toString());
-                    print(widget.url);
-                    try {
-                      var res = await Dioo().dio.get(widget.url);
-                      if (res.statusCode == 200) {
-                        List<Products> list = [];
-                        for (var i = 0;
-                            i < res.data['detail']['loc'][0]['products'].length;
-                            i++) {
-                          list.add(widget.fromJson(
-                              res.data['detail']['loc'][0]['products'][i]));
-                        }
-                        widget.products.clear();
-                        widget.products.addAll(list);
-                      }
-                      widget.update();
-                    } catch (e) {
-                      debugPrint('----filtr-----$e');
-                    }
-                    Get.back();
-                  },
-                  child: Text(
-                    '${locale[curLN]?["toFiltr"]}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 25),
-              ],
+                  const SizedBox(height: 25),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }

@@ -1,7 +1,6 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/category/category_products.dart';
-import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +20,7 @@ class CategoryController extends GetxController {
     const Color.fromRGBO(255, 201, 169, 1),
     const Color.fromRGBO(200, 242, 239, 1),
   ];
+  int page = 1;
   String categorySlug = '';
   String subcategorySlug = '';
   int selectedCategory = 0;
@@ -52,32 +52,13 @@ class CategoryController extends GetxController {
     update();
   }
 
-  String getTitle(s) {
-    if (curLN == 'tm') {
-      return s.tk;
-    } else if (curLN == 'ru') {
-      return s.ru;
-    } else {
-      try {
-        return s.en;
-      } catch (e) {
-        return s.tk;
-      }
-    }
-  }
-
-  void getCategoryProducts() async {
-    categorySlug = categories.detail!.loc![selectedCategory].slug!;
-    subcategorySlug = categories.detail!.loc![selectedCategory]
-        .subcategories![selectedSubategory].slug!;
-    url = 'category/$categorySlug/subcategory/$subcategorySlug/';
+  void getCategoryProducts(url) async {
     debugPrint(url);
     categoryProdyctIsload = true;
     update();
     try {
-      var res = await Dioo().dio.get(baseUrl + url);
+      var res = await Dioo().dio.get(url);
       categoryProducts = CategoryProductsModel.fromJson(res.data);
-      // print(categoryProducts);
     } catch (e) {
       debugPrint('-=------categoryProducts $e');
     }

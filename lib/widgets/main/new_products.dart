@@ -113,7 +113,9 @@ class NewProducts extends StatelessWidget {
                           const SizedBox(width: 25),
                           Row(
                             children: List.generate(
-                                prs.detail?.loc?.length ?? 0, (index) {
+                                (prs.detail?.loc?.length ?? 0) > 8
+                                    ? 8
+                                    : prs.detail?.loc?.length ?? 0, (index) {
                               RxBool? isAdd = false.obs;
                               getCart(prs.detail?.loc?[index].id, isAdd);
                               return GestureDetector(

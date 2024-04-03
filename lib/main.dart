@@ -12,7 +12,6 @@ import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
-import 'package:apte/pages/kategory/subKategoryPage.dart';
 import 'package:apte/pages/leading/leading.dart';
 import 'package:apte/pages/main/harmfulInfo.dart';
 import 'package:apte/pages/main/mainPage.dart';
@@ -129,7 +128,6 @@ class _MyAppState extends State<MyApp> {
         '/mainPage/searchPage': (context) => const SearchPage(),
         '/kategory': (context) => const Kategory(),
         '/kategory/subKategory': (context) => const SubKategory(),
-        '/kategory/subKategoryPage': (context) => const SubKategoryPage(),
         '/bag': (context) => const Bag(),
         '/bag/sargytEtmek': (context) => const SargytEtmek(),
         '/bag/salgym': (context) => const NewAdres(),
