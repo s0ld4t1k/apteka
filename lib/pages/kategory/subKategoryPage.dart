@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, deprecated_member_use, must_be_immutable
+// ignore_for_file: file_names
 
 import 'package:apte/data/dio.dart';
 import 'package:apte/widgets/colors.dart';
@@ -15,8 +15,8 @@ import '../../data/model/category/controller.dart';
 ScrollController _scont = ScrollController();
 
 class SubKategoryPage extends StatefulWidget {
-  String url;
-  SubKategoryPage({super.key, required this.url});
+  final dynamic incPage;
+  const SubKategoryPage({super.key, required this.incPage});
 
   @override
   State<SubKategoryPage> createState() => _SubKategoryPageState();
@@ -27,7 +27,9 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
   void initState() {
     _scont.addListener(() {
       print('maxxxxxxx');
-      if (_scont.position.pixels == _scont.position.maxScrollExtent) {}
+      if (_scont.position.pixels == _scont.position.maxScrollExtent) {
+        widget.incPage;
+      }
     });
     super.initState();
   }
@@ -95,7 +97,8 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                           )),
                           context: context,
                           builder: (context) {
-                            return TertipleBottomSheet(url: widget.url);
+                            return TertipleBottomSheet(
+                                ontap: cc.getCategoryProducts);
                           },
                         );
                       },
@@ -149,7 +152,8 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                           ),
                           context: context,
                           builder: (context) {
-                            return FiltrBottomSheet(url: widget.url);
+                            return FiltrBottomSheet(
+                                ontap: cc.getCategoryProducts);
                           },
                         );
                       },

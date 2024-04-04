@@ -6,6 +6,7 @@ import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/bag&Card/eltmeCon.dart';
+import 'package:apte/widgets/circul.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -97,17 +98,17 @@ class _BagState extends State<Bag> {
               ],
             ),
           ),
-          body: cc.isload
-              ? const Center(child: CircularProgressIndicator())
-              : (cc.cartProducts.detail?.loc ?? []).isEmpty
-                  ? const Center(child: Text('No products'))
-                  : SizedBox(
-                      height: MediaQuery.of(context).size.height,
-                      child: Stack(
-                        children: [
-                          SingleChildScrollView(
-                            controller: contrl,
-                            child: Column(
+          body: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  controller: contrl,
+                  child: cc.isload
+                      ? const Circul()
+                      : (cc.cartProducts.detail?.loc ?? []).isEmpty
+                          ? const Center(child: Text('No products'))
+                          : Column(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -271,84 +272,82 @@ class _BagState extends State<Bag> {
                                 ),
                               ],
                             ),
+                ),
+                (cc.cartProducts.detail?.loc ?? []).isEmpty && cc.isload
+                    ? Container()
+                    : Positioned(
+                        bottom: 0,
+                        right: 0,
+                        left: 0,
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 5,
+                                  color: Colors.black.withOpacity(0.05)),
+                            ],
+                            // borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            left: 0,
-                            child: Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 5,
-                                      color: Colors.black.withOpacity(0.05)),
-                                ],
-                                // borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
-                              ),
-                              child: Column(
+                          child: Column(
+                            children: [
+                              Row(
                                 children: [
-                                  Row(
+                                  Expanded(
+                                      child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Expanded(
-                                          child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '${locale[curLN]?["res"]}',
-                                            style: const TextStyle(
-                                              color: Color.fromRGBO(
-                                                  107, 107, 107, 1),
-                                            ),
-                                          ),
-                                          Text(
-                                            '${arzanladys + harytJemi + eltipberme} TMT',
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          )
-                                        ],
-                                      )),
-                                      ElevatedButton(
-                                        style: ButtonStyle(
-                                            minimumSize:
-                                                MaterialStateProperty.all(
-                                                    const Size(196, 46)),
-                                            elevation:
-                                                MaterialStateProperty.all(1),
-                                            shape: MaterialStateProperty.all(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ))),
-                                        onPressed: () {
-                                          jem = arzanladys +
-                                              harytJemi +
-                                              eltipberme;
-                                          Get.to(() => const SargytEtmek());
-                                        },
-                                        child: Text(
-                                          '${locale[curLN]?["toDeliv"]}',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                      Text(
+                                        '${locale[curLN]?["res"]}',
+                                        style: const TextStyle(
+                                          color:
+                                              Color.fromRGBO(107, 107, 107, 1),
                                         ),
                                       ),
+                                      Text(
+                                        '${arzanladys + harytJemi + eltipberme} TMT',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
                                     ],
-                                  )
+                                  )),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                        minimumSize: MaterialStateProperty.all(
+                                            const Size(196, 46)),
+                                        elevation: MaterialStateProperty.all(1),
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ))),
+                                    onPressed: () {
+                                      jem = arzanladys + harytJemi + eltipberme;
+                                      Get.to(() => const SargytEtmek());
+                                    },
+                                    child: Text(
+                                      '${locale[curLN]?["toDeliv"]}',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
                                 ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+              ],
+            ),
+          ),
         );
       },
     );

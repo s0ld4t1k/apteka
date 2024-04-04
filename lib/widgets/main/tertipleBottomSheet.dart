@@ -10,10 +10,10 @@ List prices = ['price', '-price'];
 int selectedTertip = 0;
 List _tertipList = [];
 
-// ignore: must_be_immutable
 class TertipleBottomSheet extends StatefulWidget {
-  String url;
-  TertipleBottomSheet({super.key, required this.url});
+  final dynamic ontap;
+  // String url;
+  const TertipleBottomSheet({super.key, required this.ontap});
 
   @override
   State<TertipleBottomSheet> createState() => _TertipleBottomSheetState();
@@ -62,13 +62,13 @@ class _TertipleBottomSheetState extends State<TertipleBottomSheet> {
                     return InkWell(
                       onTap: () {
                         selectedTertip = index;
-                        int a = widget.url.indexOf('sort');
-                        int b = widget.url.indexOf('price');
+                        int a = cc.url2.indexOf('sort');
+                        int b = cc.url2.indexOf('price');
                         if (a >= 0) {
-                          widget.url = widget.url.replaceRange(
+                          cc.url2 = cc.url2.replaceRange(
                               a, b + 5, 'sort=${prices[selectedTertip]}');
                         }
-                        cc.getCategoryProducts(widget.url);
+                        widget.ontap(cc.url2);
                         setState(() {});
                       },
                       child: Container(

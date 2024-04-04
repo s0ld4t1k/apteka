@@ -22,7 +22,7 @@ class SubKategory extends StatelessWidget {
         cc.subcategorySlug = cc.categories.detail?.loc?[cc.selectedCategory]
                 .subcategories?[cc.selectedSubategory].slug ??
             '';
-        String url =
+        cc.url2 =
             '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/?page=${cc.page}&sort=${prices[selectedTertip]}';
         return Scaffold(
           backgroundColor: Colors.white,
@@ -50,8 +50,8 @@ class SubKategory extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     cc.selectedSubategory = index;
-                    cc.getCategoryProducts(url);
-                    Get.to(() => SubKategoryPage(url: url));
+                    cc.getCategoryProducts(cc.url2);
+                    Get.to(() => SubKategoryPage(incPage: cc.incPage));
                   },
                   child: Column(
                     children: [

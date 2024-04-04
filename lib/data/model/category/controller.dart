@@ -28,9 +28,11 @@ class CategoryController extends GetxController {
   CategoryModel categories = CategoryModel();
   CategoryProductsModel categoryProducts = CategoryProductsModel();
   var url = 'categories/';
+  String url2 = '';
   bool isload = true;
   bool isErr = false;
   bool categoryProdyctIsload = true;
+  bool paginationIsload = true;
 
   void get() async {
     try {
@@ -64,5 +66,23 @@ class CategoryController extends GetxController {
     }
     categoryProdyctIsload = false;
     update();
+  }
+
+  void getProductsPagination() async {
+    paginationIsload = true;
+    update();
+    try {
+      var res = await Dioo().dio.get(url2);
+      categoryProducts = CategoryProductsModel.fromJson(res.data);
+    } catch (e) {
+      debugPrint('-=------categoryProducts $e');
+    }
+    paginationIsload = false;
+    update();
+  }
+
+  void incPage() {
+    if (categoryProducts.detail?.loc?[0].pagination?.next ?? false) page++;
+    getProductsPagination();
   }
 }

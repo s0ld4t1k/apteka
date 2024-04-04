@@ -121,7 +121,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Apteka',
       routes: {
         '/main': (context) => const MainPage(),
-        '/': (context) => const Registration(),
+        '/reg': (context) => const Registration(),
         '/leading': (context) => const Leading(),
         '/mainPage': (context) => const MainPageWidget(),
         '/mainPage/harmfulInfo': (context) => const HarmfulInfo(),
@@ -144,7 +144,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: (langg.isNotEmpty)
           ? (tokenn.isNotEmpty && !JwtDecoder.isExpired(tokenn))
               ? '/main'
-              : '/'
+              : '/reg'
           : '/leading',
     );
   }

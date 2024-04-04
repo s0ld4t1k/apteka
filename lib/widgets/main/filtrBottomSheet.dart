@@ -32,10 +32,10 @@ List filtrList = [
   ],
 ];
 
-// ignore: must_be_immutable
 class FiltrBottomSheet extends StatefulWidget {
-  String url;
-  FiltrBottomSheet({super.key, required this.url});
+  // String url;
+  final dynamic ontap;
+  const FiltrBottomSheet({super.key, required this.ontap});
 
   @override
   State<FiltrBottomSheet> createState() => _FiltrBottomSheetState();
@@ -165,13 +165,13 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                     ),
                     onPressed: () {
                       if (_selectedFiltr[2] >= 0) {
-                        widget.url += '&type=${_selectedFiltr[2] + 1}';
+                        cc.url2 += '&type=${_selectedFiltr[2] + 1}';
                       }
                       if (_selectedFiltr[0] >= 0) {
-                        widget.url +=
+                        cc.url2 +=
                             '&volume_type=${volumeType[_selectedFiltr[0]]}';
                       }
-                      cc.getCategoryProducts(widget.url);
+                      widget.ontap(cc.url2);
                       Get.back();
                     },
                     child: Text(
