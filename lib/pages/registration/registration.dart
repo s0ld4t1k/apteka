@@ -11,6 +11,19 @@ import 'package:get/get.dart';
 
 TextEditingController tel = TextEditingController();
 TextEditingController pass = TextEditingController();
+void logg() async {
+  int sc = await logIN(user);
+  if (sc == 200) {
+    Get.offAll(() => const MainPage());
+  } else {
+    Get.snackbar(
+      locale[curLN]!['loginError']!,
+      locale[curLN]!['incorrectPassword']!,
+      backgroundColor: red,
+      colorText: Colors.white,
+    );
+  }
+}
 
 class Registration extends StatelessWidget {
   const Registration({super.key});
@@ -63,21 +76,7 @@ class Registration extends StatelessWidget {
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
                           const Size(double.infinity, 50))),
-                  onPressed: () async {
-                    user.phone = tel.text;
-                    user.password = pass.text;
-                    int sc = await logIN(user);
-                    if (sc == 200) {
-                      Get.offAll(() => const MainPage());
-                    } else {
-                      Get.snackbar(
-                        locale[curLN]!['loginError']!,
-                        locale[curLN]!['incorrectPassword']!,
-                        backgroundColor: red,
-                        colorText: Colors.white,
-                      );
-                    }
-                  },
+                  onPressed: () => logg(),
                   child: Text(locale[curLN]!['ulgamaGir']!),
                 )
               ],

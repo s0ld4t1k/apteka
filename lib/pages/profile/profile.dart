@@ -2,11 +2,13 @@ import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/profile/product_page.dart.dart';
 import 'package:apte/pages/profile/user.dart';
+import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/widgets/circul.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -263,7 +265,12 @@ class Profile extends StatelessWidget {
                                         )),
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () async {
+                                  await const FlutterSecureStorage()
+                                      .delete(key: 'token');
+                                  selectedTab = 0;
+                                  Get.offAll(() => const Registration());
+                                },
                                 child: Container(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 18),
@@ -271,9 +278,7 @@ class Profile extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(
                                           'assets/icons/profile/singOut.svg'),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
+                                      const SizedBox(width: 20),
                                       Text(
                                         '${locale[curLN]?['logOut']}',
                                         style: const TextStyle(

@@ -230,12 +230,14 @@ class ProfileProductsPage extends StatelessWidget {
                                           child: Container(
                                             alignment: Alignment.center,
                                             padding: const EdgeInsets.all(16),
-                                            child: Image.network(prm
-                                                    .detail
-                                                    ?.loc?[index]
-                                                    .image
-                                                    ?.imgUrl ??
-                                                ''),
+                                            child: Image.network(
+                                              prm.detail?.loc?[index].image
+                                                      ?.imgUrl ??
+                                                  '',
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Text('err'),
+                                            ),
                                           ),
                                         ),
                                         Text(

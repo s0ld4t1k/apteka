@@ -199,28 +199,44 @@ class ProductPage extends StatelessWidget {
                                                                 surfaceTintColor:
                                                                     Colors
                                                                         .transparent,
-                                                                content: Image.network(pc
-                                                                        .product
-                                                                        .detail!
-                                                                        .loc![0]
-                                                                        .images![
-                                                                            index]
-                                                                        .imgUrl ??
-                                                                    ''),
+                                                                content: Image
+                                                                    .network(
+                                                                  pc
+                                                                          .product
+                                                                          .detail!
+                                                                          .loc![
+                                                                              0]
+                                                                          .images![
+                                                                              index]
+                                                                          .imgUrl ??
+                                                                      '',
+                                                                  errorBuilder: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Text(
+                                                                          'err'),
+                                                                ),
                                                               ),
                                                             );
                                                           },
                                                           child: SizedBox(
                                                             width: 172,
                                                             height: 110,
-                                                            child: Image.network(pc
-                                                                    .product
-                                                                    .detail!
-                                                                    .loc![0]
-                                                                    .images![
-                                                                        index]
-                                                                    .imgUrl ??
-                                                                ''),
+                                                            child:
+                                                                Image.network(
+                                                              pc
+                                                                      .product
+                                                                      .detail!
+                                                                      .loc![0]
+                                                                      .images![
+                                                                          index]
+                                                                      .imgUrl ??
+                                                                  '',
+                                                              errorBuilder: (context,
+                                                                      error,
+                                                                      stackTrace) =>
+                                                                  Text('err'),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],

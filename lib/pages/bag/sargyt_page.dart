@@ -73,6 +73,8 @@ class SargytPage extends StatelessWidget {
                               cc.cartProducts.detail?.loc?[index].image
                                       ?.imgUrl ??
                                   '',
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Text('err'),
                               fit: BoxFit.contain,
                             ),
                           ),

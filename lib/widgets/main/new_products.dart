@@ -156,6 +156,9 @@ class NewProducts extends StatelessWidget {
                                                 prs.detail?.loc?[index].image
                                                         ?.imgUrl ??
                                                     '',
+                                                errorBuilder: (context, error,
+                                                        stackTrace) =>
+                                                    Text('err'),
                                               ),
                                             ),
                                           ),

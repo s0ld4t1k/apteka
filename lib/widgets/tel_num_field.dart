@@ -1,3 +1,4 @@
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:flutter/material.dart';
 
 import 'langDictionary.dart';
@@ -26,6 +27,10 @@ class TelNumField extends StatelessWidget {
               Expanded(
                 child: TextField(
                   controller: tel,
+                  onChanged: (value) {
+                    user.phone = tel.text;
+                  },
+                  textInputAction: TextInputAction.next,
                   scrollPadding: const EdgeInsets.all(0),
                   style: const TextStyle(fontSize: 14),
                   keyboardType: TextInputType.number,

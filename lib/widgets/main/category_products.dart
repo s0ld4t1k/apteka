@@ -73,13 +73,14 @@ class CategoryProducts extends StatelessWidget {
                                   child: Container(
                                     alignment: Alignment.center,
                                     padding: const EdgeInsets.all(16),
-                                    child: Image.network(cc
-                                        .categoryProducts
-                                        .detail!
-                                        .loc![0]
-                                        .products![index]
-                                        .image!
-                                        .imgUrl!),
+                                    child: Image.network(
+                                      cc.categoryProducts.detail?.loc?[0]
+                                              .products?[index].image?.imgUrl ??
+                                          '',
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Text('err'),
+                                    ),
                                   ),
                                 ),
                                 Text(

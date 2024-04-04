@@ -37,6 +37,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('box');
+  searchHistory = Hive.box('box').get('search') ?? [];
   langg = await const FlutterSecureStorage().read(key: 'lang') ?? '';
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';

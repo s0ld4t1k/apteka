@@ -1,3 +1,5 @@
+import 'package:apte/pages/registration/registration.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/state_manager.dart';
@@ -27,6 +29,11 @@ class PasswordField extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
+                    textInputAction: TextInputAction.go,
+                    onChanged: (value) => user.password = pass.text,
+                    onSubmitted: (value) {
+                      logg();
+                    },
                     obscureText: obsec.value,
                     controller: pass,
                     scrollPadding: const EdgeInsets.all(0),

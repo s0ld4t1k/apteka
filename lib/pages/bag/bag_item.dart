@@ -46,9 +46,12 @@ class _BagItemState extends State<BagItem> {
                 padding: const EdgeInsets.all(20),
                 width: 90,
                 height: 100,
-                child: Image.network(widget.cc.cartProducts.detail
-                        ?.loc?[widget.index].image?.imgUrl ??
-                    ''),
+                child: Image.network(
+                  widget.cc.cartProducts.detail?.loc?[widget.index].image
+                          ?.imgUrl ??
+                      '',
+                  errorBuilder: (context, error, stackTrace) => Text('err'),
+                ),
               ),
               Expanded(
                 child: Container(

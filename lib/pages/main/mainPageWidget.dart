@@ -149,6 +149,9 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                   child: Image.network(
                                     bc.banners.detail?.loc?[index].imgUrl ?? '',
                                     fit: BoxFit.fill,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Text('err'),
                                   ),
                                 ),
                               ),

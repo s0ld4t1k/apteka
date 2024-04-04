@@ -61,6 +61,9 @@ class MainCategory extends StatelessWidget {
                                           cc.categories.detail?.loc?[index]
                                                   .imgUrl ??
                                               '',
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Text('err'),
                                         )),
                                   ),
                                 ),
