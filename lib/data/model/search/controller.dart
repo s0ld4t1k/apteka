@@ -15,7 +15,7 @@ class SearckController extends GetxController {
   ProductsModel searchProducts = ProductsModel();
   void get(query) async {
     String url = '${baseUrl}search/?query=$query';
-    print(url);
+    // print(url);
     isload = true;
     update();
     try {

@@ -1,5 +1,6 @@
 import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/pages/registration/sign_in.dart';
+import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/state_manager.dart';
@@ -31,9 +32,7 @@ class PasswordField extends StatelessWidget {
                   child: TextField(
                     textInputAction: TextInputAction.go,
                     onChanged: (value) => user.password = pass.text,
-                    onSubmitted: (value) {
-                      logg();
-                    },
+                    onSubmitted: (value) => logg(),
                     obscureText: obsec.value,
                     controller: pass,
                     scrollPadding: const EdgeInsets.all(0),
@@ -52,9 +51,7 @@ class PasswordField extends StatelessWidget {
                     minHeight: 30,
                     minWidth: 30,
                   ),
-                  onPressed: () {
-                    obsec.value = !obsec.value;
-                  },
+                  onPressed: () => obsec.value = !obsec.value,
                   icon: SvgPicture.asset(
                     obsec.value
                         ? 'assets/icons/eye-slash.svg'
@@ -64,6 +61,11 @@ class PasswordField extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 10),
+          const Text(
+            'Açar sözüňiz hökmany 8 simwoldan, kiçi harpdan, uly harpdan we sandan durmalydyr!',
+            style: TextStyle(color: conGrey),
+          )
         ],
       );
     });

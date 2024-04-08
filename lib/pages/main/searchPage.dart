@@ -5,9 +5,7 @@ import 'package:apte/data/model/search/controller.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/main/filtrBottomSheet.dart';
 import 'package:apte/widgets/main/new_products.dart';
-import 'package:apte/widgets/main/tertipleBottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -281,7 +279,7 @@ class _SearchPageState extends State<SearchPage> {
                                                       '',
                                                   errorBuilder: (context, error,
                                                           stackTrace) =>
-                                                      Text('err'),
+                                                      const Text('err'),
                                                 ),
                                               ),
                                             ),

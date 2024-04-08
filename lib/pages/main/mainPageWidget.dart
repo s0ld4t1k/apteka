@@ -127,7 +127,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                 init: ProductsController(),
                 builder: (ps) {
                   return SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     controller: contrl,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +151,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                     fit: BoxFit.fill,
                                     errorBuilder:
                                         (context, error, stackTrace) =>
-                                            Text('err'),
+                                            const Text('err'),
                                   ),
                                 ),
                               ),

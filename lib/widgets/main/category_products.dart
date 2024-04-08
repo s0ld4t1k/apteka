@@ -79,7 +79,7 @@ class CategoryProducts extends StatelessWidget {
                                           '',
                                       errorBuilder:
                                           (context, error, stackTrace) =>
-                                              Text('err'),
+                                              const Text('err'),
                                     ),
                                   ),
                                 ),

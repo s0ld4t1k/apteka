@@ -43,6 +43,12 @@ class FiltrBottomSheet extends StatefulWidget {
 
 class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
   @override
+  void initState() {
+    _selectedFiltr = [-1, -1, -1];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<CategoryController>(builder: (cc) {
       return SingleChildScrollView(

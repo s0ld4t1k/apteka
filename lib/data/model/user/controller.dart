@@ -1,5 +1,6 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,8 @@ class UserController extends GetxController {
       var res = await Dioo().dio.get(baseUrl + url);
       nam.text = res.data['detail']['loc'][0]['first_name'];
       tel.text = res.data['detail']['loc'][0]['phone'];
-
+      user.name = res.data['detail']['loc'][0]['first_name'];
+      user.phone = res.data['detail']['loc'][0]['phone'];
       isLoad = false;
       update();
     } catch (e) {
@@ -40,7 +42,6 @@ class UserController extends GetxController {
       var res = await Dioo().dio.get(baseUrl + url);
       if (res.statusCode == 200) {
         whishlists = ProductsModel.fromJson(res.data);
-        // print(newProducts);
       }
     } catch (e) {
       debugPrint('----whishlist-------$e');

@@ -74,7 +74,7 @@ class SargytPage extends StatelessWidget {
                                       ?.imgUrl ??
                                   '',
                               errorBuilder: (context, error, stackTrace) =>
-                                  Text('err'),
+                                  const Text('err'),
                               fit: BoxFit.contain,
                             ),
                           ),

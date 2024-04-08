@@ -1,7 +1,9 @@
+import 'package:apte/data/dio.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/bag/sargyt_page.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +14,15 @@ import 'bag.dart';
 TextEditingController nameTer = TextEditingController();
 TextEditingController telTer = TextEditingController();
 TextEditingController comTer = TextEditingController();
-RxBool nameErrTer = false.obs, telErrTer = false.obs, comErrTer = false.obs;
+RxBool nameErrTer = false.obs, telErrTer = false.obs;
 
 class Terminal extends StatelessWidget {
   const Terminal({super.key});
 
   @override
   Widget build(BuildContext context) {
+    nameTer.text = user.name ?? '';
+    telTer.text = user.phone ?? '';
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -149,25 +153,16 @@ class Terminal extends StatelessWidget {
                                   )
                                 : Text(adressList[selectedAdres.value][0]),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(
-                            CupertinoIcons.chevron_down,
-                            size: 16,
-                          ),
+                          const SizedBox(width: 5),
+                          const Icon(CupertinoIcons.chevron_down, size: 16),
                         ],
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 Text('${locale[curLN]?['bellik']}'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -179,7 +174,6 @@ class Terminal extends StatelessWidget {
                         color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
                   child: TextField(
-                    onChanged: (value) => comErrTer.value = false,
                     controller: comTer,
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
@@ -197,10 +191,7 @@ class Terminal extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => comErrTer.value ? const ErrMsg() : Container()),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
               ],
             ),
           ),
@@ -244,14 +235,20 @@ class Terminal extends StatelessWidget {
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ))),
-                          onPressed: () {
+                          onPressed: () async {
+                            int re = await toOrder(nameTer.text, telTer.text,
+                                adressList[selectedAdres.value][0], 2);
                             if (nameTer.text == '' ||
                                 telTer.text == '' ||
-                                comTer.text == '') {
+                                re != 200) {
                               if (nameTer.text == '') nameErrTer.value = true;
                               if (telTer.text == '') telErrTer.value = true;
-                              if (comTer.text == '') comErrTer.value = true;
+                              if (re != 200) {
+                                Dioo().conErr(toOrder(nameTer.text, telTer.text,
+                                    adressList[selectedAdres.value][0], 2));
+                              }
                             } else {
+                              // ignore: use_build_context_synchronously
                               FocusScope.of(context).requestFocus(FocusNode());
                               Get.to(
                                 () => SargytPage(
@@ -277,9 +274,7 @@ class Terminal extends StatelessWidget {
                                               height: 81,
                                               child: Image.asset(
                                                   'assets/images/greenTick.png')),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
+                                          const SizedBox(height: 10),
                                           Text(
                                             locale[curLN]!['succesOrderText1']!,
                                             style: const TextStyle(
@@ -287,9 +282,7 @@ class Terminal extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
+                                          const SizedBox(height: 10),
                                           Text(
                                             locale[curLN]!['succesOrderText2']!,
                                             style: const TextStyle(

@@ -1,7 +1,9 @@
+import 'package:apte/data/dio.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/bag/sargyt_page.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +14,15 @@ import 'bag.dart';
 TextEditingController name = TextEditingController();
 TextEditingController tel = TextEditingController();
 TextEditingController com = TextEditingController();
-RxBool nameErr = false.obs, telErr = false.obs, comErr = false.obs;
+RxBool nameErr = false.obs, telErr = false.obs;
 
 class Nagt extends StatelessWidget {
   const Nagt({super.key});
 
   @override
   Widget build(BuildContext context) {
+    name.text = user.name ?? '';
+    tel.text = user.phone ?? '';
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -154,7 +158,6 @@ class Nagt extends StatelessWidget {
                         color: const Color.fromRGBO(237, 237, 237, 1)),
                   ),
                   child: TextField(
-                    onChanged: (value) => comErr.value = false,
                     controller: com,
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
@@ -172,7 +175,6 @@ class Nagt extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => comErr.value ? const ErrMsg() : Container()),
                 const SizedBox(height: 30),
               ],
             ),
@@ -223,14 +225,18 @@ class Nagt extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: () {
-                        if (name.text == '' ||
-                            tel.text == '' ||
-                            com.text == '') {
+                      onPressed: () async {
+                        int re = await toOrder(name.text, tel.text,
+                            adressList[selectedAdres.value][0], 1);
+                        if (name.text == '' || tel.text == '' || re != 200) {
                           if (name.text == '') nameErr.value = true;
                           if (tel.text == '') telErr.value = true;
-                          if (com.text == '') comErr.value = true;
+                          if (re != 200) {
+                            Dioo().conErr(toOrder(name.text, tel.text,
+                                adressList[selectedAdres.value][0], 1));
+                          }
                         } else {
+                          // ignore: use_build_context_synchronously
                           FocusScope.of(context).requestFocus(FocusNode());
                           Get.to(
                             () => SargytPage(

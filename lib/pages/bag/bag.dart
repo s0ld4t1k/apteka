@@ -107,7 +107,11 @@ class _BagState extends State<Bag> {
                   child: cc.isload
                       ? const Circul()
                       : (cc.cartProducts.detail?.loc ?? []).isEmpty
-                          ? const Center(child: Text('No products'))
+                          ? Container(
+                              alignment: Alignment.bottomCenter,
+                              height:
+                                  MediaQuery.of(context).size.height / 2 - 75,
+                              child: const Text('No products'))
                           : Column(
                               children: [
                                 Padding(
@@ -273,9 +277,8 @@ class _BagState extends State<Bag> {
                               ],
                             ),
                 ),
-                (cc.cartProducts.detail?.loc ?? []).isEmpty && cc.isload
-                    ? Container()
-                    : Positioned(
+                (cc.cartProducts.detail?.loc ?? []).isNotEmpty
+                    ? Positioned(
                         bottom: 0,
                         right: 0,
                         left: 0,
@@ -290,7 +293,6 @@ class _BagState extends State<Bag> {
                                   blurRadius: 5,
                                   color: Colors.black.withOpacity(0.05)),
                             ],
-                            // borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
                           ),
                           child: Column(
                             children: [
@@ -345,6 +347,7 @@ class _BagState extends State<Bag> {
                           ),
                         ),
                       )
+                    : Container()
               ],
             ),
           ),

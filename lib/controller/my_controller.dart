@@ -7,9 +7,7 @@ import 'package:hive/hive.dart';
 class MyController extends GetxController {
   @override
   void onInit() {
-    cards.value = (Hive.box('box').get('cards') != null)
-        ? Hive.box('box').get('cards')
-        : [];
+    cards = Hive.box('box').get('cards') ?? [];
     super.onInit();
   }
 

@@ -18,7 +18,7 @@ List cardImages = [
   'assets/images/dayhanBank.png',
   'assets/images/turkmenbasyBank.png',
 ];
-RxList<dynamic> cards = [].obs;
+List<dynamic> cards = [];
 
 class Kard extends StatelessWidget {
   const Kard({super.key});
@@ -51,7 +51,7 @@ class Kard extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               controller: contrl,
-              child: cards.value.isEmpty
+              child: cards.isEmpty
                   ? Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Column(
@@ -110,95 +110,94 @@ class Kard extends StatelessWidget {
                   : Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 20),
-                      child: Obx(() {
-                        return ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: const EdgeInsets.all(0),
-                          itemBuilder: (context, index) {
-                            return Slidable(
-                              endActionPane: ActionPane(
-                                  motion: const ScrollMotion(),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: const EdgeInsets.all(0),
+                        itemBuilder: (context, index) {
+                          return Slidable(
+                            endActionPane: ActionPane(
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) =>
+                                        cards.removeAt(index),
+                                    borderRadius: BorderRadius.circular(10),
+                                    backgroundColor: red,
+                                    icon: Icons.delete,
+                                    autoClose: true,
+                                  )
+                                ]),
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(() => NewCard(index: index));
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 12),
+                                width: double.infinity,
+                                height: 85,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: const Color.fromRGBO(
+                                            237, 237, 237, 1))),
+                                child: Row(
                                   children: [
-                                    SlidableAction(
-                                      onPressed: (context) =>
-                                          cards.removeAt(index),
-                                      borderRadius: BorderRadius.circular(10),
-                                      backgroundColor: red,
-                                      icon: Icons.delete,
-                                      autoClose: true,
-                                    )
-                                  ]),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.to(() => NewCard(
-                                        index: index,
-                                      ));
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 12),
-                                  width: double.infinity,
-                                  height: 85,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1))),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(cardImages[cards[index][1]]),
-                                      const SizedBox(
-                                        width: 35,
+                                    SizedBox(
+                                      width: 61,
+                                      height: 46,
+                                      child: Image.asset(
+                                        cardImages[cards[index][1]],
                                       ),
-                                      Expanded(
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    cardsType[cards[index][1]],
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 16),
+                                    ),
+                                    const SizedBox(width: 35),
+                                    Expanded(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  cardsType[cards[index][1]],
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 16),
+                                                ),
+                                                const SizedBox(
+                                                  height: 6,
+                                                ),
+                                                Text(
+                                                  cards[index][0],
+                                                  style: const TextStyle(
+                                                    color: Color.fromRGBO(
+                                                        131, 131, 131, 1),
+                                                    fontSize: 14,
                                                   ),
-                                                  const SizedBox(
-                                                    height: 6,
-                                                  ),
-                                                  Text(
-                                                    cards[index][0],
-                                                    style: const TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          131, 131, 131, 1),
-                                                      fontSize: 14,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
+                                                )
+                                              ],
                                             ),
-                                            const Icon(
-                                              Icons.chevron_right_rounded,
-                                              size: 20,
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                          const Icon(
+                                            Icons.chevron_right_rounded,
+                                            size: 20,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          },
-                          separatorBuilder: (context, index) => const SizedBox(
-                            height: 15,
-                          ),
-                          itemCount: cards.value.length,
-                        );
-                      }),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 15),
+                        itemCount: cards.length,
+                      ),
                     ),
             ),
             floatingActionButton: cards.isEmpty

@@ -213,7 +213,7 @@ class ProductPage extends StatelessWidget {
                                                                   errorBuilder: (context,
                                                                           error,
                                                                           stackTrace) =>
-                                                                      Text(
+                                                                      const Text(
                                                                           'err'),
                                                                 ),
                                                               ),
@@ -235,7 +235,7 @@ class ProductPage extends StatelessWidget {
                                                               errorBuilder: (context,
                                                                       error,
                                                                       stackTrace) =>
-                                                                  Text('err'),
+                                                                  const Text('err'),
                                                             ),
                                                           ),
                                                         ),

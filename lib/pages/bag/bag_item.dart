@@ -50,7 +50,7 @@ class _BagItemState extends State<BagItem> {
                   widget.cc.cartProducts.detail?.loc?[widget.index].image
                           ?.imgUrl ??
                       '',
-                  errorBuilder: (context, error, stackTrace) => Text('err'),
+                  errorBuilder: (context, error, stackTrace) => const Text('err'),
                 ),
               ),
               Expanded(

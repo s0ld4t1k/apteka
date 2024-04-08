@@ -1,11 +1,30 @@
 // ignore_for_file: file_names
 
+import 'package:apte/data/api/register.dart';
+import 'package:apte/data/dio.dart';
 import 'package:apte/pages/bag/bankKarty.dart';
 import 'package:apte/pages/bag/nagt.dart';
 import 'package:apte/pages/bag/terminal.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+
+Future<int> toOrder(fullName, phone, address, paymentMethod) async {
+  String url = '${baseUrl}order/';
+  var data = {
+    "full_name": fullName,
+    "phone": phone,
+    "address": address,
+    "payment_method": paymentMethod,
+  };
+  try {
+    var res = await Dioo().dio.post(url, data: data);
+    return res.statusCode ?? 0;
+  } catch (e) {
+    debugPrint('----order-post----$e');
+    return 0;
+  }
+}
 
 var jem = 0.0;
 int minutes = 0;

@@ -1,14 +1,11 @@
 // ignore_for_file: file_names, deprecated_member_use
 
 import 'package:apte/data/api/register.dart';
-import 'package:apte/data/model/products/model.dart';
 import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/main/filtrBottomSheet.dart';
 import 'package:apte/widgets/main/new_products.dart';
-import 'package:apte/widgets/main/tertipleBottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -18,11 +15,11 @@ import '../../widgets/colors.dart';
 
 class ProfileProductsPage extends StatelessWidget {
   final String text;
-  final ProductsModel prm;
-  const ProfileProductsPage({super.key, required this.text, required this.prm});
+  const ProfileProductsPage({super.key, required this.text});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UserController>(
+      init: UserController(),
       builder: (uc) {
         return Scaffold(
           backgroundColor: Colors.white,
@@ -40,7 +37,7 @@ class ProfileProductsPage extends StatelessWidget {
                 icon: const Icon(Icons.chevron_left_rounded)),
             title: Text(text),
           ),
-          body: (prm.detail?.loc ?? []).isEmpty
+          body: (uc.whishlists.detail?.loc ?? []).isEmpty
               ? Column(
                   children: [
                     Image.asset('assets/images/like.png'),
@@ -191,15 +188,17 @@ class ProfileProductsPage extends StatelessWidget {
                           crossAxisSpacing: 21,
                         ),
                         children: List.generate(
-                          prm.detail?.loc?.length ?? 0,
+                          uc.whishlists.detail?.loc?.length ?? 0,
                           (index) {
                             RxBool isAdd = false.obs;
-                            getCart(prm.detail?.loc?[index].id, isAdd);
+                            getCart(
+                                uc.whishlists.detail?.loc?[index].id, isAdd);
                             return GestureDetector(
                               onTap: () {
                                 Get.to(
                                   () => ProductPage(
-                                    url: prm.detail?.loc?[index].absoluteUrl ??
+                                    url: uc.whishlists.detail?.loc?[index]
+                                            .absoluteUrl ??
                                         '',
                                   ),
                                 );
@@ -231,18 +230,18 @@ class ProfileProductsPage extends StatelessWidget {
                                             alignment: Alignment.center,
                                             padding: const EdgeInsets.all(16),
                                             child: Image.network(
-                                              prm.detail?.loc?[index].image
-                                                      ?.imgUrl ??
+                                              uc.whishlists.detail?.loc?[index]
+                                                      .image?.imgUrl ??
                                                   '',
                                               errorBuilder: (context, error,
                                                       stackTrace) =>
-                                                  Text('err'),
+                                                  const Text('err'),
                                             ),
                                           ),
                                         ),
                                         Text(
-                                          Dioo.getTitle(
-                                              prm.detail?.loc?[index].title),
+                                          Dioo.getTitle(uc.whishlists.detail
+                                              ?.loc?[index].title),
                                           style: const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
@@ -254,7 +253,7 @@ class ProfileProductsPage extends StatelessWidget {
                                           height: 18,
                                         ),
                                         Text(
-                                          '${prm.detail?.loc?[index].price?.price} TMT',
+                                          '${uc.whishlists.detail?.loc?[index].price?.price} TMT',
                                           style: const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w700,
@@ -272,9 +271,11 @@ class ProfileProductsPage extends StatelessWidget {
                                           String url =
                                               '${baseUrl}user/whishlists/';
                                           await Dioo().dio.post(url, data: {
-                                            'id': prm.detail?.loc?[index].id
+                                            'id': uc.whishlists.detail
+                                                ?.loc?[index].id
                                           });
-                                          prm.detail?.loc?.removeAt(index);
+                                          uc.whishlists.detail?.loc
+                                              ?.removeAt(index);
                                           uc.update();
                                         },
                                         child: SvgPicture.asset(
@@ -286,7 +287,9 @@ class ProfileProductsPage extends StatelessWidget {
                                       bottom: 10,
                                       child: InkWell(
                                         onTap: () {
-                                          addCart(prm.detail?.loc?[index].id,
+                                          addCart(
+                                              uc.whishlists.detail?.loc?[index]
+                                                  .id,
                                               isAdd);
                                         },
                                         child: Container(

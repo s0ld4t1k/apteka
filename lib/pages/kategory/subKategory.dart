@@ -17,13 +17,6 @@ class SubKategory extends StatelessWidget {
     return GetBuilder<CategoryController>(
       init: CategoryController(),
       builder: (cc) {
-        cc.categorySlug =
-            cc.categories.detail?.loc?[cc.selectedCategory].slug ?? '';
-        cc.subcategorySlug = cc.categories.detail?.loc?[cc.selectedCategory]
-                .subcategories?[cc.selectedSubategory].slug ??
-            '';
-        cc.url2 =
-            '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/?page=${cc.page}&sort=${prices[selectedTertip]}';
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -50,6 +43,18 @@ class SubKategory extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     cc.selectedSubategory = index;
+                    cc.categorySlug =
+                        cc.categories.detail?.loc?[cc.selectedCategory].slug ??
+                            '';
+                    cc.subcategorySlug = cc
+                            .categories
+                            .detail
+                            ?.loc?[cc.selectedCategory]
+                            .subcategories?[cc.selectedSubategory]
+                            .slug ??
+                        '';
+                    cc.url2 =
+                        '${baseUrl}category/${cc.categorySlug}/subcategory/${cc.subcategorySlug}/?page=${cc.page}&sort=${prices[selectedTertip]}';
                     cc.getCategoryProducts(cc.url2);
                     Get.to(() => SubKategoryPage(incPage: cc.incPage));
                   },

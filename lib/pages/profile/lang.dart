@@ -17,13 +17,14 @@ class Language extends StatefulWidget {
 }
 
 class _LanguageState extends State<Language> {
-  final LangCont lc = Get.find();
   @override
   Widget build(BuildContext context) {
     if (curLN == 'tm') _selectebLang = 0;
     if (curLN == 'ru') _selectebLang = 1;
     if (curLN == 'en') _selectebLang = 2;
-    return GetBuilder<LangCont>(builder: (cont) {
+    return GetBuilder<LangCont>(
+        // init: LangCont(),
+        builder: (lc) {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(

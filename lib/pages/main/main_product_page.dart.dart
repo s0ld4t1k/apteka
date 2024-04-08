@@ -4,9 +4,7 @@ import 'package:apte/data/model/products/model.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/main/filtrBottomSheet.dart';
 import 'package:apte/widgets/main/new_products.dart';
-import 'package:apte/widgets/main/tertipleBottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -202,7 +200,7 @@ class MainProductsPage extends StatelessWidget {
                                             '',
                                         errorBuilder:
                                             (context, error, stackTrace) =>
-                                                Text('err'),
+                                                const Text('err'),
                                       ),
                                     ),
                                   ),

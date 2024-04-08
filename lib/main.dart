@@ -1,9 +1,9 @@
+import 'package:apte/controller/langController.dart';
+import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/pages/profile/adres.dart';
-import 'package:apte/pages/profile/changePW.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
-import 'package:apte/pages/profile/lang.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
@@ -41,8 +41,9 @@ void main() async {
   langg = await const FlutterSecureStorage().read(key: 'lang') ?? '';
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
-  // tokenn = tokenn.substring(7, tokenn.length);
   debugPrint('------tokenn-----$tokenn');
+  Get.put(UserController());
+  Get.put(LangCont());
   runApp(const MyApp());
 }
 
@@ -135,8 +136,6 @@ class _MyAppState extends State<MyApp> {
         '/kard': (context) => const Kard(),
         '/profile': (context) => const Profile(),
         '/profile/user': (context) => const User(),
-        '/profile/user/changePW': (context) => const ChangePW(),
-        '/profile/lang': (context) => const Language(),
         '/profile/habarlasmak': (context) => const Habarlasmak(),
         '/profile/adres': (context) => const Adres(),
         '/profile/sargyt': (context) => const Sargyt(),
