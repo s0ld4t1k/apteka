@@ -110,7 +110,9 @@ class Searck extends StatelessWidget {
               ),
               const SizedBox(height: 7),
               searchHistory.isEmpty
-                  ? const Expanded(child: Center(child: Text('No data')))
+                  ? Expanded(
+                      child:
+                          Center(child: Text(locale[curLN]?['noSearch'] ?? '')))
                   : Column(
                       children: List.generate(
                           searchHistory.length > 4 ? 4 : searchHistory.length,

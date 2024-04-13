@@ -1,16 +1,15 @@
+import 'package:apte/data/dio.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/profile/adres.dart';
 import 'package:apte/pages/profile/lang.dart';
 import 'package:apte/pages/profile/product_page.dart.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
-import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -108,9 +107,7 @@ class Profile extends StatelessWidget {
               const SizedBox(height: 27),
               Text(
                 '${locale[curLN]?['myProfile']}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
+                style: const TextStyle(fontWeight: FontWeight.w500),
               ),
               Column(
                 children: List.generate(
@@ -198,9 +195,7 @@ class Profile extends StatelessWidget {
               const SizedBox(height: 30),
               Text(
                 '${locale[curLN]?['contactUs']}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
+                style: const TextStyle(fontWeight: FontWeight.w500),
               ),
               Column(
                 children: List.generate(
@@ -236,11 +231,7 @@ class Profile extends StatelessWidget {
                         )),
               ),
               InkWell(
-                onTap: () async {
-                  await const FlutterSecureStorage().delete(key: 'token');
-                  selectedTab = 0;
-                  Get.offAll(() => const Registration());
-                },
+                onTap: () => Dioo().logOut(),
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   child: Row(
@@ -249,9 +240,7 @@ class Profile extends StatelessWidget {
                       const SizedBox(width: 20),
                       Text(
                         '${locale[curLN]?['logOut']}',
-                        style: const TextStyle(
-                          color: red,
-                        ),
+                        style: const TextStyle(color: red),
                       ),
                       const Spacer(),
                     ],

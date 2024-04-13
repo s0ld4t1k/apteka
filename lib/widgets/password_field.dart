@@ -1,9 +1,10 @@
 import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/pages/registration/sign_in.dart';
-import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/state_manager.dart';
+
+import 'langDictionary.dart';
 
 class PasswordField extends StatelessWidget {
   final String title;
@@ -62,9 +63,9 @@ class PasswordField extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Açar sözüňiz hökmany 8 simwoldan, kiçi harpdan, uly harpdan we sandan durmalydyr!',
-            style: TextStyle(color: conGrey),
+          Text(
+            locale[curLN]?['passText'] ?? '',
+            style: const TextStyle(color: Colors.grey),
           )
         ],
       );

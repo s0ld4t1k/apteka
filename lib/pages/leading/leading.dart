@@ -2,7 +2,7 @@ import 'package:apte/pages/leading/lang.dart';
 import 'package:apte/pages/leading/leading1.dart';
 import 'package:apte/pages/leading/leading2.dart';
 import 'package:apte/pages/leading/leading3.dart';
-import 'package:apte/pages/registration/registration.dart';
+import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class _LeadingState extends State<Leading> {
                     } else {
                       await const FlutterSecureStorage()
                           .write(key: 'lang', value: curLN);
-                      Get.offAll(() => const Registration());
+                      Get.offAll(() => const MainPage());
                     }
                   },
                   child: Center(

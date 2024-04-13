@@ -42,10 +42,21 @@ class ProductsController extends GetxController {
         // print(newProducts);
       }
     } catch (e) {
-      debugPrint('----new-------$e');
+      debugPrint('----mostsold-------$e');
     }
     update();
   }
 
-  void getRecommended() {}
+  void getRecommended() async {
+    String url = 'products/recommended/';
+    try {
+      var res = await Dioo().dio.get(baseUrl + url);
+      if (res.statusCode == 200) {
+        recommendedProducts = ProductsModel.fromJson(res.data);
+      }
+    } catch (e) {
+      debugPrint('----recommend-------$e');
+    }
+    update();
+  }
 }

@@ -310,10 +310,18 @@ class _SearchPageState extends State<SearchPage> {
                                           bottom: 10,
                                           child: InkWell(
                                             onTap: () {
-                                              addCart(
-                                                  sc.searchProducts.detail
-                                                      ?.loc?[index].id,
-                                                  isAdd);
+                                              if (Dioo().checkToken()) {
+                                                addCart(
+                                                    sc.searchProducts.detail
+                                                        ?.loc?[index].id,
+                                                    isAdd,
+                                                    sc
+                                                        .searchProducts
+                                                        .detail
+                                                        ?.loc?[index]
+                                                        .price
+                                                        ?.price);
+                                              }
                                             },
                                             child: Container(
                                               width: 32,

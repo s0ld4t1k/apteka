@@ -164,13 +164,8 @@ class MainProductsPage extends StatelessWidget {
                       RxBool isAdd = false.obs;
                       getCart(prm.detail?.loc?[index].id, isAdd);
                       return GestureDetector(
-                        onTap: () {
-                          Get.to(
-                            () => ProductPage(
-                              url: prm.detail?.loc?[index].absoluteUrl ?? '',
-                            ),
-                          );
-                        },
+                        onTap: () => Get.to(() => ProductPage(
+                            url: prm.detail?.loc?[index].absoluteUrl ?? '')),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           width: 162,
@@ -214,9 +209,7 @@ class MainProductsPage extends StatelessWidget {
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  const SizedBox(
-                                    height: 18,
-                                  ),
+                                  const SizedBox(height: 18),
                                   Text(
                                     '${prm.detail?.loc?[index].price?.price} TMT',
                                     style: const TextStyle(
@@ -225,9 +218,7 @@ class MainProductsPage extends StatelessWidget {
                                       color: green,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
+                                  const SizedBox(height: 16),
                                 ],
                               ),
                               Positioned(
@@ -235,7 +226,10 @@ class MainProductsPage extends StatelessWidget {
                                 bottom: 10,
                                 child: InkWell(
                                   onTap: () {
-                                    addCart(prm.detail?.loc?[index].id, isAdd);
+                                    if (Dioo().checkToken()) {
+                                      addCart(prm.detail?.loc?[index].id, isAdd,
+                                          prm.detail?.loc?[index].price?.price);
+                                    }
                                   },
                                   child: Container(
                                     width: 32,

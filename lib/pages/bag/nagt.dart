@@ -1,4 +1,4 @@
-import 'package:apte/data/dio.dart';
+import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/bag/sargyt_page.dart';
@@ -17,8 +17,8 @@ TextEditingController com = TextEditingController();
 RxBool nameErr = false.obs, telErr = false.obs;
 
 class Nagt extends StatelessWidget {
-  const Nagt({super.key});
-
+  Nagt({super.key});
+  final CartController cc = Get.find();
   @override
   Widget build(BuildContext context) {
     name.text = user.name ?? '';
@@ -228,25 +228,26 @@ class Nagt extends StatelessWidget {
                       onPressed: () async {
                         int re = await toOrder(name.text, tel.text,
                             adressList[selectedAdres.value][0], 1);
+                        // re = 200;
                         if (name.text == '' || tel.text == '' || re != 200) {
                           if (name.text == '') nameErr.value = true;
                           if (tel.text == '') telErr.value = true;
                           if (re != 200) {
-                            Dioo().conErr(toOrder(name.text, tel.text,
-                                adressList[selectedAdres.value][0], 1));
+                            toOrder(name.text, tel.text,
+                                adressList[selectedAdres.value][0], 1);
                           }
                         } else {
                           // ignore: use_build_context_synchronously
                           FocusScope.of(context).requestFocus(FocusNode());
                           Get.to(
                             () => SargytPage(
-                              total: arzanladys + harytJemi + eltipberme,
-                              totalPrice: harytJemi,
-                              discount: arzanladys,
-                              delivery: eltipberme,
+                              total: harytJemi.value + eltipberme.value,
+                              totalPrice: harytJemi.value,
+                              delivery: eltipberme.value,
                             ),
                           );
                           minutes = 3;
+                          timmer(cc.update);
                           Get.dialog(
                             AlertDialog(
                               shape: RoundedRectangleBorder(

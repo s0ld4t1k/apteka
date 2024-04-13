@@ -30,7 +30,6 @@ class Lang extends StatefulWidget {
 }
 
 class _LangState extends State<Lang> {
-  // final LangCont lc=Get.put();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LangCont>(

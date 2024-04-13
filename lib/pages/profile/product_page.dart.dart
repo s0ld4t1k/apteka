@@ -287,10 +287,14 @@ class ProfileProductsPage extends StatelessWidget {
                                       bottom: 10,
                                       child: InkWell(
                                         onTap: () {
-                                          addCart(
-                                              uc.whishlists.detail?.loc?[index]
-                                                  .id,
-                                              isAdd);
+                                          if (Dioo().checkToken()) {
+                                            addCart(
+                                                uc.whishlists.detail
+                                                    ?.loc?[index].id,
+                                                isAdd,
+                                                uc.whishlists.detail
+                                                    ?.loc?[index].price?.price);
+                                          }
                                         },
                                         child: Container(
                                             width: 32,

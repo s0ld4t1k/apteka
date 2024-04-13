@@ -1,5 +1,4 @@
 import 'package:apte/controller/langController.dart';
-import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/pages/profile/adres.dart';
@@ -26,7 +25,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 var langg = '';
 var tokenn = '';
@@ -42,7 +40,6 @@ void main() async {
   if (langg != '') curLN = langg;
   tokenn = await const FlutterSecureStorage().read(key: 'token') ?? '';
   debugPrint('------tokenn-----$tokenn');
-  Get.put(UserController());
   Get.put(LangCont());
   runApp(const MyApp());
 }
@@ -76,21 +73,21 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: createMaterialColor(green),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
+            minimumSize:
+                MaterialStateProperty.all(const Size(double.infinity, 50)),
             backgroundColor: MaterialStateProperty.all(green),
             foregroundColor: MaterialStateProperty.all(Colors.white),
-            padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+            padding: MaterialStateProperty.all(
+                const EdgeInsets.symmetric(horizontal: 10)),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(54),
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(54)),
         ),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
@@ -140,11 +137,7 @@ class _MyAppState extends State<MyApp> {
         '/profile/adres': (context) => const Adres(),
         '/profile/sargyt': (context) => const Sargyt(),
       },
-      initialRoute: (langg.isNotEmpty)
-          ? (tokenn.isNotEmpty && !JwtDecoder.isExpired(tokenn))
-              ? '/main'
-              : '/reg'
-          : '/leading',
+      initialRoute: (langg.isNotEmpty) ? '/main' : '/leading',
     );
   }
 }

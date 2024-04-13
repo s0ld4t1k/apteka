@@ -128,29 +128,29 @@ class SargytInfo extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 37,
-                  child: Row(
-                    children: [
-                      Text(
-                        '${locale[curLN]?['arzanladysh']}',
-                        style: const TextStyle(
-                          color: sargytTextGrey,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const Spacer(),
-                      const Text(
-                        '0.0',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          color: red,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                // SizedBox(
+                //   height: 37,
+                //   child: Row(
+                //     children: [
+                //       Text(
+                //         '${locale[curLN]?['arzanladysh']}',
+                //         style: const TextStyle(
+                //           color: sargytTextGrey,
+                //           fontSize: 16,
+                //         ),
+                //       ),
+                //       const Spacer(),
+                //       const Text(
+                //         '0.0',
+                //         style: TextStyle(
+                //           fontWeight: FontWeight.w700,
+                //           fontSize: 16,
+                //           color: red,
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
                   height: 37,
                   child: Row(

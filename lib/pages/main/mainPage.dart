@@ -1,5 +1,8 @@
 // ignore_for_file: file_names, deprecated_member_use
 
+import 'package:apte/data/dio.dart';
+import 'package:apte/data/model/cart/controller.dart';
+import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/pages/kategory/kategory.dart';
@@ -8,6 +11,7 @@ import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 ScrollController contrl = ScrollController();
 var selectedTab = 0;
@@ -35,6 +39,15 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   @override
+  void initState() {
+    if (tokenn.isNotEmpty) {
+      Get.put(CartController());
+      Get.delete<CartController>();
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _tabs[selectedTab],
@@ -46,41 +59,59 @@ class _MainPageState extends State<MainPage> {
             (index) => (index == 2)
                 ? GestureDetector(
                     onTap: () {
-                      setState(() {
-                        if (selectedTab == index) {
-                          contrl.animateTo(0,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.linear);
-                        }
-                        selectedTab = index;
-                      });
+                      if (Dioo().checkToken()) {
+                        setState(() {
+                          if (selectedTab == index) {
+                            contrl.animateTo(0,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.linear);
+                          }
+                          selectedTab = index;
+                        });
+                      }
                     },
-                    child: Container(
-                      width: 52,
-                      height: 52,
-                      decoration: BoxDecoration(
-                        color: green,
-                        borderRadius: BorderRadius.circular(52),
-                      ),
-                      child: Center(
-                          child: SizedBox(
-                              width: 22,
-                              height: 22,
-                              child:
-                                  SvgPicture.asset(bottomAppBarList[index]))),
-                    ),
+                    child: Obx(() => Badge(
+                          label: Text('${harytJemi.value + eltipberme.value}'),
+                          isLabelVisible: harytJemi.value > 0,
+                          backgroundColor: red,
+                          child: Container(
+                            width: 52,
+                            height: 52,
+                            decoration: BoxDecoration(
+                              color: green,
+                              borderRadius: BorderRadius.circular(52),
+                            ),
+                            child: Center(
+                                child: SizedBox(
+                                    width: 22,
+                                    height: 22,
+                                    child: SvgPicture.asset(
+                                        bottomAppBarList[index]))),
+                          ),
+                        )),
                   )
                 : IconButton(
                     padding: const EdgeInsets.all(0),
                     onPressed: () {
-                      setState(() {
-                        if (selectedTab == index) {
-                          contrl.animateTo(0,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.linear);
-                        }
-                        selectedTab = index;
-                      });
+                      if (index == 4 && Dioo().checkToken()) {
+                        setState(() {
+                          if (selectedTab == index) {
+                            contrl.animateTo(0,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.linear);
+                          }
+                          selectedTab = index;
+                        });
+                      } else if (index < 4) {
+                        setState(() {
+                          if (selectedTab == index) {
+                            contrl.animateTo(0,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.linear);
+                          }
+                          selectedTab = index;
+                        });
+                      }
                     },
                     icon: SizedBox(
                       width: 24,

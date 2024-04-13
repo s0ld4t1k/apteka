@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:apte/controller/my_controller.dart';
-import 'package:apte/data/dio.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/addCard.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
@@ -15,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/model/cart/controller.dart';
 import 'bag.dart';
 
 TextEditingController nameBank = TextEditingController();
@@ -23,7 +23,8 @@ TextEditingController comBank = TextEditingController();
 RxBool nameErrBank = false.obs, telErrBank = false.obs;
 
 class BankKarty extends StatelessWidget {
-  const BankKarty({super.key});
+  final CartController cc = Get.find();
+  BankKarty({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -305,11 +306,11 @@ class BankKarty extends StatelessWidget {
                                       telErrBank.value = true;
                                     }
                                     if (re != 200) {
-                                      Dioo().conErr(toOrder(
+                                      toOrder(
                                           nameBank.text,
                                           telBank.text,
                                           adressList[selectedAdres.value][0],
-                                          3));
+                                          3);
                                     }
                                   } else {
                                     // ignore: use_build_context_synchronously
@@ -318,12 +319,13 @@ class BankKarty extends StatelessWidget {
                                     Get.to(
                                       () => SargytPage(
                                         total:
-                                            arzanladys + harytJemi + eltipberme,
-                                        totalPrice: harytJemi,
-                                        discount: arzanladys,
-                                        delivery: eltipberme,
+                                            harytJemi.value + eltipberme.value,
+                                        totalPrice: harytJemi.value,
+                                        delivery: eltipberme.value,
                                       ),
                                     );
+                                    minutes = 3;
+                                    timmer(cc.update);
                                     Get.dialog(AlertDialog(
                                       surfaceTintColor: Colors.white,
                                       content: SizedBox(

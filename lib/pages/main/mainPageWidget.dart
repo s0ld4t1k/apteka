@@ -29,14 +29,9 @@ void scan() async {
   }
 }
 
-class MainPageWidget extends StatefulWidget {
+class MainPageWidget extends StatelessWidget {
   const MainPageWidget({super.key});
 
-  @override
-  State<MainPageWidget> createState() => _MainPageWidgetState();
-}
-
-class _MainPageWidgetState extends State<MainPageWidget> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LangCont>(
@@ -167,15 +162,18 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                         const SizedBox(height: 15),
                         const MainCategory(),
                         NewProducts(
-                            text: 'Köp satylanlar', prs: ps.mostsoldProducts),
-                        const SizedBox(height: 15),
-                        NewProducts(text: 'Täzeler', prs: ps.newProducts),
+                            text: locale[curLN]?['mostsold'] ?? '',
+                            prs: ps.mostsoldProducts),
                         const SizedBox(height: 15),
                         NewProducts(
-                            text: 'Köp satylanlar',
-                            prs: ps.recommendedProducts),
+                            text: locale[curLN]?['newPro'] ?? '',
+                            prs: ps.newProducts),
                         const SizedBox(height: 15),
                         const MainHarmful(),
+                        const SizedBox(height: 15),
+                        NewProducts(
+                            text: locale[curLN]?['recommended'] ?? '',
+                            prs: ps.recommendedProducts),
                         const SizedBox(height: 15),
                         const SizedBox(height: 34 - 15),
                       ],

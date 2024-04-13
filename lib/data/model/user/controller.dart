@@ -24,15 +24,16 @@ class UserController extends GetxController {
     String url = 'user/me/';
     try {
       var res = await Dioo().dio.get(baseUrl + url);
-      nam.text = res.data['detail']['loc'][0]['first_name'];
-      tel.text = res.data['detail']['loc'][0]['phone'];
-      user.name = res.data['detail']['loc'][0]['first_name'];
-      user.phone = res.data['detail']['loc'][0]['phone'];
+      if (res.statusCode == 200) {
+        nam.text = res.data['detail']['loc'][0]['first_name'];
+        tel.text = res.data['detail']['loc'][0]['phone'];
+        user.name = res.data['detail']['loc'][0]['first_name'];
+        user.phone = res.data['detail']['loc'][0]['phone'];
+      }
       isLoad = false;
       update();
     } catch (e) {
       debugPrint('---user-----$e');
-      Dioo().conErr(get);
     }
   }
 

@@ -31,6 +31,7 @@ class OtpField extends StatelessWidget {
             child: TextField(
               focusNode: fc0,
               maxLength: 1,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChanged: (value) {
                 if (value != '') {
@@ -60,6 +61,7 @@ class OtpField extends StatelessWidget {
             child: TextField(
               focusNode: fc1,
               maxLength: 1,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChanged: (value) {
                 if (value != '') {
@@ -89,6 +91,7 @@ class OtpField extends StatelessWidget {
             child: TextField(
               focusNode: fc2,
               maxLength: 1,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChanged: (value) {
                 if (value != '') {
@@ -118,6 +121,7 @@ class OtpField extends StatelessWidget {
             child: TextField(
               focusNode: fc3,
               maxLength: 1,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChanged: (value) {
                 if (value != '') {
@@ -147,6 +151,7 @@ class OtpField extends StatelessWidget {
             child: TextField(
               focusNode: fc4,
               maxLength: 1,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChanged: (value) {
                 if (value != '') {
@@ -176,6 +181,7 @@ class OtpField extends StatelessWidget {
             child: TextField(
               focusNode: fc5,
               maxLength: 1,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
               onChanged: (value) {
                 s.value += value;

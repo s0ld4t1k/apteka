@@ -112,10 +112,14 @@ class CategoryProducts extends StatelessWidget {
                               bottom: 10,
                               child: InkWell(
                                 onTap: () {
-                                  addCart(
-                                      cc.categoryProducts.detail?.loc?[0]
-                                          .products?[index].id,
-                                      isAdd);
+                                  if (Dioo().checkToken()) {
+                                    addCart(
+                                        cc.categoryProducts.detail?.loc?[0]
+                                            .products?[index].id,
+                                        isAdd,
+                                        cc.categoryProducts.detail?.loc?[0]
+                                            .products?[index].price?.price);
+                                  }
                                 },
                                 child: Container(
                                   width: 32,

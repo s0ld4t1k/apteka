@@ -12,19 +12,19 @@ import 'package:get/get.dart';
 
 class SargytPage extends StatelessWidget {
   final double totalPrice;
-  final double discount;
   final double delivery;
   final double total;
   const SargytPage(
       {super.key,
       required this.totalPrice,
-      required this.discount,
       required this.delivery,
       required this.total});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartController>(builder: (cc) {
+    return GetBuilder<CartController>(
+        // init: CartController(),
+        builder: (cc) {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -101,15 +101,28 @@ class SargytPage extends StatelessWidget {
                               const SizedBox(height: 15),
                               Row(
                                 children: [
-                                  Expanded(
-                                      child: Text(
+                                  Text(
                                     '${cc.cartProducts.detail?.loc?[index].price?.price} TMT',
                                     style: const TextStyle(
                                       color: green,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w700,
                                     ),
-                                  )),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  if (cc.cartProducts.detail?.loc?[index].price
+                                          ?.hasDiscount ??
+                                      false)
+                                    Text(
+                                      '${cc.cartProducts.detail?.loc?[index].price?.oldPrice ?? 0} TMT',
+                                      style: const TextStyle(
+                                        decoration: TextDecoration.lineThrough,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  const Spacer(),
                                   Text(
                                     '$quantity sany',
                                     style: const TextStyle(
@@ -125,9 +138,8 @@ class SargytPage extends StatelessWidget {
                       ),
                     );
                   },
-                  separatorBuilder: (context, index) => const SizedBox(
-                        height: 15,
-                      ),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 15),
                   itemCount: cc.cartProducts.detail?.loc?.length ?? 0),
               const Devider(),
               Text(
@@ -160,24 +172,6 @@ class SargytPage extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Text(
-                    locale[curLN]!['arzanladysh']!,
-                    style: const TextStyle(
-                      color: Color.fromRGBO(131, 133, 137, 1),
-                    ),
-                  )),
-                  Text(
-                    '$discount TMT',
-                    style: const TextStyle(
-                      color: Color.fromRGBO(131, 133, 137, 1),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              Row(
-                children: [
-                  Expanded(
-                      child: Text(
                     locale[curLN]!['deliveryHyzmat']!,
                     style: const TextStyle(
                       color: Color.fromRGBO(131, 133, 137, 1),
@@ -186,8 +180,7 @@ class SargytPage extends StatelessWidget {
                   Text(
                     '$delivery TMT',
                     style: const TextStyle(
-                      color: Color.fromRGBO(131, 133, 137, 1),
-                    ),
+                        color: Color.fromRGBO(131, 133, 137, 1)),
                   ),
                 ],
               ),
@@ -213,23 +206,28 @@ class SargytPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 26),
-              OutlinedButton(
-                  style: ButtonStyle(
-                    side:
-                        MaterialStateProperty.all(const BorderSide(color: red)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                    minimumSize: MaterialStateProperty.all(
-                        const Size(double.infinity, 50)),
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    '${locale[curLN]!['cancel']!} $minutes:$secunds',
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w500, color: red),
-                  )),
+              if (minutes > 0 && secunds > 0)
+                OutlinedButton(
+                    style: ButtonStyle(
+                      side: MaterialStateProperty.all(
+                          const BorderSide(color: red)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                      minimumSize: MaterialStateProperty.all(
+                          const Size(double.infinity, 50)),
+                    ),
+                    onPressed: () {
+                      minutes = 0;
+                      secunds = 0;
+                      Get.back();
+                    },
+                    child: Text(
+                      '${locale[curLN]!['cancel']!} $minutes:$secunds',
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: red),
+                    )),
               const SizedBox(height: 23),
             ],
           ),

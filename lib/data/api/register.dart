@@ -1,4 +1,5 @@
 import 'package:apte/data/user_model.dart';
+import 'package:apte/main.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:dio/dio.dart';
@@ -26,9 +27,9 @@ Future<int> logIN(UserModel user) async {
   try {
     var res = await Dio()
         .post(url, data: {'phone': user.phone, 'password': user.password});
-    // user.sid = res.data['detail']['loc'][0]['sid'];
     String token = res.data['detail']['loc'][0];
     const FlutterSecureStorage().write(key: 'token', value: token);
+    tokenn = token;
     return res.statusCode!;
   } catch (e) {
     debugPrint('---login $e');

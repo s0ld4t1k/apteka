@@ -8,14 +8,13 @@ import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/bag&Card/eltmeCon.dart';
 import 'package:apte/widgets/circul.dart';
 import 'package:apte/widgets/colors.dart';
-import 'package:apte/controller/langController.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-var harytJemi = 0.0;
-var arzanladys = 0.0;
-var eltipberme = 15.0;
+RxDouble harytJemi = 0.0.obs;
+RxDouble eltipberme = 15.0.obs;
 List jemiList = [];
 List eltmeList = [];
 void addToCart() {
@@ -29,32 +28,24 @@ void addToCart() {
   );
 }
 
-class Bag extends StatefulWidget {
+class Bag extends StatelessWidget {
   const Bag({super.key});
 
-  @override
-  State<Bag> createState() => _BagState();
-}
-
-class _BagState extends State<Bag> {
-  LangCont lc = Get.put(LangCont());
   @override
   Widget build(BuildContext context) {
     jemiList = [
       ['${locale[curLN]?["resPrice"]}', '0.0 TMT'],
-      ['${locale[curLN]?["arzanladysh"]}', '0.0 TMT'],
       ['${locale[curLN]?["deliveryHyzmat"]}', '$eltipberme TMT'],
     ];
     eltmeList = [
       ['${locale[curLN]?["delivery1Hour"]}', '15 ${locale[curLN]?["manat"]}'],
       ['${locale[curLN]?["delivery30min"]}', '25 ${locale[curLN]?["manat"]}'],
     ];
-    harytJemi = 0.0;
-    jemiList[0][1] = '$harytJemi TMT';
 
     return GetBuilder<CartController>(
       init: CartController(),
       builder: (cc) {
+        jemiList[0][1] = '${harytJemi.value} TMT';
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -111,7 +102,7 @@ class _BagState extends State<Bag> {
                               alignment: Alignment.bottomCenter,
                               height:
                                   MediaQuery.of(context).size.height / 2 - 75,
-                              child: const Text('No products'))
+                              child: Text('${locale[curLN]?['noPro']}'))
                           : Column(
                               children: [
                                 Padding(
@@ -126,15 +117,6 @@ class _BagState extends State<Bag> {
                                           cc.cartProducts.detail?.loc?.length ??
                                               0,
                                           (index) {
-                                            harytJemi += cc
-                                                    .cartProducts
-                                                    .detail
-                                                    ?.loc?[index]
-                                                    .price
-                                                    ?.price ??
-                                                0;
-                                            jemiList[0][1] = '$harytJemi TMT';
-
                                             return BagItem(
                                               index: index,
                                               cc: cc,
@@ -142,59 +124,6 @@ class _BagState extends State<Bag> {
                                           },
                                         ),
                                       ),
-                                      // GestureDetector(
-                                      //   onTap: () {
-                                      //     showModalBottomSheet(
-                                      //       isScrollControlled: true,
-                                      //       showDragHandle: true,
-                                      //       shape: const RoundedRectangleBorder(
-                                      //           borderRadius:
-                                      //               BorderRadius.vertical(
-                                      //                   top:
-                                      //                       Radius.circular(20))),
-                                      //       context: context,
-                                      //       builder: (context) {
-                                      //         return const ShowPromokod();
-                                      //       },
-                                      //     );
-                                      //   },
-                                      //   child: Container(
-                                      //     height: 51,
-                                      //     decoration: BoxDecoration(
-                                      //       borderRadius:
-                                      //           BorderRadius.circular(10),
-                                      //       border: Border.all(
-                                      //           color: const Color.fromRGBO(
-                                      //               234, 234, 234, 1)),
-                                      //     ),
-                                      //     margin: const EdgeInsets.symmetric(
-                                      //         vertical: 15),
-                                      //     padding: const EdgeInsets.symmetric(
-                                      //         horizontal: 25),
-                                      //     child: Row(
-                                      //       children: [
-                                      //         SvgPicture.asset(
-                                      //             'assets/icons/discount.svg'),
-                                      //         const SizedBox(width: 15),
-                                      //         Obx(() {
-                                      //           return Text(
-                                      //             '${promokodText.value != '' ? promokodText.value : locale[curLN]?["promokodInput"]}',
-                                      //             style: const TextStyle(
-                                      //               fontSize: 14,
-                                      //               fontWeight: FontWeight.w500,
-                                      //             ),
-                                      //           );
-                                      //         }),
-                                      //         const Spacer(),
-                                      //         const Icon(
-                                      //           Icons.chevron_right_rounded,
-                                      //           size: 20,
-                                      //         ),
-                                      //       ],
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // const SizedBox(height: 15),
                                       Text('${locale[curLN]?["delivery"]}'),
                                       const SizedBox(height: 20),
                                       Row(
@@ -209,16 +138,15 @@ class _BagState extends State<Bag> {
                                                 ),
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    setState(() {
-                                                      curEltme = index;
-                                                      if (index == 1) {
-                                                        eltipberme = 25;
-                                                      } else {
-                                                        eltipberme = 15;
-                                                      }
-                                                      jemiList[2][1] =
-                                                          '$eltipberme TMT';
-                                                    });
+                                                    curEltme = index;
+                                                    if (index == 1) {
+                                                      eltipberme.value = 25;
+                                                    } else {
+                                                      eltipberme.value = 15;
+                                                    }
+                                                    jemiList[1][1] =
+                                                        '$eltipberme TMT';
+                                                    cc.update();
                                                   },
                                                   child: Column(
                                                     children: [
@@ -310,13 +238,15 @@ class _BagState extends State<Bag> {
                                               Color.fromRGBO(107, 107, 107, 1),
                                         ),
                                       ),
-                                      Text(
-                                        '${arzanladys + harytJemi + eltipberme} TMT',
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
+                                      Obx(() {
+                                        return Text(
+                                          '${harytJemi.value + eltipberme.value} TMT',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        );
+                                      })
                                     ],
                                   )),
                                   ElevatedButton(
@@ -329,10 +259,8 @@ class _BagState extends State<Bag> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ))),
-                                    onPressed: () {
-                                      jem = arzanladys + harytJemi + eltipberme;
-                                      Get.to(() => const SargytEtmek());
-                                    },
+                                    onPressed: () =>
+                                        Get.to(() => const SargytEtmek()),
                                     child: Text(
                                       '${locale[curLN]?["toDeliv"]}',
                                       style: const TextStyle(

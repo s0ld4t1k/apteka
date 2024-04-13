@@ -1,4 +1,4 @@
-import 'package:apte/data/dio.dart';
+import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/bag/sargyt_page.dart';
@@ -17,7 +17,8 @@ TextEditingController comTer = TextEditingController();
 RxBool nameErrTer = false.obs, telErrTer = false.obs;
 
 class Terminal extends StatelessWidget {
-  const Terminal({super.key});
+  final CartController cc = Get.find();
+  Terminal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -244,20 +245,21 @@ class Terminal extends StatelessWidget {
                               if (nameTer.text == '') nameErrTer.value = true;
                               if (telTer.text == '') telErrTer.value = true;
                               if (re != 200) {
-                                Dioo().conErr(toOrder(nameTer.text, telTer.text,
-                                    adressList[selectedAdres.value][0], 2));
+                                toOrder(nameTer.text, telTer.text,
+                                    adressList[selectedAdres.value][0], 2);
                               }
                             } else {
                               // ignore: use_build_context_synchronously
                               FocusScope.of(context).requestFocus(FocusNode());
                               Get.to(
                                 () => SargytPage(
-                                  total: arzanladys + harytJemi + eltipberme,
-                                  totalPrice: harytJemi,
-                                  discount: arzanladys,
-                                  delivery: eltipberme,
+                                  total: harytJemi.value + eltipberme.value,
+                                  totalPrice: harytJemi.value,
+                                  delivery: eltipberme.value,
                                 ),
                               );
+                              minutes = 3;
+                              timmer(cc.update);
                               Get.dialog(AlertDialog(
                                 surfaceTintColor: Colors.white,
                                 content: SizedBox(

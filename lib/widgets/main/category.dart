@@ -1,6 +1,7 @@
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/category/controller.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
+import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,9 +19,9 @@ class MainCategory extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(left: 25),
-                child: const Text(
-                  'Nähili agyryňyz bar?',
-                  style: TextStyle(
+                child: Text(
+                  locale[curLN]?['mainCategory'] ?? '',
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),

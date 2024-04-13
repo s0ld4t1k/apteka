@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../data/api/register.dart';
 import '../../data/dio.dart';
 import '../../widgets/colors.dart';
+import 'bag.dart';
 
 class BagItem extends StatefulWidget {
   final CartController cc;
@@ -50,7 +51,8 @@ class _BagItemState extends State<BagItem> {
                   widget.cc.cartProducts.detail?.loc?[widget.index].image
                           ?.imgUrl ??
                       '',
-                  errorBuilder: (context, error, stackTrace) => const Text('err'),
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Text('err'),
                 ),
               ),
               Expanded(
@@ -84,9 +86,21 @@ class _BagItemState extends State<BagItem> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
+                          const SizedBox(width: 5),
+                          if (widget.cc.cartProducts.detail?.loc?[widget.index]
+                                  .price?.hasDiscount ??
+                              false)
+                            Text(
+                              '${widget.cc.cartProducts.detail?.loc?[widget.index].price?.oldPrice} TMT',
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
                           const Spacer(),
                           SizedBox(
-                            // width: 75,
                             child: Row(
                               children: [
                                 Container(
@@ -109,13 +123,20 @@ class _BagItemState extends State<BagItem> {
                                         });
                                         if (quantity > 1) {
                                           quantity--;
+                                          harytJemi.value -= widget
+                                                  .cc
+                                                  .cartProducts
+                                                  .detail
+                                                  ?.loc?[widget.index]
+                                                  .price
+                                                  ?.price ??
+                                              0.0;
+                                          widget.cc.update();
                                         }
                                       } catch (e) {
                                         debugPrint('----minus-----$e');
                                       }
-                                      setState(
-                                        () {},
-                                      );
+                                      setState(() {});
                                     },
                                     splashRadius: 15,
                                     padding: const EdgeInsets.all(0),
@@ -125,11 +146,8 @@ class _BagItemState extends State<BagItem> {
                                       minHeight: 24,
                                       minWidth: 24,
                                     ),
-                                    icon: const Icon(
-                                      Icons.remove_rounded,
-                                      color: green,
-                                      size: 17,
-                                    ),
+                                    icon: const Icon(Icons.remove_rounded,
+                                        color: green, size: 17),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
@@ -162,12 +180,19 @@ class _BagItemState extends State<BagItem> {
                                           'action': 'add'
                                         });
                                         quantity++;
+                                        harytJemi.value += widget
+                                                .cc
+                                                .cartProducts
+                                                .detail
+                                                ?.loc?[widget.index]
+                                                .price
+                                                ?.price ??
+                                            0.0;
+                                        widget.cc.update();
                                       } catch (e) {
                                         debugPrint('-----add------$e');
                                       }
-                                      setState(
-                                        () {},
-                                      );
+                                      setState(() {});
                                     },
                                     icon: const Icon(
                                       Icons.add_rounded,
@@ -204,6 +229,9 @@ class _BagItemState extends State<BagItem> {
                   },
                 );
                 widget.cc.cartProducts.detail?.loc?.removeAt(widget.index);
+                harytJemi.value -= widget.cc.cartProducts.detail
+                        ?.loc?[widget.index].price?.price ??
+                    0.0 * quantity;
                 widget.cc.update();
               } catch (e) {
                 debugPrint('----remove product-------$e');

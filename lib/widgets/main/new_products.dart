@@ -3,6 +3,7 @@ import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/products/controller.dart';
 import 'package:apte/data/model/products/model.dart';
+import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/main/main_product_page.dart.dart';
 import 'package:apte/pages/main/productPage.dart';
@@ -13,10 +14,9 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void addCart(id, isAdd) async {
+void addCart(id, isAdd, price) async {
   if (isAdd == false) {
     try {
-      // setState(() {});
       await Dioo().dio.post(
         '${baseUrl}cart/',
         data: {'product': id, 'quantity': 1, 'action': 'add'},
@@ -25,23 +25,22 @@ void addCart(id, isAdd) async {
 
       isAdd.value = true;
       addToCart();
+      harytJemi.value += price;
     } catch (e) {
       debugPrint('-----add------$e');
     }
-    // ps.update();
   } else {
     try {
-      // setState(() {});
       await Dioo().dio.post(
         '${baseUrl}cart/',
         data: {'product': id, 'quantity': 1, 'action': 'remove'},
       );
       debugPrint('-----minus------set');
+      harytJemi.value -= price;
       isAdd.value = false;
     } catch (e) {
       debugPrint('-----minus-----$e');
     }
-    // ps.update();
   }
 }
 
@@ -117,14 +116,13 @@ class NewProducts extends StatelessWidget {
                                     ? 8
                                     : prs.detail?.loc?.length ?? 0, (index) {
                               RxBool? isAdd = false.obs;
-                              getCart(prs.detail?.loc?[index].id, isAdd);
+                              if (tokenn.isNotEmpty) {
+                                getCart(prs.detail?.loc?[index].id, isAdd);
+                              }
                               return GestureDetector(
-                                onTap: () => Get.to(
-                                  () => ProductPage(
+                                onTap: () => Get.to(() => ProductPage(
                                     url: prs.detail?.loc?[index].absoluteUrl ??
-                                        '',
-                                  ),
-                                ),
+                                        '')),
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 18),
                                   padding: const EdgeInsets.symmetric(
@@ -189,8 +187,13 @@ class NewProducts extends StatelessWidget {
                                         bottom: 10,
                                         child: InkWell(
                                           onTap: () {
-                                            addCart(prs.detail?.loc?[index].id,
-                                                isAdd);
+                                            if (Dioo().checkToken()) {
+                                              addCart(
+                                                  prs.detail?.loc?[index].id,
+                                                  isAdd,
+                                                  prs.detail?.loc?[index].price
+                                                      ?.price);
+                                            }
                                           },
                                           child: Container(
                                             width: 32,

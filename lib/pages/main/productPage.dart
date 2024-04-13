@@ -19,27 +19,15 @@ RxInt _curIndex = 0.obs;
 List infoList = [];
 RxInt countProd = 1.obs;
 RxBool isClickProd = false.obs;
-List re = [];
-void _getCart() async {
-  try {
-    var res = await Dioo().dio.get('${baseUrl}cart/');
-    re = res.data['detail']['loc'];
-  } catch (e) {
-    debugPrint('--main-cart-----$e');
-  }
-}
 
 class ProductPage extends StatelessWidget {
   final String url;
-  ProductPage({super.key, required this.url});
-  final UserController uc = Get.put(UserController());
+  const ProductPage({super.key, required this.url});
   @override
   Widget build(BuildContext context) {
     countProd = 1.obs;
-    // isClickProd = false.obs;
     productUrl(url);
     _curIndex(0);
-    _getCart();
     return GetBuilder<ProductController>(
         init: ProductController(),
         builder: (pc) {
@@ -93,15 +81,12 @@ class ProductPage extends StatelessWidget {
               title: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                    onTap: () => Navigator.pop(context),
                     child: const Icon(Icons.chevron_left_rounded),
                   ),
                   Expanded(
-                    child: Center(
-                      child: Text('${locale[curLN]?["productInfo"]}'),
-                    ),
+                    child:
+                        Center(child: Text('${locale[curLN]?["productInfo"]}')),
                   ),
                   SizedBox(
                     width: 20,
@@ -120,24 +105,27 @@ class ProductPage extends StatelessWidget {
                     height: 20,
                     child: GestureDetector(
                       onTap: () async {
-                        String url = '${baseUrl}user/whishlists/';
-                        try {
-                          await Dioo().dio.post(url,
-                              data: {'id': pc.product.detail?.loc?[0].id});
-                          for (var i = 0;
-                              i < (uc.whishlists.detail?.loc?.length ?? 0);
-                              i++) {
-                            if (uc.whishlists.detail?.loc?[i].id ==
-                                pc.product.detail?.loc?[0].id) {
-                              uc.whishlists.detail?.loc?.removeAt(i);
+                        if (Dioo().checkToken()) {
+                          final uc = Get.put(UserController());
+                          String url = '${baseUrl}user/whishlists/';
+                          try {
+                            await Dioo().dio.post(url,
+                                data: {'id': pc.product.detail?.loc?[0].id});
+                            for (var i = 0;
+                                i < (uc.whishlists.detail?.loc?.length ?? 0);
+                                i++) {
+                              if (uc.whishlists.detail?.loc?[i].id ==
+                                  pc.product.detail?.loc?[0].id) {
+                                uc.whishlists.detail?.loc?.removeAt(i);
+                              }
                             }
+                            uc.update();
+                          } catch (e) {
+                            debugPrint('$e');
                           }
-                          uc.update();
-                        } catch (e) {
-                          debugPrint('$e');
+                          pc.like = !pc.like;
+                          pc.update();
                         }
-                        pc.like = !pc.like;
-                        pc.update();
                       },
                       child: pc.like
                           ? SvgPicture.asset('assets/icons/redHeart.svg')
@@ -235,7 +223,8 @@ class ProductPage extends StatelessWidget {
                                                               errorBuilder: (context,
                                                                       error,
                                                                       stackTrace) =>
-                                                                  const Text('err'),
+                                                                  const Text(
+                                                                      'err'),
                                                             ),
                                                           ),
                                                         ),
@@ -288,13 +277,31 @@ class ProductPage extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(height: 15),
-                                    Text(
-                                      '${pc.product.detail?.loc?[0].price?.price ?? 0} TMT',
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700,
-                                        color: green,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '${pc.product.detail?.loc?[0].price?.price ?? 0} TMT',
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700,
+                                            color: green,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        if (pc.product.detail?.loc?[0].price
+                                                ?.hasDiscount ??
+                                            false)
+                                          Text(
+                                            '${pc.product.detail?.loc?[0].price?.oldPrice ?? 0} TMT',
+                                            style: const TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                     const Devider(),
                                     ListView.separated(
@@ -484,20 +491,22 @@ class ProductPage extends StatelessWidget {
                                               ),
                                             ),
                                             onPressed: () async {
-                                              try {
-                                                await Dioo().dio.post(
-                                                  '${baseUrl}cart/',
-                                                  data: {
-                                                    'product': pc.product.detail
-                                                        ?.loc?[0].id,
-                                                    'quantity': 1,
-                                                    'action': 'add'
-                                                  },
-                                                );
-                                                isClickProd.value = true;
-                                                addToCart();
-                                              } catch (e) {
-                                                debugPrint('----add------$e');
+                                              if (Dioo().checkToken()) {
+                                                try {
+                                                  await Dioo().dio.post(
+                                                    '${baseUrl}cart/',
+                                                    data: {
+                                                      'product': pc.product
+                                                          .detail?.loc?[0].id,
+                                                      'quantity': 1,
+                                                      'action': 'add'
+                                                    },
+                                                  );
+                                                  isClickProd.value = true;
+                                                  addToCart();
+                                                } catch (e) {
+                                                  debugPrint('----add------$e');
+                                                }
                                               }
                                             },
                                             child: Text(
