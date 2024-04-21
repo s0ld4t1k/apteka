@@ -32,13 +32,15 @@ class CartController extends GetxController {
         cartProducts = ProductsModel.fromJson(res2.data);
         harytJemi.value = 0;
 
-        for (var i = 0; i < idList.length; i++) {
-          int quant = 1;
-          for (var j = 0; j < (cartProducts.detail?.loc?.length ?? 0); j++) {
-            if (cartProducts.detail?.loc?[j].id == idList[i]) {
-              quant = quantity[i]['quantity'];
-              harytJemi.value +=
-                  (cartProducts.detail?.loc?[j].price?.price ?? 0.0) * quant;
+        if (res2.statusCode == 200) {
+          for (var i = 0; i < idList.length; i++) {
+            int quant = 1;
+            for (var j = 0; j < (cartProducts.detail?.loc?.length ?? 0); j++) {
+              if (cartProducts.detail?.loc?[j].id == idList[i]) {
+                quant = quantity[i]['quantity'];
+                harytJemi.value +=
+                    (cartProducts.detail?.loc?[j].price?.price ?? 0.0) * quant;
+              }
             }
           }
         }
@@ -47,6 +49,7 @@ class CartController extends GetxController {
       }
     } catch (e) {
       debugPrint('-------cart=---------$e');
+      // get();
       Dioo().conErr(get);
     }
   }

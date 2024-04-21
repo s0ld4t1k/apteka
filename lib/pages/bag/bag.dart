@@ -259,8 +259,10 @@ class Bag extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ))),
-                                    onPressed: () =>
-                                        Get.to(() => const SargytEtmek()),
+                                    onPressed: () {
+                                      jem = harytJemi.value + eltipberme.value;
+                                      Get.to(() => const SargytEtmek());
+                                    },
                                     child: Text(
                                       '${locale[curLN]?["toDeliv"]}',
                                       style: const TextStyle(

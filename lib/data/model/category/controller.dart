@@ -54,12 +54,12 @@ class CategoryController extends GetxController {
     update();
   }
 
-  void getCategoryProducts(url) async {
-    debugPrint(url);
+  void getCategoryProducts(url2) async {
+    debugPrint(url2);
     categoryProdyctIsload = true;
     update();
     try {
-      var res = await Dioo().dio.get(url);
+      var res = await Dioo().dio.get(url2);
       categoryProducts = CategoryProductsModel.fromJson(res.data);
     } catch (e) {
       debugPrint('-=------categoryProducts $e');
@@ -84,5 +84,10 @@ class CategoryController extends GetxController {
   void incPage() {
     if (categoryProducts.detail?.loc?[0].pagination?.next ?? false) page++;
     getProductsPagination();
+  }
+
+  void changeUrl(s) {
+    url2 = s;
+    update();
   }
 }

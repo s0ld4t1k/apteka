@@ -15,7 +15,7 @@ class Garasylyanlar extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: List.generate(oc.orders.detail?.loc?.length ?? 0, (index) {
-          if (true) {
+          if ((oc.orders.detail?.loc?[index].status ?? 1) <= 3) {
             DateTime dt =
                 DateTime.parse(oc.orders.detail?.loc?[index].orderedAt ?? '');
             return GestureDetector(
@@ -33,14 +33,13 @@ class Garasylyanlar extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Expanded(
-                          child: Text('${locale[curLN]?['yagdayy']}:'),
-                        ),
+                        Expanded(child: Text('${locale[curLN]?['yagdayy']}:')),
                         Expanded(
                           child: Row(
                             children: [
                               StatusCon(
-                                  text: '${oc.orders.detail?.loc?[index].id}'),
+                                  text: oc.orders.detail?.loc?[index].status ??
+                                      1),
                             ],
                           ),
                         ),
@@ -49,9 +48,7 @@ class Garasylyanlar extends StatelessWidget {
                     const SizedBox(height: 15),
                     Row(
                       children: [
-                        Expanded(
-                          child: Text('${locale[curLN]?['orderID']}:'),
-                        ),
+                        Expanded(child: Text('${locale[curLN]?['orderID']}:')),
                         const SizedBox(width: 20),
                         Expanded(
                           child: Text(
@@ -109,6 +106,8 @@ class Garasylyanlar extends StatelessWidget {
                 ),
               ),
             );
+          } else {
+            return Container();
           }
         }),
       ),

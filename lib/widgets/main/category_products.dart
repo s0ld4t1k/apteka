@@ -15,7 +15,6 @@ class CategoryProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // getCart(ctm, index, isAdd)
     return GetBuilder<CategoryController>(
       init: CategoryController(),
       builder: (cc) {

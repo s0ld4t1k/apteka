@@ -370,8 +370,11 @@ class ProductPage extends StatelessWidget {
                                     color:
                                         const Color.fromRGBO(253, 253, 253, 1),
                                     child: NewProducts(
-                                      text: 'Köp satylanlar',
-                                      prs: prs.recommendedProducts,
+                                      text: locale[curLN]?['mostsold'] ?? '',
+                                      prs: prs.mostsoldProducts,
+                                      url: prs.url2,
+                                      type: 2,
+                                      ontap: prs.getMostsoldProducts,
                                     ),
                                   );
                                 },
@@ -426,55 +429,69 @@ class ProductPage extends StatelessWidget {
                                     return isClickProd.value
                                         ? Row(
                                             children: [
-                                              ElevatedButton(
-                                                onPressed: () async {
-                                                  try {
-                                                    countProd.value--;
-                                                    if (countProd.value <= 0) {
-                                                      isClickProd.value = false;
-                                                      countProd.value = 1;
+                                              SizedBox(
+                                                width: 50,
+                                                child: ElevatedButton(
+                                                  onPressed: () async {
+                                                    try {
+                                                      countProd.value--;
+                                                      if (countProd.value <=
+                                                          0) {
+                                                        isClickProd.value =
+                                                            false;
+                                                        countProd.value = 1;
+                                                      }
+                                                      await Dioo().dio.post(
+                                                        '${baseUrl}cart/',
+                                                        data: {
+                                                          'product': pc
+                                                              .product
+                                                              .detail
+                                                              ?.loc?[0]
+                                                              .id,
+                                                          'quantity': 1,
+                                                          'action': 'remove'
+                                                        },
+                                                      );
+                                                    } catch (e) {
+                                                      debugPrint(
+                                                          '-----minus-----$e');
                                                     }
-                                                    await Dioo().dio.post(
-                                                      '${baseUrl}cart/',
-                                                      data: {
-                                                        'product': pc.product
-                                                            .detail?.loc?[0].id,
-                                                        'quantity': 1,
-                                                        'action': 'remove'
-                                                      },
-                                                    );
-                                                  } catch (e) {
-                                                    debugPrint(
-                                                        '-----minus-----$e');
-                                                  }
-                                                },
-                                                child: const Icon(Icons.remove),
+                                                  },
+                                                  child:
+                                                      const Icon(Icons.remove),
+                                                ),
                                               ),
                                               Expanded(
                                                 child: Center(
-                                                  child: Text(
-                                                      '${countProd.value}'),
-                                                ),
+                                                    child: Text(
+                                                        '${countProd.value}')),
                                               ),
-                                              ElevatedButton(
-                                                onPressed: () async {
-                                                  try {
-                                                    countProd.value++;
-                                                    await Dioo().dio.post(
-                                                      '${baseUrl}cart/',
-                                                      data: {
-                                                        'product': pc.product
-                                                            .detail?.loc?[0].id,
-                                                        'quantity': 1,
-                                                        'action': 'add'
-                                                      },
-                                                    );
-                                                  } catch (e) {
-                                                    debugPrint(
-                                                        '-----add------$e');
-                                                  }
-                                                },
-                                                child: const Icon(Icons.add),
+                                              SizedBox(
+                                                width: 50,
+                                                child: ElevatedButton(
+                                                  onPressed: () async {
+                                                    try {
+                                                      countProd.value++;
+                                                      await Dioo().dio.post(
+                                                        '${baseUrl}cart/',
+                                                        data: {
+                                                          'product': pc
+                                                              .product
+                                                              .detail
+                                                              ?.loc?[0]
+                                                              .id,
+                                                          'quantity': 1,
+                                                          'action': 'add'
+                                                        },
+                                                      );
+                                                    } catch (e) {
+                                                      debugPrint(
+                                                          '-----add------$e');
+                                                    }
+                                                  },
+                                                  child: const Icon(Icons.add),
+                                                ),
                                               ),
                                             ],
                                           )

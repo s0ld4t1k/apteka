@@ -1,4 +1,5 @@
 import 'package:apte/main.dart';
+import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/pages/registration/sign_in.dart';
@@ -63,6 +64,7 @@ class Dioo {
           ),
           TextButton(
             onPressed: () async {
+              harytJemi(0);
               await const FlutterSecureStorage().delete(key: 'token');
               tokenn = '';
               selectedTab = 0;
@@ -115,6 +117,59 @@ class Dioo {
     } else {
       return '';
     }
+  }
+
+  void successOrder() {
+    Get.dialog(AlertDialog(
+      surfaceTintColor: Colors.white,
+      content: SizedBox(
+        width: 271,
+        height: 249,
+        child: Stack(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 81,
+                    height: 81,
+                    child: Image.asset('assets/images/greenTick.png')),
+                const SizedBox(height: 10),
+                Text(
+                  locale[curLN]!['succesOrderText1']!,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  locale[curLN]!['succesOrderText2']!,
+                  style: const TextStyle(
+                    color: Color.fromRGBO(160, 160, 160, 1),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            Positioned(
+                top: 0,
+                right: 0,
+                child: GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Container(
+                    width: 37,
+                    height: 37,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(37),
+                        color: const Color.fromRGBO(250, 250, 250, 1)),
+                    child: const Icon(Icons.close),
+                  ),
+                ))
+          ],
+        ),
+      ),
+    ));
   }
 
   Dioo() {

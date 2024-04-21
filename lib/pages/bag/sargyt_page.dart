@@ -1,6 +1,5 @@
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/cart/controller.dart';
-import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
 // import 'package:apte/widgets/bag&Card/cart_product_list.dart';
@@ -205,29 +204,29 @@ class SargytPage extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(height: 26),
-              if (minutes > 0 && secunds > 0)
-                OutlinedButton(
-                    style: ButtonStyle(
-                      side: MaterialStateProperty.all(
-                          const BorderSide(color: red)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                      minimumSize: MaterialStateProperty.all(
-                          const Size(double.infinity, 50)),
-                    ),
-                    onPressed: () {
-                      minutes = 0;
-                      secunds = 0;
-                      Get.back();
-                    },
-                    child: Text(
-                      '${locale[curLN]!['cancel']!} $minutes:$secunds',
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: red),
-                    )),
+              // const SizedBox(height: 26),
+              // if (minutes > 0 && secunds > 0)
+              //   OutlinedButton(
+              //       style: ButtonStyle(
+              //         side: MaterialStateProperty.all(
+              //             const BorderSide(color: red)),
+              //         shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(10))),
+              //         minimumSize: MaterialStateProperty.all(
+              //             const Size(double.infinity, 50)),
+              //       ),
+              //       onPressed: () {
+              //         minutes = 0;
+              //         secunds = 0;
+              //         Get.back();
+              //       },
+              //       child: Text(
+              //         '${locale[curLN]!['cancel']!} $minutes:$secunds',
+              //         style: const TextStyle(
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.w500,
+              //             color: red),
+              //       )),
               const SizedBox(height: 23),
             ],
           ),

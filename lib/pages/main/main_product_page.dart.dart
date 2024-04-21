@@ -1,27 +1,47 @@
-// ignore_for_file: file_names, deprecated_member_use
+// ignore_for_file: file_names, deprecated_member_use, must_be_immutable
 
-import 'package:apte/data/model/products/model.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/langDictionary.dart';
+import 'package:apte/widgets/main/filtrBottomSheet.dart';
 import 'package:apte/widgets/main/new_products.dart';
+import 'package:apte/widgets/main/tertipleBottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../data/dio.dart';
 import '../../data/model/products/controller.dart';
+import '../../data/model/products/products.dart';
 import '../../widgets/colors.dart';
 
 class MainProductsPage extends StatelessWidget {
   final String text;
-  final ProductsModel prm;
-  const MainProductsPage({super.key, required this.text, required this.prm});
+  final int type;
+  MainProductsModel prm;
+  final dynamic ontap;
+  final String irl;
+  MainProductsPage(
+      {super.key,
+      required this.text,
+      required this.prm,
+      required this.ontap,
+      required this.irl,
+      required this.type});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductsController>(
       init: ProductsController(),
       builder: (pc) {
+        if (type == 1) {
+          prm = pc.newProducts;
+        }
+        if (type == 2) {
+          prm = pc.mostsoldProducts;
+        }
+        if (type == 3) {
+          prm = pc.recommendedProducts;
+        }
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -66,18 +86,22 @@ class MainProductsPage extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // showModalBottomSheet(
-                          //   showDragHandle: true,
-                          //   shape: const RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.only(
-                          //     topLeft: Radius.circular(20),
-                          //     topRight: Radius.circular(20),
-                          //   )),
-                          //   context: context,
-                          //   builder: (context) {
-                          //     return const TertipleBottomSheet();
-                          //   },
-                          // );
+                          showModalBottomSheet(
+                            showDragHandle: true,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            )),
+                            context: context,
+                            builder: (context) {
+                              return TertipleBottomSheet(
+                                ontap: ontap,
+                                url2: irl,
+                                change: pc,
+                              );
+                            },
+                          );
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -115,19 +139,23 @@ class MainProductsPage extends StatelessWidget {
                                         color: Color.fromRGBO(
                                             237, 237, 237, 1))))),
                         onPressed: () {
-                          // showModalBottomSheet(
-                          //   isScrollControlled: true,
-                          //   showDragHandle: true,
-                          //   shape: const RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.only(
-                          //     topLeft: Radius.circular(20),
-                          //     topRight: Radius.circular(20),
-                          //   )),
-                          //   context: context,
-                          //   builder: (context) {
-                          //     // return const FiltrBottomSheet();
-                          //   },
-                          // );
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            showDragHandle: true,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            )),
+                            context: context,
+                            builder: (context) {
+                              return FiltrBottomSheet(
+                                ontap: ontap,
+                                url2: irl,
+                                change: pc.change,
+                              );
+                            },
+                          );
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -159,13 +187,15 @@ class MainProductsPage extends StatelessWidget {
                     crossAxisSpacing: 21,
                   ),
                   children: List.generate(
-                    prm.detail?.loc?.length ?? 0,
+                    prm.detail?.loc?[0].products?.length ?? 0,
                     (index) {
                       RxBool isAdd = false.obs;
-                      getCart(prm.detail?.loc?[index].id, isAdd);
+                      getCart(prm.detail?.loc?[0].products?[index].id, isAdd);
                       return GestureDetector(
                         onTap: () => Get.to(() => ProductPage(
-                            url: prm.detail?.loc?[index].absoluteUrl ?? '')),
+                            url: prm.detail?.loc?[0].products?[index]
+                                    .absoluteUrl ??
+                                '')),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           width: 162,
@@ -191,7 +221,8 @@ class MainProductsPage extends StatelessWidget {
                                       alignment: Alignment.center,
                                       padding: const EdgeInsets.all(16),
                                       child: Image.network(
-                                        prm.detail?.loc?[index].image?.imgUrl ??
+                                        prm.detail?.loc?[0].products?[index]
+                                                .image?.imgUrl ??
                                             '',
                                         errorBuilder:
                                             (context, error, stackTrace) =>
@@ -200,8 +231,8 @@ class MainProductsPage extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    Dioo.getTitle(
-                                        prm.detail?.loc?[index].title),
+                                    Dioo.getTitle(prm.detail?.loc?[0]
+                                        .products?[index].title),
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
@@ -211,7 +242,7 @@ class MainProductsPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 18),
                                   Text(
-                                    '${prm.detail?.loc?[index].price?.price} TMT',
+                                    '${prm.detail?.loc?[0].products?[index].price?.price} TMT',
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700,
@@ -227,8 +258,12 @@ class MainProductsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     if (Dioo().checkToken()) {
-                                      addCart(prm.detail?.loc?[index].id, isAdd,
-                                          prm.detail?.loc?[index].price?.price);
+                                      addCart(
+                                          prm.detail?.loc?[0].products?[index]
+                                              .id,
+                                          isAdd,
+                                          prm.detail?.loc?[0].products?[index]
+                                              .price?.price);
                                     }
                                   },
                                   child: Container(

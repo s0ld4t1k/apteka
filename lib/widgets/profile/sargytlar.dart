@@ -15,7 +15,8 @@ class Sargytlarym extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: List.generate(oc.orders.detail?.loc?.length ?? 0, (index) {
-          if (true) {
+          if (oc.orders.detail?.loc?[index].status == 4 ||
+              oc.orders.detail?.loc?[index].status == 5) {
             DateTime dt =
                 DateTime.parse(oc.orders.detail?.loc?[index].orderedAt ?? '');
             return GestureDetector(
@@ -40,7 +41,8 @@ class Sargytlarym extends StatelessWidget {
                           child: Row(
                             children: [
                               StatusCon(
-                                  text: '${oc.orders.detail?.loc?[index].id}'),
+                                  text: oc.orders.detail?.loc?[index].status ??
+                                      1),
                             ],
                           ),
                         ),
@@ -103,6 +105,8 @@ class Sargytlarym extends StatelessWidget {
                 ),
               ),
             );
+          } else {
+            return Container();
           }
         }),
       ),

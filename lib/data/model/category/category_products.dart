@@ -1,4 +1,4 @@
-import 'package:apte/data/model/products/model.dart';
+// import 'package:apte/data/model/products/model.dart';
 
 class CategoryProductsModel {
   Detail? detail;
@@ -258,14 +258,14 @@ class Price {
   }
 }
 
-class Image {
+class Imagee {
   int? id;
   String? imgUrl;
   int? order;
 
-  Image({this.id, this.imgUrl, this.order});
+  Imagee({this.id, this.imgUrl, this.order});
 
-  Image.fromJson(Map<String, dynamic> json) {
+  Imagee.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     imgUrl = json['img_url'];
     order = json['order'];
@@ -276,6 +276,93 @@ class Image {
     data['id'] = id;
     data['img_url'] = imgUrl;
     data['order'] = order;
+    return data;
+  }
+}
+
+class Products {
+  int? id;
+  BrandFk? brandFk;
+  CategoryFk? categoryFk;
+  Subcategories? subcategoryFk;
+  Title? title;
+  Price? price;
+  Price? lastPrice;
+  int? stock;
+  String? absoluteUrl;
+  int? rate;
+  int? reviewsSum;
+  String? getAbsoluteUrl;
+  Imagee? image;
+
+  Products(
+      {this.id,
+      this.brandFk,
+      this.categoryFk,
+      this.subcategoryFk,
+      this.title,
+      this.price,
+      this.lastPrice,
+      this.stock,
+      this.absoluteUrl,
+      this.rate,
+      this.reviewsSum,
+      this.getAbsoluteUrl,
+      this.image});
+
+  Products.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    brandFk = json['brand_fk'] != null
+        ? new BrandFk.fromJson(json['brand_fk'])
+        : null;
+    categoryFk = json['category_fk'] != null
+        ? new CategoryFk.fromJson(json['category_fk'])
+        : null;
+    subcategoryFk = json['subcategory_fk'] != null
+        ? new Subcategories.fromJson(json['subcategory_fk'])
+        : null;
+    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    lastPrice = json['last_price'] != null
+        ? new Price.fromJson(json['last_price'])
+        : null;
+    stock = json['stock'];
+    absoluteUrl = json['absolute_url'];
+    rate = json['rate'];
+    reviewsSum = json['reviews_sum'];
+    getAbsoluteUrl = json['get_absolute_url'];
+    image = json['image'] != null ? new Imagee.fromJson(json['image']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    if (this.brandFk != null) {
+      data['brand_fk'] = this.brandFk!.toJson();
+    }
+    if (this.categoryFk != null) {
+      data['category_fk'] = this.categoryFk!.toJson();
+    }
+    if (this.subcategoryFk != null) {
+      data['subcategory_fk'] = this.subcategoryFk!.toJson();
+    }
+    if (this.title != null) {
+      data['title'] = this.title!.toJson();
+    }
+    if (this.price != null) {
+      data['price'] = this.price!.toJson();
+    }
+    if (this.lastPrice != null) {
+      data['last_price'] = this.lastPrice!.toJson();
+    }
+    data['stock'] = this.stock;
+    data['absolute_url'] = this.absoluteUrl;
+    data['rate'] = this.rate;
+    data['reviews_sum'] = this.reviewsSum;
+    data['get_absolute_url'] = this.getAbsoluteUrl;
+    if (this.image != null) {
+      data['image'] = this.image!.toJson();
+    }
     return data;
   }
 }

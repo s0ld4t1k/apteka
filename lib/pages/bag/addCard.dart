@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:apte/controller/my_controller.dart';
+import 'package:apte/pages/bag/bankKarty.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/bag&Card/newCard.dart';
 import 'package:apte/widgets/bag&Card/showCardType.dart';
@@ -46,7 +47,7 @@ class _AddCardState extends State<AddCard> {
               ),
               const SizedBox(height: 23),
               SizedBox(
-                height: 170,
+                height: cards.isEmpty ? 0 : 170,
                 child: Scrollbar(
                   thumbVisibility: true,
                   trackVisibility: true,
@@ -61,6 +62,7 @@ class _AddCardState extends State<AddCard> {
                               setState(() {
                                 selectedCardBank.value = index;
                               });
+                              cardErrBank.value = false;
                             },
                             child: Container(
                               margin: const EdgeInsets.only(bottom: 15),
@@ -82,9 +84,7 @@ class _AddCardState extends State<AddCard> {
                                       height: 45,
                                       child: Image.asset(
                                           cardImages[cards[index][1]])),
-                                  const SizedBox(
-                                    width: 27,
-                                  ),
+                                  const SizedBox(width: 27),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
@@ -96,9 +96,7 @@ class _AddCardState extends State<AddCard> {
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 6,
-                                        ),
+                                        const SizedBox(height: 6),
                                         Text(
                                           cards[index][0],
                                           style: const TextStyle(
@@ -135,7 +133,6 @@ class _AddCardState extends State<AddCard> {
                 ),
               ),
               SizedBox(
-                width: 108,
                 height: 18,
                 child: TextButton(
                   style: ButtonStyle(
@@ -151,9 +148,7 @@ class _AddCardState extends State<AddCard> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
@@ -161,9 +156,7 @@ class _AddCardState extends State<AddCard> {
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ))),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: () => Navigator.pop(context),
                   child: Text(
                     '${locale[curLN]?['useThisCard']}',
                     style: const TextStyle(
@@ -171,9 +164,7 @@ class _AddCardState extends State<AddCard> {
                       fontSize: 16,
                     ),
                   )),
-              const SizedBox(
-                height: 37,
-              ),
+              const SizedBox(height: 37),
             ],
           ),
         ],

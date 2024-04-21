@@ -2,17 +2,16 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/products/controller.dart';
-import 'package:apte/data/model/products/model.dart';
+import 'package:apte/data/model/products/products.dart';
 import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/main/main_product_page.dart.dart';
 import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
-// import 'package:dio/src/response.dart';
-// import 'package:dio/src/response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 void addCart(id, isAdd, price) async {
   if (isAdd == false) {
@@ -50,7 +49,7 @@ void getCart(id, isAdd) async {
     var res = await Dioo().dio.get('${baseUrl}cart/');
     ress = res.data['detail']['loc'];
   } catch (e) {
-    debugPrint('--main-cart-----$e');
+    debugPrint('--main---cart-----$e');
   }
   for (var i = 0; i < ress.length; i++) {
     if (id == ress[i]['product']) {
@@ -61,15 +60,24 @@ void getCart(id, isAdd) async {
 
 class NewProducts extends StatelessWidget {
   final String text;
-  final ProductsModel prs;
-  const NewProducts({super.key, required this.text, required this.prs});
+  final int type;
+  final MainProductsModel prs;
+  final dynamic ontap;
+  final String url;
+  const NewProducts(
+      {super.key,
+      required this.text,
+      required this.prs,
+      required this.ontap,
+      required this.url,
+      required this.type});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductsController>(
         init: ProductsController(),
         builder: (ps) {
-          return ((prs.detail?.loc?.length ?? 0) > 0)
+          return ((prs.detail?.loc?[0].products?.length ?? 0) > 0)
               ? Column(
                   children: [
                     Container(
@@ -89,7 +97,14 @@ class NewProducts extends StatelessWidget {
                           TextButton(
                             onPressed: () {
                               Get.to(
-                                  () => MainProductsPage(text: text, prm: prs));
+                                () => MainProductsPage(
+                                  type: type,
+                                  text: text,
+                                  prm: prs,
+                                  irl: url,
+                                  ontap: ontap,
+                                ),
+                              );
                             },
                             child: Text(
                               '${locale[curLN]?["seeAll"]}',
@@ -112,16 +127,20 @@ class NewProducts extends StatelessWidget {
                           const SizedBox(width: 25),
                           Row(
                             children: List.generate(
-                                (prs.detail?.loc?.length ?? 0) > 8
+                                (prs.detail?.loc?[0].products?.length ?? 0) > 8
                                     ? 8
-                                    : prs.detail?.loc?.length ?? 0, (index) {
+                                    : prs.detail?.loc?[0].products?.length ?? 0,
+                                (index) {
                               RxBool? isAdd = false.obs;
-                              if (tokenn.isNotEmpty) {
-                                getCart(prs.detail?.loc?[index].id, isAdd);
+                              if (tokenn.isNotEmpty &&
+                                  !JwtDecoder.isExpired(tokenn)) {
+                                getCart(prs.detail?.loc?[0].products?[index].id,
+                                    isAdd);
                               }
                               return GestureDetector(
                                 onTap: () => Get.to(() => ProductPage(
-                                    url: prs.detail?.loc?[index].absoluteUrl ??
+                                    url: prs.detail?.loc?[0].products?[index]
+                                            .absoluteUrl ??
                                         '')),
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 18),
@@ -151,7 +170,11 @@ class NewProducts extends StatelessWidget {
                                               alignment: Alignment.center,
                                               padding: const EdgeInsets.all(16),
                                               child: Image.network(
-                                                prs.detail?.loc?[index].image
+                                                prs
+                                                        .detail
+                                                        ?.loc?[0]
+                                                        .products?[index]
+                                                        .image
                                                         ?.imgUrl ??
                                                     '',
                                                 errorBuilder: (context, error,
@@ -161,8 +184,8 @@ class NewProducts extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            Dioo.getTitle(
-                                                prs.detail?.loc?[index].title),
+                                            Dioo.getTitle(prs.detail?.loc?[0]
+                                                .products?[index].title),
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -172,7 +195,7 @@ class NewProducts extends StatelessWidget {
                                           ),
                                           const SizedBox(height: 18),
                                           Text(
-                                            '${prs.detail?.loc?[index].price?.price ?? 0} TMT',
+                                            '${prs.detail?.loc?[0].products?[index].price?.price ?? 0} TMT',
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w700,
@@ -189,9 +212,14 @@ class NewProducts extends StatelessWidget {
                                           onTap: () {
                                             if (Dioo().checkToken()) {
                                               addCart(
-                                                  prs.detail?.loc?[index].id,
+                                                  prs.detail?.loc?[0]
+                                                      .products?[index].id,
                                                   isAdd,
-                                                  prs.detail?.loc?[index].price
+                                                  prs
+                                                      .detail
+                                                      ?.loc?[0]
+                                                      .products?[index]
+                                                      .price
                                                       ?.price);
                                             }
                                           },

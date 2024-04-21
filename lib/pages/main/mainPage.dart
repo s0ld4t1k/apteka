@@ -2,6 +2,7 @@
 
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/cart/controller.dart';
+import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
@@ -12,6 +13,7 @@ import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 ScrollController contrl = ScrollController();
 var selectedTab = 0;
@@ -40,9 +42,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   void initState() {
-    if (tokenn.isNotEmpty) {
+    if (tokenn.isNotEmpty && !JwtDecoder.isExpired(tokenn)) {
       Get.put(CartController());
       Get.delete<CartController>();
+      Get.put(UserController());
+      Get.delete<UserController>();
     }
     super.initState();
   }

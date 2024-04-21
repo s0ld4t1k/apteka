@@ -98,7 +98,10 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                           context: context,
                           builder: (context) {
                             return TertipleBottomSheet(
-                                ontap: cc.getCategoryProducts);
+                              ontap: cc.getCategoryProducts,
+                              change: cc.changeUrl,
+                              url2: cc.url2,
+                            );
                           },
                         );
                       },
@@ -153,7 +156,10 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                           context: context,
                           builder: (context) {
                             return FiltrBottomSheet(
-                                ontap: cc.getCategoryProducts);
+                              ontap: cc.getCategoryProducts,
+                              url2: cc.url2,
+                              change: cc.changeUrl,
+                            );
                           },
                         );
                       },
