@@ -313,55 +313,55 @@ class Products {
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     brandFk = json['brand_fk'] != null
-        ? new BrandFk.fromJson(json['brand_fk'])
+        ? BrandFk.fromJson(json['brand_fk'])
         : null;
     categoryFk = json['category_fk'] != null
-        ? new CategoryFk.fromJson(json['category_fk'])
+        ? CategoryFk.fromJson(json['category_fk'])
         : null;
     subcategoryFk = json['subcategory_fk'] != null
-        ? new Subcategories.fromJson(json['subcategory_fk'])
+        ? Subcategories.fromJson(json['subcategory_fk'])
         : null;
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
-    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
+    price = json['price'] != null ? Price.fromJson(json['price']) : null;
     lastPrice = json['last_price'] != null
-        ? new Price.fromJson(json['last_price'])
+        ? Price.fromJson(json['last_price'])
         : null;
     stock = json['stock'];
     absoluteUrl = json['absolute_url'];
     rate = json['rate'];
     reviewsSum = json['reviews_sum'];
     getAbsoluteUrl = json['get_absolute_url'];
-    image = json['image'] != null ? new Imagee.fromJson(json['image']) : null;
+    image = json['image'] != null ? Imagee.fromJson(json['image']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.brandFk != null) {
-      data['brand_fk'] = this.brandFk!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (brandFk != null) {
+      data['brand_fk'] = brandFk!.toJson();
     }
-    if (this.categoryFk != null) {
-      data['category_fk'] = this.categoryFk!.toJson();
+    if (categoryFk != null) {
+      data['category_fk'] = categoryFk!.toJson();
     }
-    if (this.subcategoryFk != null) {
-      data['subcategory_fk'] = this.subcategoryFk!.toJson();
+    if (subcategoryFk != null) {
+      data['subcategory_fk'] = subcategoryFk!.toJson();
     }
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    if (this.price != null) {
-      data['price'] = this.price!.toJson();
+    if (price != null) {
+      data['price'] = price!.toJson();
     }
-    if (this.lastPrice != null) {
-      data['last_price'] = this.lastPrice!.toJson();
+    if (lastPrice != null) {
+      data['last_price'] = lastPrice!.toJson();
     }
-    data['stock'] = this.stock;
-    data['absolute_url'] = this.absoluteUrl;
-    data['rate'] = this.rate;
-    data['reviews_sum'] = this.reviewsSum;
-    data['get_absolute_url'] = this.getAbsoluteUrl;
-    if (this.image != null) {
-      data['image'] = this.image!.toJson();
+    data['stock'] = stock;
+    data['absolute_url'] = absoluteUrl;
+    data['rate'] = rate;
+    data['reviews_sum'] = reviewsSum;
+    data['get_absolute_url'] = getAbsoluteUrl;
+    if (image != null) {
+      data['image'] = image!.toJson();
     }
     return data;
   }

@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:apte/controller/my_controller.dart';
-import 'package:apte/pages/kard/paymentHristroy.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/widgets/bag&Card/newCard.dart';
 import 'package:apte/widgets/bag&Card/showCardType.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 List cardImages = [
   'assets/images/halkBank.png',
@@ -36,7 +36,7 @@ class Kard extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    Get.to(() => const PaymentHistory());
+                    // Get.to(() => const PaymentHistory());
                   },
                   icon: SizedBox(
                     width: 23,
@@ -120,8 +120,11 @@ class Kard extends StatelessWidget {
                                 motion: const ScrollMotion(),
                                 children: [
                                   SlidableAction(
-                                    onPressed: (context) =>
-                                        cards.removeAt(index),
+                                    onPressed: (context) {
+                                      cards.removeAt(index);
+                                      Hive.box('box').put('cards', cards);
+                                      mc.update();
+                                    },
                                     borderRadius: BorderRadius.circular(10),
                                     backgroundColor: red,
                                     icon: Icons.delete,
@@ -129,9 +132,7 @@ class Kard extends StatelessWidget {
                                   )
                                 ]),
                             child: GestureDetector(
-                              onTap: () {
-                                Get.to(() => NewCard(index: index));
-                              },
+                              onTap: () => Get.to(() => NewCard(index: index)),
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 12),

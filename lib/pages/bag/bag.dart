@@ -198,7 +198,31 @@ class Bag extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(height: 90)
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              locale[curLN]?['res'] ?? '',
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(
+                                                      107, 107, 107, 1),
+                                                  fontSize: 16),
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              '${harytJemi.value + eltipberme.value} TMT',
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                color: Color.fromRGBO(
+                                                    107, 107, 107, 1),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                      // const SizedBox(height: 90)
                                     ],
                                   ),
                                 ),

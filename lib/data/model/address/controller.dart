@@ -51,9 +51,13 @@ class AddressController extends GetxController {
       var res = await Dioo()
           .dio
           .post(url, data: {"place": place, "address": address});
-      if (res.statusCode == 200) {
+      // print(res.statusCode);
+      if (res.statusCode == 201) {
         addresses.detail?.loc?.add(Loc(place: place, address: address));
+        // print('-------${addresses.detail?.loc ?? []}');
+        update();
       }
+      // print('---+++++----adr added');
       update();
     } catch (e) {
       debugPrint('-----add+address-----$e');

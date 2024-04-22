@@ -19,7 +19,7 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
     "phone": phone,
     "address": address,
     "payment_method": paymentMethod,
-    "is_expired": curEltme == 1
+    "is_express": curEltme == 1
   };
   try {
     var res = await Dioo().dio.post(url, data: data);

@@ -225,6 +225,7 @@ class Nagt extends StatelessWidget {
                       if (tel.text == '') telErr.value = true;
                       if (selectedAdres.value < 0) addressErr.value = true;
                     } else {
+                      print(selectedAdresStr.value);
                       int re = await toOrder(
                           name.text, tel.text, selectedAdresStr.value, 1);
                       if (re == 200) {

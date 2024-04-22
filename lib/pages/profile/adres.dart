@@ -8,14 +8,9 @@ import 'package:get/get.dart';
 
 List adresType = [];
 
-class Adres extends StatefulWidget {
+class Adres extends StatelessWidget {
   const Adres({super.key});
 
-  @override
-  State<Adres> createState() => _AdresState();
-}
-
-class _AdresState extends State<Adres> {
   @override
   Widget build(BuildContext context) {
     adresType = [
@@ -52,7 +47,7 @@ class _AdresState extends State<Adres> {
               title: Text('${locale[curLN]?['myAdres']}'),
             ),
             body: ac.isload
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 20),
