@@ -435,12 +435,6 @@ class ProductPage extends StatelessWidget {
                                                   onPressed: () async {
                                                     try {
                                                       countProd.value--;
-                                                      if (countProd.value <=
-                                                          0) {
-                                                        isClickProd.value =
-                                                            false;
-                                                        countProd.value = 1;
-                                                      }
                                                       await Dioo().dio.post(
                                                         '${baseUrl}cart/',
                                                         data: {
@@ -453,6 +447,19 @@ class ProductPage extends StatelessWidget {
                                                           'action': 'remove'
                                                         },
                                                       );
+                                                      if (countProd.value <=
+                                                          0) {
+                                                        isClickProd.value =
+                                                            false;
+                                                        countProd.value = 1;
+                                                      }
+                                                      harytJemi.value -= pc
+                                                              .product
+                                                              .detail
+                                                              ?.loc?[0]
+                                                              .price
+                                                              ?.price ??
+                                                          0;
                                                     } catch (e) {
                                                       debugPrint(
                                                           '-----minus-----$e');
@@ -472,7 +479,6 @@ class ProductPage extends StatelessWidget {
                                                 child: ElevatedButton(
                                                   onPressed: () async {
                                                     try {
-                                                      countProd.value++;
                                                       await Dioo().dio.post(
                                                         '${baseUrl}cart/',
                                                         data: {
@@ -485,6 +491,14 @@ class ProductPage extends StatelessWidget {
                                                           'action': 'add'
                                                         },
                                                       );
+                                                      countProd.value++;
+                                                      harytJemi.value += pc
+                                                              .product
+                                                              .detail
+                                                              ?.loc?[0]
+                                                              .price
+                                                              ?.price ??
+                                                          0;
                                                     } catch (e) {
                                                       debugPrint(
                                                           '-----add------$e');
@@ -521,6 +535,13 @@ class ProductPage extends StatelessWidget {
                                                   );
                                                   isClickProd.value = true;
                                                   addToCart();
+                                                  harytJemi.value += pc
+                                                          .product
+                                                          .detail
+                                                          ?.loc?[0]
+                                                          .price
+                                                          ?.price ??
+                                                      0;
                                                 } catch (e) {
                                                   debugPrint('----add------$e');
                                                 }

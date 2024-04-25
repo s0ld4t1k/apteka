@@ -1,7 +1,6 @@
 import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
-import 'package:apte/pages/bag/sargyt_page.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -10,16 +9,34 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data/dio.dart';
-import 'bag.dart';
 
 TextEditingController nameTer = TextEditingController();
 TextEditingController telTer = TextEditingController();
-TextEditingController comTer = TextEditingController();
+// TextEditingController comTer = TextEditingController();
 RxBool nameErrTer = false.obs, telErrTer = false.obs, adresErrTer = false.obs;
 
-class Terminal extends StatelessWidget {
+class Terminal extends StatefulWidget {
+  const Terminal({super.key});
+
+  @override
+  State<Terminal> createState() => _TerminalState();
+}
+
+class _TerminalState extends State<Terminal> {
+  TextEditingController comTer = TextEditingController();
+  @override
+  // void initState() {
+  //   TextEditingController comTer = TextEditingController();
+  //   super.initState();
+  // }
+
+  @override
+  void dispose() {
+    comTer.dispose();
+    super.dispose();
+  }
+
   final CartController cc = Get.find();
-  Terminal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +198,8 @@ class Terminal extends StatelessWidget {
                       minLines: null,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(0),
-                        hintText: '${locale[curLN]?['bellik']}',
+                        hintText:
+                            '${locale[curLN]?['bellik']} (${locale[curLN]?['optional']})',
                         hintStyle: const TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
                           fontSize: 16,
@@ -242,19 +260,10 @@ class Terminal extends StatelessWidget {
                       } else {
                         int re = await toOrder(nameTer.text, telTer.text,
                             selectedAdresStr.value, 2);
-                        if (re != 200) {
+                        if (re == 200) {
                           // ignore: use_build_context_synchronously
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          Get.to(
-                            () => SargytPage(
-                              total: harytJemi.value + eltipberme.value,
-                              totalPrice: harytJemi.value,
-                              delivery: eltipberme.value,
-                            ),
-                          );
-                          // minutes = 3;
-                          // timmer(cc.update);
-                          Dioo().successOrder();
+                          Dioo().successOrder(context, cc.cleanCart,
+                              cc.cartProducts.detail?.loc, cc.quantity);
                         }
                       }
                     },

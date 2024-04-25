@@ -50,7 +50,7 @@ class OTP extends StatelessWidget {
                     onPressed: s.value.length == 6
                         ? () {
                             // print('object ${int.tryParse(s.value)}');
-                            register(userr, int.tryParse(s.value));
+                            register(userr, int.parse(s.value));
                           }
                         : null,
                     child: Text(locale[curLN]!['continue']!),

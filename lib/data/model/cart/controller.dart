@@ -45,12 +45,31 @@ class CartController extends GetxController {
           }
         }
         isload = false;
-        update();
       }
     } catch (e) {
       debugPrint('-------cart=---------$e');
       // get();
       Dioo().conErr(get);
+    }
+    update();
+  }
+
+  void cleanCart() async {
+    try {
+      for (var i = 0; i < quantity.length; i++) {
+        await Dioo().dio.post('${baseUrl}cart/', data: {
+          'product': quantity[i]['product'],
+          'quantity': quantity[i]['quantity'],
+          'action': 'remove',
+        });
+      }
+      cartProducts.detail?.loc?.clear();
+      quantity.clear();
+      debugPrint('${cartProducts.detail?.loc?.length}');
+      harytJemi.value = 0;
+      update();
+    } catch (e) {
+      debugPrint('--------clear cart--------$e');
     }
   }
 }

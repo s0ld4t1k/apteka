@@ -54,7 +54,11 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _tabs[selectedTab],
+      body: RefreshIndicator(
+          child: _tabs[selectedTab],
+          onRefresh: () async {
+            Get.offAll(() => const MainPage());
+          }),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

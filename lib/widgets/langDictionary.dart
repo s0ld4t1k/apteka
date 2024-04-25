@@ -4,6 +4,7 @@ String curLN = 'tm';
 
 Map<String, Map<String, String>> locale = {
   'tm': {
+    'optional': 'optional',
     'searchHint': 'Harydyň adyny giriziň',
     'seeAll': 'Ählisini gör',
     'harmfullInfos': 'Peýdaly maglumatlar',
@@ -175,6 +176,7 @@ Map<String, Map<String, String>> locale = {
     'no': 'Ýok',
   },
   'ru': {
+    'optional': 'optional',
     'searchHint': 'Введите название продукта',
     'seeAll': 'Смотреть все',
     'harmfullInfos': 'Полезная информация',
@@ -347,6 +349,7 @@ Map<String, Map<String, String>> locale = {
     'no': 'Нет',
   },
   'en': {
+    'optional': 'optional',
     'searchHint': 'Enter the product name',
     'seeAll': 'See all',
     'harmfullInfos': 'Useful informations',

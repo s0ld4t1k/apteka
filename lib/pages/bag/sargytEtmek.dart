@@ -31,25 +31,10 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
 }
 
 var jem = 0.0;
-// int minutes = 0;
-// int secunds = 0;
-// void timmer(update) {
-//   // ignore: unused_local_variable
-//   Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-//     if (minutes > 0 && secunds == 0) {
-//       minutes--;
-//       secunds = 60;
-//     } else if (secunds > 0) {
-//       secunds--;
-//     } else {
-//       timer.cancel();
-//     }
-//     update();
-//   });
-// }
 
 class SargytEtmek extends StatelessWidget {
   const SargytEtmek({super.key});
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -121,7 +106,7 @@ class SargytEtmek extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: TabBarView(children: [Nagt(), Terminal(), BankKarty()]),
               ),
             ],

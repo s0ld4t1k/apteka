@@ -4,7 +4,6 @@ import 'package:apte/controller/my_controller.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/addCard.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
-import 'package:apte/pages/bag/sargyt_page.dart';
 import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/registration/sign_in.dart';
@@ -16,19 +15,30 @@ import 'package:get/get.dart';
 
 import '../../data/dio.dart';
 import '../../data/model/cart/controller.dart';
-import 'bag.dart';
 
 TextEditingController nameBank = TextEditingController();
 TextEditingController telBank = TextEditingController();
-TextEditingController comBank = TextEditingController();
 RxBool nameErrBank = false.obs,
     telErrBank = false.obs,
     adresErrBank = false.obs,
     cardErrBank = false.obs;
 
-class BankKarty extends StatelessWidget {
+class BankKarty extends StatefulWidget {
+  const BankKarty({super.key});
+
+  @override
+  State<BankKarty> createState() => _BankKartyState();
+}
+
+class _BankKartyState extends State<BankKarty> {
+  TextEditingController comBank = TextEditingController();
+  @override
+  void dispose() {
+    comBank.dispose();
+    super.dispose();
+  }
+
   final CartController cc = Get.find();
-  BankKarty({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -246,7 +256,8 @@ class BankKarty extends StatelessWidget {
                             minLines: null,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.all(0),
-                              hintText: '${locale[curLN]?['bellik']}',
+                              hintText:
+                                  '${locale[curLN]?['bellik']} (${locale[curLN]?['optional']})',
                               hintStyle: const TextStyle(
                                 color: Color.fromRGBO(193, 193, 193, 1),
                                 fontSize: 16,
@@ -316,19 +327,10 @@ class BankKarty extends StatelessWidget {
                           } else {
                             int re = await toOrder(nameBank.text, telBank.text,
                                 selectedAdresStr.value, 3);
-                            if (re != 200) {
+                            if (re == 200) {
                               // ignore: use_build_context_synchronously
-                              FocusScope.of(context).requestFocus(FocusNode());
-                              Get.to(
-                                () => SargytPage(
-                                  total: harytJemi.value + eltipberme.value,
-                                  totalPrice: harytJemi.value,
-                                  delivery: eltipberme.value,
-                                ),
-                              );
-                              // minutes = 3;
-                              // timmer(cc.update);
-                              Dioo().successOrder();
+                              Dioo().successOrder(context, cc.cleanCart,
+                                  cc.cartProducts.detail?.loc, cc.quantity);
                             }
                           }
                         },

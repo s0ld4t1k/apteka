@@ -7,6 +7,8 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../pages/bag/addAdres.dart';
+
 var selectedAdresType = 0;
 TextEditingController adr = TextEditingController();
 
@@ -21,6 +23,18 @@ class NewAdresManual extends StatefulWidget {
 }
 
 class _NewAdresManualState extends State<NewAdresManual> {
+  @override
+  void initState() {
+    adr = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    adr.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddressController>(
@@ -148,6 +162,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                               widget.index);
                         } else {
                           ac.add(selectedAdresType + 1, adr.text);
+                          selectedAdresStr.value = adr.text;
                           Get.back();
                         }
                         Get.back();

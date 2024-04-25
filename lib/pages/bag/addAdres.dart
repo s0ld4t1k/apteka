@@ -52,7 +52,8 @@ class _AddAdresState extends State<AddAdres> {
                       thumbVisibility: true,
                       trackVisibility: true,
                       child: Container(
-                        height: 140,
+                        height:
+                            (ac.addresses.detail?.loc ?? []).isEmpty ? 0 : 140,
                         padding: const EdgeInsets.only(right: 10),
                         child: ListView(
                           children: List.generate(

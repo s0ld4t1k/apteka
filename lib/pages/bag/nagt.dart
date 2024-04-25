@@ -2,7 +2,6 @@ import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
-import 'package:apte/pages/bag/sargyt_page.dart';
 import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -10,16 +9,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'bag.dart';
-
 TextEditingController name = TextEditingController();
 TextEditingController tel = TextEditingController();
-TextEditingController com = TextEditingController();
 RxBool nameErr = false.obs, telErr = false.obs, addressErr = false.obs;
 
-class Nagt extends StatelessWidget {
-  Nagt({super.key});
+class Nagt extends StatefulWidget {
+  const Nagt({super.key});
+
+  @override
+  State<Nagt> createState() => _NagtState();
+}
+
+class _NagtState extends State<Nagt> {
+  TextEditingController com = TextEditingController();
+  @override
+  void dispose() {
+    com.dispose();
+    super.dispose();
+  }
+
   final CartController cc = Get.find();
+
   @override
   Widget build(BuildContext context) {
     name.text = user.name ?? '';
@@ -145,7 +155,8 @@ class Nagt extends StatelessWidget {
                   ),
                   Obx(() => addressErr.value ? const ErrMsg() : Container()),
                   const SizedBox(height: 15),
-                  Text('${locale[curLN]?['bellik']}'),
+                  Text(
+                      '${locale[curLN]?['bellik']} (${locale[curLN]?['optional']})'),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -225,22 +236,12 @@ class Nagt extends StatelessWidget {
                       if (tel.text == '') telErr.value = true;
                       if (selectedAdres.value < 0) addressErr.value = true;
                     } else {
-                      print(selectedAdresStr.value);
                       int re = await toOrder(
                           name.text, tel.text, selectedAdresStr.value, 1);
                       if (re == 200) {
                         // ignore: use_build_context_synchronously
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        Get.to(
-                          () => SargytPage(
-                            total: harytJemi.value + eltipberme.value,
-                            totalPrice: harytJemi.value,
-                            delivery: eltipberme.value,
-                          ),
-                        );
-                        // minutes = 3;
-                        // timmer(cc.update);
-                        Dioo().successOrder();
+                        Dioo().successOrder(context, cc.cleanCart,
+                            cc.cartProducts.detail?.loc, cc.quantity);
                       }
                     }
                   },

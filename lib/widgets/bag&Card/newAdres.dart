@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:apte/data/model/address/controller.dart';
+import 'package:apte/pages/bag/addAdres.dart';
 import 'package:apte/widgets/bag&Card/newAdresManual.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
@@ -12,7 +13,25 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
 var _selectedAdresType = 0;
-MapController _mc = MapController();
+var _lat = 37.57, _long = 58.225999;
+void getGeo() async {
+  try {
+    var per = await Geolocator.requestPermission();
+    if (per != LocationPermission.denied) {
+      Position pos = await Geolocator.getCurrentPosition();
+      _lat = pos.latitude;
+      _long = pos.longitude;
+      mc.move(LatLng(_lat, _long), 12);
+      markers[0] = Marker(
+        point: LatLng(_lat, _long),
+        child: SvgPicture.asset('assets/icons/loc.svg'),
+      );
+    }
+  } catch (e) {
+    debugPrint('-----geolocator------$e');
+  }
+}
+
 dynamic markers = [
   Marker(
     point: LatLng(_lat, _long),
@@ -20,6 +39,7 @@ dynamic markers = [
   ),
 ];
 List adresTypeList = [];
+MapController mc = MapController();
 
 class NewAdres extends StatefulWidget {
   const NewAdres({super.key});
@@ -28,9 +48,19 @@ class NewAdres extends StatefulWidget {
   State<NewAdres> createState() => _NewAdresState();
 }
 
-var _lat = 37.57, _long = 58.225999;
-
 class _NewAdresState extends State<NewAdres> {
+  @override
+  void initState() {
+    mc = MapController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    mc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     adresTypeList = [
@@ -64,29 +94,11 @@ class _NewAdresState extends State<NewAdres> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 2,
                         child: FlutterMap(
-                            mapController: _mc,
+                            mapController: mc,
                             options: MapOptions(
-                              onMapReady: () async {
-                                try {
-                                  var per =
-                                      await Geolocator.requestPermission();
-                                  if (per != LocationPermission.denied) {
-                                    Position pos =
-                                        await Geolocator.getCurrentPosition();
-                                    setState(() {
-                                      _lat = pos.latitude;
-                                      _long = pos.longitude;
-                                    });
-                                    _mc.move(LatLng(_lat, _long), 12);
-                                    markers[0] = Marker(
-                                      point: LatLng(_lat, _long),
-                                      child: SvgPicture.asset(
-                                          'assets/icons/loc.svg'),
-                                    );
-                                  }
-                                } catch (e) {
-                                  debugPrint('-----geolocator------$e');
-                                }
+                              onMapReady: () {
+                                setState(() {});
+                                getGeo();
                               },
                               onLongPress: (tapPosition, point) {
                                 setState(() {
@@ -116,15 +128,22 @@ class _NewAdresState extends State<NewAdres> {
                 Positioned(
                     right: 25,
                     bottom: MediaQuery.of(context).size.height / 2 + 34,
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: Colors.white,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          getGeo();
+                        });
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                            child: SvgPicture.asset('assets/icons/gps.svg')),
                       ),
-                      child: Center(
-                          child: SvgPicture.asset('assets/icons/gps.svg')),
                     )),
                 Positioned(
                   bottom: 0,
@@ -144,9 +163,7 @@ class _NewAdresState extends State<NewAdres> {
                         SingleChildScrollView(
                           child: Column(
                             children: [
-                              const SizedBox(
-                                height: 35,
-                              ),
+                              const SizedBox(height: 35),
                               Row(
                                 children: [
                                   Text(
@@ -278,6 +295,9 @@ class _NewAdresState extends State<NewAdres> {
                                 onPressed: () {
                                   ac.add(
                                       _selectedAdresType + 1, '$_lat, $_long');
+                                  selectedAdresStr.value = '$_lat, $_long';
+                                  selectedAdres.value =
+                                      ac.addresses.detail?.loc?.length ?? 1 - 1;
                                   Get.back();
                                 },
                                 child: Text(

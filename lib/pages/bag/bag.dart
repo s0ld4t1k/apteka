@@ -1,5 +1,3 @@
-import 'package:apte/data/api/register.dart';
-import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/pages/bag/bag_item.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
@@ -60,23 +58,7 @@ class Bag extends StatelessWidget {
                     overlayColor:
                         MaterialStateProperty.all(red.withOpacity(0.1)),
                   ),
-                  onPressed: () async {
-                    try {
-                      for (var i = 0; i < cc.quantity.length; i++) {
-                        await Dioo().dio.post('${baseUrl}cart/', data: {
-                          'product': cc.quantity[i]['product'],
-                          'quantity': cc.quantity[i]['quantity'],
-                          'action': 'remove',
-                        });
-                      }
-                      cc.cartProducts.detail?.loc?.clear();
-                      cc.quantity.clear();
-                      debugPrint('${cc.cartProducts.detail?.loc?.length}');
-                      cc.update();
-                    } catch (e) {
-                      debugPrint('--------clear cart--------$e');
-                    }
-                  },
+                  onPressed: () => cc.cleanCart(),
                   child: Text(
                     '${locale[curLN]?["clean"]}',
                     style: const TextStyle(

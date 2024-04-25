@@ -1,6 +1,7 @@
 import 'package:apte/data/dio.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/profile/adres.dart';
+import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/profile/lang.dart';
 import 'package:apte/pages/profile/product_page.dart.dart';
 import 'package:apte/pages/profile/sargyt.dart';
@@ -12,6 +13,7 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final List hasap = [
   ['assets/icons/profile/sargytlarym.svg', '', () => const Sargyt()],
@@ -27,8 +29,20 @@ final List sazlama = [
   ],
 ];
 final List habarlas = [
-  ['assets/icons/profile/call.svg', '', '/profile/habarlasmak'],
-  ['assets/icons/profile/info.svg', '', '/profile'],
+  [
+    'assets/icons/profile/call.svg',
+    '',
+    () => Get.to(() => const Habarlasmak()),
+  ],
+  [
+    'assets/icons/profile/info.svg',
+    '',
+    () async {
+      if (!await launchUrl(Uri.parse('http://sagdyndiyar.com.tm/'))) {
+        throw Exception('couldn\'t open url');
+      }
+    }
+  ],
 ];
 
 class Profile extends StatelessWidget {
@@ -203,8 +217,7 @@ class Profile extends StatelessWidget {
                     (index) => Column(
                           children: [
                             InkWell(
-                              onTap: () => Navigator.pushNamed(
-                                  context, habarlas[index][2]),
+                              onTap: habarlas[index][2],
                               child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 18),

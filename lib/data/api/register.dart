@@ -37,9 +37,10 @@ Future<int> logIN(UserModel user) async {
   }
 }
 
-Future<void> register(UserModel userr, otp) async {
+Future<void> register(UserModel userr, int otp) async {
   String url = 'http://216.250.11.197:8000/api/v2/register/';
   try {
+    // print('${userr.sid} $otp ${userr.phone} ${userr.password} ${userr.name}');
     var res = await Dio().post(
       url,
       data: {
@@ -49,7 +50,8 @@ Future<void> register(UserModel userr, otp) async {
         'password': userr.password,
         'first_name': userr.name,
         'last_name': '-',
-        'address': '-'
+        'address': '-',
+        'email': 'begnazarowbegnazar11@gmail.com'
       },
     );
     if (res.statusCode == 200) {
@@ -64,6 +66,13 @@ Future<void> register(UserModel userr, otp) async {
           colorText: Colors.white,
         );
       }
+    } else {
+      Get.snackbar(
+        locale[curLN]!['loginError']!,
+        locale[curLN]!['incorrectPassword']!,
+        backgroundColor: red,
+        colorText: Colors.white,
+      );
     }
   } catch (e) {
     debugPrint('---registr $e');

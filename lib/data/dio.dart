@@ -10,6 +10,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
+import '../pages/bag/sargyt_page.dart';
 import '../widgets/langDictionary.dart';
 
 class Dioo {
@@ -119,7 +120,17 @@ class Dioo {
     }
   }
 
-  void successOrder() {
+  void successOrder(context, clean, products, quan) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    Get.to(
+      () => SargytPage(
+        quan: quan,
+        products: products,
+        total: harytJemi.value + eltipberme.value,
+        totalPrice: harytJemi.value,
+        delivery: eltipberme.value,
+      ),
+    );
     Get.dialog(AlertDialog(
       surfaceTintColor: Colors.white,
       content: SizedBox(
@@ -170,6 +181,7 @@ class Dioo {
         ),
       ),
     ));
+    clean();
   }
 
   Dioo() {

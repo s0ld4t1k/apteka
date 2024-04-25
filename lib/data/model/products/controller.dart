@@ -23,7 +23,7 @@ class ProductsController extends GetxController {
   MainProductsModel mostsoldProducts = MainProductsModel();
   MainProductsModel recommendedProducts = MainProductsModel();
   void getNewProducts(url1) async {
-    print(url1);
+    debugPrint(url1);
     try {
       var res = await Dioo().dio.get(url1);
       if (res.statusCode == 200) {
@@ -53,7 +53,7 @@ class ProductsController extends GetxController {
   }
 
   void getMostsoldProducts(url2) async {
-    print(url2);
+    debugPrint(url2);
     try {
       var res = await Dioo().dio.get(url2);
       if (res.statusCode == 200) {
@@ -66,7 +66,7 @@ class ProductsController extends GetxController {
   }
 
   void getRecommended(url3) async {
-    print(url3);
+    debugPrint(url3);
     try {
       var res = await Dioo().dio.get(url3);
       if (res.statusCode == 200) {
