@@ -9,6 +9,8 @@ import 'package:apte/widgets/tel_num_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/otp_field.dart';
+
 String sid = '';
 UserModel user = UserModel();
 TextEditingController siName = TextEditingController();
@@ -61,7 +63,13 @@ class SignIn extends StatelessWidget {
                         password: siPass.text,
                       );
                       sendSMS(user);
-                      Get.to(() => OTP(userr: user));
+                      if (user.sid != null) {
+                        Get.to(() => OTP(
+                            userr: user,
+                            ontap: () {
+                              register(user, int.parse(s.value));
+                            }));
+                      }
                     } else {
                       Get.snackbar(
                         locale[curLN]!['passwordError2']!,

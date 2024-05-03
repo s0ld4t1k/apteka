@@ -13,6 +13,8 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import '../pages/bag/sargyt_page.dart';
 import '../widgets/langDictionary.dart';
 
+RxBool conerr = false.obs;
+
 class Dioo {
   var dio = Dio();
 
@@ -26,24 +28,28 @@ class Dioo {
   }
 
   void conErr(ontap) {
-    Get.dialog(
-      AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        title: Text(locale[curLN]?['conErr'] ?? ''),
-        content: Text(locale[curLN]?['try'] ?? ''),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              Get.back();
-              ontap();
-            },
-            child: Text(locale[curLN]?['retry'] ?? ''),
+    if (conerr.value == false) {
+      conerr.value = true;
+      Get.dialog(
+        AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-        ],
-      ),
-    );
+          title: Text(locale[curLN]?['conErr'] ?? ''),
+          content: Text(locale[curLN]?['try'] ?? ''),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                conerr.value = false;
+                Get.back();
+                ontap();
+              },
+              child: Text(locale[curLN]?['retry'] ?? ''),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   void logOut() {

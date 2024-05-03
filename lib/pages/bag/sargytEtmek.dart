@@ -12,6 +12,8 @@ import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 
+List paymentSorces = ['halk', 'senagat', 'rysgal', 'tfeb'];
+
 Future<int> toOrder(fullName, phone, address, paymentMethod) async {
   String url = '${baseUrl}order/';
   var data = {
@@ -19,7 +21,7 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
     "phone": phone,
     "address": address,
     "payment_method": paymentMethod,
-    "is_express": curEltme == 1
+    "is_express": curEltme == 1,
   };
   try {
     var res = await Dioo().dio.post(url, data: data);

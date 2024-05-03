@@ -24,6 +24,7 @@ class Kard extends StatelessWidget {
   const Kard({super.key});
   @override
   Widget build(BuildContext context) {
+    cards = Hive.box('box').get('cards') ?? [];
     return GetBuilder<MyController>(
         init: MyController(),
         builder: (mc) {
@@ -44,9 +45,7 @@ class Kard extends StatelessWidget {
                     child: SvgPicture.asset('assets/icons/wallet.svg'),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
               ],
             ),
             body: SingleChildScrollView(
@@ -57,9 +56,7 @@ class Kard extends StatelessWidget {
                       child: Column(
                         children: [
                           Image.asset('assets/images/noCard.png'),
-                          const SizedBox(
-                            height: 18,
-                          ),
+                          const SizedBox(height: 18),
                           Text(
                             '${locale[curLN]?['noneBankCardText1']}',
                             style: const TextStyle(
@@ -67,9 +64,7 @@ class Kard extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const SizedBox(
-                            height: 17,
-                          ),
+                          const SizedBox(height: 17),
                           Text(
                             '${locale[curLN]?['noneBankCardText2']}',
                             style: const TextStyle(
@@ -77,9 +72,7 @@ class Kard extends StatelessWidget {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          const SizedBox(
-                            height: 33,
-                          ),
+                          const SizedBox(height: 33),
                           OutlinedButton(
                               style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all(
@@ -94,7 +87,7 @@ class Kard extends StatelessWidget {
                                 )),
                               ),
                               onPressed: () {
-                                Get.to(() => NewCard());
+                                Get.to(() => NewCard(index: -1));
                               },
                               child: Text(
                                 '${locale[curLN]?['addCard']}',
@@ -168,9 +161,7 @@ class Kard extends StatelessWidget {
                                                           FontWeight.w700,
                                                       fontSize: 16),
                                                 ),
-                                                const SizedBox(
-                                                  height: 6,
-                                                ),
+                                                const SizedBox(height: 6),
                                                 Text(
                                                   cards[index][0],
                                                   style: const TextStyle(
@@ -183,9 +174,8 @@ class Kard extends StatelessWidget {
                                             ),
                                           ),
                                           const Icon(
-                                            Icons.chevron_right_rounded,
-                                            size: 20,
-                                          ),
+                                              Icons.chevron_right_rounded,
+                                              size: 20),
                                         ],
                                       ),
                                     ),
@@ -205,7 +195,7 @@ class Kard extends StatelessWidget {
                 ? null
                 : FloatingActionButton(
                     elevation: 0,
-                    onPressed: () => Get.to(() => NewCard()),
+                    onPressed: () => Get.to(() => NewCard(index: -1)),
                     backgroundColor: orange,
                     child: const Icon(
                       Icons.add,

@@ -23,22 +23,41 @@ List month = [
   'Sentýabr',
   'Oktýabr',
   'Noýabr',
-  'Dekabr',
+  'Dekabr'
 ];
+
 TextEditingController belgisi = TextEditingController();
 TextEditingController cvc = TextEditingController();
 TextEditingController eyesi = TextEditingController();
 TextEditingController year = TextEditingController();
 
-// ignore: must_be_immutable
-class NewCard extends StatelessWidget {
+class NewCard extends StatefulWidget {
   final int index;
-  NewCard({super.key, this.index = -1});
-  final MyController mc = Get.find();
+  const NewCard({super.key, required this.index});
+
+  @override
+  State<NewCard> createState() => _NewCardState();
+}
+
+class _NewCardState extends State<NewCard> {
+  @override
+  void initState() {
+    if (widget.index > -1) {
+      List o = cards[widget.index];
+      selectedCardType = o[1];
+      belgisi.text = o[0];
+      cvc.text = o[2];
+      eyesi.text = o[3];
+      year.text = o[5];
+      selectedMonth = o[4];
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (index > -1) mc.setCardListeValue(cards[index]);
     return GetBuilder<MyController>(
+      init: MyController(),
       builder: (mc) {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -211,13 +230,9 @@ class NewCard extends StatelessWidget {
                               OutlineInputBorder(borderSide: BorderSide.none)),
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text('${locale[curLN]?['cardHolder']}'),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   Container(
                     width: double.infinity,
                     height: 50,
@@ -242,13 +257,9 @@ class NewCard extends StatelessWidget {
                               borderSide: BorderSide.none)),
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text('${locale[curLN]?['cardBankType']}'),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
                       shape: const RoundedRectangleBorder(
@@ -286,10 +297,7 @@ class NewCard extends StatelessWidget {
                                             193, 193, 193, 1)),
                               ),
                             ),
-                            const Icon(
-                              CupertinoIcons.chevron_down,
-                              size: 16,
-                            ),
+                            const Icon(CupertinoIcons.chevron_down, size: 16),
                           ],
                         )),
                   ),
@@ -307,10 +315,10 @@ class NewCard extends StatelessWidget {
                           year.text != '' &&
                           selectedCardType >= 0 &&
                           selectedMonth >= 0) {
-                        if (index == -1) {
+                        if (widget.index == -1) {
                           mc.addCard();
                         } else {
-                          mc.setCardsValue(cards[index]);
+                          mc.setCardsValue(cards[widget.index]);
                         }
                         Get.back();
                       } else {
@@ -323,6 +331,7 @@ class NewCard extends StatelessWidget {
                         );
                       }
                       mc.reset();
+                      mc.update();
                     },
                     child: Text(
                       '${locale[curLN]?['save']}',

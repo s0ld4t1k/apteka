@@ -4,7 +4,9 @@ String curLN = 'tm';
 
 Map<String, Map<String, String>> locale = {
   'tm': {
-    'optional': 'optional',
+    'resetPwdTitle': 'Paroly täzele',
+    'resetPwdContent': 'Parol üstünlikli üýtgedildi',
+    'optional': 'islege bagly',
     'searchHint': 'Harydyň adyny giriziň',
     'seeAll': 'Ählisini gör',
     'harmfullInfos': 'Peýdaly maglumatlar',
@@ -176,7 +178,9 @@ Map<String, Map<String, String>> locale = {
     'no': 'Ýok',
   },
   'ru': {
-    'optional': 'optional',
+    'resetPwdTitle': 'Сброс пароля',
+    'resetPwdContent': 'Пароль успешно изменен',
+    'optional': 'необязательный',
     'searchHint': 'Введите название продукта',
     'seeAll': 'Смотреть все',
     'harmfullInfos': 'Полезная информация',
@@ -349,6 +353,8 @@ Map<String, Map<String, String>> locale = {
     'no': 'Нет',
   },
   'en': {
+    'resetPwdTitle': 'Reset Password',
+    'resetPwdContent': 'Password successfully changed',
     'optional': 'optional',
     'searchHint': 'Enter the product name',
     'seeAll': 'See all',

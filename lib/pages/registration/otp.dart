@@ -1,5 +1,6 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/user_model.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,8 @@ import '../../widgets/langDictionary.dart';
 
 class OTP extends StatelessWidget {
   final UserModel userr;
-  const OTP({super.key, required this.userr});
+  final dynamic ontap;
+  const OTP({super.key, required this.userr, required this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +47,10 @@ class OTP extends StatelessWidget {
                 Obx(() {
                   return ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
-                            const Size(double.infinity, 50))),
-                    onPressed: s.value.length == 6
-                        ? () {
-                            // print('object ${int.tryParse(s.value)}');
-                            register(userr, int.parse(s.value));
-                          }
-                        : null,
+                      minimumSize: MaterialStateProperty.all(
+                          const Size(double.infinity, 50)),
+                    ),
+                    onPressed: s.value.length == 6 ? ontap : null,
                     child: Text(locale[curLN]!['continue']!),
                   );
                 })
@@ -66,7 +64,9 @@ class OTP extends StatelessWidget {
             Text(locale[curLN]!['noCode']!),
             const SizedBox(width: 5),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                sendSMS(user);
+              },
               child: Text(
                 locale[curLN]!['resend']!,
                 style: const TextStyle(color: orange),

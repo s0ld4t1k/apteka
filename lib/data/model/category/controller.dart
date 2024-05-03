@@ -6,9 +6,19 @@ import 'package:get/get.dart';
 
 import 'category.dart';
 
+class CategoryState {
+  int page = 1;
+  String categorySlug = '';
+  String subcategorySlug = '';
+  int selectedCategory = 0;
+  int selectedSubategory = 0;
+}
+
 class CategoryController extends GetxController {
+  late CategoryState st;
   @override
   void onInit() {
+    st = CategoryState();
     get();
     super.onInit();
   }
@@ -18,13 +28,8 @@ class CategoryController extends GetxController {
     const Color.fromRGBO(184, 239, 240, 1),
     const Color.fromRGBO(224, 252, 211, 1),
     const Color.fromRGBO(255, 201, 169, 1),
-    const Color.fromRGBO(200, 242, 239, 1),
+    const Color.fromRGBO(200, 242, 239, 1)
   ];
-  int page = 1;
-  String categorySlug = '';
-  String subcategorySlug = '';
-  int selectedCategory = 0;
-  int selectedSubategory = 0;
   CategoryModel categories = CategoryModel();
   CategoryProductsModel categoryProducts = CategoryProductsModel();
   var url = 'categories/';
@@ -82,7 +87,7 @@ class CategoryController extends GetxController {
   }
 
   void incPage() {
-    if (categoryProducts.detail?.loc?[0].pagination?.next ?? false) page++;
+    if (categoryProducts.detail?.loc?[0].pagination?.next ?? false) st.page++;
     getProductsPagination();
   }
 

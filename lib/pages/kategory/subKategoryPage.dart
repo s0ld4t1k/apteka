@@ -58,8 +58,8 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
               onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.chevron_left_rounded)),
           title: Text(
-            Dioo.getTitle(cc.categories.detail?.loc?[cc.selectedCategory]
-                .subcategories?[cc.selectedSubategory].title),
+            Dioo.getTitle(cc.categories.detail?.loc?[cc.st.selectedCategory]
+                .subcategories?[cc.st.selectedSubategory].title),
           ),
         ),
         body: SingleChildScrollView(

@@ -1,30 +1,11 @@
-import 'package:apte/pages/kard/kard.dart';
+import 'package:apte/pages/bag/addCard.dart';
 import 'package:apte/widgets/bag&Card/newCard.dart';
-// import 'package:apte/widgets/langDictionary.dart';
 import 'package:get/state_manager.dart';
 import 'package:hive/hive.dart';
 
+import '../pages/kard/kard.dart';
+
 class MyController extends GetxController {
-  @override
-  void onInit() {
-    cards = Hive.box('box').get('cards') ?? [];
-    super.onInit();
-  }
-
-  void setCardTypeValue(o) {
-    selectedCardType = o;
-    update();
-  }
-
-  void setCardListeValue(o) {
-    selectedCardType = o[1];
-    belgisi.text = o[0];
-    cvc.text = o[2];
-    eyesi.text = o[3];
-    year.text = o[5];
-    selectedMonth = o[4];
-  }
-
   void setCardsValue(o) {
     o[1] = selectedCardType;
     o[0] = belgisi.text;
@@ -33,7 +14,7 @@ class MyController extends GetxController {
     o[5] = year.text;
     o[4] = selectedMonth;
     Hive.box('box').put('cards', cards);
-    update();
+    // update();
   }
 
   void addCard() {
@@ -45,8 +26,9 @@ class MyController extends GetxController {
       selectedMonth,
       year.text,
     ]);
+    selectedCardBank.value = cards.length - 1;
     Hive.box('box').put('cards', cards);
-    update();
+    // update();
   }
 
   void reset() {
@@ -56,6 +38,6 @@ class MyController extends GetxController {
     eyesi.text = '';
     year.text = '';
     selectedMonth = 0;
-    update();
+    // update();
   }
 }

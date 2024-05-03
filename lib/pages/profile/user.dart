@@ -1,6 +1,13 @@
+import 'dart:developer';
+
+import 'package:apte/data/api/register.dart';
 import 'package:apte/data/model/user/controller.dart';
+import 'package:apte/pages/profile/changePW.dart';
+import 'package:apte/pages/registration/otp.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
+import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -120,8 +127,18 @@ class User extends StatelessWidget {
                                       padding: MaterialStateProperty.all(
                                           const EdgeInsets.all(0)),
                                       alignment: Alignment.centerLeft),
-                                  onPressed: () => Navigator.pushNamed(
-                                      context, '/profile/user/changePW'),
+                                  onPressed: () async {
+                                    await sendSMS(user);
+                                    if (user.sid != null) {
+                                      Get.to(() => OTP(
+                                            userr: user,
+                                            ontap: () {
+                                              log(s.value);
+                                              Get.to(() => ChangePW());
+                                            },
+                                          ));
+                                    }
+                                  },
                                   child: Text(
                                     '${locale[curLN]?['toChangePassword']}',
                                     style: const TextStyle(

@@ -1,4 +1,10 @@
+import 'dart:developer';
+
+import 'package:apte/data/api/register.dart';
+import 'package:apte/pages/registration/new_password.dart';
+import 'package:apte/pages/registration/otp.dart';
 import 'package:apte/pages/registration/registration.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,7 +54,23 @@ class ResetPassword extends StatelessWidget {
                       const Size(double.infinity, 50),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    user.sid = 0;
+                    user.password = 'Aman1234';
+                    String msg = await resetPassword(user, 0) ?? '';
+                    print(msg);
+                    if (msg != 'no_user') {
+                      log('---resetPWD--rg--success----');
+                      sendSMS(user);
+                      if (user.sid != null) {
+                        Get.to(() => OTP(
+                            userr: user,
+                            ontap: () {
+                              Get.to(() => const NewPassword());
+                            }));
+                      }
+                    }
+                  },
                   child: Text(locale[curLN]!['continue']!),
                 )
               ],

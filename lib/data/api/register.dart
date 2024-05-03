@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:apte/data/dio.dart';
 import 'package:apte/data/user_model.dart';
 import 'package:apte/main.dart';
 import 'package:apte/pages/main/mainPage.dart';
@@ -17,6 +20,7 @@ Future<void> sendSMS(UserModel user) async {
     var res = await Dio().post(url, data: {'phone': user.phone});
     user.sid = res.data['detail']['loc'][0]['sid'];
   } catch (e) {
+    user.sid = null;
     debugPrint('---sms $e');
   }
   debugPrint('------sid   ${user.sid}');
@@ -51,7 +55,7 @@ Future<void> register(UserModel userr, int otp) async {
         'first_name': userr.name,
         'last_name': '-',
         'address': '-',
-        'email': 'begnazarowbegnazar11@gmail.com'
+        'email': '-'
       },
     );
     if (res.statusCode == 200) {
@@ -76,5 +80,30 @@ Future<void> register(UserModel userr, int otp) async {
     }
   } catch (e) {
     debugPrint('---registr $e');
+  }
+}
+
+Future<String?> resetPassword(UserModel user, int code) async {
+  print('${user.sid} ${code} ${user.phone} ${user.password}');
+  try {
+    String url = '${baseUrl}reset_password/';
+    var res = await Dioo().dio.post(url, data: {
+      'sid': user.sid,
+      'code': code,
+      'phone': user.phone,
+      'password': user.password
+    });
+    if (res.statusCode == 200) {
+      Get.snackbar(
+        locale[curLN]!['resetPwdTitle']!,
+        locale[curLN]!['resetPwdContent']!,
+        backgroundColor: green,
+        colorText: Colors.white,
+      );
+    }
+    return res.statusMessage;
+  } catch (e) {
+    log('---resetPwd---$e');
+    return '';
   }
 }

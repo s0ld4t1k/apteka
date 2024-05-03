@@ -178,7 +178,8 @@ class _TerminalState extends State<Terminal> {
                   ),
                   Obx(() => adresErrTer.value ? const ErrMsg() : Container()),
                   const SizedBox(height: 15),
-                  Text('${locale[curLN]?['bellik']}'),
+                  Text(
+                      '${locale[curLN]?['bellik']} (${locale[curLN]?['optional']})'),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -198,8 +199,7 @@ class _TerminalState extends State<Terminal> {
                       minLines: null,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(0),
-                        hintText:
-                            '${locale[curLN]?['bellik']} (${locale[curLN]?['optional']})',
+                        hintText: '${locale[curLN]?['bellik']}',
                         hintStyle: const TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
                           fontSize: 16,

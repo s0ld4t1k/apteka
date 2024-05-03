@@ -228,15 +228,15 @@ class _BagItemState extends State<BagItem> {
                     'action': 'remove'
                   },
                 );
-                widget.cc.cartProducts.detail?.loc?.removeAt(widget.index);
                 harytJemi.value -= widget.cc.cartProducts.detail
                         ?.loc?[widget.index].price?.price ??
                     0.0 * quantity;
+                widget.cc.cartProducts.detail?.loc?.removeAt(widget.index);
                 widget.cc.update();
               } catch (e) {
                 debugPrint('----remove product-------$e');
               }
-              setState(() {});
+              // setState(() {});
             },
             padding: const EdgeInsets.all(0),
             constraints: const BoxConstraints(

@@ -1,5 +1,6 @@
 import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/pages/bag/bag_item.dart';
+import 'package:apte/pages/bag/online_payment.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/productPage.dart';
@@ -203,7 +204,11 @@ class Bag extends StatelessWidget {
                                             )
                                           ],
                                         ),
-                                      )
+                                      ),
+                                      TextButton(
+                                          onPressed: () =>
+                                              Get.to(() => OnlinePayment()),
+                                          child: Text('to online payment')),
                                       // const SizedBox(height: 90)
                                     ],
                                   ),

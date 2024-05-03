@@ -42,8 +42,12 @@ class MainCategory extends StatelessWidget {
                           width: 90,
                           child: InkWell(
                             onTap: () {
-                              cc.selectedCategory = index;
-                              Get.to(() => const SubKategory());
+                              cc.st.selectedCategory = index;
+
+                              cc.st.categorySlug = cc.categories.detail
+                                      ?.loc?[cc.st.selectedCategory].slug ??
+                                  '';
+                              Get.to(() => SubKategory());
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
