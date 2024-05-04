@@ -55,14 +55,14 @@ class SignIn extends StatelessWidget {
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
                           const Size(double.infinity, 50))),
-                  onPressed: () {
+                  onPressed: () async {
                     if (siPass.text == siPass2.text) {
                       user = UserModel(
                         name: siName.text,
                         phone: siTel.text,
                         password: siPass.text,
                       );
-                      sendSMS(user);
+                      await sendSMS(user);
                       if (user.sid != null) {
                         Get.to(() => OTP(
                             userr: user,

@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
+import '../../data/model/product/controller.dart';
+
 void addCart(id, isAdd, price) async {
   if (isAdd == false) {
     try {
@@ -64,13 +66,14 @@ class NewProducts extends StatelessWidget {
   final MainProductsModel prs;
   final dynamic ontap;
   final String url;
-  const NewProducts(
-      {super.key,
-      required this.text,
-      required this.prs,
-      required this.ontap,
-      required this.url,
-      required this.type});
+  const NewProducts({
+    super.key,
+    required this.text,
+    required this.prs,
+    required this.ontap,
+    required this.url,
+    required this.type,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -138,10 +141,17 @@ class NewProducts extends StatelessWidget {
                                     isAdd);
                               }
                               return GestureDetector(
-                                onTap: () => Get.to(() => ProductPage(
-                                    url: prs.detail?.loc?[0].products?[index]
-                                            .absoluteUrl ??
-                                        '')),
+                                onTap: () {
+                                  Get.delete<ProductController>();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => ProductPage(
+                                          url: prs
+                                                  .detail
+                                                  ?.loc?[0]
+                                                  .products?[index]
+                                                  .absoluteUrl ??
+                                              '')));
+                                },
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 18),
                                   padding: const EdgeInsets.symmetric(

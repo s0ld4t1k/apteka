@@ -14,6 +14,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 List cardImages = [
   'assets/images/halkBank.png',
+  'assets/images/halkBank.png',
   'assets/images/senagatBank.png',
   'assets/images/dayhanBank.png',
   'assets/images/turkmenbasyBank.png',

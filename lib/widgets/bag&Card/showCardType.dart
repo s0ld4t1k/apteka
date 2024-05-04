@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 List cardsType = [
+  'Rysgal bank',
   'Halk bank',
   'Senagat bank',
   'Dayhan',

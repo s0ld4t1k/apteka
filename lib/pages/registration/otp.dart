@@ -64,9 +64,7 @@ class OTP extends StatelessWidget {
             Text(locale[curLN]!['noCode']!),
             const SizedBox(width: 5),
             TextButton(
-              onPressed: () {
-                sendSMS(user);
-              },
+              onPressed: () => sendSMS(user),
               child: Text(
                 locale[curLN]!['resend']!,
                 style: const TextStyle(color: orange),

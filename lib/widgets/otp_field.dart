@@ -29,6 +29,7 @@ class OtpField extends StatelessWidget {
             alignment: Alignment.center,
             height: 45,
             child: TextField(
+              autofocus: true,
               focusNode: fc0,
               maxLength: 1,
               keyboardType: TextInputType.number,

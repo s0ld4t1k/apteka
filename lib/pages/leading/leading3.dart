@@ -10,14 +10,17 @@ class Leading3 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/startBanner3.png'),
-          const SizedBox(height: 84,),
+          // const SizedBox(height: 84,),
           const Padding(
             padding: EdgeInsets.all(25.0),
-            child: Text('Saglygyňyz üçin tiz wagtda eltip bermek hyzmaty!',style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
+            child: Text(
+              'Saglygyňyz üçin tiz wagtda eltip bermek hyzmaty!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,),
           )
         ],
       ),

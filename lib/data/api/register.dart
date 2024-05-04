@@ -44,7 +44,7 @@ Future<int> logIN(UserModel user) async {
 Future<void> register(UserModel userr, int otp) async {
   String url = 'http://216.250.11.197:8000/api/v2/register/';
   try {
-    // print('${userr.sid} $otp ${userr.phone} ${userr.password} ${userr.name}');
+    print('${userr.sid} $otp ${userr.phone} ${userr.password} ${userr.name}');
     var res = await Dio().post(
       url,
       data: {
@@ -55,7 +55,7 @@ Future<void> register(UserModel userr, int otp) async {
         'first_name': userr.name,
         'last_name': '-',
         'address': '-',
-        'email': '-'
+        'email': 'test@gmail.com'
       },
     );
     if (res.statusCode == 200) {

@@ -61,7 +61,7 @@ class ResetPassword extends StatelessWidget {
                     print(msg);
                     if (msg != 'no_user') {
                       log('---resetPWD--rg--success----');
-                      sendSMS(user);
+                      await sendSMS(user);
                       if (user.sid != null) {
                         Get.to(() => OTP(
                             userr: user,

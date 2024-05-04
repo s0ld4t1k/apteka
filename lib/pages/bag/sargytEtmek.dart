@@ -16,6 +16,7 @@ List paymentSorces = ['halk', 'senagat', 'rysgal', 'tfeb'];
 
 Future<int> toOrder(fullName, phone, address, paymentMethod) async {
   String url = '${baseUrl}order/';
+
   var data = {
     "full_name": fullName,
     "phone": phone,
@@ -23,6 +24,7 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
     "payment_method": paymentMethod,
     "is_express": curEltme == 1,
   };
+  print(data);
   try {
     var res = await Dioo().dio.post(url, data: data);
     return res.statusCode ?? 0;

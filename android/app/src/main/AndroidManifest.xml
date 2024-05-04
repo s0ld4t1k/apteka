@@ -20,9 +20,9 @@
     </queries>
     <application
         android:allowBackup="false"
-        android:label="apte"
+        android:label="Sagdyn Diyar"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -49,5 +49,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="io.flutter.embedding.android.SplashScreenDrawable"
+            android:resource="@drawable/splash"/>
     </application>
 </manifest>
