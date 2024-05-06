@@ -4,6 +4,9 @@ String curLN = 'tm';
 
 Map<String, Map<String, String>> locale = {
   'tm': {
+    'close': 'Ýap',
+    'comingSoon1': 'Ýakynda',
+    'comingSoon2': 'Ýakynda çykar',
     'resetPwdTitle': 'Paroly täzele',
     'resetPwdContent': 'Parol üstünlikli üýtgedildi',
     'optional': 'islege bagly',
@@ -178,6 +181,9 @@ Map<String, Map<String, String>> locale = {
     'no': 'Ýok',
   },
   'ru': {
+    'close': 'Закрывать',
+    'comingSoon1': 'Скоро',
+    'comingSoon2': 'Скоро выйдет',
     'resetPwdTitle': 'Сброс пароля',
     'resetPwdContent': 'Пароль успешно изменен',
     'optional': 'необязательный',
@@ -353,6 +359,9 @@ Map<String, Map<String, String>> locale = {
     'no': 'Нет',
   },
   'en': {
+    'close': 'Close',
+    'comingSoon1': 'Soon',
+    'comingSoon2': 'Coming out soon',
     'resetPwdTitle': 'Reset Password',
     'resetPwdContent': 'Password successfully changed',
     'optional': 'optional',

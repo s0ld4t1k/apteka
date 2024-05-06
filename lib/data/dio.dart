@@ -52,6 +52,22 @@ class Dioo {
     }
   }
 
+  void comingSoon() {
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        title: Text(locale[curLN]?['comingSoon1'] ?? ''),
+        content: Text(locale[curLN]?['comingSoon2'] ?? ''),
+        actions: [
+          ElevatedButton(
+            onPressed: () => Get.back(),
+            child: Text(locale[curLN]?['close'] ?? ''),
+          )
+        ],
+      ),
+    );
+  }
+
   void logOut() {
     Get.dialog(
       AlertDialog(

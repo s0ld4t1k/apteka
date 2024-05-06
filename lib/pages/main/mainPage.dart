@@ -110,6 +110,8 @@ class _MainPageState extends State<MainPage> {
                           }
                           selectedTab = index;
                         });
+                      } else if (index == 3) {
+                        Dioo().comingSoon();
                       } else if (index < 4) {
                         setState(() {
                           if (selectedTab == index) {
