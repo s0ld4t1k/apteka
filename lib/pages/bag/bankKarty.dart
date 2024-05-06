@@ -13,7 +13,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/dio.dart';
 import '../../data/model/cart/controller.dart';
 
 TextEditingController nameBank = TextEditingController();
@@ -324,11 +323,11 @@ class _BankKartyState extends State<BankKarty> {
                             }
                           } else {
                             int re = await toOrder(nameBank.text, telBank.text,
-                                selectedAdresStr.value, 3);
+                                selectedAdresStr.value, 4);
                             if (re == 200) {
                               // ignore: use_build_context_synchronously
-                              Dioo().successOrder(context, cc.cleanCart,
-                                  cc.cartProducts.detail?.loc, cc.quantity);
+                              // Dioo().successOrder(context, cc.cleanCart,
+                              //     cc.cartProducts.detail?.loc, cc.quantity);
                             }
                           }
                         },

@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-String _url =
-    'https://epg.rysgalbank.tm/payments/merchants/173801TSE3751/payment.html?mdOrder=65fc857d-52b4-43b6-b6e3-3a23a4844b2e&language=ru';
 int _index = 0;
 List _inputsId = [
   [
-    'pan-visible',
+    'pan_visible',
     'month-selectized',
     'year-selectized',
     'iTEXT',
@@ -23,7 +21,8 @@ List _inputsId = [
 ];
 
 class OnlinePayment extends StatefulWidget {
-  const OnlinePayment({super.key});
+  final String url;
+  const OnlinePayment({super.key, required this.url});
 
   @override
   State<OnlinePayment> createState() => _OnlinePaymentState();
@@ -34,25 +33,25 @@ class _OnlinePaymentState extends State<OnlinePayment> {
   @override
   void initState() {
     _index = cards[selectedCardBank.value][1];
-    log('$_index');
+    log('$_index - ${widget.url}');
     wc
-      ..loadRequest(Uri.parse(_url))
+      ..loadRequest(Uri.parse(widget.url))
       ..setBackgroundColor(Colors.white)
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(NavigationDelegate(
         onPageFinished: (url) async {
-          //   wc.runJavaScript('''
-          //   document.getElementById(${_inputsId[_index][0]}).value=${cards[selectedCardBank.value][0]};
-          //   document.getElementById(${_inputsId[_index][1]}).value=${cards[selectedCardBank.value][4]};
-          //   document.getElementById(${_inputsId[_index][2]}).value=${cards[selectedCardBank.value][5]};
-          //   document.getElementById(${_inputsId[_index][3]}).value=${cards[selectedCardBank.value][3]};
-          //   document.getElementById(${_inputsId[_index][4]}).value=${cards[selectedCardBank.value][2]};
-          //   document.getElementById(${_inputsId[_index][5]}).click();
-          //   console.log('hello');
-          // ''');
+          wc.runJavaScript('''
+          // document.getElementById('pan_visible').value='1111 1111 1111 1111';
+          document.getElementById('${_inputsId[_index][0]}').value='${cards[selectedCardBank.value][0]}';
+          document.getElementById('${_inputsId[_index][1]}').value='${cards[selectedCardBank.value][4] + 1}';
+          document.getElementById('${_inputsId[_index][2]}').value='${cards[selectedCardBank.value][5]}';
+          document.getElementById('${_inputsId[_index][3]}').value='${cards[selectedCardBank.value][3]}';
+          document.getElementById('${_inputsId[_index][4]}').value='${cards[selectedCardBank.value][2]}';
+          console.log('hello');
+        ''');
           // Future.delayed(const Duration(milliseconds: 500), () {
           //   wc.runJavaScript('''
-          //             // document.getElementsByClassName('submit')[0].click();
+          //   document.getElementById(${_inputsId[_index][5]}).click();
           //             js.postMessage('success);
           //           ''');
           //   wc.reload();

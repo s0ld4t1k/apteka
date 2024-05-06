@@ -101,12 +101,15 @@ class _NewCardState extends State<NewCard> {
                       onChanged: (value) {
                         String s = belgisi.text;
                         if (s.length < 16 + 3 &&
-                            s.length > 3 &&
-                            s[s.length - 1] != ' ' &&
-                            s[s.length - 2] != ' ' &&
-                            s[s.length - 3] != ' ' &&
-                            s[s.length - 4] != ' ') {
-                          s += ' ';
+                            s.length > 4 &&
+                            s[s.length - (1 + 1)] != ' ' &&
+                            s[s.length - (2 + 1)] != ' ' &&
+                            s[s.length - (3 + 1)] != ' ' &&
+                            s[s.length - (4 + 1)] != ' ' &&
+                            s[s.length - 1] != ' ') {
+                          // s += ' ';
+                          s = s.replaceRange(
+                              s.length - 1, s.length, ' ${s[s.length - 1]}');
                         }
                         belgisi.text = s;
                       },
@@ -267,9 +270,11 @@ class _NewCardState extends State<NewCard> {
                             BorderRadius.vertical(top: Radius.circular(20)),
                       ),
                       showDragHandle: true,
+                      useSafeArea: true,
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return ShowCardType();
+                        return const ShowCardType();
                       },
                     ),
                     child: Container(

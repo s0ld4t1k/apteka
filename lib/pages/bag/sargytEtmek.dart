@@ -4,15 +4,19 @@ import 'dart:async';
 
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
+import 'package:apte/pages/bag/addCard.dart';
 import 'package:apte/pages/bag/bankKarty.dart';
 import 'package:apte/pages/bag/nagt.dart';
+import 'package:apte/pages/bag/online_payment.dart';
 import 'package:apte/pages/bag/terminal.dart';
+import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/bag&Card/eltmeCon.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-List paymentSorces = ['halk', 'senagat', 'rysgal', 'tfeb'];
+List paymentSorces = ['rysgal', 'halk', 'senagat', 'tfeb'];
 
 Future<int> toOrder(fullName, phone, address, paymentMethod) async {
   String url = '${baseUrl}order/';
@@ -24,9 +28,16 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
     "payment_method": paymentMethod,
     "is_express": curEltme == 1,
   };
+  if (paymentMethod == 4) {
+    data.addAll(
+        {"payment_source": paymentSorces[cards[selectedCardBank.value][1]]});
+  }
   print(data);
   try {
     var res = await Dioo().dio.post(url, data: data);
+    if (paymentMethod == 4) {
+      Get.to(() => OnlinePayment(url: res.data['detail']['loc'][0]));
+    }
     return res.statusCode ?? 0;
   } catch (e) {
     debugPrint('----order-post----$e');

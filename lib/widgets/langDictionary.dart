@@ -166,8 +166,8 @@ Map<String, Map<String, String>> locale = {
     'passText':
         'Açar söz, 8 simwoldan, ky harpdan, uly harpdan we sandan Guiringdyr!',
     'conErr': 'Birikdiriş säwligi',
-    'try gör': 'Gaýtadan synanyşyň',
-    'retry synanyş': 'Gaýtadan synanyş',
+    'try': 'Gaýtadan synanyşyň',
+    'retry': 'Gaýtadan synanyş',
     'noPro': 'Haryt ýok',
     'noSearch': 'Maglumat ýok',
     'mostsold': 'Köp satylanlar',

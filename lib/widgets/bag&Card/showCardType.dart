@@ -26,8 +26,8 @@ class _ShowCardTypeState extends State<ShowCardType> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
-      height: 321,
-      child: Column(
+      // height: 321,
+      child: Wrap(
         children: [
           Row(
             children: [
@@ -62,9 +62,7 @@ class _ShowCardTypeState extends State<ShowCardType> {
                     children: [
                       Text(
                         cardsType[index],
-                        style: const TextStyle(
-                          fontSize: 16,
-                        ),
+                        style: const TextStyle(fontSize: 16),
                       ),
                       const Spacer(),
                       Container(
@@ -93,7 +91,8 @@ class _ShowCardTypeState extends State<ShowCardType> {
               );
             },
             itemCount: cardsType.length,
-          )
+          ),
+          SizedBox(height: 325)
         ],
       ),
     );
