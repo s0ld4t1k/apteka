@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 RxDouble harytJemi = 0.0.obs;
-RxDouble eltipberme = 15.0.obs;
+RxDouble eltipberme = 25.0.obs;
 List jemiList = [];
 List eltmeList = [];
 void addToCart() {
@@ -36,8 +36,8 @@ class Bag extends StatelessWidget {
       ['${locale[curLN]?["deliveryHyzmat"]}', '$eltipberme TMT'],
     ];
     eltmeList = [
-      ['${locale[curLN]?["delivery1Hour"]}', '15 ${locale[curLN]?["manat"]}'],
-      ['${locale[curLN]?["delivery30min"]}', '25 ${locale[curLN]?["manat"]}'],
+      ['${locale[curLN]?["delivery1Hour"]}', '25 ${locale[curLN]?["manat"]}'],
+      ['${locale[curLN]?["delivery30min"]}', '30 ${locale[curLN]?["manat"]}'],
     ];
     return GetBuilder<CartController>(
       init: CartController(),
@@ -121,9 +121,9 @@ class Bag extends StatelessWidget {
                                                   onTap: () {
                                                     curEltme = index;
                                                     if (index == 1) {
-                                                      eltipberme.value = 25;
+                                                      eltipberme.value = 30;
                                                     } else {
-                                                      eltipberme.value = 15;
+                                                      eltipberme.value = 25;
                                                     }
                                                     jemiList[1][1] =
                                                         '$eltipberme TMT';

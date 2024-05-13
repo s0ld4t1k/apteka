@@ -1,19 +1,15 @@
 // ignore_for_file: file_names, deprecated_member_use
 
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/main/reklam.dart';
+import 'package:apte/widgets/main/harmful.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:share_plus/share_plus.dart';
-var _liked=false;
-class HarmfulInfo extends StatefulWidget {
-  const HarmfulInfo({super.key});
 
-  @override
-  State<HarmfulInfo> createState() => _HarmfulInfoState();
-}
+// var _liked = false;
 
-class _HarmfulInfoState extends State<HarmfulInfo> {
+class HarmfulInfo extends StatelessWidget {
+  final int index;
+  const HarmfulInfo({super.key, required this.index});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,91 +19,65 @@ class _HarmfulInfoState extends State<HarmfulInfo> {
         title: Row(
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => Navigator.pop(context),
               child: const Icon(Icons.chevron_left_rounded),
             ),
-            Expanded(child: Center(child: Text('${locale[curLN]?["harmfullInfo"]}'))),
-            SizedBox(
-              width: 20,
-              height: 20,
-              child: GestureDetector(
-                onTap: () {
-                  Share.share('text');
-                },
-                child: SvgPicture.asset('assets/icons/share.svg')
-              ),
-            ),
-            const SizedBox(width: 22,),
-            SizedBox(
-              width: 20,
-              height: 20,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _liked=!_liked;
-                  });
-                },
-                child: (_liked)?SvgPicture.asset('assets/icons/redHeart.svg')
-                :SvgPicture.asset('assets/icons/heart.svg',color: Colors.black.withOpacity(0.75),)
-              ),
-            ),
+            Expanded(
+                child:
+                    Center(child: Text('${locale[curLN]?["harmfullInfo"]}'))),
+            // SizedBox(
+            //   width: 20,
+            //   height: 20,
+            //   child: GestureDetector(
+            //       onTap: () => Share.share('text'),
+            //       child: SvgPicture.asset('assets/icons/share.svg')),
+            // ),
+            // const SizedBox(width: 22),
+            // SizedBox(
+            //   width: 20,
+            //   height: 20,
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       _liked = !_liked;
+            //       setState(() {});
+            //     },
+            //     child: (_liked)
+            //         ? SvgPicture.asset('assets/icons/redHeart.svg')
+            //         : SvgPicture.asset(
+            //             'assets/icons/heart.svg',
+            //             color: Colors.black.withOpacity(0.75),
+            //           ),
+            //   ),
+            // ),
           ],
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
               child: Container(
-                width: 325,
+                width: double.infinity,
                 height: 157,
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Image.asset('assets/images/harmfulBanner2.png',fit: BoxFit.fill,),
+                child: Image.asset(
+                  harmfulList[index]['img'],
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            const SizedBox(height: 15,),
-            const Text('C witamin näme we onuň saglyga nähili peýdasy bar?',style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),),
-            const SizedBox(height: 10,),
-            const Text('12/12/2023ý',style: TextStyle(
-              fontSize: 12,
-              color: Color.fromRGBO(141, 141, 141, 1),
-            ),),
-            const SizedBox(height: 18,),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Witamin C näme?',style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),),
-                SizedBox(height: 12,),
-                Text('Antioksidant täsiri bar. Demiriň has gowy siňmegine we gematopoeziň kadalaşmagyna kömek edýär. Gan damarlarynyň çeýeligini we kapilýar geçirijiligini ýokarlandyrýar. Merkezi nerw ulgamyna peýdaly täsir edýär.\nAntioksidant täsiri bar. Demiriň has gowy siňmegine we gematopoeziň kadalaşmagyna kömek edýär. \nGan damarlarynyň çeýeligini we kapilýar geçirijiligini ýokarlandyrýar.'),
-                SizedBox(height: 28,),
-                Reklam(photo: 'assets/images/vitaminC.png',),
-                SizedBox(height: 28,),
-                Text('Nähili peýdasy bar?',style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),),
-                SizedBox(height: 12,),
-                Text('Antioksidant täsiri bar. Demiriň has gowy siňmegine we gematopoeziň kadalaşmagyna kömek edýär. Gan damarlarynyň çeýeligini we kapilýar geçirijiligini ýokarlandyrýar. Merkezi nerw ulgamyna peýdaly täsir edýär.\nAntioksidant täsiri bar. Demiriň has gowy siňmegine we gematopoeziň kadalaşmagyna kömek edýär. Gan damarlarynyň çeýeligini we kapilýar geçirijiligini ýokarlandyrýar.'),
-                SizedBox(height: 28,),
-                Reklam(),
-                SizedBox(height: 28,),
-                Text('Antioksidant täsiri bar. Demiriň has gowy siňmegine we gematopoeziň kadalaşmagyna kömek edýär. Gan damarlarynyň çeýeligini we kapilýar geçirijiligini ýokarlandyrýar.'),
-                SizedBox(height: 30,),
-              ],
-            )
+            const SizedBox(height: 15),
+            Text(
+              harmfulList[index]['title'],
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 15),
+            Text(harmfulList[index]['text']),
           ],
         ),
       ),

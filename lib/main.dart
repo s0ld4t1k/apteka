@@ -12,7 +12,6 @@ import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/pages/leading/leading.dart';
-import 'package:apte/pages/main/harmfulInfo.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/pages/main/search.dart';
@@ -123,7 +122,6 @@ class _MyAppState extends State<MyApp> {
         '/reg': (context) => const Registration(),
         '/leading': (context) => const Leading(),
         '/mainPage': (context) => const MainPageWidget(),
-        '/mainPage/harmfulInfo': (context) => const HarmfulInfo(),
         '/mainPage/search': (context) => const Searck(),
         '/mainPage/searchPage': (context) => const SearchPage(),
         '/kategory': (context) => Kategory(),

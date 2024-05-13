@@ -6,6 +6,7 @@ import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -53,6 +54,7 @@ class Dioo {
   }
 
   void comingSoon() {
+    HapticFeedback.heavyImpact();
     Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -69,6 +71,7 @@ class Dioo {
   }
 
   void logOut() {
+    HapticFeedback.heavyImpact();
     Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -101,6 +104,7 @@ class Dioo {
   }
 
   void loginDialog() {
+    HapticFeedback.heavyImpact();
     Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(
