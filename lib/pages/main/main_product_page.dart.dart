@@ -226,7 +226,20 @@ class MainProductsPage extends StatelessWidget {
                                             '',
                                         errorBuilder:
                                             (context, error, stackTrace) =>
-                                                const Text('err'),
+                                                Image.asset(
+                                          'assets/images/err.png',
+                                          scale: 3,
+                                        ),
+                                        loadingBuilder:
+                                            (context, child, loadingProgress) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+                                          return Image.asset(
+                                            'assets/images/err.png',
+                                            scale: 3,
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),

@@ -14,7 +14,7 @@ import 'package:hive/hive.dart';
 RxInt selectedCardBank = (-1).obs;
 
 class AddCard extends StatefulWidget {
-  AddCard({super.key});
+  const AddCard({super.key});
 
   @override
   State<AddCard> createState() => _AddCardState();
@@ -151,8 +151,8 @@ class _AddCardState extends State<AddCard> {
                             padding: MaterialStateProperty.all(
                                 const EdgeInsets.all(0))),
                         onPressed: () {
-                          print('hiihiiiiiii');
-                          Get.to(() => NewCard(index: -1));
+                          // print('hiihiiiiiii');
+                          Get.to(() => const NewCard(index: -1));
                         },
                         child: Text(
                           '+ ${locale[curLN]?['addNewCard']}',

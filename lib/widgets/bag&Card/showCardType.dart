@@ -92,7 +92,7 @@ class _ShowCardTypeState extends State<ShowCardType> {
             },
             itemCount: cardsType.length,
           ),
-          SizedBox(height: 325)
+          const SizedBox(height: 325)
         ],
       ),
     );

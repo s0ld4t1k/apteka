@@ -88,7 +88,7 @@ class Kard extends StatelessWidget {
                                 )),
                               ),
                               onPressed: () {
-                                Get.to(() => NewCard(index: -1));
+                                Get.to(() => const NewCard(index: -1));
                               },
                               child: Text(
                                 '${locale[curLN]?['addCard']}',
@@ -196,7 +196,7 @@ class Kard extends StatelessWidget {
                 ? null
                 : FloatingActionButton(
                     elevation: 0,
-                    onPressed: () => Get.to(() => NewCard(index: -1)),
+                    onPressed: () => Get.to(() => const NewCard(index: -1)),
                     backgroundColor: orange,
                     child: const Icon(
                       Icons.add,

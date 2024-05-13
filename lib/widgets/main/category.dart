@@ -61,15 +61,29 @@ class MainCategory extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Container(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Image.network(
-                                          cc.categories.detail?.loc?[index]
-                                                  .imgUrl ??
-                                              '',
-                                          errorBuilder:
-                                              (context, error, stackTrace) =>
-                                                  const Text('err'),
-                                        )),
+                                      padding: const EdgeInsets.all(10),
+                                      child: Image.network(
+                                        cc.categories.detail?.loc?[index]
+                                                .imgUrl ??
+                                            '',
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/err.png',
+                                          scale: 3,
+                                        ),
+                                        loadingBuilder:
+                                            (context, child, loadingProgress) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+                                          return Image.asset(
+                                            'assets/images/err.png',
+                                            scale: 3,
+                                          );
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 5),

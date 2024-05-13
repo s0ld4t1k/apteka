@@ -44,7 +44,8 @@ Future<int> logIN(UserModel user) async {
 Future<void> register(UserModel userr, int otp) async {
   String url = 'http://216.250.11.197:8000/api/v2/register/';
   try {
-    print('${userr.sid} $otp ${userr.phone} ${userr.password} ${userr.name}');
+    debugPrint(
+        '${userr.sid} $otp ${userr.phone} ${userr.password} ${userr.name}');
     var res = await Dio().post(
       url,
       data: {
@@ -84,7 +85,7 @@ Future<void> register(UserModel userr, int otp) async {
 }
 
 Future<String?> resetPassword(UserModel user, int code) async {
-  print('${user.sid} ${code} ${user.phone} ${user.password}');
+  debugPrint('${user.sid} $code ${user.phone} ${user.password}');
   try {
     String url = '${baseUrl}reset_password/';
     var res = await Dioo().dio.post(url, data: {

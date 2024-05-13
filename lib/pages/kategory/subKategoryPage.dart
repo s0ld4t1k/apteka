@@ -26,7 +26,7 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
   @override
   void initState() {
     _scont.addListener(() {
-      print('maxxxxxxx');
+      debugPrint('maxxxxxxx');
       if (_scont.position.pixels == _scont.position.maxScrollExtent) {
         widget.incPage;
       }

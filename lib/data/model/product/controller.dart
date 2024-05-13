@@ -20,7 +20,8 @@ class ProductController extends GetxController {
   RxBool isload = true.obs;
   ProductModel product = ProductModel();
   void get() async {
-    print(baseUrl + productUrl.value.substring(1, productUrl.value.length));
+    debugPrint(
+        baseUrl + productUrl.value.substring(1, productUrl.value.length));
     try {
       var res = await Dioo().dio.get(
           baseUrl + productUrl.value.substring(1, productUrl.value.length));

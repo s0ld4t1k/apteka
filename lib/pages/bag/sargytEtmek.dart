@@ -32,7 +32,7 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
     data.addAll(
         {"payment_source": paymentSorces[cards[selectedCardBank.value][1]]});
   }
-  print(data);
+  debugPrint(data.toString());
   try {
     var res = await Dioo().dio.post(url, data: data);
     if (paymentMethod == 4) {

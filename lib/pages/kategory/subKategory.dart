@@ -15,8 +15,8 @@ class SubKategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('${cc.st.selectedCategory}');
-    print('${cc.st.categorySlug}');
+    debugPrint('${cc.st.selectedCategory}');
+    debugPrint(cc.st.categorySlug);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

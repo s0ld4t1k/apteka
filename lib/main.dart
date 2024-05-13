@@ -60,7 +60,8 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       builder: (context, child) {
         return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(1.0)),
             child: child!);
       },
       theme: ThemeData(
@@ -124,7 +125,7 @@ class _MyAppState extends State<MyApp> {
         '/mainPage': (context) => const MainPageWidget(),
         '/mainPage/search': (context) => const Searck(),
         '/mainPage/searchPage': (context) => const SearchPage(),
-        '/kategory': (context) => Kategory(),
+        '/kategory': (context) => const Kategory(),
         '/kategory/subKategory': (context) => SubKategory(),
         '/bag': (context) => const Bag(),
         '/bag/sargytEtmek': (context) => const SargytEtmek(),

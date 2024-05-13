@@ -51,8 +51,17 @@ class _BagItemState extends State<BagItem> {
                   widget.cc.cartProducts.detail?.loc?[widget.index].image
                           ?.imgUrl ??
                       '',
-                  errorBuilder: (context, error, stackTrace) =>
-                      const Text('err'),
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    'assets/images/err.png',
+                    scale: 3,
+                  ),
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Image.asset(
+                      'assets/images/err.png',
+                      scale: 3,
+                    );
+                  },
                 ),
               ),
               Expanded(

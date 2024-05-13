@@ -58,7 +58,7 @@ class ResetPassword extends StatelessWidget {
                     user.sid = 0;
                     user.password = 'Aman1234';
                     String msg = await resetPassword(user, 0) ?? '';
-                    print(msg);
+                    debugPrint(msg);
                     if (msg != 'no_user') {
                       log('---resetPWD--rg--success----');
                       await sendSMS(user);

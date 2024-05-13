@@ -89,8 +89,8 @@ class Kategory extends StatelessWidget {
                               cc.st.categorySlug = cc.categories.detail
                                       ?.loc?[cc.st.selectedCategory].slug ??
                                   '';
-                              print('${cc.st.selectedCategory}');
-                              print('${cc.st.categorySlug}');
+                              debugPrint('${cc.st.selectedCategory}');
+                              debugPrint(cc.st.categorySlug);
                               cc.update();
                               Navigator.of(context)
                                   .pushNamed('/kategory/subKategory');
@@ -146,7 +146,20 @@ class Kategory extends StatelessWidget {
                                             '',
                                         errorBuilder:
                                             (context, error, stackTrace) =>
-                                                const Text('err'),
+                                                Image.asset(
+                                          'assets/images/err.png',
+                                          scale: 3,
+                                        ),
+                                        loadingBuilder:
+                                            (context, child, loadingProgress) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+                                          return Image.asset(
+                                            'assets/images/err.png',
+                                            scale: 3,
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),

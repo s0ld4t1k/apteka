@@ -26,7 +26,7 @@ List bottomAppBarList = [
 ];
 List _tabs = [
   const MainPageWidget(),
-  Kategory(),
+  const Kategory(),
   const Bag(),
   const Kard(),
   const Profile(),
