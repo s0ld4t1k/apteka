@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import '../../data/model/category/controller.dart';
 
 class SubKategory extends StatelessWidget {
-  final CategoryController cc = Get.find();
+  final cc = Get.put(CategoryController());
   SubKategory({super.key});
 
   @override

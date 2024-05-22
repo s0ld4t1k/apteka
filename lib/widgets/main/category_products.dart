@@ -24,7 +24,7 @@ class CategoryProducts extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 162,
+                  maxCrossAxisExtent: 200,
                   mainAxisExtent: 220,
                   mainAxisSpacing: 18,
                   crossAxisSpacing: 21,

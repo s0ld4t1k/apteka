@@ -2,14 +2,7 @@
 
 import 'package:apte/controller/my_controller.dart';
 import 'package:apte/data/dio.dart';
-import 'package:apte/pages/bag/addAdres.dart';
-import 'package:apte/pages/bag/addCard.dart';
-import 'package:apte/pages/bag/sargytEtmek.dart';
-import 'package:apte/pages/kard/kard.dart';
-import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/registration/sign_in.dart';
-import 'package:apte/widgets/bag&Card/showCardType.dart';
-import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +27,7 @@ class _BankKartyState extends State<BankKarty> {
   TextEditingController comBank = TextEditingController();
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1), () => Dioo().comingSoon());
+    Future.delayed(const Duration(seconds: 1), () => Dioo().comingSoon());
     super.initState();
   }
 

@@ -17,7 +17,7 @@ class Kategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.delete<CategoryController>();
+    // Get.delete<CategoryController>();
     return GetBuilder<CategoryController>(
         init: CategoryController(),
         builder: (cc) {
@@ -77,7 +77,7 @@ class Kategory extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 111,
+                          maxCrossAxisExtent: 130,
                           mainAxisExtent: 145,
                           crossAxisSpacing: 12,
                           mainAxisSpacing: 20,

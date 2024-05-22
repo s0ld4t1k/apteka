@@ -162,7 +162,7 @@ class MainPageWidget extends StatelessWidget {
                                 ),
                               ),
                               options: CarouselOptions(
-                                viewportFraction: 0.85,
+                                viewportFraction: 0.8,
                                 height: 150,
                                 autoPlay: true,
                                 enableInfiniteScroll: false,

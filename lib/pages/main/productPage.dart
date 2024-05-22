@@ -103,37 +103,43 @@ class ProductPage extends StatelessWidget {
                   SizedBox(
                     width: 20,
                     height: 20,
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (Dioo().checkToken()) {
-                          final uc = Get.put(UserController());
-                          String url = '${baseUrl}user/whishlists/';
-                          try {
-                            await Dioo().dio.post(url,
-                                data: {'id': pc.product.detail?.loc?[0].id});
-                            for (var i = 0;
-                                i < (uc.whishlists.detail?.loc?.length ?? 0);
-                                i++) {
-                              if (uc.whishlists.detail?.loc?[i].id ==
-                                  pc.product.detail?.loc?[0].id) {
-                                uc.whishlists.detail?.loc?.removeAt(i);
+                    child: GetBuilder<UserController>(
+                        init: UserController(),
+                        builder: (uc) {
+                          return GestureDetector(
+                            onTap: () async {
+                              if (Dioo().checkToken()) {
+                                String url = '${baseUrl}user/whishlists/';
+                                try {
+                                  await Dioo().dio.post(url, data: {
+                                    'id': pc.product.detail?.loc?[0].id
+                                  });
+                                  for (var i = 0;
+                                      i <
+                                          (uc.whishlists.detail?.loc?.length ??
+                                              0);
+                                      i++) {
+                                    if (uc.whishlists.detail?.loc?[i].id ==
+                                        pc.product.detail?.loc?[0].id) {
+                                      uc.whishlists.detail?.loc?.removeAt(i);
+                                    }
+                                  }
+                                  uc.update();
+                                } catch (e) {
+                                  debugPrint('$e');
+                                }
+                                pc.like = !pc.like;
+                                pc.update();
                               }
-                            }
-                            uc.update();
-                          } catch (e) {
-                            debugPrint('$e');
-                          }
-                          pc.like = !pc.like;
-                          pc.update();
-                        }
-                      },
-                      child: pc.like
-                          ? SvgPicture.asset('assets/icons/redHeart.svg')
-                          : SvgPicture.asset(
-                              'assets/icons/heart.svg',
-                              color: Colors.black.withOpacity(0.75),
-                            ),
-                    ),
+                            },
+                            child: pc.like
+                                ? SvgPicture.asset('assets/icons/redHeart.svg')
+                                : SvgPicture.asset(
+                                    'assets/icons/heart.svg',
+                                    color: Colors.black.withOpacity(0.75),
+                                  ),
+                          );
+                        }),
                   ),
                 ],
               ),
