@@ -10,7 +10,6 @@ import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
-import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/pages/leading/leading.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
@@ -126,7 +125,6 @@ class _MyAppState extends State<MyApp> {
         '/mainPage/search': (context) => const Searck(),
         '/mainPage/searchPage': (context) => const SearchPage(),
         '/kategory': (context) => const Kategory(),
-        '/kategory/subKategory': (context) => SubKategory(),
         '/bag': (context) => const Bag(),
         '/bag/sargytEtmek': (context) => const SargytEtmek(),
         '/bag/salgym': (context) => const NewAdres(),

@@ -1,9 +1,13 @@
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/category/controller.dart';
+import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+
+import '../colors.dart';
 
 class MainCategory extends StatelessWidget {
   const MainCategory({super.key});
@@ -18,13 +22,30 @@ class MainCategory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: const EdgeInsets.only(left: 25),
-                child: Text(
-                  locale[curLN]?['mainCategory'] ?? '',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                padding: const EdgeInsets.only(left: 25, right: 15),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        locale[curLN]?['mainCategory'] ?? '',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => Get.to(() => const Kategory()),
+                      child: Text(
+                        '${locale[curLN]?["seeAll"]}',
+                        style: const TextStyle(
+                          color: green,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               const SizedBox(height: 15),
@@ -47,7 +68,9 @@ class MainCategory extends StatelessWidget {
                               cc.st.categorySlug = cc.categories.detail
                                       ?.loc?[cc.st.selectedCategory].slug ??
                                   '';
-                              Get.to(() => SubKategory());
+                              Get.to(() => SubKategory(
+                                    selectedCategory: cc.st.selectedCategory,
+                                  ));
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

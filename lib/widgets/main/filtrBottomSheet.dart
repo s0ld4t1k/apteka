@@ -17,6 +17,29 @@ List filtrList = [
     ['Erkek', 'Aýal', 'Çaga', 'Bäbek'],
   ],
 ];
+void filtr(url2, change, ontap) {
+  if (_selectedFiltr[1] >= 0) {
+    url2 += '&type=${_selectedFiltr[1] + 1}';
+  } else {
+    int i = url2.indexOf('&type=');
+    if (i >= 0) {
+      url2 = url2.replaceRange(i, i + 7, '');
+    }
+  }
+  if (_selectedFiltr[0] >= 0) {
+    url2 += '&volume_type=${volumeType[_selectedFiltr[0]]}';
+  } else {
+    String s = url2.split('').reversed.join();
+    int j = s.indexOf('&');
+    int i = url2.indexOf('&volume_type');
+    if (j <= i) j = url2.length;
+    if (i >= 0 && j >= 0) {
+      url2 = url2.replaceRange(i, j, '');
+    }
+  }
+  change(url2);
+  ontap(url2);
+}
 
 // ignore: must_be_immutable
 class FiltrBottomSheet extends StatefulWidget {
@@ -154,28 +177,7 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                     ),
                   ),
                   onPressed: () {
-                    if (_selectedFiltr[1] >= 0) {
-                      widget.url2 += '&type=${_selectedFiltr[1] + 1}';
-                    } else {
-                      int i = widget.url2.indexOf('&type=');
-                      if (i >= 0) {
-                        widget.url2 = widget.url2.replaceRange(i, i + 7, '');
-                      }
-                    }
-                    if (_selectedFiltr[0] >= 0) {
-                      widget.url2 +=
-                          '&volume_type=${volumeType[_selectedFiltr[0]]}';
-                    } else {
-                      String s = widget.url2.split('').reversed.join();
-                      int j = s.indexOf('&');
-                      int i = widget.url2.indexOf('&volume_type');
-                      if (j <= i) j = widget.url2.length;
-                      if (i >= 0 && j >= 0) {
-                        widget.url2 = widget.url2.replaceRange(i, j, '');
-                      }
-                    }
-                    widget.change(widget.url2);
-                    widget.ontap(widget.url2);
+                    filtr(widget.url2, widget.change, widget.ontap);
                     Get.back();
                   },
                   child: Text(

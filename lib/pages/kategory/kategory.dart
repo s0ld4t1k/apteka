@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:apte/data/dio.dart';
+import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/pages/main/mainPage.dart';
 import 'package:apte/pages/main/search.dart';
 import 'package:apte/widgets/circul.dart';
@@ -26,7 +27,7 @@ class Kategory extends StatelessWidget {
             child: Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                automaticallyImplyLeading: false,
+                // automaticallyImplyLeading: false,
                 title: Text('${locale[curLN]?["category"]}'),
               ),
               body: SingleChildScrollView(
@@ -92,8 +93,8 @@ class Kategory extends StatelessWidget {
                               debugPrint('${cc.st.selectedCategory}');
                               debugPrint(cc.st.categorySlug);
                               cc.update();
-                              Navigator.of(context)
-                                  .pushNamed('/kategory/subKategory');
+                              Get.to(() => SubKategory(
+                                  selectedCategory: cc.st.selectedCategory));
                             },
                             child: SizedBox(
                               height: 145,

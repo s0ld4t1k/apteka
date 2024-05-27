@@ -377,8 +377,8 @@ class ProductPage extends StatelessWidget {
                                         const Color.fromRGBO(253, 253, 253, 1),
                                     child: NewProducts(
                                       text: locale[curLN]?['mostsold'] ?? '',
-                                      prs: prs.mostsoldProducts,
-                                      url: prs.url2,
+                                      prs: prs.st.mostsoldProducts,
+                                      url: prs.st.url2,
                                       type: 2,
                                       ontap: prs.getMostsoldProducts,
                                     ),

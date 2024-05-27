@@ -53,7 +53,7 @@ class SargytEtmek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -114,15 +114,19 @@ class SargytEtmek extends StatelessWidget {
                                 textAlign: TextAlign.center),
                             Text(locale[curLN]!['terminal']!,
                                 textAlign: TextAlign.center),
-                            Text('${locale[curLN]?['bankKarty']}',
-                                textAlign: TextAlign.center),
+                            // Text('${locale[curLN]?['bankKarty']}',
+                            //     textAlign: TextAlign.center),
                           ]),
                     ),
                   ],
                 ),
               ),
               const Expanded(
-                child: TabBarView(children: [Nagt(), Terminal(), BankKarty()]),
+                child: TabBarView(children: [
+                  Nagt(),
+                  Terminal(),
+                  // BankKarty(),
+                ]),
               ),
             ],
           ),

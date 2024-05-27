@@ -10,15 +10,15 @@ class CategoryState {
   int page = 1;
   String categorySlug = '';
   String subcategorySlug = '';
-  int selectedCategory = 0;
-  int selectedSubategory = 0;
+  int selectedCategory = -1;
+  int selectedSubategory = -1;
 }
 
 class CategoryController extends GetxController {
-  late CategoryState st;
+  CategoryState st = CategoryState();
   @override
   void onInit() {
-    st = CategoryState();
+    // st = CategoryState();
     get();
     super.onInit();
   }

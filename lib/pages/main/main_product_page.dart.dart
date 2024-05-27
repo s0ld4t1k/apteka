@@ -15,7 +15,7 @@ import '../../data/model/products/controller.dart';
 import '../../data/model/products/products.dart';
 import '../../widgets/colors.dart';
 
-class MainProductsPage extends StatelessWidget {
+class MainProductsPage extends StatefulWidget {
   final String text;
   final int type;
   MainProductsModel prm;
@@ -28,19 +28,37 @@ class MainProductsPage extends StatelessWidget {
       required this.ontap,
       required this.irl,
       required this.type});
+
+  @override
+  State<MainProductsPage> createState() => _MainProductsPageState();
+}
+
+class _MainProductsPageState extends State<MainProductsPage> {
+  final pc = Get.put(ProductsController());
+  @override
+  void dispose() {
+    pc.st.url1 = pc.st.url4;
+    pc.st.url2 = pc.st.url5;
+    pc.st.url3 = pc.st.url6;
+    if (widget.type == 1) widget.ontap(pc.st.url1);
+    if (widget.type == 2) widget.ontap(pc.st.url2);
+    if (widget.type == 3) widget.ontap(pc.st.url3);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductsController>(
       init: ProductsController(),
       builder: (pc) {
-        if (type == 1) {
-          prm = pc.newProducts;
+        if (widget.type == 1) {
+          widget.prm = pc.st.newProducts;
         }
-        if (type == 2) {
-          prm = pc.mostsoldProducts;
+        if (widget.type == 2) {
+          widget.prm = pc.st.mostsoldProducts;
         }
-        if (type == 3) {
-          prm = pc.recommendedProducts;
+        if (widget.type == 3) {
+          widget.prm = pc.st.recommendedProducts;
         }
         return Scaffold(
           backgroundColor: Colors.white,
@@ -56,7 +74,7 @@ class MainProductsPage extends StatelessWidget {
                 ),
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.chevron_left_rounded)),
-            title: Text(text),
+            title: Text(widget.text),
           ),
           body: SingleChildScrollView(
             controller: contrl,
@@ -96,8 +114,8 @@ class MainProductsPage extends StatelessWidget {
                             context: context,
                             builder: (context) {
                               return TertipleBottomSheet(
-                                ontap: ontap,
-                                url2: irl,
+                                ontap: widget.ontap,
+                                url2: widget.irl,
                                 change: pc,
                               );
                             },
@@ -150,8 +168,8 @@ class MainProductsPage extends StatelessWidget {
                             context: context,
                             builder: (context) {
                               return FiltrBottomSheet(
-                                ontap: ontap,
-                                url2: irl,
+                                ontap: widget.ontap,
+                                url2: widget.irl,
                                 change: pc.change,
                               );
                             },
@@ -187,13 +205,14 @@ class MainProductsPage extends StatelessWidget {
                     crossAxisSpacing: 21,
                   ),
                   children: List.generate(
-                    prm.detail?.loc?[0].products?.length ?? 0,
+                    widget.prm.detail?.loc?[0].products?.length ?? 0,
                     (index) {
                       RxBool isAdd = false.obs;
-                      getCart(prm.detail?.loc?[0].products?[index].id, isAdd);
+                      getCart(widget.prm.detail?.loc?[0].products?[index].id,
+                          isAdd);
                       return GestureDetector(
                         onTap: () => Get.to(() => ProductPage(
-                            url: prm.detail?.loc?[0].products?[index]
+                            url: widget.prm.detail?.loc?[0].products?[index]
                                     .absoluteUrl ??
                                 '')),
                         child: Container(
@@ -221,8 +240,13 @@ class MainProductsPage extends StatelessWidget {
                                       alignment: Alignment.center,
                                       padding: const EdgeInsets.all(16),
                                       child: Image.network(
-                                        prm.detail?.loc?[0].products?[index]
-                                                .image?.imgUrl ??
+                                        widget
+                                                .prm
+                                                .detail
+                                                ?.loc?[0]
+                                                .products?[index]
+                                                .image
+                                                ?.imgUrl ??
                                             '',
                                         errorBuilder:
                                             (context, error, stackTrace) =>
@@ -244,7 +268,7 @@ class MainProductsPage extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    Dioo.getTitle(prm.detail?.loc?[0]
+                                    Dioo.getTitle(widget.prm.detail?.loc?[0]
                                         .products?[index].title),
                                     style: const TextStyle(
                                       fontSize: 14,
@@ -255,7 +279,7 @@ class MainProductsPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 18),
                                   Text(
-                                    '${prm.detail?.loc?[0].products?[index].price?.price} TMT',
+                                    '${widget.prm.detail?.loc?[0].products?[index].price?.price} TMT',
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700,
@@ -272,11 +296,11 @@ class MainProductsPage extends StatelessWidget {
                                   onTap: () {
                                     if (Dioo().checkToken()) {
                                       addCart(
-                                          prm.detail?.loc?[0].products?[index]
-                                              .id,
+                                          widget.prm.detail?.loc?[0]
+                                              .products?[index].id,
                                           isAdd,
-                                          prm.detail?.loc?[0].products?[index]
-                                              .price?.price);
+                                          widget.prm.detail?.loc?[0]
+                                              .products?[index].price?.price);
                                     }
                                   },
                                   child: Container(

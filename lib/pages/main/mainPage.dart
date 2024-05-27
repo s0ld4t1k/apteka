@@ -19,16 +19,16 @@ ScrollController contrl = ScrollController();
 var selectedTab = 0;
 List bottomAppBarList = [
   'assets/icons/home.svg',
-  'assets/icons/category.svg',
+  // 'assets/icons/category.svg',
   'assets/icons/bag.svg',
-  'assets/icons/card.svg',
+  // 'assets/icons/card.svg',
   'assets/icons/profile.svg',
 ];
 List _tabs = [
   const MainPageWidget(),
-  const Kategory(),
+  // const Kategory(),
   const Bag(),
-  const Kard(),
+  // const Kard(),
   const Profile(),
 ];
 
@@ -61,74 +61,92 @@ class _MainPageState extends State<MainPage> {
           }),
       bottomNavigationBar: BottomAppBar(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(
             bottomAppBarList.length,
-            (index) => (index == 2)
-                ? GestureDetector(
-                    onTap: () {
-                      if (Dioo().checkToken()) {
-                        setState(() {
-                          if (selectedTab == index) {
-                            contrl.animateTo(0,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.linear);
-                          }
-                          selectedTab = index;
-                        });
-                      }
-                    },
-                    child: Obx(() => Badge(
-                          label: Text('${harytJemi.value + eltipberme.value}'),
-                          isLabelVisible: harytJemi.value > 0,
-                          backgroundColor: red,
-                          child: Container(
-                            width: 52,
-                            height: 52,
-                            decoration: BoxDecoration(
-                              color: green,
-                              borderRadius: BorderRadius.circular(52),
+            (index) => (index == 1)
+                ? Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        if (Dioo().checkToken()) {
+                          setState(() {
+                            if (selectedTab == index) {
+                              contrl.animateTo(0,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.linear);
+                            }
+                            selectedTab = index;
+                          });
+                        }
+                      },
+                      child: Obx(() => Container(
+                            alignment: Alignment.center,
+                            child: Badge(
+                              label:
+                                  Text('${harytJemi.value + eltipberme.value}'),
+                              isLabelVisible: harytJemi.value > 0,
+                              backgroundColor: red,
+                              child: Container(
+                                width: 52,
+                                height: 52,
+                                decoration: BoxDecoration(
+                                  color: green,
+                                  borderRadius: BorderRadius.circular(52),
+                                ),
+                                child: Center(
+                                    child: SizedBox(
+                                        width: 22,
+                                        height: 22,
+                                        child: SvgPicture.asset(
+                                            bottomAppBarList[index]))),
+                              ),
                             ),
-                            child: Center(
-                                child: SizedBox(
-                                    width: 22,
-                                    height: 22,
-                                    child: SvgPicture.asset(
-                                        bottomAppBarList[index]))),
-                          ),
-                        )),
+                          )),
+                    ),
                   )
-                : IconButton(
-                    padding: const EdgeInsets.all(0),
-                    onPressed: () {
-                      if (index == 4 && Dioo().checkToken()) {
-                        setState(() {
-                          if (selectedTab == index) {
-                            contrl.animateTo(0,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.linear);
-                          }
-                          selectedTab = index;
-                        });
-                      } else if (index == 3) {
-                        Dioo().comingSoon();
-                      } else if (index < 4) {
-                        setState(() {
-                          if (selectedTab == index) {
-                            contrl.animateTo(0,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.linear);
-                          }
-                          selectedTab = index;
-                        });
-                      }
-                    },
-                    icon: SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: SvgPicture.asset(
-                        bottomAppBarList[index],
-                        color: (selectedTab == index) ? green : tabIconGrey,
+                : Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        // if (index == 4 && Dioo().checkToken()) {
+                        //   setState(() {
+                        //     if (selectedTab == index) {
+                        //       contrl.animateTo(0,
+                        //           duration: const Duration(milliseconds: 300),
+                        //           curve: Curves.linear);
+                        //     }
+                        //     selectedTab = index;
+                        //   });
+                        // }
+                        if (index == 2 && Dioo().checkToken()) {
+                          setState(() {
+                            if (selectedTab == index) {
+                              contrl.animateTo(0,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.linear);
+                            }
+                            selectedTab = index;
+                          });
+                          // Dioo().comingSoon();
+                        } else if (index < 4) {
+                          setState(() {
+                            if (selectedTab == index) {
+                              contrl.animateTo(0,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.linear);
+                            }
+                            selectedTab = index;
+                          });
+                        }
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: SvgPicture.asset(
+                            bottomAppBarList[index],
+                            color: (selectedTab == index) ? green : tabIconGrey,
+                          ),
+                        ),
                       ),
                     ),
                   ),
