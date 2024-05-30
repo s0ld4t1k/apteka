@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/pages/bag/addCard.dart';
-import 'package:apte/pages/bag/bankKarty.dart';
 import 'package:apte/pages/bag/nagt.dart';
 import 'package:apte/pages/bag/online_payment.dart';
 import 'package:apte/pages/bag/terminal.dart';

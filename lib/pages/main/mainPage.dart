@@ -5,8 +5,6 @@ import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
-import 'package:apte/pages/kard/kard.dart';
-import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/widgets/colors.dart';
@@ -126,7 +124,8 @@ class _MainPageState extends State<MainPage> {
                             selectedTab = index;
                           });
                           // Dioo().comingSoon();
-                        } else if (index < 4) {
+                        }
+                        if (index < 1) {
                           setState(() {
                             if (selectedTab == index) {
                               contrl.animateTo(0,
