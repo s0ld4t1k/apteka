@@ -4,7 +4,6 @@ import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/kategory/subKategory.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../colors.dart';
