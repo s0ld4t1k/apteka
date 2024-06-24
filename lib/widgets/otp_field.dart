@@ -10,7 +10,8 @@ FocusNode fc5 = FocusNode();
 RxString s = ''.obs;
 
 class OtpField extends StatelessWidget {
-  const OtpField({super.key});
+  final dynamic func;
+  const OtpField({super.key, required this.func});
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +188,7 @@ class OtpField extends StatelessWidget {
               onChanged: (value) {
                 s.value += value;
                 FocusScope.of(context).requestFocus(FocusNode());
+                func();
               },
               decoration: const InputDecoration(
                 counterText: '',

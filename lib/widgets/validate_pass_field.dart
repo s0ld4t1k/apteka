@@ -6,12 +6,13 @@ import 'package:get/state_manager.dart';
 
 import 'langDictionary.dart';
 
-class PasswordField extends StatelessWidget {
-  final bool text;
+RxBool passerr = false.obs;
+
+class ValidatePasswordField extends StatelessWidget {
   final String title;
   final TextEditingController pass;
-  const PasswordField(
-      {super.key, required this.title, required this.pass, this.text = true});
+  const ValidatePasswordField(
+      {super.key, required this.title, required this.pass});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,17 @@ class PasswordField extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     textInputAction: TextInputAction.go,
-                    onChanged: (value) => user.password = pass.text,
+                    onChanged: (value) {
+                      if (!value.contains(RegExp(r'[A-Z]')) ||
+                          !value.contains(RegExp(r'[0-9]')) ||
+                          !value.contains(RegExp(r'[a-z]')) ||
+                          value.length < 8) {
+                        passerr.value = true;
+                      } else {
+                        passerr.value = false;
+                      }
+                      user.password = pass.text;
+                    },
                     onSubmitted: (value) => logg(),
                     obscureText: obsec.value,
                     controller: pass,
@@ -65,11 +76,10 @@ class PasswordField extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          if (text)
-            Text(
-              locale[curLN]?['passText'] ?? '',
-              style: const TextStyle(color: Colors.grey),
-            )
+          Text(
+            locale[curLN]?['passText'] ?? '',
+            style: TextStyle(color: passerr.value ? Colors.red : Colors.grey),
+          )
         ],
       );
     });

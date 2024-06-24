@@ -6,8 +6,10 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:apte/widgets/name_field.dart';
 import 'package:apte/widgets/password_field.dart';
 import 'package:apte/widgets/tel_num_field.dart';
+import 'package:apte/widgets/validate_pass_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 import '../../widgets/otp_field.dart';
 
@@ -46,39 +48,49 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 20),
                 TelNumField(tel: siTel),
                 const SizedBox(height: 20),
-                PasswordField(title: locale[curLN]!['password']!, pass: siPass),
+                ValidatePasswordField(
+                    title: locale[curLN]!['password']!, pass: siPass),
                 const SizedBox(height: 20),
                 PasswordField(
-                    title: locale[curLN]!['confirmPassword']!, pass: siPass2),
+                  title: locale[curLN]!['confirmPassword']!,
+                  pass: siPass2,
+                  text: false,
+                ),
                 const SizedBox(height: 30),
-                ElevatedButton(
-                  style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
-                          const Size(double.infinity, 50))),
-                  onPressed: () async {
-                    if (siPass.text == siPass2.text) {
-                      user = UserModel(
-                        name: siName.text,
-                        phone: siTel.text,
-                        password: siPass.text,
-                      );
-                      await sendSMS(user);
-                      if (user.sid != null) {
-                        Get.to(() => OTP(
-                            userr: user,
-                            ontap: () {
-                              register(user, int.parse(s.value));
-                            }));
-                      }
-                    } else {
-                      Get.snackbar(
-                        locale[curLN]!['passwordError2']!,
-                        locale[curLN]!['passwordError']!,
-                      );
-                    }
-                  },
-                  child: Text(locale[curLN]!['ulgamaGir']!),
-                )
+                Obx(() {
+                  return ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(
+                            const Size(double.infinity, 50)),
+                        backgroundColor: MaterialStateProperty.all(
+                            passerr.value ? conGrey : green)),
+                    onPressed: passerr.value
+                        ? null
+                        : () async {
+                            if (siPass.text == siPass2.text) {
+                              user = UserModel(
+                                name: siName.text,
+                                phone: siTel.text,
+                                password: siPass.text,
+                              );
+                              await sendSMS(user);
+                              if (user.sid != null) {
+                                Get.to(() => OTP(
+                                    userr: user,
+                                    ontap: () {
+                                      register(user, int.parse(s.value));
+                                    }));
+                              }
+                            } else {
+                              Get.snackbar(
+                                locale[curLN]!['passwordError2']!,
+                                locale[curLN]!['passwordError']!,
+                              );
+                            }
+                          },
+                    child: Text(locale[curLN]!['ulgamaGir']!),
+                  );
+                })
               ],
             ),
           ),

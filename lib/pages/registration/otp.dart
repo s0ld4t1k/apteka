@@ -42,7 +42,7 @@ class OTP extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                const OtpField(),
+                OtpField(func: ontap),
                 const SizedBox(height: 30),
                 Obx(() {
                   return ElevatedButton(
