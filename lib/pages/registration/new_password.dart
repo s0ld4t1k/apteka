@@ -2,7 +2,6 @@ import 'package:apte/data/api/register.dart';
 import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,11 +51,11 @@ class NewPassword extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
+                      minimumSize: WidgetStateProperty.all(
                           const Size(double.infinity, 50))),
                   onPressed: () async {
                     if (npPass.text == npPass2.text) {
-                      resetPassword(user, int.parse(s.value));
+                      resetPassword(user, int.parse(otp.value));
                       Get.to(() => const Registration());
                     }
                   },

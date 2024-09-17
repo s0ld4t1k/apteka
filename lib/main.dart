@@ -6,7 +6,8 @@ import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
-import 'package:apte/pages/registration/registration.dart';
+import 'package:apte/pages/registration/otp.dart';
+import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
@@ -23,6 +24,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'data/api/register.dart';
 
 var langg = '';
 var tokenn = '';
@@ -74,13 +77,13 @@ class _MyAppState extends State<MyApp> {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             minimumSize:
-                MaterialStateProperty.all(const Size(double.infinity, 50)),
-            backgroundColor: MaterialStateProperty.all(green),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            padding: MaterialStateProperty.all(
+                WidgetStateProperty.all(const Size(double.infinity, 50)),
+            backgroundColor: WidgetStateProperty.all(green),
+            foregroundColor: WidgetStateProperty.all(Colors.white),
+            padding: WidgetStateProperty.all(
                 const EdgeInsets.symmetric(horizontal: 10)),
-            elevation: MaterialStateProperty.all(0),
-            shape: MaterialStateProperty.all(
+            elevation: WidgetStateProperty.all(0),
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
           ),
@@ -119,7 +122,12 @@ class _MyAppState extends State<MyApp> {
       title: 'Apteka',
       routes: {
         '/main': (context) => const MainPage(),
-        '/reg': (context) => const Registration(),
+        '/reg': (context) => OTP(
+              userr: user,
+              ontap: () {
+                register(user, int.parse(otp.value));
+              },
+            ),
         '/leading': (context) => const Leading(),
         '/mainPage': (context) => const MainPageWidget(),
         '/mainPage/search': (context) => const Searck(),
@@ -135,7 +143,7 @@ class _MyAppState extends State<MyApp> {
         '/profile/adres': (context) => const Adres(),
         '/profile/sargyt': (context) => const Sargyt(),
       },
-      initialRoute: (langg.isNotEmpty) ? '/main' : '/leading',
+      initialRoute: (langg.isNotEmpty) ? '/reg' : '/leading',
     );
   }
 }

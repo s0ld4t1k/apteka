@@ -67,16 +67,16 @@ class Reklam extends StatelessWidget {
             const SizedBox(height: 9),
             ElevatedButton(
               style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(0),
-                  minimumSize: MaterialStateProperty.all(const Size(81, 23)),
-                  padding: MaterialStateProperty.all(
+                  elevation: WidgetStateProperty.all(0),
+                  minimumSize: WidgetStateProperty.all(const Size(81, 23)),
+                  padding: WidgetStateProperty.all(
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5)),
-                  backgroundColor: MaterialStateProperty.all(orange),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  backgroundColor: WidgetStateProperty.all(orange),
+                  shape: WidgetStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3),
                   )),
                   textStyle:
-                      MaterialStateProperty.all(const TextStyle(fontSize: 10))),
+                      WidgetStateProperty.all(const TextStyle(fontSize: 10))),
               onPressed: addToCart,
               child: Text(
                 '${locale[curLN]?["addCart"]}',

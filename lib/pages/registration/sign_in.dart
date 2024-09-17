@@ -9,16 +9,15 @@ import 'package:apte/widgets/tel_num_field.dart';
 import 'package:apte/widgets/validate_pass_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-
-import '../../widgets/otp_field.dart';
 
 String sid = '';
+
 UserModel user = UserModel();
 TextEditingController siName = TextEditingController();
 TextEditingController siTel = TextEditingController();
 TextEditingController siPass = TextEditingController();
 TextEditingController siPass2 = TextEditingController();
+RxString otp = ''.obs;
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
@@ -60,9 +59,9 @@ class SignIn extends StatelessWidget {
                 Obx(() {
                   return ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
+                        minimumSize: WidgetStateProperty.all(
                             const Size(double.infinity, 50)),
-                        backgroundColor: MaterialStateProperty.all(
+                        backgroundColor: WidgetStateProperty.all(
                             passerr.value ? conGrey : green)),
                     onPressed: passerr.value
                         ? null
@@ -75,11 +74,13 @@ class SignIn extends StatelessWidget {
                               );
                               await sendSMS(user);
                               if (user.sid != null) {
-                                Get.to(() => OTP(
-                                    userr: user,
-                                    ontap: () {
-                                      register(user, int.parse(s.value));
-                                    }));
+                                Get.to(
+                                  () => OTP(
+                                      userr: user,
+                                      ontap: () {
+                                        register(user, int.parse(otp.value));
+                                      }),
+                                );
                               }
                             } else {
                               Get.snackbar(

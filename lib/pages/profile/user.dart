@@ -7,7 +7,6 @@ import 'package:apte/pages/registration/otp.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -116,11 +115,11 @@ class User extends StatelessWidget {
                         children: [
                           TextButton(
                             style: ButtonStyle(
-                                overlayColor: MaterialStateProperty.all(
+                                overlayColor: WidgetStateProperty.all(
                                     orange.withOpacity(0.1)),
-                                minimumSize: MaterialStateProperty.all(
+                                minimumSize: WidgetStateProperty.all(
                                     const Size(118, 20)),
-                                padding: MaterialStateProperty.all(
+                                padding: WidgetStateProperty.all(
                                     const EdgeInsets.all(0)),
                                 alignment: Alignment.centerLeft),
                             onPressed: () async {
@@ -129,7 +128,7 @@ class User extends StatelessWidget {
                                 Get.to(() => OTP(
                                       userr: user,
                                       ontap: () {
-                                        log(s.value);
+                                        log(otp.value);
                                         Get.to(() => const ChangePW());
                                       },
                                     ));

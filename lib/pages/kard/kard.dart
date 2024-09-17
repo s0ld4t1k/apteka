@@ -76,13 +76,13 @@ class Kard extends StatelessWidget {
                           const SizedBox(height: 33),
                           OutlinedButton(
                               style: ButtonStyle(
-                                overlayColor: MaterialStateProperty.all(
+                                overlayColor: WidgetStateProperty.all(
                                     orange.withOpacity(0.1)),
-                                minimumSize: MaterialStateProperty.all(
+                                minimumSize: WidgetStateProperty.all(
                                     const Size(double.infinity, 50)),
-                                side: MaterialStateProperty.all(
+                                side: WidgetStateProperty.all(
                                     const BorderSide(color: orange)),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                     RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),

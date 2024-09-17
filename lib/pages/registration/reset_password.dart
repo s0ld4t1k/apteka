@@ -50,7 +50,7 @@ class ResetPassword extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(
+                    minimumSize: WidgetStateProperty.all(
                       const Size(double.infinity, 50),
                     ),
                   ),

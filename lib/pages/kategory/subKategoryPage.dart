@@ -85,16 +85,16 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                       Expanded(
                         child: OutlinedButton(
                           style: ButtonStyle(
-                            side: MaterialStateProperty.all(
+                            side: WidgetStateProperty.all(
                               const BorderSide(
                                 color: Color.fromRGBO(237, 237, 237, 1),
                               ),
                             ),
-                            minimumSize: MaterialStateProperty.all(
+                            minimumSize: WidgetStateProperty.all(
                                 const Size(double.infinity, 42)),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            shape: MaterialStateProperty.all(
+                                WidgetStateProperty.all(Colors.white),
+                            shape: WidgetStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -139,15 +139,15 @@ class _SubKategoryPageState extends State<SubKategoryPage> {
                       Expanded(
                         child: OutlinedButton(
                           style: ButtonStyle(
-                            side: MaterialStateProperty.all(
+                            side: WidgetStateProperty.all(
                               const BorderSide(
                                   color: Color.fromRGBO(237, 237, 237, 1)),
                             ),
-                            minimumSize: MaterialStateProperty.all(
+                            minimumSize: WidgetStateProperty.all(
                                 const Size(double.infinity, 42)),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            shape: MaterialStateProperty.all(
+                                WidgetStateProperty.all(Colors.white),
+                            shape: WidgetStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 side: const BorderSide(

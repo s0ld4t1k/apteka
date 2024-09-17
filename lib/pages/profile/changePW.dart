@@ -3,7 +3,6 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/pages/registration/sign_in.dart';
 import 'package:apte/widgets/langDictionary.dart';
-import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -59,12 +58,12 @@ class _ChangePWState extends State<ChangePW> {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
+                      minimumSize: WidgetStateProperty.all(
                           const Size(double.infinity, 50))),
                   onPressed: () async {
                     if (_pw.text == _conPW.text) {
                       user.password = _pw.text;
-                      resetPassword(user, int.parse(s.value));
+                      resetPassword(user, int.parse(otp.value));
                       Get.back();
                       Get.back();
                     }

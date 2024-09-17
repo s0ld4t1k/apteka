@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 RxDouble harytJemi = 0.0.obs;
-RxDouble eltipberme = 20.0.obs;
+RxDouble eltipberme = 15.0.obs;
 List jemiList = [];
 List eltmeList = [];
 void addToCart() {
@@ -36,8 +36,8 @@ class Bag extends StatelessWidget {
       ['${locale[curLN]?["deliveryHyzmat"]}', '$eltipberme TMT'],
     ];
     eltmeList = [
-      ['${locale[curLN]?["delivery1Hour"]}', '20 ${locale[curLN]?["manat"]}'],
-      ['${locale[curLN]?["delivery30min"]}', '30 ${locale[curLN]?["manat"]}'],
+      ['${locale[curLN]?["delivery1Hour"]}', '15 ${locale[curLN]?["manat"]}'],
+      ['${locale[curLN]?["delivery30min"]}', '20 ${locale[curLN]?["manat"]}'],
     ];
     return GetBuilder<CartController>(
       init: CartController(),
@@ -54,8 +54,7 @@ class Bag extends StatelessWidget {
                 const Spacer(),
                 TextButton(
                   style: ButtonStyle(
-                    overlayColor:
-                        MaterialStateProperty.all(red.withOpacity(0.1)),
+                    overlayColor: WidgetStateProperty.all(red.withOpacity(0.1)),
                   ),
                   onPressed: () => cc.cleanCart(),
                   child: Text(
@@ -124,9 +123,9 @@ class Bag extends StatelessWidget {
                                                   onTap: () {
                                                     curEltme = index;
                                                     if (index == 1) {
-                                                      eltipberme.value = 30;
-                                                    } else {
                                                       eltipberme.value = 20;
+                                                    } else {
+                                                      eltipberme.value = 15;
                                                     }
                                                     jemiList[1][1] =
                                                         '$eltipberme TMT';
@@ -258,10 +257,10 @@ class Bag extends StatelessWidget {
                                   )),
                                   ElevatedButton(
                                     style: ButtonStyle(
-                                        minimumSize: MaterialStateProperty.all(
+                                        minimumSize: WidgetStateProperty.all(
                                             const Size(196, 46)),
-                                        elevation: MaterialStateProperty.all(1),
-                                        shape: MaterialStateProperty.all(
+                                        elevation: WidgetStateProperty.all(1),
+                                        shape: WidgetStateProperty.all(
                                             RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),

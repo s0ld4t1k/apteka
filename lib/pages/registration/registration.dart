@@ -61,7 +61,7 @@ class Registration extends StatelessWidget {
                     const Spacer(),
                     TextButton(
                       style: ButtonStyle(
-                          overlayColor: MaterialStateProperty.all(
+                          overlayColor: WidgetStateProperty.all(
                               orange.withOpacity(0.1))),
                       onPressed: () => Get.to(() => const ResetPassword()),
                       child: Text(
@@ -74,7 +74,7 @@ class Registration extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
+                      minimumSize: WidgetStateProperty.all(
                           const Size(double.infinity, 50))),
                   onPressed: () => logg(),
                   child: Text(locale[curLN]!['ulgamaGir']!),

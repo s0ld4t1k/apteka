@@ -5,8 +5,10 @@ import 'package:apte/data/model/cart/controller.dart';
 import 'package:apte/data/model/user/controller.dart';
 import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
+import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/pages/profile/profile.dart';
+import 'package:apte/pages/punch_card/punch_card.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,15 +19,17 @@ ScrollController contrl = ScrollController();
 var selectedTab = 0;
 List bottomAppBarList = [
   'assets/icons/home.svg',
-  // 'assets/icons/category.svg',
+  'assets/icons/category.svg',
   'assets/icons/bag.svg',
+  'assets/icons/punch_card.svg',
   // 'assets/icons/card.svg',
   'assets/icons/profile.svg',
 ];
 List _tabs = [
   const MainPageWidget(),
-  // const Kategory(),
+  const Kategory(),
   const Bag(),
+  const PunchCard(),
   // const Kard(),
   const Profile(),
 ];
@@ -61,7 +65,7 @@ class _MainPageState extends State<MainPage> {
         child: Row(
           children: List.generate(
             bottomAppBarList.length,
-            (index) => (index == 1)
+            (index) => (index == 2)
                 ? Expanded(
                     child: InkWell(
                       onTap: () {
@@ -114,7 +118,7 @@ class _MainPageState extends State<MainPage> {
                         //     selectedTab = index;
                         //   });
                         // }
-                        if (index == 2 && Dioo().checkToken()) {
+                        if (index > 3 && Dioo().checkToken()) {
                           setState(() {
                             if (selectedTab == index) {
                               contrl.animateTo(0,
@@ -125,7 +129,7 @@ class _MainPageState extends State<MainPage> {
                           });
                           // Dioo().comingSoon();
                         }
-                        if (index < 1) {
+                        if (index < 2 || index == 3) {
                           setState(() {
                             if (selectedTab == index) {
                               contrl.animateTo(0,

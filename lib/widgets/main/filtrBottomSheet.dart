@@ -114,22 +114,22 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                               height: 34,
                               child: OutlinedButton(
                                 style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
+                                    padding: WidgetStateProperty.all(
                                         const EdgeInsets.symmetric(
                                       horizontal: 20,
                                       vertical: 1,
                                     )),
-                                    side: MaterialStateProperty.all(BorderSide(
+                                    side: WidgetStateProperty.all(BorderSide(
                                       color: _selectedFiltr[index] == i
                                           ? green
                                           : const Color.fromRGBO(
                                               237, 237, 237, 1),
                                     )),
-                                    shape: MaterialStateProperty.all(
+                                    shape: WidgetStateProperty.all(
                                         RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6),
                                     )),
-                                    minimumSize: MaterialStateProperty.all(
+                                    minimumSize: WidgetStateProperty.all(
                                         const Size(80, 34))),
                                 onPressed: () {
                                   setState(() {
@@ -168,9 +168,9 @@ class _FiltrBottomSheetState extends State<FiltrBottomSheet> {
                 const SizedBox(height: 25),
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(
+                    minimumSize: WidgetStateProperty.all(
                         const Size(double.infinity, 45)),
-                    shape: MaterialStateProperty.all(
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

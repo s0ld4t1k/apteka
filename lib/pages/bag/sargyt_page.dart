@@ -237,9 +237,9 @@ class SargytPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(green),
+              backgroundColor: WidgetStateProperty.all(green),
               minimumSize:
-                  MaterialStateProperty.all(const Size(double.infinity, 50))),
+                  WidgetStateProperty.all(const Size(double.infinity, 50))),
           onPressed: () {
             selectedTab = 0;
             Get.offAll(() => const MainPage());

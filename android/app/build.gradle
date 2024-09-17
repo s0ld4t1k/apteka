@@ -1,3 +1,4 @@
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -49,10 +50,11 @@ android {
         applicationId "com.sagdyndiyar.apteka"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 19
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -76,4 +78,7 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+  implementation 'androidx.multidex:multidex:2.0.1'
+
+}

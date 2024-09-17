@@ -1,9 +1,9 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/user_model.dart';
 import 'package:apte/pages/registration/sign_in.dart';
-import 'package:apte/widgets/otp_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../widgets/colors.dart';
 import '../../widgets/langDictionary.dart';
@@ -42,15 +42,23 @@ class OTP extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                OtpField(func: ontap),
+                Pinput(
+                  length: 6,
+                  onChanged: (value) => otp.value = value,
+                  // onCompleted: (value) => ontap,
+                  onCompleted: (value) {
+                    print(value);
+                    ontap();
+                  },
+                ),
                 const SizedBox(height: 30),
                 Obx(() {
                   return ElevatedButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
+                      minimumSize: WidgetStateProperty.all(
                           const Size(double.infinity, 50)),
                     ),
-                    onPressed: s.value.length == 6 ? ontap : null,
+                    onPressed: otp.value.length == 6 ? ontap : null,
                     child: Text(locale[curLN]!['continue']!),
                   );
                 })

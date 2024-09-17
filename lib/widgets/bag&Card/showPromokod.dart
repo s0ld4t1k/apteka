@@ -15,7 +15,7 @@ class ShowPromokod extends StatelessWidget {
     pro.text=promokodText.value;
     return InkWell(
       splashFactory: NoSplash.splashFactory,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Container(
         width: double.infinity,
@@ -75,8 +75,8 @@ class ShowPromokod extends StatelessWidget {
             const SizedBox(height: 11,),
             ElevatedButton(
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(const Size(double.infinity, 46)),
-                backgroundColor: MaterialStateProperty.all(
+                minimumSize: WidgetStateProperty.all(const Size(double.infinity, 46)),
+                backgroundColor: WidgetStateProperty.all(
                   green.withOpacity(0.7)
                 ),
               ),

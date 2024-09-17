@@ -309,7 +309,7 @@ class _NewCardState extends State<NewCard> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
+                      minimumSize: WidgetStateProperty.all(
                         const Size(double.infinity, 50),
                       ),
                     ),

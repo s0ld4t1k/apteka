@@ -80,7 +80,7 @@ class Dioo {
         actions: [
           TextButton(
             style: ButtonStyle(
-              overlayColor: MaterialStateProperty.all(red.withOpacity(0.1)),
+              overlayColor: WidgetStateProperty.all(red.withOpacity(0.1)),
             ),
             onPressed: () => Get.back(),
             child: Text(

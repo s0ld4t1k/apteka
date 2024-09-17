@@ -193,12 +193,12 @@ class _NewAdresState extends State<NewAdres> {
                                         ElevatedButton(
                                           style: ButtonStyle(
                                               minimumSize:
-                                                  MaterialStateProperty.all(
+                                                  WidgetStateProperty.all(
                                                       const Size(107, 34)),
                                               backgroundColor:
-                                                  MaterialStateProperty.all(
+                                                  WidgetStateProperty.all(
                                                       green.withOpacity(0.1)),
-                                              shape: MaterialStateProperty.all(
+                                              shape: WidgetStateProperty.all(
                                                   RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(6),
@@ -250,12 +250,12 @@ class _NewAdresState extends State<NewAdres> {
                                       return OutlinedButton(
                                           style: ButtonStyle(
                                               padding:
-                                                  MaterialStateProperty.all(
+                                                  WidgetStateProperty.all(
                                                       const EdgeInsets
                                                           .symmetric(
                                                           horizontal: 25,
                                                           vertical: 6)),
-                                              side: MaterialStateProperty.all(
+                                              side: WidgetStateProperty.all(
                                                   BorderSide(
                                                 color:
                                                     _selectedAdresType == index
@@ -263,7 +263,7 @@ class _NewAdresState extends State<NewAdres> {
                                                         : const Color.fromRGBO(
                                                             237, 237, 237, 1),
                                               )),
-                                              shape: MaterialStateProperty.all(
+                                              shape: WidgetStateProperty.all(
                                                   RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
@@ -290,7 +290,7 @@ class _NewAdresState extends State<NewAdres> {
                               const SizedBox(height: 20),
                               ElevatedButton(
                                 style: ButtonStyle(
-                                    minimumSize: MaterialStateProperty.all(
+                                    minimumSize: WidgetStateProperty.all(
                                         const Size(double.infinity, 50))),
                                 onPressed: () {
                                   ac.add(

@@ -115,17 +115,17 @@ class _NewAdresManualState extends State<NewAdresManual> {
                                     (index) {
                                   return OutlinedButton(
                                       style: ButtonStyle(
-                                          padding: MaterialStateProperty.all(
+                                          padding: WidgetStateProperty.all(
                                               const EdgeInsets.symmetric(
                                                   horizontal: 25, vertical: 6)),
-                                          side: MaterialStateProperty.all(
+                                          side: WidgetStateProperty.all(
                                               BorderSide(
                                             color: selectedAdresType == index
                                                 ? green
                                                 : const Color.fromRGBO(
                                                     237, 237, 237, 1),
                                           )),
-                                          shape: MaterialStateProperty.all(
+                                          shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8),
@@ -154,7 +154,7 @@ class _NewAdresManualState extends State<NewAdresManual> {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(
+                          minimumSize: WidgetStateProperty.all(
                               const Size(double.infinity, 50))),
                       onPressed: () {
                         if (widget.update) {

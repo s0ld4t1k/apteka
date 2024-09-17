@@ -199,7 +199,7 @@ class _TerminalState extends State<Terminal> {
                       minLines: null,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(0),
-                        hintText: '${locale[curLN]?['bellik']}',
+                        hintText: '${locale[curLN]?['bellikText']}',
                         hintStyle: const TextStyle(
                           color: Color.fromRGBO(193, 193, 193, 1),
                           fontSize: 16,
@@ -243,9 +243,9 @@ class _TerminalState extends State<Terminal> {
                 ElevatedButton(
                     style: ButtonStyle(
                         minimumSize:
-                            MaterialStateProperty.all(const Size(196, 46)),
-                        elevation: MaterialStateProperty.all(1),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            WidgetStateProperty.all(const Size(196, 46)),
+                        elevation: WidgetStateProperty.all(1),
+                        shape: WidgetStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ))),
                     onPressed: () async {

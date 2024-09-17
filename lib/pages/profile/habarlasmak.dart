@@ -219,7 +219,7 @@ class _HabarlasmakState extends State<Habarlasmak> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(
+                    minimumSize: WidgetStateProperty.all(
                         const Size(double.infinity, 50))),
                 onPressed: () async {
                   if (_name.text == '' ||

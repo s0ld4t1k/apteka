@@ -123,7 +123,7 @@ class _AddAdresState extends State<AddAdres> {
                       height: 18,
                       child: TextButton(
                         style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
+                            padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(0))),
                         onPressed: () =>
                             Navigator.pushNamed(context, '/bag/salgym'),
@@ -139,9 +139,9 @@ class _AddAdresState extends State<AddAdres> {
                     const SizedBox(height: 20),
                     ElevatedButton(
                         style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(
+                            minimumSize: WidgetStateProperty.all(
                                 const Size(double.infinity, 50)),
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                                 RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ))),
