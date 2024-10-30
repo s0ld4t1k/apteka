@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 
 import '../../widgets/colors.dart';
 
-String baseUrl = 'http://216.250.11.197:8000/api/v2/';
+String baseUrl = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/';
 
 Future<void> sendSMS(UserModel user) async {
-  String url = 'http://216.250.11.197:8000/api/v2/send_sms/';
+  String url = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/send_sms/';
   try {
     var res = await Dio().post(url, data: {'phone': user.phone});
     user.sid = res.data['detail']['loc'][0]['sid'];
@@ -27,7 +27,7 @@ Future<void> sendSMS(UserModel user) async {
 }
 
 Future<int> logIN(UserModel user) async {
-  String url = 'http://216.250.11.197:8000/api/v2/login/';
+  String url = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/login/';
   try {
     var res = await Dio()
         .post(url, data: {'phone': user.phone, 'password': user.password});
@@ -42,7 +42,7 @@ Future<int> logIN(UserModel user) async {
 }
 
 Future<void> register(UserModel userr, int otp) async {
-  String url = 'http://216.250.11.197:8000/api/v2/register/';
+  String url = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/register/';
   try {
     debugPrint(
         '${userr.sid} $otp ${userr.phone} ${userr.password} ${userr.name}');

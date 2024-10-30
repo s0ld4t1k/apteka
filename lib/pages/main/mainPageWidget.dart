@@ -102,9 +102,12 @@ class MainPageWidget extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () async {
                       if (await canLaunchUrl(
-                          Uri(scheme: 'tel', path: '+99362410579')))
+                          Uri(scheme: 'tel', path: '+99362410579'))) {
                         await launchUrl(
                             Uri(scheme: 'tel', path: '+99362410579'));
+                      } else {
+                        print('cannnnnnn\'t');
+                      }
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(

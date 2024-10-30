@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:apte/controller/langController.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kard/kard.dart';
@@ -6,8 +8,7 @@ import 'package:apte/pages/profile/habarlasmak.dart';
 import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/pages/profile/user.dart';
-import 'package:apte/pages/registration/otp.dart';
-import 'package:apte/pages/registration/sign_in.dart';
+import 'package:apte/pages/registration/registration.dart';
 import 'package:apte/widgets/bag&Card/newAdres.dart';
 import 'package:apte/pages/bag/sargytEtmek.dart';
 import 'package:apte/pages/kategory/kategory.dart';
@@ -25,12 +26,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'data/api/register.dart';
-
 var langg = '';
 var tokenn = '';
 
 void main() async {
+  HttpOverrides.global = MyHttpOverrides();
   await Future.delayed(const Duration(seconds: 1));
   FlutterNativeSplash.remove();
   WidgetsFlutterBinding.ensureInitialized();
@@ -122,12 +122,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Apteka',
       routes: {
         '/main': (context) => const MainPage(),
-        '/reg': (context) => OTP(
-              userr: user,
-              ontap: () {
-                register(user, int.parse(otp.value));
-              },
-            ),
+        '/reg': (context) => Registration(),
         '/leading': (context) => const Leading(),
         '/mainPage': (context) => const MainPageWidget(),
         '/mainPage/search': (context) => const Searck(),
@@ -162,4 +157,13 @@ MaterialColor createMaterialColor(Color color) {
     );
   }
   return MaterialColor(color.value, swatch);
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
