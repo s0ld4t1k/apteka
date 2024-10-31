@@ -9,8 +9,6 @@ import 'package:apte/widgets/tel_num_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-TextEditingController tel = TextEditingController();
-TextEditingController pass = TextEditingController();
 void logg() async {
   int sc = await logIN(user);
   if (sc == 200) {
@@ -26,7 +24,9 @@ void logg() async {
 }
 
 class Registration extends StatelessWidget {
-  const Registration({super.key});
+  final TextEditingController tel = TextEditingController();
+  final TextEditingController pass = TextEditingController();
+  Registration({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +61,8 @@ class Registration extends StatelessWidget {
                     const Spacer(),
                     TextButton(
                       style: ButtonStyle(
-                          overlayColor: WidgetStateProperty.all(
-                              orange.withOpacity(0.1))),
+                          overlayColor:
+                              WidgetStateProperty.all(orange.withOpacity(0.1))),
                       onPressed: () => Get.to(() => const ResetPassword()),
                       child: Text(
                         locale[curLN]!['forgetPassword']!,
@@ -72,12 +72,17 @@ class Registration extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 30),
-                ElevatedButton(
-                  style: ButtonStyle(
-                      minimumSize: WidgetStateProperty.all(
-                          const Size(double.infinity, 50))),
-                  onPressed: () => logg(),
-                  child: Text(locale[curLN]!['ulgamaGir']!),
+                Obx(
+                  () => isSign.value
+                      ? const Center(
+                          child: CircularProgressIndicator.adaptive())
+                      : ElevatedButton(
+                          style: ButtonStyle(
+                              minimumSize: WidgetStateProperty.all(
+                                  const Size(double.infinity, 50))),
+                          onPressed: () => logg(),
+                          child: Text(locale[curLN]!['ulgamaGir']!),
+                        ),
                 )
               ],
             ),

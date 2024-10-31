@@ -22,7 +22,7 @@ class ResetPassword extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        appBar: AppBar(elevation: 0),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(25),
@@ -83,7 +83,7 @@ class ResetPassword extends StatelessWidget {
             Text(locale[curLN]!['knowPassword?']!),
             const SizedBox(width: 5),
             TextButton(
-              onPressed: () => Get.to(() => const Registration()),
+              onPressed: () => Get.to(() => Registration()),
               child: Text(
                 locale[curLN]!['logAccount']!,
                 style: const TextStyle(color: orange),

@@ -1,3 +1,4 @@
+import 'package:apte/data/user_model.dart';
 import 'package:apte/main.dart';
 import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/main/mainPage.dart';
@@ -93,6 +94,7 @@ class Dioo {
               harytJemi(0);
               await const FlutterSecureStorage().delete(key: 'token');
               tokenn = '';
+              user = UserModel();
               selectedTab = 0;
               Get.offAll(() => const MainPage());
             },
@@ -119,7 +121,7 @@ class Dioo {
             ),
             const SizedBox(height: 60),
             ElevatedButton(
-              onPressed: () => Get.to(() => const Registration()),
+              onPressed: () => Get.to(() => Registration()),
               child: Text(locale[curLN]?['ulgamaGir'] ?? ''),
             ),
           ],

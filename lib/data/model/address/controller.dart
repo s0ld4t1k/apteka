@@ -21,12 +21,12 @@ class AddressController extends GetxController {
       var res = await Dioo().dio.get(url);
       if (res.statusCode == 200) {
         addresses = AddressModel.fromJson(res.data);
-        isload = false;
-        update();
       }
     } catch (e) {
       debugPrint('------address=------$e');
     }
+    isload = false;
+    update();
   }
 
   void patch(id, place, address, index) async {

@@ -1,6 +1,7 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/order/model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,11 +24,15 @@ class OrderController extends GetxController {
       if (res.statusCode == 200) {
         orders = OrderModel.fromJson(res.data);
       }
-      isload = false;
-      update();
     } catch (e) {
       debugPrint('----order=-----$e');
-      get();
+      if (e is DioException && e.response?.statusCode == null) {
+        Dioo().conErr(() {});
+      } else if (e is DioException) {
+        print(e.response?.data['msg']);
+      }
     }
+    isload = false;
+    update();
   }
 }

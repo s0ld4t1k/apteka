@@ -1,6 +1,7 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/data/model/products/model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,13 +45,16 @@ class CartController extends GetxController {
             }
           }
         }
-        isload = false;
       }
     } catch (e) {
       debugPrint('-------cart=---------$e');
-      // get();
-      Dioo().conErr(get);
+      if (e is DioException && e.response?.statusCode == null) {
+        Dioo().conErr(() {});
+      } else if (e is DioException) {
+        print(e.response?.data['msg']);
+      }
     }
+    isload = false;
     update();
   }
 

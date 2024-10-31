@@ -58,11 +58,6 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 30),
                 Obx(() {
                   return ElevatedButton(
-                    style: ButtonStyle(
-                        minimumSize: WidgetStateProperty.all(
-                            const Size(double.infinity, 50)),
-                        backgroundColor: WidgetStateProperty.all(
-                            passerr.value ? conGrey : green)),
                     onPressed: passerr.value
                         ? null
                         : () async {

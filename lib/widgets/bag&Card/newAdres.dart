@@ -112,12 +112,13 @@ class _NewAdresState extends State<NewAdres> {
                                 });
                               },
                               initialCenter: LatLng(_lat, _long),
-                              initialZoom: 12,
+                              initialZoom: 13,
                             ),
                             children: [
                               TileLayer(
                                 urlTemplate:
-                                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                                subdomains: ['a', 'b', 'c'],
                               ),
                               MarkerLayer(markers: markers)
                             ]),
@@ -249,12 +250,10 @@ class _NewAdresState extends State<NewAdres> {
                                         adresTypeList.length, (index) {
                                       return OutlinedButton(
                                           style: ButtonStyle(
-                                              padding:
-                                                  WidgetStateProperty.all(
-                                                      const EdgeInsets
-                                                          .symmetric(
-                                                          horizontal: 25,
-                                                          vertical: 6)),
+                                              padding: WidgetStateProperty.all(
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 25,
+                                                      vertical: 6)),
                                               side: WidgetStateProperty.all(
                                                   BorderSide(
                                                 color:

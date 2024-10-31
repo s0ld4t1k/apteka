@@ -1,6 +1,7 @@
 import 'package:apte/data/api/register.dart';
 import 'package:apte/data/dio.dart';
 import 'package:apte/pages/registration/sign_in.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,11 +31,16 @@ class UserController extends GetxController {
         user.name = res.data['detail']['loc'][0]['first_name'];
         user.phone = res.data['detail']['loc'][0]['phone'];
       }
-      isLoad = false;
-      update();
     } catch (e) {
       debugPrint('---user-----$e');
+      if (e is DioException && e.response?.statusCode == null) {
+        Dioo().conErr(() {});
+      } else if (e is DioException) {
+        print(e.response?.data['msg']);
+      }
     }
+    isLoad = false;
+    update();
   }
 
   void getWhishlists() async {

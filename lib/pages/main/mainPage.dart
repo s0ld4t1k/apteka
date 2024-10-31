@@ -8,7 +8,6 @@ import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/pages/profile/profile.dart';
-import 'package:apte/pages/punch_card/punch_card.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,7 +20,7 @@ List bottomAppBarList = [
   'assets/icons/home.svg',
   'assets/icons/category.svg',
   'assets/icons/bag.svg',
-  'assets/icons/punch_card.svg',
+  // 'assets/icons/punch_card.svg',
   // 'assets/icons/card.svg',
   'assets/icons/profile.svg',
 ];
@@ -29,7 +28,7 @@ List _tabs = [
   const MainPageWidget(),
   const Kategory(),
   const Bag(),
-  const PunchCard(),
+  // const PunchCard(),
   // const Kard(),
   const Profile(),
 ];
@@ -118,7 +117,7 @@ class _MainPageState extends State<MainPage> {
                         //     selectedTab = index;
                         //   });
                         // }
-                        if (index > 3 && Dioo().checkToken()) {
+                        if (index > 2 && Dioo().checkToken()) {
                           setState(() {
                             if (selectedTab == index) {
                               contrl.animateTo(0,
@@ -129,7 +128,7 @@ class _MainPageState extends State<MainPage> {
                           });
                           // Dioo().comingSoon();
                         }
-                        if (index < 2 || index == 3) {
+                        if (index < 2) {
                           setState(() {
                             if (selectedTab == index) {
                               contrl.animateTo(0,

@@ -56,7 +56,7 @@ class NewPassword extends StatelessWidget {
                   onPressed: () async {
                     if (npPass.text == npPass2.text) {
                       resetPassword(user, int.parse(otp.value));
-                      Get.to(() => const Registration());
+                      Get.to(() => Registration());
                     }
                   },
                   child: Text(locale[curLN]!['new']!),

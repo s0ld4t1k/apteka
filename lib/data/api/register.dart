@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import '../../widgets/colors.dart';
 
 String baseUrl = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/';
-
+RxBool isSign = false.obs;
 Future<void> sendSMS(UserModel user) async {
   String url = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/send_sms/';
   try {
@@ -27,6 +27,7 @@ Future<void> sendSMS(UserModel user) async {
 }
 
 Future<int> logIN(UserModel user) async {
+  isSign.value = true;
   String url = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/login/';
   try {
     var res = await Dio()
@@ -38,10 +39,13 @@ Future<int> logIN(UserModel user) async {
   } catch (e) {
     debugPrint('---login $e');
     return 0;
+  } finally {
+    isSign.value = false;
   }
 }
 
 Future<void> register(UserModel userr, int otp) async {
+  isSign.value = true;
   String url = 'https://ajayypgurlusyk.com.tm/apppi/api/v2/register/';
   try {
     debugPrint(
@@ -81,7 +85,13 @@ Future<void> register(UserModel userr, int otp) async {
     }
   } catch (e) {
     debugPrint('---registr $e');
+    if (e is DioException && e.response?.statusCode == null) {
+      Dioo().conErr(() {});
+    } else if (e is DioException) {
+      print(e.response?.data['msg'].toString());
+    }
   }
+  isSign.value = false;
 }
 
 Future<String?> resetPassword(UserModel user, int code) async {
@@ -101,6 +111,9 @@ Future<String?> resetPassword(UserModel user, int code) async {
         backgroundColor: green,
         colorText: Colors.white,
       );
+      String token = res.data['detail']['loc'][0];
+      const FlutterSecureStorage().write(key: 'token', value: token);
+      tokenn = token;
     }
     return res.statusMessage;
   } catch (e) {

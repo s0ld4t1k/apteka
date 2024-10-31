@@ -18,7 +18,7 @@ class OTP extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        appBar: AppBar(elevation: 0),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(25),
@@ -53,14 +53,17 @@ class OTP extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Obx(() {
-                  return ElevatedButton(
-                    style: ButtonStyle(
-                      minimumSize: WidgetStateProperty.all(
-                          const Size(double.infinity, 50)),
-                    ),
-                    onPressed: otp.value.length == 6 ? ontap : null,
-                    child: Text(locale[curLN]!['continue']!),
-                  );
+                  return isSign.value
+                      ? const Center(
+                          child: CircularProgressIndicator.adaptive())
+                      : ElevatedButton(
+                          style: ButtonStyle(
+                            minimumSize: WidgetStateProperty.all(
+                                const Size(double.infinity, 50)),
+                          ),
+                          onPressed: otp.value.length == 6 ? ontap : null,
+                          child: Text(locale[curLN]!['continue']!),
+                        );
                 })
               ],
             ),
