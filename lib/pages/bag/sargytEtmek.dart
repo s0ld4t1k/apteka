@@ -12,6 +12,7 @@ import 'package:apte/pages/kard/kard.dart';
 import 'package:apte/widgets/bag&Card/eltmeCon.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +41,7 @@ Future<int> toOrder(fullName, phone, address, paymentMethod) async {
     return res.statusCode ?? 0;
   } catch (e) {
     debugPrint('----order-post----$e');
+    if (e is DioException) print(e.response?.data);
     return 0;
   }
 }

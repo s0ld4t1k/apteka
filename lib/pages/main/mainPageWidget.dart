@@ -3,6 +3,7 @@
 import 'package:apte/data/model/banners/controller.dart';
 import 'package:apte/data/model/products/controller.dart';
 import 'package:apte/pages/main/mainPage.dart';
+import 'package:apte/pages/main/productPage.dart';
 import 'package:apte/pages/main/searchPage.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/controller/langController.dart';
@@ -80,11 +81,7 @@ class MainPageWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              height: 20,
-                              width: 1,
-                              color: textGrey3,
-                            ),
+                            Container(height: 20, width: 1, color: textGrey3),
                             const SizedBox(width: 14),
                             GestureDetector(
                               onTap: scan,
@@ -137,30 +134,45 @@ class MainPageWidget extends StatelessWidget {
                             return CarouselSlider(
                               items: List.generate(
                                 bc.banners.detail?.loc?.length ?? 0,
-                                (index) => Container(
-                                  width: 325,
-                                  margin: const EdgeInsets.only(right: 12),
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Image.network(
-                                    bc.banners.detail?.loc?[index].imgUrl ?? '',
-                                    fit: BoxFit.fill,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(
-                                      'assets/images/err.png',
-                                      scale: 3,
+                                (index) => InkWell(
+                                  onTap: () {
+                                    print(bc.banners.detail?.loc?[index].url);
+                                    if (bc.banners.detail?.loc?[index].url !=
+                                            null &&
+                                        bc.banners.detail?.loc?[index].url !=
+                                            '')
+                                      Get.to(() => ProductPage(
+                                            url:
+                                                '/product/${bc.banners.detail?.loc?[index].url}/',
+                                          ));
+                                  },
+                                  child: Container(
+                                    width: 325,
+                                    margin: const EdgeInsets.only(right: 12),
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
                                     ),
-                                    loadingBuilder:
-                                        (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return Image.asset(
+                                    child: Image.network(
+                                      bc.banners.detail?.loc?[index].imgUrl ??
+                                          '',
+                                      fit: BoxFit.fill,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Image.asset(
                                         'assets/images/err.png',
                                         scale: 3,
-                                      );
-                                    },
+                                      ),
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return Image.asset(
+                                          'assets/images/err.png',
+                                          scale: 3,
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),

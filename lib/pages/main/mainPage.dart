@@ -8,6 +8,7 @@ import 'package:apte/pages/bag/bag.dart';
 import 'package:apte/pages/kategory/kategory.dart';
 import 'package:apte/pages/main/mainPageWidget.dart';
 import 'package:apte/pages/profile/profile.dart';
+import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,6 +21,7 @@ List bottomAppBarList = [
   'assets/icons/home.svg',
   'assets/icons/category.svg',
   'assets/icons/bag.svg',
+  'assets/icons/profile/sargytlarym.svg',
   // 'assets/icons/punch_card.svg',
   // 'assets/icons/card.svg',
   'assets/icons/profile.svg',
@@ -28,6 +30,7 @@ List _tabs = [
   const MainPageWidget(),
   const Kategory(),
   const Bag(),
+  Sargyt(),
   // const PunchCard(),
   // const Kard(),
   const Profile(),

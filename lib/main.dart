@@ -25,7 +25,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 var langg = '';
 var tokenn = '';
@@ -139,11 +138,7 @@ class _MyAppState extends State<MyApp> {
         '/profile/adres': (context) => const Adres(),
         '/profile/sargyt': (context) => const Sargyt(),
       },
-      initialRoute: (langg.isNotEmpty)
-          ? (tokenn.isNotEmpty && !JwtDecoder.isExpired(tokenn))
-              ? '/main'
-              : '/reg'
-          : '/leading',
+      initialRoute: (langg.isNotEmpty) ? '/main' : '/leading',
     );
   }
 }
