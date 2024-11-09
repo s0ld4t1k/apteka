@@ -25,7 +25,7 @@ void getGeo() async {
       _lat = pos.latitude;
       _long = pos.longitude;
       List<Placemark> placemarks =
-          await placemarkFromCoordinates(pos.latitude, pos.latitude);
+          await placemarkFromCoordinates(pos.latitude, pos.longitude);
       selectedAdresStr.value =
           '${placemarks[0].administrativeArea} ${placemarks[0].subAdministrativeArea} ${placemarks[0].locality} ${placemarks[0].subLocality} ${placemarks[0].thoroughfare} ${placemarks[0].subThoroughfare}';
 
@@ -103,7 +103,7 @@ class _NewAdresState extends State<NewAdres> {
 
                                 selectedAdresStr.value =
                                     '${placemarks[0].administrativeArea} ${placemarks[0].subAdministrativeArea} ${placemarks[0].locality} ${placemarks[0].subLocality} ${placemarks[0].thoroughfare} ${placemarks[0].subThoroughfare}';
-                                print(point);
+                                // print(point);
                                 print(placemarks);
                                 markers[0] = Marker(
                                   point: point,
