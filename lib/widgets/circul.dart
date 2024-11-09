@@ -8,7 +8,7 @@ class Circul extends StatelessWidget {
     return Container(
       alignment: Alignment.bottomCenter,
       height: MediaQuery.of(context).size.height / 3,
-      child: const CircularProgressIndicator(),
+      child: const CircularProgressIndicator.adaptive(),
     );
   }
 }

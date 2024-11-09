@@ -33,7 +33,7 @@ class Sargyt extends StatelessWidget {
                 title: Text('${locale[curLN]?['myOrders']}'),
               ),
               body: oc.isload
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator.adaptive())
                   : SafeArea(
                       child: Padding(
                       padding: const EdgeInsets.symmetric(

@@ -47,7 +47,7 @@ class Adres extends StatelessWidget {
               title: Text('${locale[curLN]?['myAdres']}'),
             ),
             body: ac.isload
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator.adaptive())
                 : SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 20),

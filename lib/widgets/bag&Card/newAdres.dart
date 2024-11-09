@@ -8,12 +8,15 @@ import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
+String mapboxToken =
+    'pk.eyJ1Ijoib3B0b3ZveSIsImEiOiJjbTM4d3VjaXkwejMyMm1zNWEzOGN5YWJ3In0.4P11_MNE7aclJnv_CJh8QA';
 var _selectedAdresType = 0;
-var _lat = 37.57, _long = 58.225999;
+var _lat = 37.960077, _long = 58.326063;
 void getGeo() async {
   try {
     var per = await Geolocator.requestPermission();
@@ -21,6 +24,11 @@ void getGeo() async {
       Position pos = await Geolocator.getCurrentPosition();
       _lat = pos.latitude;
       _long = pos.longitude;
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(pos.latitude, pos.latitude);
+      selectedAdresStr.value =
+          '${placemarks[0].administrativeArea} ${placemarks[0].subAdministrativeArea} ${placemarks[0].locality} ${placemarks[0].subLocality} ${placemarks[0].thoroughfare} ${placemarks[0].subThoroughfare}';
+
       mc.move(LatLng(_lat, _long), 12);
       markers[0] = Marker(
         point: LatLng(_lat, _long),
@@ -72,58 +80,67 @@ class _NewAdresState extends State<NewAdres> {
         init: AddressController(),
         builder: (ac) {
           return Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              leading: IconButton(
-                  padding: const EdgeInsets.all(0),
-                  constraints: const BoxConstraints(
-                    maxHeight: 24,
-                    maxWidth: 24,
-                    minHeight: 24,
-                    minWidth: 24,
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.chevron_left_rounded)),
-              title: Text('${locale[curLN]?['myAdres']}'),
-            ),
             body: Stack(
               children: [
-                SafeArea(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 2,
-                        child: FlutterMap(
-                            mapController: mc,
-                            options: MapOptions(
-                              onMapReady: () {
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: FlutterMap(
+                          mapController: mc,
+                          options: MapOptions(
+                            onMapReady: () {
+                              setState(() {});
+                              getGeo();
+                            },
+                            onLongPress: (tapPosition, point) async {
+                              try {
+                                _lat = point.latitude;
+                                _long = point.longitude;
+                                List<Placemark> placemarks =
+                                    await placemarkFromCoordinates(
+                                        point.latitude, point.longitude);
+
+                                selectedAdresStr.value =
+                                    '${placemarks[0].administrativeArea} ${placemarks[0].subAdministrativeArea} ${placemarks[0].locality} ${placemarks[0].subLocality} ${placemarks[0].thoroughfare} ${placemarks[0].subThoroughfare}';
+                                print(point);
+                                print(placemarks);
+                                markers[0] = Marker(
+                                  point: point,
+                                  child:
+                                      SvgPicture.asset('assets/icons/loc.svg'),
+                                );
                                 setState(() {});
-                                getGeo();
-                              },
-                              onLongPress: (tapPosition, point) {
-                                setState(() {
-                                  _lat = point.latitude;
-                                  _long = point.longitude;
-                                  markers[0] = Marker(
-                                    point: point,
-                                    child: SvgPicture.asset(
-                                        'assets/icons/loc.svg'),
-                                  );
-                                });
-                              },
-                              initialCenter: LatLng(_lat, _long),
-                              initialZoom: 13,
+                              } catch (e) {
+                                print('-loc by long press- $e');
+                              }
+                            },
+                            initialCenter: LatLng(_lat, _long),
+                            initialZoom: 13,
+                          ),
+                          children: [
+                            TileLayer(
+                              urlTemplate:
+                                  "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=$mapboxToken",
+                              subdomains: ['a', 'b', 'c'],
                             ),
-                            children: [
-                              TileLayer(
-                                urlTemplate:
-                                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                subdomains: ['a', 'b', 'c'],
-                              ),
-                              MarkerLayer(markers: markers)
-                            ]),
-                      ),
-                    ],
+                            MarkerLayer(markers: markers)
+                          ]),
+                    ),
+                  ],
+                ),
+                Positioned(
+                  top: 50,
+                  left: 25,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.chevron_left_rounded),
+                    ),
                   ),
                 ),
                 Positioned(
@@ -189,7 +206,7 @@ class _NewAdresState extends State<NewAdres> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        SelectableText('$_lat, $_long'),
+                                        SelectableText(selectedAdresStr.value),
                                         const SizedBox(height: 18),
                                         ElevatedButton(
                                           style: ButtonStyle(
@@ -292,11 +309,12 @@ class _NewAdresState extends State<NewAdres> {
                                     minimumSize: WidgetStateProperty.all(
                                         const Size(double.infinity, 50))),
                                 onPressed: () {
-                                  ac.add(
-                                      _selectedAdresType + 1, '$_lat, $_long');
                                   selectedAdresStr.value = '$_lat, $_long';
+                                  ac.add(_selectedAdresType + 1,
+                                      selectedAdresStr.value);
                                   selectedAdres.value =
-                                      ac.addresses.detail?.loc?.length ?? 1 - 1;
+                                      (ac.addresses.detail?.loc?.length ?? 1) -
+                                          1;
                                   Get.back();
                                 },
                                 child: Text(

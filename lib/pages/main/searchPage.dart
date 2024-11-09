@@ -105,7 +105,7 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
               body: sc.isload
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator.adaptive())
                   : SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 15),

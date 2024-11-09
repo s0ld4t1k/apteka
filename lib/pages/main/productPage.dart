@@ -146,7 +146,7 @@ class ProductPage extends StatelessWidget {
             ),
             body: pc.isload.value
                 ? const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator.adaptive(),
                   )
                 : Stack(
                     children: [
