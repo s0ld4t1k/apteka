@@ -298,7 +298,7 @@ Map<String, Map<String, String>> locale = {
     'noneAdresText2':
         'Вы можете добавить свой адрес для удобства выполнения заказа',
     'addAdres': 'Добавить адрес',
-    'waitingOrders': 'Ожидающие заказы',
+    'waitingOrders': 'Ожидающие',
     'orders': 'Заказы',
     'yagdayy': 'Статус',
     'orderID': 'ID заказа',
@@ -476,7 +476,7 @@ Map<String, Map<String, String>> locale = {
     'noneAdresText1': 'Text not found',
     'noneAdresText2': 'You can add your address for easier order fulfillment',
     'addAdres': 'Add address',
-    'waitingOrders': 'Waiting orders',
+    'waitingOrders': 'Waiting',
     'orders': 'Orders',
     'yagdayy': 'Status',
     'orderID': 'Order ID',

@@ -11,6 +11,7 @@ import 'package:apte/pages/profile/profile.dart';
 import 'package:apte/pages/profile/sargyt.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -70,7 +71,10 @@ class _MainPageState extends State<MainPage> {
             (index) => (index == 2)
                 ? Expanded(
                     child: InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                       onTap: () {
+                        HapticFeedback.lightImpact();
                         if (Dioo().checkToken()) {
                           setState(() {
                             if (selectedTab == index) {
@@ -109,6 +113,8 @@ class _MainPageState extends State<MainPage> {
                   )
                 : Expanded(
                     child: InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                       onTap: () {
                         // if (index == 4 && Dioo().checkToken()) {
                         //   setState(() {

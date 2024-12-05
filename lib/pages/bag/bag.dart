@@ -8,14 +8,16 @@ import 'package:apte/widgets/circul.dart';
 import 'package:apte/widgets/colors.dart';
 import 'package:apte/widgets/langDictionary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
 RxDouble harytJemi = 0.0.obs;
-RxDouble eltipberme = 15.0.obs;
+RxDouble eltipberme = 0.0.obs;
 List jemiList = [];
 List eltmeList = [];
 void addToCart() {
+  HapticFeedback.lightImpact();
   Get.snackbar(
     'Haryt sebede goşuldy',
     'Harydy sebediňizde görüp bilersiň',
@@ -36,7 +38,7 @@ class Bag extends StatelessWidget {
       ['${locale[curLN]?["deliveryHyzmat"]}', '$eltipberme TMT'],
     ];
     eltmeList = [
-      ['${locale[curLN]?["delivery1Hour"]}', '15 ${locale[curLN]?["manat"]}'],
+      ['${locale[curLN]?["delivery1Hour"]}', '0 ${locale[curLN]?["manat"]}'],
       ['${locale[curLN]?["delivery30min"]}', '20 ${locale[curLN]?["manat"]}'],
     ];
     return GetBuilder<CartController>(
@@ -125,7 +127,7 @@ class Bag extends StatelessWidget {
                                                     if (index == 1) {
                                                       eltipberme.value = 20;
                                                     } else {
-                                                      eltipberme.value = 15;
+                                                      eltipberme.value = 0;
                                                     }
                                                     jemiList[1][1] =
                                                         '$eltipberme TMT';

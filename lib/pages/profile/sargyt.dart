@@ -18,20 +18,7 @@ class Sargyt extends StatelessWidget {
             length: 2,
             child: Scaffold(
               backgroundColor: Colors.white,
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                leading: IconButton(
-                    padding: const EdgeInsets.all(0),
-                    constraints: const BoxConstraints(
-                      maxHeight: 24,
-                      maxWidth: 24,
-                      minHeight: 24,
-                      minWidth: 24,
-                    ),
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.chevron_left_rounded)),
-                title: Text('${locale[curLN]?['myOrders']}'),
-              ),
+              appBar: AppBar(title: Text('${locale[curLN]?['myOrders']}')),
               body: oc.isload
                   ? const Center(child: CircularProgressIndicator.adaptive())
                   : SafeArea(
